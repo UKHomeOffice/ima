@@ -1,0 +1,21 @@
+{
+  "your-details": {
+    "header": "Enter your details"
+  },
+  "not-found": {
+    "header": "Details not found",
+    "paragraph-1": "The case ID and date of birth must exactly match what is in the letter or email that the Home Office sent you.",
+    "paragraph-2": "Check you have the correct case ID and date of birth and try again."
+  },
+  "email-not-recognised": {
+    "header": "Email not recognised"
+  },
+  "verify": {
+    "header": "Enter an email address"
+  },
+  "check-inbox": {
+    "header": "Check your email",
+    "paragraph-1": "We have emailed a link to:",
+    "paragraph-2": "Use the link to open your form."
+  }
+}

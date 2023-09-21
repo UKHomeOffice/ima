@@ -1,0 +1,10 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#skipEmail}}
+      <p><strong>This is a test environment. So you can skip login using this email:<br>
+      {{skipEmail}}</strong></p>
+    {{/skipEmail}}
+    {{#renderField}}user-email{{/renderField}}
+    {{#input-submit}}send-secure{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

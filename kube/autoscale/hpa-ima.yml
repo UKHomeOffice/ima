@@ -1,0 +1,227 @@
+---
+#==============================================================================
+# HorizontalPodAutoscaler for asylum-contact-questionnaire deployment resource.
+#==============================================================================
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: {{ .APP_NAME }}
+  {{ end }}
+spec:
+  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+  minReplicas: 8
+  maxReplicas: 20
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  minReplicas: 2
+  maxReplicas: 5
+  {{ else }}
+  minReplicas: 1
+  maxReplicas: 5
+  {{ end }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    name: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}
+    {{ else }}
+    name: {{ .APP_NAME }}
+    {{ end }}
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: 150Mi
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 100
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 35
+
+---
+#==============================================================================
+# HorizontalPodAutoscaler for data-service deployment resource.
+#==============================================================================
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: data-service
+  {{ end }}
+spec:
+  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+  minReplicas: 8
+  maxReplicas: 20
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  minReplicas: 2
+  maxReplicas: 5
+  {{ else }}
+  minReplicas: 1
+  maxReplicas: 5
+  {{ end }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+    {{ else }}
+    name: data-service
+    {{ end }}
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: 150Mi
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 100
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 35
+
+---
+#==============================================================================
+# HorizontalPodAutoscaler for file-vault deployment resource.
+#==============================================================================
+apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: file-vault
+  {{ end }}
+spec:
+  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+  minReplicas: 8
+  maxReplicas: 20
+  {{ else }}
+  minReplicas: 2
+  maxReplicas: 5
+  {{ end }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
+    {{ else }}
+    name: file-vault
+    {{ end }}
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: 150Mi
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 100
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 35
+
+---
+#==============================================================================
+# HorizontalPodAutoscaler for html-pdf-converter deployment resource.
+#==============================================================================
+apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: html-pdf-converter
+  {{ end }}
+spec:
+  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+  minReplicas: 8
+  maxReplicas: 20
+  {{ else }}
+  minReplicas: 2
+  maxReplicas: 10
+  {{ end }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+    name: html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}
+    {{ else }}
+    name: html-pdf-converter
+    {{ end }}
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageUtilization: 60
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 100
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 35
