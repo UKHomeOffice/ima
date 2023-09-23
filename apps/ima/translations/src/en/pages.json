@@ -6,5 +6,72 @@
   "save-and-exit": {
     "header": "You have left the form",
     "paragraph1": "Your progress has been saved."
+  },
+  "current-progress": {
+    "header": "Information you have given us"
+  },
+  "legal-representative-details": {
+    "header": "Immigration adviser details",
+    "hint": "We will use these details if we need to contact you."
+  },
+  "cannot-use-form": {
+    "header": "You cannot use this form",
+    "paragraph-1": "You can only continue your asylum claim if you are in the UK."
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "submit-warning": "You will not be able to change your answers after you submit.",
+    "sections": {
+      "case-details": {
+        "header": "Case details"
+      },
+      "your-contact-details": {
+        "header": "Your contact details"
+      },
+      "your-personal-details": {
+        "header": "Your personal details"
+      },
+      "legal-representative-details": {
+        "header": "Immigration advisor details"
+      }
+    },
+    "fields": {
+      "uan": {
+        "label": "Unique Application Number (UAN)"
+      },
+      "name": {
+        "label": "Full name"
+      },
+      "date-of-birth": {
+        "label": "Date of birth"
+      },
+      "has-legal-representative": {
+        "label": "Has immigration advisor?"
+      },
+      "legal-representative-name": {
+        "label": "Name"
+      },
+      "legal-representative-phone-number": {
+        "label": "Phone number"
+      },
+      "legal-representative-email": {
+        "label": "Email address"
+      },
+      "legal-representative-house-number": {
+        "label": "Address line 1"
+      },
+      "legal-representative-street": {
+        "label": "Address line 2 (optional)"
+      },
+      "legal-representative-townOrCity": {
+        "label": "Town/City"
+      },
+      "legal-representative-county": {
+        "label": "County (optional)"
+      },
+      "legal-representative-postcode": {
+        "label": "Postcode"
+      }
+    }
   }
 }

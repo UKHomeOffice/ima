@@ -11,6 +11,8 @@ module.exports = {
   csp: {
     imgSrc: ['data:']
   },
+  // TODO: service url is temporary, keycloak is stripping out http headers. Needs fixing.
+  serviceUrl: process.env.SERVICE_URL,
   login: {
     tokenExpiry: 1800,
     appPath: '/ima/start',
@@ -24,7 +26,7 @@ module.exports = {
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
     submissionTemplateId: process.env.CASEWORKER_SUBMISSION_TEMPLATE_ID,
-    caseworkerEmail: process.env.CASEWORKER_EMAIL,
+    caseworkersEmailInbox: process.env.CASEWORKER_EMAIL,
     csvReportEmail: process.env.CSV_REPORT_EMAIL,
     customerReceiptTemplateId: process.env.APPLICANT_RECEIPT_TEMPLATE_ID,
     userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID,
@@ -53,6 +55,29 @@ module.exports = {
     postgresDateFormat: 'YYYY-MM-DD HH:mm:ss',
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,
     host: process.env.DATASERVICE_SERVICE_HOST &&
-      `https://${process.env.DATASERVICE_SERVICE_HOST}`
+      `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
+  },
+  applicationUploads: {
+    maxFileSize: '25mb',
+    applicantColumns: [
+      'uan',
+      'date of birth',
+      'email address'
+    ],
+    mandatoryColumns: [
+      'uan',
+      'date of birth',
+      'email address'
+    ],
+    referenceColumns: [
+      'uan'
+    ],
+    allowedMimeTypes: [
+      'text/csv'
+    ]
+  },
+  sessionDefaults: {
+    steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
+    fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
   }
 };

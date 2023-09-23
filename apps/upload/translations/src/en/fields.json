@@ -1,0 +1,11 @@
+{
+  "bulk-upload-claimants": {
+    "label": "Upload CSV File"
+  },
+  "confirm-data-checked": {
+    "label": "Have you checked the data is correct?"
+  },
+  "shared-mailbox": {
+    "label": "To use a shared mailbox for claimants correspondence enter it here"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "bulk-upload-claimants": {
+    "required": "Select a file",
+    "unsaved": "We have not been able to upload evidence",
+    "maxFileSize": "Select a file that is smaller than 25 MB",
+    "fileType": "This file is not a valid file format you can upload.",
+    "invalidColumns": "Please ensure you have at least the following columns in your CSV file: UAN, Date of birth, Email Address",
+    "missingValues": "There are missing values in this file. Please check it to ensure no mandatory field values are missing.",
+    "missingReference": "Enter a value for UAN in each row in your CSV file.",
+    "hasDuplicates": "There are duplicate applications in this CSV file. Please remove any duplicates.",
+    "emptyCsvSheet": "This CSV file appears to be empty. Please upload a sheet with some data."
+  },
+  "confirm-data-checked": {
+    "required": "Confirm you have checked the data and it is correct."
+  },
+  "shared-mailbox": {
+    "email": "Enter a valid email address"
+  }
+}

@@ -1,1 +1,10 @@
-{}
+{
+  "uan": {
+    "label": "Unique Application Number (UAN)",
+    "hint": "For example, 1234-5678-1234-5678"
+  },
+  "date-of-birth": {
+    "legend": "Date of birth",
+    "hint": "For example, 31 3 1980"
+  }
+}

@@ -1,0 +1,28 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div class="govuk-hint">
+      {{#t}}pages.legal-representative-details.hint{{/t}}
+    </div>
+
+    {{#input-text}}legal-representative-name{{/input-text}}
+
+    <span class="govuk-label">
+      <strong>{{#t}}pages.legal-representative-address{{/t}}</strong>
+    </span><br>
+
+    {{#input-text}}legal-representative-house-number{{/input-text}}
+    {{#input-text}}legal-representative-street{{/input-text}}
+    {{#input-text}}legal-representative-townOrCity{{/input-text}}
+    {{#input-text}}legal-representative-county{{/input-text}}
+    {{#input-text}}legal-representative-postcode{{/input-text}}
+    {{#input-text}}legal-representative-phone-number{{/input-text}}
+    <span class="govuk-label">
+      <strong>{{#t}}pages.is-legal-representative-email{{/t}}</strong>
+    </span><br>
+    {{#renderField}}is-legal-representative-email{{/renderField}}
+    <span class="govuk-label">
+      {{#t}}Answer all the following questions as if you are the applicant{{/t}}
+    </span><br>
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

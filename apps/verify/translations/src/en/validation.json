@@ -1,1 +1,6 @@
-{}
+{
+  "maxUANLength": "too long",
+  "noUanRecordMatch": "Your UAN does not match our records",
+  "noDateRecordMatch": "Your date of birth does not match our records",
+  "noEmailRecordMatch": "Your email does not match our records"
+  }

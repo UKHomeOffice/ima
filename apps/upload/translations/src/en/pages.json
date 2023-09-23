@@ -1,0 +1,19 @@
+{
+  "bulk-upload": {
+    "header": "Upload claimants list",
+    "paragraph1": "You must ensure the uploaded file follows the current criteria:",
+    "list1": "File is in .csv format",
+    "list2": "File is smaller than {{maxFileSize}}",
+    "list3": "Data is presented in the following format below",
+    "list5": "Enter at least one UAN for each claimant."
+  },
+  "confirmation": {
+    "header": "Confirm upload of claimants",
+    "paragraph1": "The following will be notified via email to use the <a href='{{formUrl}}'>IMA Online Service</a>.",
+    "paragraph2": "As soon as you submit, the claimants' 8 day submission window will start and they will be required to complete their application within this timeframe.",
+    "warning": "Once you submit, this action connect be undone. All emails will be notified immediately."
+  },
+  "complete": {
+    "confirmed": "Claimants notifications sent"
+  }
+}

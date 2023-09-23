@@ -102,7 +102,7 @@ module.exports = class UnsubmittedReports {
       });
 
       const headings = [
-        // 'Case IDs', TODO - UPDATE WITH CORRECT HEADING ONCE PROVIDED
+        'UANs',
         'Age Bracket',
         'Created At',
         'Updated At',
