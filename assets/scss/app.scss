@@ -1,6 +1,7 @@
 @import "hof/frontend/themes/gov-uk/styles/govuk";
 
 ul {
+  @extend .govuk-list;
   @extend .govuk-list--bullet;
 }
 

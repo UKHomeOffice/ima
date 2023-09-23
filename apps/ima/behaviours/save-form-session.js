@@ -1,14 +1,12 @@
-/* eslint-disable camelcase */
-
 const axios = require('axios');
 const config = require('../../../config');
 const _ = require('lodash');
 
-const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
+const patchUrl = id => `${config.saveService.host}:${config.saveService.port}/saved_applications/${id}`;
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
-    return super.saveValues(req, res, async err => {
+    return super.saveValues(req, res, err => {
       if (err) {
         return next(err);
       }
@@ -31,21 +29,18 @@ module.exports = superclass => class extends superclass {
         return next();
       }
 
+      req.log('info', `Saving Form Session: ${req.sessionModel.get('id')}`);
+
       const id = req.sessionModel.get('id');
-      const email = req.sessionModel.get('user-email');
-      const uan = req.sessionModel.get('uan');
-      const date_of_birth = req.sessionModel.get('date-of-birth');
 
-      req.log('info', `Saving Form Session: ${id}`);
-
-      try {
-        const response = await axios({
-          url: id ? applicationsUrl + `/${id}` : applicationsUrl,
-          method: id ? 'PATCH' : 'POST',
-          data: id ? { session } : { session, email, uan, date_of_birth }
-        });
-
+      return axios.patch(patchUrl(id), { session }, {
+        headers: { 'content-type': 'application/json' }
+      }).then(response => {
         const resBody = response.data;
+        // if a record exists the response should contain the entry otherwise it has been deleted/expired
+        if (!resBody.length) {
+          return res.redirect('/ima/application-expired');
+        }
 
         if (resBody && resBody.length && resBody[0].id) {
           req.sessionModel.set('id', resBody[0].id);
@@ -57,8 +52,7 @@ module.exports = superclass => class extends superclass {
           return res.redirect('/ima/save-and-exit');
         }
 
-        const isContinueOnEdit = req.form.options.continueOnEdit &&
-          _.get(req.form.options.forks, '[0].continueOnEdit');
+        const isContinueOnEdit = req.form.options.continueOnEdit;
 
         const loopedForkCondition = _.get(req.form.options.forks, '[0].condition.value');
         const loopedForkField = _.get(req.form.options.forks, '[0].condition.field');
@@ -71,9 +65,7 @@ module.exports = superclass => class extends superclass {
         }
 
         return next();
-      } catch (e) {
-        return next(e);
-      }
+      }).catch(next);
     });
   }
 };

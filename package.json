@@ -47,7 +47,7 @@
     "node-cron": "^3.0.2",
     "notifications-node-client": "^7.0.0",
     "uuid": "^9.0.0",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz",
+    "url": "^0.11.3",
     "winston": "^3.8.2"
   },
   "devDependencies": {

@@ -1,21 +1,24 @@
+
+const axios = require('axios');
 const config = require('../../../config');
+const moment = require('moment');
+const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 
 module.exports = superclass => class extends superclass {
-  saveValues(req, res, next) {
-    if (!this.isValidCase(req)) {
-      return res.redirect('/not-found');
+  async saveValues(req, res, next) {
+    try {
+      const response = await axios.get(baseUrl + '/uan/' + req.form.values.uan);
+      const claimantRecords = response.data;
+      const record = claimantRecords.map(f => { return f.date_of_birth; });
+      if (claimantRecords.length && !record.includes(moment(req.form.values['date-of-birth']).format('YYYY/MM/DD'))) {
+        return res.redirect('/not-found');
+      }
+      if (!claimantRecords.length) {
+        return res.redirect('/not-found');
+      }
+    } catch (e) {
+      return next(e);
     }
     return super.saveValues(req, res, next);
-  }
-
-  isValidCase(req) {
-    const casesJson = require(`../../../data/${config.casesIds.S3Id}.json`);
-    const uan = req.form.values.uan;
-    const dob = req.form.values['date-of-birth'];
-
-    const imaResult = casesJson.find(
-      obj => obj.uan === uan && obj['date-of-birth'] === dob);
-    req.sessionModel.set('service', 'ima');
-    return imaResult;
   }
 };

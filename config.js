@@ -41,6 +41,8 @@ module.exports = {
   csp: {
     imgSrc: ['data:']
   },
+  // TODO: service url is temporary, keycloak is stripping out http headers. Needs fixing.
+  serviceUrl: process.env.SERVICE_URL,
   login: {
     tokenExpiry: 1800,
     appPath: '/ima/start',
@@ -50,7 +52,8 @@ module.exports = {
   },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,
-    userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID
+    userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID,
+    caseworkersEmailInbox: process.env.CASEWORKER_EMAIL
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
@@ -75,6 +78,25 @@ module.exports = {
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,
     host: process.env.DATASERVICE_SERVICE_HOST &&
       `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
+  },
+  applicationUploads: {
+    maxFileSize: '25mb',
+    applicantColumns: [
+      'uan',
+      'date of birth',
+      'email address'
+    ],
+    mandatoryColumns: [
+      'uan',
+      'date of birth',
+      'email address'
+    ],
+    referenceColumns: [
+      'uan'
+    ],
+    allowedMimeTypes: [
+      'text/csv'
+    ]
   },
   sessionDefaults: {
     steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
