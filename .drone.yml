@@ -5,10 +5,10 @@ type: kubernetes
 
 environment:
   APP_NAME: ima
-  # PROD_ENV: TO BE UPDATED ONCE IS PROVIDED
+  PROD_ENV: ima-prod
   STG_ENV: ima-stg
-  # UAT_ENV: ima-uat
-  # BRANCH_ENV: TO BE UPDATED ONCE IS PROVIDED
+  UAT_ENV: ima-uat
+  BRANCH_ENV: ima-branch
   # PRODUCTION_URL: TO BE UPDATED ONCE URL IS PROVIDED
   IMAGE_URL: quay.io/ukhomeofficedigital
   IMAGE_REPO: ima

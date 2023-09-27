@@ -21,16 +21,6 @@ module.exports = {
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY
   },
-  govukNotify: {
-    notifyApiKey: process.env.NOTIFY_KEY,
-    submissionTemplateId: process.env.CASEWORKER_SUBMISSION_TEMPLATE_ID,
-    caseworkerEmail: process.env.CASEWORKER_EMAIL,
-    csvReportEmail: process.env.CSV_REPORT_EMAIL,
-    customerReceiptTemplateId: process.env.APPLICANT_RECEIPT_TEMPLATE_ID,
-    userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID,
-    csvReportTemplateId: process.env.CSV_REPORT_TEMPLATE_ID,
-    submissionFailedTemplateId: process.env.SUBMISSION_FAILED_TEMPLATE_ID
-  },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
   },
