@@ -1,0 +1,17 @@
+{
+  "appName": "Illegal Migration Act",
+  "theme": "govUK",
+  "behaviours": [
+    "hof/components/clear-session"
+  ],
+  "translations": "./apps/ima/translations",
+  "routes": [
+    "./apps/ima",
+    "./apps/verify"
+  ],
+  "session": {
+    "name": "ima.hof.sid"
+  },
+  "getAccessibility": false,
+  "emailerFallback": true
+}
