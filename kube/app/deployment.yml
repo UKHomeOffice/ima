@@ -124,22 +124,22 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: s3-bucket
+                  name: ima-s3-bucket
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: s3-bucket
+                  name: ima-s3-bucket
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: s3-bucket
+                  name: ima-s3-bucket
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  name: s3-bucket
+                  name: ima-s3-bucket
                   key: name
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
