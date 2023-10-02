@@ -1,6 +1,6 @@
 ---
 #==============================================================================
-# HorizontalPodAutoscaler for asylum-contact-questionnaire deployment resource.
+# HorizontalPodAutoscaler for ima deployment resource.
 #==============================================================================
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
