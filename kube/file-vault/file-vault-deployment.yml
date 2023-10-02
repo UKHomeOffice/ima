@@ -58,11 +58,11 @@ spec:
               value: "0"
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://supp-docs.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             - name: DEBUG
@@ -75,28 +75,44 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: name
             - name: AWS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: passwordhash
-                  key: passwordhash
+                  name: ses
+                  key: smtp_password
             - name: ALLOW_GENERATE_LINK_ROUTE
               value: "yes"
           securityContext:
@@ -134,11 +150,11 @@ spec:
               value: "http://127.0.0.1:3000"
             - name: PROXY_REDIRECTION_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              # value: https://fv-rac.sas.homeoffice.gov.uk TO DO - UPDATE WITH IMA SPECIFIC URL
+              value: https://fv-ima.sas.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              # value: https://fv-rac.stg.sas.homeoffice.gov.uk TO DO - UPDATE WITH IMA SPECIFIC URL
+              value: https://fv-ima.stg.sas.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              # value: https://fv-rac.uat.sas-notprod.homeoffice.gov.uk TO DO - UPDATE WITH IMA SPECIFIC URL
+              value: https://fv-ima.uat.sas-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
