@@ -11,34 +11,21 @@
     "header": "You have left the form",
     "paragraph1": "Your progress has been saved."
   },
-  "current-progress": {
-    "header": "Information you have given us"
-  },
-  "cannot-use-form": {
-    "header": "You cannot use this form",
-    "paragraph-1": "You can only continue your claim if you are in the UK."
-  },
-  "token-invalid": {
-    "header": "This link has expired"
+  "evidence-upload": {
+    "header": "Upload evidence"
   },
   "confirm": {
-    "header": "Check your answers",
-    "submit-warning": "You will not be able to change your answers after you submit.",
+    "header": "Information you have given us",
     "sections": {
-      "case-details": {
-        "header": "Case details"
-      }
+     "evidence-documents": {
+      "header": "Evidence"
+     }
     },
     "fields": {
-      "uan": {
-        "label": "Unique Application Number (UAN)"
-      },
-      "name": {
-        "label": "Full name"
-      },
-      "date-of-birth": {
-        "label": "Date of birth"
+      "images": {
+        "label": "Files uploaded"
       }
     }
   }
+  
 }

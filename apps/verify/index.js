@@ -14,8 +14,7 @@ module.exports = {
     '/not-found': {},
     '/verify': {
       fields: ['user-email'],
-      behaviours: [SendVerificationEmail],
-      next: '/check-inbox'
+      next: '/ima/evidence-upload'
     },
     '/check-inbox': {
       behaviours: SendVerificationEmail
