@@ -1,0 +1,18 @@
+{{<partials-page}}
+  {{$page-content}}
+    <table class="table-details">
+      <tbody>
+        {{^rows}}
+          <p>You have not submitted any information so far.</p>
+        {{/rows}}
+        {{#rows}}
+          {{> partials-summary-table}}
+        {{/rows}}
+        {{#visitedImagesPage}}
+          {{> partials-evidence-thumbnails}}
+        {{/visitedImagesPage}}
+      </tbody>
+    </table>
+    {{#input-submit}}continue-only{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

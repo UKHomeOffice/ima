@@ -19,7 +19,8 @@ module.exports = {
     skipEmail: process.env.SKIP_EMAIL
   },
   govukNotify: {
-    notifyApiKey: process.env.NOTIFY_KEY
+    notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,
+    userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
@@ -43,6 +44,10 @@ module.exports = {
     postgresDateFormat: 'YYYY-MM-DD HH:mm:ss',
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,
     host: process.env.DATASERVICE_SERVICE_HOST &&
-      `https://${process.env.DATASERVICE_SERVICE_HOST}`
+      `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
+  },
+  sessionDefaults: {
+    steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
+    fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
   }
 };
