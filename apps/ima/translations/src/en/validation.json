@@ -1,1 +1,13 @@
-{}
+{
+  "uan": {
+    "required": "Enter your UAN",
+    "regex": "Case ID Number can only include numbers and hypens in this format 12345678",
+    "minlength": "Case ID must have at least 8 digits",
+    "maxlength": "Case ID cannot have more than 8 digits",
+    "maxCaseIDLength": "Case ID cannot have more than 8 digits",
+    "numeric": "Case ID can only include numbers"
+  },
+  "who-are-you": {
+    "required": "You must select an option"
+  }
+}
