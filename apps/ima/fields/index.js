@@ -6,5 +6,9 @@ module.exports = {
     mixin: 'radio-group',
     options: ['person-named', 'has-legal-representative', 'someone-else'],
     validate: 'required'
+  },
+  image: {
+    mixin: 'input-file',
+    labelClassName: 'visuallyhidden'
   }
 };

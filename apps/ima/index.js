@@ -8,6 +8,8 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const SaveImage = require('./behaviours/save-image');
+const RemoveImage = require('./behaviours/remove-image');
 
 module.exports = {
   name: 'ima',
@@ -36,6 +38,13 @@ module.exports = {
       next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
     },
+    '/evidence-upload': {
+      behaviours: [SaveImage('image'), RemoveImage],
+      fields: ['image'],
+      continueOnEdit: true,
+      next: '/confirm'
+    },
+
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),

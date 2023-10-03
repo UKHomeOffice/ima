@@ -21,12 +21,18 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "evidence-upload": {
+    "header": "Upload evidence"
+  },
   "confirm": {
-    "header": "Check your answers",
+    "header": "Information you have given us",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
         "header": "Case details"
+      },
+      "evidence-documents": {
+        "header": "Evidence"
       }
     },
     "fields": {
@@ -38,6 +44,9 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "images": {
+        "label": "Files uploaded"
       }
     }
   }
