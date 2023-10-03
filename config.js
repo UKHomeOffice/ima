@@ -61,7 +61,33 @@ module.exports = {
   },
   upload: {
     maxFileSize: '25mb',
-    hostname: process.env.FILE_VAULT_URL
+    hostname: process.env.FILE_VAULT_URL,
+    allowedMimeTypes: [
+      'application/json',
+      'application/msword',
+      'application/pdf',
+      'application/rtf',
+      'application/vnd.ms-excel',
+      'application/vnd.ms-outlook',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/xml',
+      'application/x-tika-ooxml',
+      'audio/vnd.wave',
+      'audio/wav',
+      'audio/x-wav',
+      'image/bmp',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'message/rfc822',
+      'text/csv',
+      'text/plain',
+      'text/xml'
+    ]
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
