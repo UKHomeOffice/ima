@@ -30,6 +30,7 @@ describe('Server.js app file', () => {
     appsVerifyStub = sinon.stub();
     appsImaStub = sinon.stub();
     behavioursClearSessionStub = sinon.stub();
+    req.get.withArgs('host').returns('localhost');
 
     useStub.onCall(0).yields(req, res, next);
     useStub.onCall(1).yields(req, res);
@@ -52,6 +53,13 @@ describe('Server.js app file', () => {
         behaviours: [
           behavioursClearSessionStub
         ],
+        build: {
+          watch: {
+            ignore: [
+              'data'
+            ]
+          }
+        },
         translations: './apps/ima/translations',
         routes: [
           appsImaStub,
@@ -96,6 +104,7 @@ describe('Server.js app file', () => {
   describe('Use Locals', () => {
     it('should set locals on the response', () => {
       res.locals.should.eql({
+        formUrl: 'http://localhost',
         htmlLang: 'en',
         feedbackUrl: '/https://eforms.homeoffice.gov.uk/outreach/feedback.ofml'
       });
