@@ -19,6 +19,10 @@ settings = Object.assign({}, settings, {
 const app = hof(settings);
 
 app.use((req, res, next) => {
+  const host = config.serviceUrl || req.get('host');
+  const protocol = host.includes('localhost') ? 'http' : 'https';
+
+  res.locals.formUrl = `${protocol}://${host}`;
   res.locals.htmlLang = 'en';
   res.locals.feedbackUrl = '/https://eforms.homeoffice.gov.uk/outreach/feedback.ofml';
   next();
