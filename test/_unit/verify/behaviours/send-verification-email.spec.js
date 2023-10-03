@@ -89,6 +89,7 @@ describe('apps/verify/behaviours/send-verification-email', () => {
     beforeEach(() => {
       sandbox = sinon.createSandbox();
       sandbox.stub(NotifyClient.prototype, 'sendEmail').resolves('email sent');
+      axiosGetStub = sinon.stub();
     });
 
     afterEach(function () {
