@@ -19,6 +19,9 @@ module.exports = {
     },
     '/check-inbox': {
       behaviours: SendVerificationEmail
+    },
+    '/team-email-invalid': {
+      backLink: 'verify'
     }
   }
 };
