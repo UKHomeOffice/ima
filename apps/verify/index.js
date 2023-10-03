@@ -13,7 +13,7 @@ module.exports = {
     '/not-found': {},
     '/verify': {
       fields: ['user-email'],
-      next: '/check-inbox'
+      next: '/ima/evidence-upload'
     },
     '/check-inbox': {},
     '/team-email-invalid': {

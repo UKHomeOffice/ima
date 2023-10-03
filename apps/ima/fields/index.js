@@ -1,3 +1,8 @@
 'use strict';
 
-module.exports = {};
+module.exports = {
+  image: {
+    mixin: 'input-file',
+    labelClassName: 'visuallyhidden'
+  }
+};

@@ -6,5 +6,22 @@
   "save-and-exit": {
     "header": "You have left the form",
     "paragraph1": "Your progress has been saved."
+  },
+  "evidence-upload": {
+    "header": "Upload evidence"
+  },
+  "confirm": {
+    "header": "Information you have given us",
+    "sections": {
+     "evidence-documents": {
+      "header": "Evidence"
+     }
+    },
+    "fields": {
+      "images": {
+        "label": "Files uploaded"
+      }
+    }
   }
+  
 }

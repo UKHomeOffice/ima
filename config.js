@@ -11,6 +11,14 @@ module.exports = {
   csp: {
     imgSrc: ['data:']
   },
+  aws: {
+    bucket: process.env.AWS_BUCKET,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    signatureVersion: process.env.AWS_SIGNATURE_VERSION,
+    kmsKeyId: process.env.AWS_KMS_KEY_ID,
+    region: process.env.AWS_REGION
+  },
   login: {
     tokenExpiry: 1800,
     appPath: '/ima/start',
@@ -30,7 +38,33 @@ module.exports = {
   },
   upload: {
     maxFileSize: '25mb',
-    hostname: process.env.FILE_VAULT_URL
+    hostname: process.env.FILE_VAULT_URL,
+    allowedMimeTypes: [
+      'application/json',
+      'application/msword',
+      'application/pdf',
+      'application/rtf',
+      'application/vnd.ms-excel',
+      'application/vnd.ms-outlook',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/xml',
+      'application/x-tika-ooxml',
+      'audio/vnd.wave',
+      'audio/wav',
+      'audio/x-wav',
+      'image/bmp',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'message/rfc822',
+      'text/csv',
+      'text/plain',
+      'text/xml'
+    ]
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
@@ -40,9 +74,9 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   saveService: {
-    postgresDateFormat: 'YYYY-MM-DD HH:mm:ss',
-    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,
-    host: process.env.DATASERVICE_SERVICE_HOST &&
-      `https://${process.env.DATASERVICE_SERVICE_HOST}`
+    postgresDateFormat: 'YYYY-MM-DD HH:mm:ss'
+    // port: process.env.DATASERVICE_SERVICE_PORT_HTTPS,
+    // host: process.env.DATASERVICE_SERVICE_HOST &&
+    //   `https://${process.env.DATASERVICE_SERVICE_HOST}`
   }
 };

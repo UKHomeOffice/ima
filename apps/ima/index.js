@@ -3,6 +3,8 @@
 
 const hof = require('hof');
 const Summary = hof.components.summary;
+const SaveImage = require('./behaviours/save-image');
+const RemoveImage = require('./behaviours/remove-image');
 
 module.exports = {
   name: 'ima',
@@ -25,6 +27,13 @@ module.exports = {
     '/save-and-exit': {
       backLink: false
     },
+    '/evidence-upload': {
+      behaviours: [SaveImage('image'), RemoveImage],
+      fields: ['image'],
+      continueOnEdit: true,
+      next: '/confirm'
+    },
+
     '/confirm': {
       behaviours: [Summary],
       sections: require('./sections/summary-data-sections'),
