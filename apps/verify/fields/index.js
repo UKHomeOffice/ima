@@ -9,7 +9,7 @@ const after1900Validator = { type: 'after', arguments: ['1900'] };
 
 module.exports = {
   'uan': {
-    labelClassName: 'bold',
+    labelClassName: 'visuallyhidden',
     validate: [
       'required',
       UANRef

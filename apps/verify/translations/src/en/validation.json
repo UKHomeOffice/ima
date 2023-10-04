@@ -1,7 +1,7 @@
 {
   "uan": {
     "required": "Enter your UAN reference",
-    "regex": "Enter a valid UAN. The format should be xxxx-xxxx-xxxx-xxxx in numbers only",
+    "regex": "Enter a valid UAN. The format should be NNNN-nnnn-nnnn-nnnn (in digits)",
     "maxUANLength": "Your UAN is too long, please enter the correct UAN reference",
     "noUanRecordMatch": "Your UAN does not match our records, Check you have entered the UAN correctly"
   },
