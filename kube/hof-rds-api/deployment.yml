@@ -33,7 +33,7 @@ spec:
       containers:
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/hof-rds-api:966c644db0642b2a45b0e8c48ddb25cb41244ac2
+          image: quay.io/ukhomeofficedigital/hof-rds-api:db9b4229d040c9f9d8a62ea394820010aebe2207
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -57,22 +57,38 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  name: ima-rds
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-notprod-rds
+                  {{ else }}
+                  name: ima-prod
+                  {{ end }}
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: db_name
-                  name: ima-rds
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-notprod-rds
+                  {{ else }}
+                  name: ima-prod
+                  {{ end }}
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: ima-rds
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-notprod-rds
+                  {{ else }}
+                  name: ima-prod
+                  {{ end }}
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: ima-rds
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-notprod-rds
+                  {{ else }}
+                  name: ima-prod
+                  {{ end }}
           resources:
             requests:
               memory: 4Gi
