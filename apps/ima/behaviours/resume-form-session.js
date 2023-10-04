@@ -60,8 +60,7 @@ module.exports = superclass => class extends superclass {
   // POST lifecycle
   saveValues(req, res, next) {
     const reports = req.sessionModel.get('user-cases');
-    const report = reports.find(obj => obj.applicant_id === req.form.values['uan']) ||
-      reports.find(obj => obj.job_role && obj.job_role.replace(/\s/g, '-') === req.form.values['uan']);
+    const report = reports.find(obj => obj.uan === req.form.values['uan'])
     this.setupSession(req, report);
     req.sessionModel.set('multipleCases', true);
 
