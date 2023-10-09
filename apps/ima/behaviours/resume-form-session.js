@@ -20,7 +20,7 @@ module.exports = superclass => class extends superclass {
   }
   // GET lifecycle
   configure(req, res, next) {
-    // reset session but keeping login fields, csrf and preexisting reports garnered from API
+    // reset session but keeping login fields, csrf and preexisting cases garnered from API
     this.cleanSession(req);
     // skip requesting data service api when running in local and test mode
     if (config.env === 'local' || config.env === 'test') {
@@ -59,20 +59,20 @@ module.exports = superclass => class extends superclass {
 
   // POST lifecycle
   saveValues(req, res, next) {
-    const reports = req.sessionModel.get('user-cases');
-    const report = reports.find(obj => obj.uan === req.form.values.uan);
-    this.setupSession(req, report);
+    const cases = req.sessionModel.get('user-cases');
+    const uanCase = cases.find(obj => obj.uan === req.form.values.uan);
+    this.setupSession(req, uanCase);
     req.sessionModel.set('multipleCases', true);
 
     return super.saveValues(req, res, next);
   }
 
   createLabel(uan) {
-    if (uan ) return `UAN: ${uan}`;
+    if (uan) return `UAN: ${uan}`;
   }
 
-  setupRadioButtons(req, reports) {
-    const reportsButtons = reports.map(obj => {
+  setupRadioButtons(req, cases) {
+    const casesButtons = cases.map(obj => {
       const uan = obj.uan;
       return {
         label: this.createLabel(uan),
@@ -86,28 +86,28 @@ module.exports = superclass => class extends superclass {
       mixin: 'radio-group',
       isPageHeading: true,
       validate: ['required'],
-      options: _.sortBy(reportsButtons, obj => obj.value)
+      options: _.sortBy(casesButtons, obj => obj.value)
     };
   }
 
-  setupSession(req, report) {
+  setupSession(req, uanCase) {
     let session;
 
-    const reportDBprops = {
-      id: report.id,
-      uan: report.uan,
-      'caseworker-id': report.caseworker_id,
-      'report-created-at': report.created_at,
-      'report-expires-at': report.expires_at,
+    const caseDBprops = {
+      id: uanCase.id,
+      uan: uanCase.uan,
+      'caseworker-id': uanCase.caseworker_id,
+      'uanCase-created-at': uanCase.created_at,
+      'uanCase-expires-at': uanCase.expires_at,
       'user-cases': req.sessionModel.get('user-cases')
     };
 
-    req.sessionModel.set(reportDBprops);
+    req.sessionModel.set(caseDBprops);
 
     try {
-      session = JSON.parse(report.session);
-    } catch(e) {
-      session = report.session;
+      session = JSON.parse(uanCase.session);
+    } catch (e) {
+      session = uanCase.session;
     }
     // do not overwrite session if session in the DB is empty, i.e. new case
     if (_.isEmpty(session)) {
@@ -120,6 +120,6 @@ module.exports = superclass => class extends superclass {
     delete session['csrf-secret'];
     delete session.errors;
 
-    req.sessionModel.set(Object.assign({}, session, reportDBprops));
+    req.sessionModel.set(Object.assign({}, session, caseDBprops));
   }
 };

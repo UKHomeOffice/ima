@@ -14,9 +14,9 @@ const getMandatorySteps = (mandatorySteps, steps) => {
 
 module.exports = superclass => class extends superclass {
   getValues(req, res, next) {
-    const caseId = req.sessionModel.get('uan');
+    const uan = req.sessionModel.get('uan');
 
-    if (!caseId) {
+    if (!uan) {
       return res.redirect('/ima/cases');
     }
 

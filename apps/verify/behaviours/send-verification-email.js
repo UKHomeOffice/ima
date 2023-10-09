@@ -1,8 +1,12 @@
+/* eslint-disable eqeqeq, no-eq-null */
+
 const config = require('../../../config');
 const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyApiKey = config.govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.userAuthTemplateId;
+const axios = require('axios');
+const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 const tokenGenerator = require('../../../db/save-token');
 const getPersonalisation = (host, token) => {
   const protocol = host.includes('localhost') ? 'http' : 'https';
@@ -43,6 +47,34 @@ module.exports = superclass => class extends superclass {
     }
 
     const token = tokenGenerator.save(req, email);
+    try {
+      const response = await axios.get(baseUrl + '/uan/' + req.sessionModel.get('uan'));
+      const claimantRecords = response.data;
+      const recordID = claimantRecords.map(f => { return f.id; });
+      const recordEmail = claimantRecords.map(f => { return f.email; });
+      if (recordEmail == false) {
+        try {
+          await axios({
+            url: baseUrl + `/${recordID}`,
+            method: 'PATCH',
+            data: { email }
+          });
+        } catch (e) {
+          return next(e);
+        }
+      } else if (recordEmail != null && req.form.values['user-email'] !== recordEmail.toString()) {
+        return next({
+          'user-email': new this.ValidationError(
+            'user-email',
+            {
+              type: 'noRecordMatch'
+            }
+          )
+        });
+      }
+    } catch (e) {
+      return next(e);
+    }
 
     try {
       await notifyClient.sendEmail(templateId, email, {
