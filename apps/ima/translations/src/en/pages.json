@@ -3,6 +3,10 @@
     "header": "Continue to your form",
     "paragraph": "This completes your secure access to this service."
   },
+  "no-cases-found": {
+    "header": "No cases have been found",
+    "paragraph": "There are no cases associated with this email. Please check you used the correct email, and access this service again via the <a href='/start'>IMA start page</a>."
+  },
   "save-and-exit": {
     "header": "You have left the form",
     "paragraph1": "Your progress has been saved."
