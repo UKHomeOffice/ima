@@ -1,5 +1,4 @@
 /* eslint-disable eqeqeq, no-eq-null */
-
 const config = require('../../../config');
 const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyApiKey = config.govukNotify.notifyApiKey;
@@ -47,20 +46,21 @@ module.exports = superclass => class extends superclass {
     }
 
     const token = tokenGenerator.save(req, email);
-    try {
       const response = await axios.get(baseUrl + '/uan/' + req.sessionModel.get('uan'));
       const claimantRecords = response.data;
       const recordID = claimantRecords.map(f => { return f.id; });
       const recordEmail = claimantRecords.map(f => { return f.email; });
       if (recordEmail == false) {
         try {
-          await axios({
+         await axios({
             url: baseUrl + `/${recordID}`,
             method: 'PATCH',
             data: { email }
           });
         } catch (e) {
-          return next(e);
+          // return next(e);
+          // return e;
+          console.error(e);
         }
       } else if (recordEmail != null && req.form.values['user-email'] !== recordEmail.toString()) {
         return next({
@@ -72,12 +72,8 @@ module.exports = superclass => class extends superclass {
           )
         });
       }
-    } catch (e) {
-      return next(e);
-    }
-
     try {
-      await notifyClient.sendEmail(templateId, email, {
+      notifyClient.sendEmail(templateId, email, {
         personalisation: getPersonalisation(host, token, req, req)
       });
     } catch (e) {

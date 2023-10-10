@@ -4,7 +4,7 @@ const config = require('../../../../config');
 const reqres = require('reqres');
 const proxyquire = require('proxyquire').noCallThru();
 const NotifyClient = require('notifications-node-client').NotifyClient;
-
+const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 const tokenGenerator = {
   save: sinon.stub()
 };
@@ -21,7 +21,11 @@ const Behaviour = proxyquire('../../../../apps/verify/behaviours/send-verificati
       login: {
         appPath: '/ima/start',
         allowSkip: true,
-        skipEmail: 'sas-hof-test@digital.homeoffice.gov.uk'
+        skipEmail: 'test@digital.homeoffice.gov.uk'
+      },
+      saveService: {
+        port: 3001,
+        host: 'http://127.0.0.1'
       }
     })
   });
@@ -85,7 +89,7 @@ describe('apps/verify/behaviours/send-verification-email', () => {
     });
   });
 
-  describe('saveValues()', () => {
+  describe.only('saveValues()', () => {
     let sandbox;
 
     beforeEach(() => {
@@ -100,17 +104,54 @@ describe('apps/verify/behaviours/send-verification-email', () => {
 
     it('sends an email', done => {
       req.get.withArgs('host').returns('localhost');
-      req.form.values['user-email'] = 'test@homeoffice.gov.uk';
-      instance.saveValues(req, res, () => {
+      req.form.values['user-email'] = 'sas-hof-test@digital.homeoffice.gov.uk';
+      req.sessionModel.get.withArgs('uan').returns('9876-1234-1234-5678');
+      const data = [{
+        id: 12,
+        created_at: '2023-10-09T17:51:38.339Z',
+        updated_at: '2023-10-09T21:59:32.903Z',
+        caseworker_id: 1,
+        uan: '9876-1234-1234-5678',
+        email: [null],
+        date_of_birth: '2000/01/01',
+        session: '{}',
+        expires_at: '2025-10-08'
+      }];
+      const updatedData = [{
+        id: 12,
+        created_at: '2023-10-09T17:51:38.339Z',
+        updated_at: '2023-10-09T21:59:32.903Z',
+        caseworker_id: 1,
+        uan: '9876-1234-1234-5678',
+        email: 'test@digital.homeoffice.gov.uk',
+        date_of_birth: '2000/01/01',
+        session: '{}',
+        expires_at: '2025-10-08'
+      }];
+      const email = req.form.values['user-email'];
+      let axiosStub = {
+        get: () => {
+          return Promise.resolve({ data: data });
+        },
+        patch: () => {
+          return Promise.resolve({ data: updatedData });
+        }
+      };
+
+      instance.saveValues(req, res, async () => {
+        req.get.withArgs('host').returns('localhost');
+        await axiosStub.get(baseUrl + '/uan/' + req.sessionModel.get('uan'))
+        await axiosStub.patch(baseUrl + "/" + data[0].id, { data: { email } });
         NotifyClient.prototype.sendEmail.should.have.been.calledOnce;
         done();
       }).catch(done);
     });
 
     it('skips calling data service when email auth skip is allowed with correct email', done => {
+      req.get.withArgs('host').returns('localhost');
       req.form = {
         values: {
-          'user-email': 'sas-hof-test@digital.homeoffice.gov.uk'
+          'user-email': 'test@digital.homeoffice.gov.uk'
         }
       };
       instance.saveValues(req, res, () => {
