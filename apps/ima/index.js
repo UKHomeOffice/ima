@@ -5,6 +5,7 @@ const hof = require('hof');
 const Summary = hof.components.summary;
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
+const LimitDocument = require('./behaviours/limit-documents');
 
 module.exports = {
   name: 'ima',
@@ -34,7 +35,7 @@ module.exports = {
       backLink: 'current-progress'
     },
     '/evidence-upload': {
-      behaviours: [SaveImage('image'), RemoveImage],
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
       next: '/confirm'
