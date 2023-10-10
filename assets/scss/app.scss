@@ -200,3 +200,6 @@ pre.looped-records {
   border-bottom-width: 4px;
   text-decoration: none;
 }
+.confirm-label[data-content="Files uploaded"] ~ .confirm-value {
+  white-space: pre-line
+ }
