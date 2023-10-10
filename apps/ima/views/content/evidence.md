@@ -1,6 +1,6 @@
 Include any evidence of:
   - why the removal conditions do not apply to you
-  - why you are at risk of serious or irreversible harm in Rwanda
+  - why you are at risk of serious or irreversible harm in {{values.third-country}}
   - why being removed from the uk would be against your human rights
   - the exceptional circumstances which mean you cannot be removed from the UK
 <br/><br/>

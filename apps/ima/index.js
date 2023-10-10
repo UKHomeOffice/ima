@@ -10,6 +10,7 @@ const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
+const LimitDocument = require('./behaviours/limit-documents');
 
 module.exports = {
   name: 'ima',
@@ -39,7 +40,7 @@ module.exports = {
       backLink: 'current-progress'
     },
     '/evidence-upload': {
-      behaviours: [SaveImage('image'), RemoveImage],
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
       next: '/confirm'
