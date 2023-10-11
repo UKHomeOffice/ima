@@ -14,7 +14,8 @@ module.exports = {
     '/not-found': {},
     '/verify': {
       fields: ['user-email'],
-      next: '/ima/evidence-upload'
+      // next: '/check-inbox' TO BE REINSTATED ONCE RELEVANT PAGES ADDED
+      next: '/ima/evidence-upload' // TO BE REMOVED ONCE RELEVANT PAGES ADDED
     },
     '/check-inbox': {
       behaviours: SendVerificationEmail
