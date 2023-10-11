@@ -9,7 +9,7 @@ module.exports = {
         if (!req.sessionModel.get('images')) {
           return 'None uploaded';
         }
-        return list && list.map(i => i.name).join('\n    \n');
+        return list && list.map(i => i.name).join('\n');
       }
     }
   ]
