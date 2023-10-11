@@ -18,7 +18,6 @@ const limiter = new Bottleneck({
   minTime: 1000
 });
 
-// const claimantTemplateId = config.govukNotify.claimantTemplateId;
 // const caseworkersTemplateId = config.govukNotify.caseworkersConfirmClaimantsTemplateId;
 // const caseworkersEmailInbox = config.govukNotify.caseworkersEmailInbox;
 
@@ -75,25 +74,15 @@ module.exports = superclass => class extends superclass {
   // }
 
   async submitRecord(caseworkerRecord, record, serviceUrl) {
-    if (record['email address']) {
+    if (record['uan']) {
       const response = await axios.post(applicationsUrl, {
         uan: record['uan'],
         caseworker_id: caseworkerRecord.id,
         date_of_birth: moment(record['date of birth']).format('YYYY-MM-DD'),
-        email: record['email address'].toLowerCase(),
         session: JSON.stringify({})
       });
 
       const expiry_date = expiresAtDate(response.data[0].expires_at);
-
-      // await notifyClient.sendEmail(claimantTemplateId, record['email address'], {
-      //   personalisation: {
-      //     claimant_email: record['email address'],
-      //     expiry_date,
-      //     service_url: serviceUrl
-      //   }
-      // });
-
       return Promise.resolve(expiry_date);
     }
     return null;

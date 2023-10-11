@@ -83,13 +83,11 @@ module.exports = {
     maxFileSize: '25mb',
     applicantColumns: [
       'uan',
-      'date of birth',
-      'email address'
+      'date of birth'
     ],
     mandatoryColumns: [
       'uan',
-      'date of birth',
-      'email address'
+      'date of birth'
     ],
     referenceColumns: [
       'uan'
