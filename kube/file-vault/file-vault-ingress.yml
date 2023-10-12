@@ -15,11 +15,11 @@ spec:
     - fv-{{ .DRONE_BUILD_NUMBER }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     - fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - fv-rac.uat.sas-notprod.homeoffice.gov.uk
+    - fv-ima.uat.sas-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-    - fv-rac.stg.sas.homeoffice.gov.uk
+    - fv-ima.stg.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
-    - fv-rac.sas.homeoffice.gov.uk
+    - fv-ima.sas.homeoffice.gov.uk
     {{ end }}
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
     secretName: branch-tls-external
