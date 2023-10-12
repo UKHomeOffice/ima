@@ -81,11 +81,11 @@ spec:
               {{ end }}
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://supp-docs.prod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://supp-docs.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              # value:TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://supp-docs-dev.notprod.{{ .APP_NAME }}.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
             {{ end }}

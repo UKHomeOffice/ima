@@ -55,7 +55,7 @@ describe('Server.js app file', () => {
         translations: './apps/ima/translations',
         routes: [
           appsImaStub,
-          appsVerifyStub,
+          appsVerifyStub
         ],
         session: { name: 'ima.hof.sid' },
         getAccessibility: false,
@@ -97,7 +97,7 @@ describe('Server.js app file', () => {
     it('should set locals on the response', () => {
       res.locals.should.eql({
         htmlLang: 'en',
-        feedbackUrl: '/feedback'
+        feedbackUrl: '/https://eforms.homeoffice.gov.uk/outreach/feedback.ofml'
       });
     });
 

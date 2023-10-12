@@ -5,6 +5,7 @@ const config = require('./config.js');
 const busboy = require('busboy');
 const bytes = require('bytes');
 const bl = require('bl');
+const _ = require('lodash');
 
 
 let settings = require('./hof.settings');
@@ -28,18 +29,16 @@ if (config.env === 'development' || config.env === 'test') {
     const appName = req.body.appName;
 
     if (!_.get(req, 'session[`hof-wizard-${appName}`]')) {
-      
       if (!req.session) {
         throw new Error('Redis is not running!');
       }
-
       req.session[`hof-wizard-${appName}`] = {};
     }
 
     Object.keys(req.body.sessionProperties || {}).forEach(key => {
       req.session[`hof-wizard-${appName}`][key] = req.body.sessionProperties[key];
     });
-    
+
     res.send('Session populate complete');
   });
 }

@@ -134,11 +134,11 @@ spec:
               value: "http://127.0.0.1:3000"
             - name: PROXY_REDIRECTION_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              # value: https://fv-rac.sas.homeoffice.gov.uk TO DO - UPDATE WITH IMA SPECIFIC URL
+              value: https://fv-ima.sas.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              # value: https://fv-rac.stg.sas.homeoffice.gov.uk TO DO - UPDATE WITH IMA SPECIFIC URL
+              value: https://fv-ima.stg.sas.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              # value: https://fv-rac.uat.sas-notprod.homeoffice.gov.uk TO DO - UPDATE WITH IMA SPECIFIC URL
+              value: https://fv-ima.uat.sas-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk
             {{ end }}
