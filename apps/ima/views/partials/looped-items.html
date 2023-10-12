@@ -1,0 +1,34 @@
+{{#fields}}
+  {{#renderField}}{{/renderField}}
+{{/fields}}
+{{#input-submit}}continue{{/input-submit}}
+
+{{#showSaveAndExit}}
+  {{#loopedPage}}
+    <button class="govuk-button govuk-button--secondary" name="save-and-exit" value="save-and-exit">
+      {{#t}}buttons.save-and-exit{{/t}}
+    </button>
+  {{/loopedPage}}
+{{/showSaveAndExit}}
+
+{{#items.length}}
+  <div id="{{section}}-summary">
+    <h2>{{#t}}pages.{{field}}.header{{/t}}</h2>
+    <table class="table-{{section}}-loop">
+      <thead class="visuallyhidden">
+        <tr class="{{section}}-records">
+          <th>{{#t}}pages.{{field}}.header{{/t}}</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#items}}
+        <tr class="{{section}}-records">
+          <td><pre class="looped-records">{{record}}</pre></td>
+          <td><a href="?delete={{id}}" class="button button-delete">{{#t}}buttons.delete{{/t}}</a></td>
+        </tr>
+        {{/items}}
+      </tbody>
+    </table>
+  </div>
+{{/items.length}}

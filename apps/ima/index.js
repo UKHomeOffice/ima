@@ -3,6 +3,8 @@
 
 const hof = require('hof');
 const Summary = hof.components.summary;
+const SaveAndExit = require('./behaviours/save-and-exit');
+
 
 module.exports = {
   name: 'ima',
@@ -23,6 +25,7 @@ module.exports = {
       journeyStart: '/who-are-you'
     },
     '/save-and-exit': {
+      behaviours: SaveAndExit,
       backLink: false
     },
     '/confirm': {
