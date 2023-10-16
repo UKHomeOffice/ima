@@ -124,22 +124,38 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-s3-bucket-secret
+                  {{else}}
+                  name: ima-s3-prod
+                  {{end}}
                   key: name
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
