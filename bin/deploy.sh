@@ -27,7 +27,7 @@ export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml -f kube/certs
   $kd -f kube/file-vault/file-vault-ingress.yml -f kube/html-pdf
-  $kd -f kube/redis -f kube/hof-rds-api  -f kube/file-vault
+  $kd -f kube/redis  -f kube/file-vault
   $kd -f kube/app
   $kd -f kube/autoscale/hpa-ima.yml
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
