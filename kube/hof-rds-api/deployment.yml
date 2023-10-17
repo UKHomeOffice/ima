@@ -56,12 +56,8 @@ spec:
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
-                  key: endpoint
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  key: endpPint
                   name: ima-notprod-rds
-                  {{ else }}
-                  name: ima-prod
-                  {{ end }}
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
