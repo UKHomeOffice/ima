@@ -57,38 +57,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-notprod-rds
-                  {{ else }}
-                  name: ima-prod
-                  {{ end }}
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: db_name
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-notprod-rds
-                  {{ else }}
-                  name: ima-prod
-                  {{ end }}
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   key: username
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-notprod-rds
-                  {{ else }}
-                  name: ima-prod
-                  {{ end }}
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   key: password
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: ima-notprod-rds
-                  {{ else }}
-                  name: ima-prod
-                  {{ end }}
           resources:
             requests:
               memory: 4Gi
