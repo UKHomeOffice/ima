@@ -1,6 +1,6 @@
 ---
 #==============================================================================
-# HorizontalPodAutoscaler for asylum-contact-questionnaire deployment resource.
+# HorizontalPodAutoscaler for ima deployment resource.
 #==============================================================================
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
@@ -189,7 +189,7 @@ spec:
   maxReplicas: 20
   {{ else }}
   minReplicas: 2
-  maxReplicas: 10
+  maxReplicas: 5
   {{ end }}
   scaleTargetRef:
     apiVersion: apps/v1

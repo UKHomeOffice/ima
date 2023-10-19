@@ -33,7 +33,7 @@ spec:
       containers:
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/hof-rds-api:966c644db0642b2a45b0e8c48ddb25cb41244ac2
+          image: quay.io/ukhomeofficedigital/hof-rds-api:ddce7ffd2da35dd51f0aec5e6bb955415887bd68
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -57,22 +57,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  name: ima-rds
+                  name: ima-notprod-rds
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: db_name
-                  name: ima-rds
+                  name: ima-notprod-rds
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: ima-rds
+                  name: ima-notprod-rds
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: ima-rds
+                  name: ima-notprod-rds
           resources:
             requests:
               memory: 4Gi
