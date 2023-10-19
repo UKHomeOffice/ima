@@ -183,7 +183,7 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: ima:${DRONE_COMMIT_SHA}
-      TOLERATE: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+      SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: true
     when:
