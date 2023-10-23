@@ -31,10 +31,122 @@ module.exports = {
     },
     '/who-are-you': {
       behaviours: SaveFormSession,
+      forks:[
+        {
+          target:'/in-the-uk',
+          condition:{
+            field:'who-are-you',
+            value: 'person-named'
+          }
+        },
+        {
+          target:'/legal-representative-details',
+          condition:{
+            field:'who-are-you',
+            value: 'has-legal-representative'
+          }
+        },
+        {
+          target:'/someone-else',
+          condition:{
+            field:'who-are-you',
+            value: 'someone-else'
+          }
+        }
+      ],
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
       next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
+    },
+    '/in-the-uk':{
+      behaviours: SaveFormSession,
+      forks: [
+        {
+          target: '/name',
+          condition: {
+            field: 'in-the-uk',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/cannot-use-form',
+          condition: {
+            field: 'in-the-uk',
+            value: 'no'
+          }
+        }
+      ],
+      fields: ['in-the-uk'],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/name',
+      backLink: 'who-are-you'
+    },
+    
+    '/name':{
+      behaviours: SaveFormSession,
+      fields: ['name'],
+      locals: { showSaveAndExit: true },
+      next: '/is-your-email'
+    },
+    '/is-your-email':{
+      behaviours: SaveFormSession,
+      fields: ['is-your-email'],
+      forks: [
+        {
+          target: '/phone-number',
+          condition: {
+            field: 'is-your-email',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/has-email',
+          condition: {
+            field: 'is-your-email',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/phone-number',
+      backLink: 'name'
+    },
+    '/phone-number': {
+      behaviours: SaveFormSession,
+      fields: ['phone-number', 'phone-number-details'],
+      locals: { showSaveAndExit: true },
+      next: '/immigration-detention'
+    },
+    '/has-email':{
+      behaviours: SaveFormSession,
+      fields: ['email-address', 'email-address-details'],
+      locals: { showSaveAndExit: true },
+      next:'/phone-number'
+    },
+    '/immigration-detention':{
+      behaviours: SaveFormSession,
+      fields: [
+        'has-address',
+        'house-number',
+        'street',
+        'townOrCity',
+        'county',
+        'postcode'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/'
+    },
+    '/cannot-use-form':{},
+   
+    '/someone-else':{
+
+      next:'/in-the-uk'
+    },
+    '/legal-representative-details':{
+
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
@@ -49,10 +161,10 @@ module.exports = {
       behaviours: SaveAndExit,
       backLink: false
     },
-    '/cannot-use-form': {},
     '/token-invalid': {
       clearSession: true
     },
-    '/application-expired': {}
+    '/application-expired': {},
+    
   }
 };
