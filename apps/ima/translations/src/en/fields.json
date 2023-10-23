@@ -17,5 +17,90 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  }, 
+  "in-the-uk": {
+    "legend": "Are you currently in the UK?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "name":{
+    "label":"What is your full name?"
+  },
+  "is-your-email": {
+    "legend": "Is this your email address?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "phone-number": {
+    "legend": "Do you have a phone number?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "phone-number-details": {
+    "label": "Enter your phone number",
+    "hint": "For international numbers, please include country code"
+  },
+  "email-address": {
+    "legend": "Do you have an email address?",
+    "hint": "We will use this to send you a copy of this form.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "email-address-details": {
+    "label": "Enter your email address"
+  },
+  "has-address": {
+    "legend": "Are you currently in immigration detention?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "your-address": {
+    "legend": "Enter your address",
+    "label": "This must be where youl live."
+  },
+  "house-number": {
+    "label": "Address line 1"
+  },
+  "street": {
+    "label": "Address line 2 (optional)"
+  },
+  "townOrCity": {
+    "label": "Town or city"
+  },
+  "county": {
+    "label": "County (optional)"
+  },
+  "postcode": {
+    "label": "Postcode"
   }
 }
