@@ -134,3 +134,5 @@ $ yarn run test:lint
 ```bash
 $ yarn test:unit
 ```
+
+If you want to run locally make sure you have different ports for Html-pdf-converter and filevault.  In order to download files from the email link received by caseworker, keycloak env variables KEYCLOAK_TOKEN_URL, KEYCLOAK_SECRET, KEYCLOAK_CLIENT_ID, KEYCLOAK_USERNAME and KEYCLOAK_PASSWORD has to be added as provided by keybase.

@@ -11,6 +11,8 @@ const SaveAndExit = require('./behaviours/save-and-exit');
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
 const LimitDocument = require('./behaviours/limit-documents');
+const Submit = require('./behaviours/submit');
+
 
 module.exports = {
   name: 'ima',
@@ -47,7 +49,7 @@ module.exports = {
     },
 
     '/confirm': {
-      behaviours: [Summary, SaveFormSession],
+      behaviours: [Summary, SaveFormSession, Submit],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
       next: '/confirmation'
