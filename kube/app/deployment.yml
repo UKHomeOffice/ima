@@ -81,13 +81,13 @@ spec:
               {{ end }}
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://fv-ima.sas.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              # value: TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://fv-ima.stg.sas.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              # value:TO BE UPDATED ONCE URL IS PROVIDED
+              value: https://fv-ima.uat.sas-notprod.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.{{ .BRANCH_ENV }}.homeoffice.gov.uk/file
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
             {{ end }}
             - name: KEYCLOAK_SECRET
               valueFrom:
@@ -124,22 +124,38 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{ else }}
+                  name: ima-s3-prod
+                  {{ end }}
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{ else }}
+                  name: ima-s3-prod
+                  {{ end }}
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{ else }}
+                  name: ima-s3-prod
+                  {{ end }}
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  name: ima-s3-bucket
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: ima-s3-bucket-secret
+                  {{ else }}
+                  name: ima-s3-prod
+                  {{ end }}
                   key: name
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:

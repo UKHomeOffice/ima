@@ -178,9 +178,9 @@ steps:
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
     environment:
       KUBE_SERVER:
-        from_secret: kube_server_dev
+        from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN:
-        from_secret: kube_token_dev
+        from_secret: kube_token_sas_dev
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -296,9 +296,9 @@ steps:
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
     environment:
       KUBE_SERVER:
-        from_secret: kube_server_dev
+        from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN:
-        from_secret: kube_token_dev
+        from_secret: kube_token_sas_dev
     commands:
       - bin/deploy.sh $${UAT_ENV}
     when:
@@ -339,9 +339,9 @@ steps:
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
     environment:
       KUBE_SERVER:
-        from_secret: kube_server_dev
+        from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN:
-        from_secret: kube_token_dev
+        from_secret: kube_token_sas_dev
     volumes:
       - name: dockersock
         path: /root/.dockersock
@@ -415,9 +415,9 @@ steps:
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
     environment:
       KUBE_SERVER:
-        from_secret: kube_server_dev
+        from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN:
-        from_secret: kube_token_dev
+        from_secret: kube_token_sas_dev
     commands:
       - bin/clean_up.sh $${BRANCH_ENV}
     when:
