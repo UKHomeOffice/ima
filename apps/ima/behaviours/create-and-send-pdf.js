@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
-const axios = require('axios');
 const config = require('../../../config');
 const utilities = require('../../../lib/utilities');
 const _ = require('lodash');
@@ -13,8 +12,6 @@ const submissionTemplateId = config.govukNotify.submissionTemplateId;
 const caseworkerEmail = config.govukNotify.caseworkerEmail;
 const notifyKey = config.govukNotify.notifyApiKey;
 const dateTimeFormat = config.dateTimeFormat;
-
-// const baseUrl = `${config.saveService.host}:${config.saveService.port}/ima_reports`;
 
 const notifyClient = new NotifyClient(notifyKey);
 
@@ -84,35 +81,10 @@ module.exports = class CreateAndSendPDF {
 
       req.log('info', 'ima.submit_form.create_email_with_file_notify.successful');
       req.log('info', `ima.submission.duration=[${timeSpentOnForm}] seconds`);
-
-      return await this.notifyByEmail(req, pdfData);
     } catch (err) {
       const error = _.get(err, 'response.data.errors[0]', err.message || err);
       req.log('error', 'ima.submit_form.create_email_with_file_notify.error', error);
       throw new Error(error);
-    }
-  }
-
-  async notifyByEmail(req, pdfData) {
-    if (!this.behaviourConfig.sendReceipt) {
-      return Promise.resolve();
-    }
-    const userEmail = req.sessionModel.get('user-email');
-    const userFormEmail = req.sessionModel.get('email-address-details');
-    const advisorEmail = req.sessionModel.get('legal-representative-email');
-    const allUniqueEmails = _.uniq([userEmail, userFormEmail, advisorEmail].filter(e => e));
-
-    try {
-      const sendAllEmails = allUniqueEmails.map(email => this.sendEmail(req, email, pdfData));
-
-      return Promise.all(sendAllEmails)
-        .then(() => req.log('info', 'sap.send_receipt.create_email_notify.successful'))
-        .catch(e => {
-          throw e;
-        });
-    } catch (err) {
-      req.log('error', 'sap.send_receipt.create_email_notify.error', err.message || err);
-      throw err;
     }
   }
 
@@ -127,38 +99,9 @@ module.exports = class CreateAndSendPDF {
       await this.sendEmailWithAttachment(req, pdfData);
 
       req.log('info', 'ima.form.submit_form.successful');
-
-      const id = req.sessionModel.get('id');
-
-      return await axios.patch(`${baseUrl}/${id}`, { submitted_at: moment().format('YYYY-MM-DD HH:mm:ss') });
     } catch(e) {
-      req.log('error', 'sap.form.submit_form.failed');
-      return await this.sendSubmissionFailure(req);
+      req.log('error', 'ima.form.submit_form.failed');
     }
-  }
-
-  // async sendSubmissionFailure(req) {
-  //   return notifyClient.sendEmail(submissionFailedTemplateId, req.sessionModel.get('user-email'), {
-  //     personalisation: {
-  //       case_id: req.sessionModel.get('case-id')
-  //     }
-  //   });
-  // }
-
-  async sendEmail(req, email, pdfData) {
-    const personalisations = this.behaviourConfig.notifyPersonalisations;
-    const images = req.sessionModel.get('images');
-    const imageNames = images ? images.map(o => `• ${o.name}`).join('\n') : '';
-
-    return notifyClient.sendEmail(customerReceiptTemplateId, email, {
-      personalisation: Object.assign({}, personalisations, {
-        link_to_file: config.env !== 'production' ?
-          notifyClient.prepareUpload(pdfData, { confirmEmailBeforeDownload: false }) :
-          notifyClient.prepareUpload(pdfData),
-        has_supporting_documents: _.get(images, 'length') ? 'yes' : 'no',
-        supporting_documents: imageNames
-      })
-    });
   }
 
   sortSections(locals) {
