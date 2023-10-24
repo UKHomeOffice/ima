@@ -1,12 +1,14 @@
-/* eslint-disable eqeqeq, no-eq-null */
+'use strict';
+
 const config = require('../../../config');
+const axios = require('axios');
 const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyApiKey = config.govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.userAuthTemplateId;
-const axios = require('axios');
 const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 const tokenGenerator = require('../../../db/save-token');
+
 const getPersonalisation = (host, token) => {
   const protocol = host.includes('localhost') ? 'http' : 'https';
   return {
@@ -39,30 +41,15 @@ module.exports = superclass => class extends superclass {
 
   async saveValues(req, res, next) {
     const host = req.get('host');
-    const email = req.sessionModel.get('user-email') || req.form.values['user-email'];
+    const email = req.form.values['user-email'] || req.sessionModel.get('user-email');
 
     if (this.skipEmailVerification(email)) {
       return super.saveValues(req, res, next);
     }
-
-    const token = tokenGenerator.save(req, email);
     const response = await axios.get(baseUrl + '/uan/' + req.sessionModel.get('uan'));
     const claimantRecords = response.data;
-    const recordID = claimantRecords.map(f => { return f.id; });
     const recordEmail = claimantRecords.map(f => { return f.email; });
-    if (recordEmail == false) {
-      try {
-        await axios({
-          url: baseUrl + `/${recordID}`,
-          method: 'PATCH',
-          data: { email }
-        });
-      } catch (e) {
-        // return next(e);
-        // return e;
-        console.error(e);
-      }
-    } else if (recordEmail != null && req.form.values['user-email'] !== recordEmail.toString()) {
+    if (recordEmail.length && req.form.values['user-email'] !== recordEmail.toString()) {
       return next({
         'user-email': new this.ValidationError(
           'user-email',
@@ -72,8 +59,11 @@ module.exports = superclass => class extends superclass {
         )
       });
     }
+
+    const token = tokenGenerator.save(req, email);
+
     try {
-      notifyClient.sendEmail(templateId, email, {
+      await notifyClient.sendEmail(templateId, email, {
         personalisation: getPersonalisation(host, token, req, req)
       });
     } catch (e) {
