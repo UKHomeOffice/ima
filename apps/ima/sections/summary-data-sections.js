@@ -17,5 +17,13 @@ module.exports = {
         omitChangeLink: true
       }
     ]
+  },
+  'personal-details':{
+    steps: [
+      {
+        step: '/who-are-you',
+        field: 'who-are-you'
+      }
+    ]
   }
 };

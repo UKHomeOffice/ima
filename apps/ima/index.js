@@ -142,11 +142,23 @@ module.exports = {
     '/cannot-use-form':{},
    
     '/someone-else':{
-
+      behaviours: SaveFormSession,
+      fields:[
+        'someone-else',
+        'someone-else-fullname',
+        'someone-else-relationship',
+        'someone-else-organisation'
+      ],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
       next:'/in-the-uk'
     },
     '/legal-representative-details':{
-
+      behaviours: SaveFormSession,
+      fields: ['has-legal-representative'],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      next:'/in-the-uk'
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
