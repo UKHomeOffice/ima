@@ -22,6 +22,7 @@ module.exports = class UploadModel extends Model {
         url: config.upload.hostname
       };
       const reqConf = url.parse(this.url(attributes));
+      console.log('reqconf ', reqConf);
       reqConf.formData = {
         document: {
           value: this.get('data'),
@@ -34,12 +35,15 @@ module.exports = class UploadModel extends Model {
       reqConf.method = 'POST';
       return this.request(reqConf, (err, data) => {
         if (err) {
+          console.log('err ', err)
           return reject(err);
         }
+        console.log('data ', data)
         return resolve(data);
       });
     })
       .then(result => {
+        console.log('result ', result);
         return this.set({
           url: result.url.replace('/file/', '/file/generate-link/').split('?')[0]
         });
