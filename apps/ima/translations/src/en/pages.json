@@ -3,8 +3,42 @@
     "header": "Continue to your form",
     "paragraph": "This completes your secure access to this service."
   },
+  "no-cases-found": {
+    "header": "No cases have been found",
+    "paragraph": "There are no cases associated with this email. Please check you used the correct email, and access this service again via the <a href='/start'>IMA start page</a>."
+  },
   "save-and-exit": {
     "header": "You have left the form",
     "paragraph1": "Your progress has been saved."
+  },
+  "current-progress": {
+    "header": "Information you have given us"
+  },
+  "cannot-use-form": {
+    "header": "You cannot use this form",
+    "paragraph-1": "You can only continue your claim if you are in the UK."
+  },
+  "token-invalid": {
+    "header": "This link has expired"
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "submit-warning": "You will not be able to change your answers after you submit.",
+    "sections": {
+      "case-details": {
+        "header": "Case details"
+      }
+    },
+    "fields": {
+      "uan": {
+        "label": "Unique Application Number (UAN)"
+      },
+      "name": {
+        "label": "Full name"
+      },
+      "date-of-birth": {
+        "label": "Date of birth"
+      }
+    }
   }
 }

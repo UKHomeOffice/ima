@@ -1,1 +1,21 @@
-{}
+{
+  "uan": {
+    "legend": "Which claim do you want to continue?"
+  },
+  "who-are-you": {
+    "legend": "Who are you?",
+    "options": {
+      "person-named": {
+        "label": "The person named on the duty to remove notice"
+      },
+      "has-legal-representative": {
+        "label": "An immigration advisor representing the claimant",
+        "hint": "Such as a solicitor or legal representative. You must have already sent a letter of authority to the Home Office to confirm that you can represent the person named on the duty to remove letter."
+      },
+      "someone-else": {
+        "label": "Someone helping the person named on the duty to remove notice",
+        "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
+      }
+    }
+  }
+}

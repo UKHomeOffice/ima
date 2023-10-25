@@ -1,1 +1,5 @@
-{}
+{
+  "who-are-you": {
+    "required": "You must select an option"
+  }
+}
