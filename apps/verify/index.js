@@ -7,9 +7,9 @@ module.exports = {
   baseUrl: '/',
   steps: {
     '/your-details': {
-      behaviours: [ValidateCaseDetails],
-      fields: ['uan', 'date-of-birth'],
-      next: '/verify'
+      // behaviours: [ValidateCaseDetails],
+      // fields: ['uan', 'date-of-birth'],
+      next: '/ima/evidence-upload'
     },
     '/not-found': {},
     '/verify': {
