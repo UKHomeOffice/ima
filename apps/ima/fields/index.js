@@ -128,7 +128,7 @@ module.exports = {
     }
   },
   'has-legal-representative':{
-    isPageHeading: true,
+    isPageHeading: true
   },
 
   'legal-representative-phone-number': {
@@ -136,11 +136,11 @@ module.exports = {
     validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
   },
   'legal-representative-fullname': {
-    isPageHeading: true,
-    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}]
+    labelClassName: 'bold',
+    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}]  
   },
   'legal-representative-organisation':{
-    isPageHeading: true,
+    labelClassName: 'bold',
     validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}]
   },
   'legal-representative-house-number': {
