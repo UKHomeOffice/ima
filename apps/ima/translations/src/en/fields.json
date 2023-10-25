@@ -102,5 +102,46 @@
   },
   "postcode": {
     "label": "Postcode"
+  },
+  "has-legal-representative":{
+    "label":"Immigration adviser details",
+    "hint":"We will use these detail if we need to contact you."  
+  },
+  "legal-representative-address":{
+    "label": "Postal address"
+  },
+  "legal-representative-house-number": {
+    "label": "Address line 1"
+  },
+  "legal-representative-street": {
+    "label": "Address line 2 (optional)"
+  },
+  "legal-representative-townOrCity": {
+    "label": "Town or city"
+  },
+  "legal-representative-county": {
+    "label": "County (optional)"
+  },
+  "legal-representative-email": {
+    "label": "Email"
+  },
+  "legal-representative-fullname":{
+    "label":"Full name"
+  },
+  "legal-representative-organisation":{
+    "label":"Organisation or law firm"
+  },
+  "someone-else":{
+    "label": "Helper details"
+  },
+  "someone-else-fullname":{
+    "label": "Full name"
+  },
+  "someone-else-relationship":{
+    "label": "What is your relationship to the person on the duty to remove notice? "
+  },
+  "someone-else-organisation":{
+    "label": "Oragnisation name (otional)",
+    "hint": "For example, charity or law firm name"
   }
 }
