@@ -12,28 +12,28 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   baseUrl: '/ima',
   steps: {
-    '/start': {
-      behaviours: CheckEmailToken,
-      next: '/cases'
-    },
-    '/cases': {
-      behaviours: [ResumeSession],
-      next: '/current-progress',
-      backLink: false
-    },
-    '/current-progress': {
-      behaviours: [Summary, ContinueReport],
-      sections: require('./sections/summary-data-sections'),
-      backLink: false,
-      journeyStart: '/who-are-you'
-    },
-    '/who-are-you': {
-      behaviours: SaveFormSession,
-      fields: ['who-are-you'],
-      locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
-      backLink: 'current-progress'
-    },
+    // '/start': {
+    //   behaviours: CheckEmailToken,
+    //   next: '/cases'
+    // },
+    // '/cases': {
+    //   behaviours: [ResumeSession],
+    //   next: '/current-progress',
+    //   backLink: false
+    // },
+    // '/current-progress': {
+    //   behaviours: [Summary, ContinueReport],
+    //   sections: require('./sections/summary-data-sections'),
+    //   backLink: false,
+    //   journeyStart: '/who-are-you'
+    // },
+    // '/who-are-you': {
+    //   behaviours: SaveFormSession,
+    //   fields: ['who-are-you'],
+    //   locals: { showSaveAndExit: true },
+    //   next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+    //   backLink: 'current-progress'
+    // },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
@@ -42,22 +42,22 @@ module.exports = {
     },
 
     '/confirm': {
-      behaviours: [Summary, SaveFormSession],
+      behaviours: [Summary],
       sections: require('./sections/summary-data-sections'),
-      locals: { showSaveAndExit: true },
+      // locals: { showSaveAndExit: true },
       next: '/confirmation'
     },
     '/confirmation': {
       clearSession: true
     },
-    '/save-and-exit': {
-      behaviours: SaveAndExit,
-      backLink: false
-    },
-    '/cannot-use-form': {},
-    '/token-invalid': {
-      clearSession: true
-    },
-    '/application-expired': {}
+    // '/save-and-exit': {
+    //   behaviours: SaveAndExit,
+    //   backLink: false
+    // },
+    // '/cannot-use-form': {},
+    // '/token-invalid': {
+    //   clearSession: true
+    // },
+    // '/application-expired': {}
   }
 };
