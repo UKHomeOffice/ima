@@ -145,7 +145,7 @@ module.exports = name => superclass => class extends superclass {
       }
 
       const uniqCases = _.uniqBy(transformedRecords, obj => {
-        return obj.name + obj['uan'] + obj['date of birth'] + obj['email address'];
+        return obj.name + obj.uan + obj['date of birth'] + obj['email address'];
       });
       const hasDuplicateEntries = uniqCases.length !== transformedRecords.length;
 

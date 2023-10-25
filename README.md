@@ -53,8 +53,9 @@ $ yarn install
 $ yarn start:dev
 ```
 
-Then visit: [http://localhost:8080/](http://localhost:8080/) For the start page and applicant journey
+Then visit: [http://localhost:8080/](http://localhost:8080/) For the start page and applicant journey. For upload csv journey, visit: [http://localhost:8080/upload](http://localhost:8080/upload).
 
+NB - To run the upload csv journey locally, you must enable the [skip email](#skip-email-verify-step) functionality detailed below.
 
 ## Architecture
 

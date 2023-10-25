@@ -74,9 +74,9 @@ module.exports = superclass => class extends superclass {
   // }
 
   async submitRecord(caseworkerRecord, record, serviceUrl) {
-    if (record['uan']) {
+    if (record.uan) {
       const response = await axios.post(applicationsUrl, {
-        uan: record['uan'],
+        uan: record.uan,
         caseworker_id: caseworkerRecord.id,
         date_of_birth: moment(record['date of birth']).format('YYYY-MM-DD'),
         session: JSON.stringify({})

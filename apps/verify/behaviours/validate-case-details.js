@@ -1,7 +1,6 @@
 
 const axios = require('axios');
 const config = require('../../../config');
-const moment = require('moment');
 const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 
 module.exports = superclass => class extends superclass {
@@ -10,7 +9,7 @@ module.exports = superclass => class extends superclass {
       const response = await axios.get(baseUrl + '/uan/' + req.form.values.uan);
       const claimantRecords = response.data;
       const record = claimantRecords.map(f => { return f.date_of_birth; });
-      if (claimantRecords.length && !record.includes(moment(req.form.values['date-of-birth']).format('YYYY/MM/DD'))) {
+      if (claimantRecords.length && !record.includes(req.form.values['date-of-birth'])) {
         return res.redirect('/not-found');
       }
       if (!claimantRecords.length) {

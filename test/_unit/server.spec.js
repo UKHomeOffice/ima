@@ -5,6 +5,7 @@ describe('Server.js app file', () => {
   let sendStub;
   let appsVerifyStub;
   let appsImaStub;
+  let appsUploadStub;
   let behavioursClearSessionStub;
   let req;
   let res;
@@ -29,6 +30,7 @@ describe('Server.js app file', () => {
     useStub = sinon.stub();
     appsVerifyStub = sinon.stub();
     appsImaStub = sinon.stub();
+    appsUploadStub = sinon.stub();
     behavioursClearSessionStub = sinon.stub();
     req.get.withArgs('host').returns('localhost');
 
@@ -40,6 +42,7 @@ describe('Server.js app file', () => {
       hof: hofStub,
       './apps/ima': appsImaStub,
       './apps/verify': appsVerifyStub,
+      './apps/upload': appsUploadStub,
       'hof/components/clear-session': behavioursClearSessionStub,
       './config': { env: 'test' }
     });
@@ -63,7 +66,8 @@ describe('Server.js app file', () => {
         translations: './apps/ima/translations',
         routes: [
           appsImaStub,
-          appsVerifyStub
+          appsVerifyStub,
+          appsUploadStub
         ],
         session: { name: 'ima.hof.sid' },
         getAccessibility: false,
