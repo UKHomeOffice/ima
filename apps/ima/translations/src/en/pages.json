@@ -5,6 +5,6 @@
   },
   "save-and-exit":{
     "header":"Your information has been saved",
-    "paragraph": "To continue your form, use the link we have emailed to"
+    "paragraph1": "To continue your form, use the link we have emailed to"
   }
 }
