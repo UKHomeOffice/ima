@@ -14,10 +14,6 @@ module.exports = {
     '/start': {
       next: '/cases'
     },
-    '/cases': {
-      next: '/current-progress',
-      backLink: false
-    },
     '/current-progress': {
       behaviours: [Summary],
       sections: require('./sections/summary-data-sections'),

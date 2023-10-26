@@ -3,9 +3,9 @@
     "header": "Continue to your form",
     "paragraph": "This completes your secure access to this service."
   },
-  "save-and-exit":{
-    "header":"Your information has been saved",
-    "paragraph1": "To continue your form, use the link we have emailed to"
+  "save-and-exit": {
+    "header": "Your have information has been saved",
+    "paragraph1": "To continue your form, use the link we have emailed to:"
   },
   "token-invalid": {
     "header": "This link has expired"
