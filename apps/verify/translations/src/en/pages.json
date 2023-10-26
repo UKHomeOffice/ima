@@ -14,8 +14,6 @@
     "header": "Enter an email address"
   },
   "check-inbox": {
-    "header": "Check your email",
-    "paragraph-1": "We have emailed a link to:",
-    "paragraph-2": "Use the link to open your form."
+    "header": "Check your email"
   }
 }

@@ -8,7 +8,6 @@
     "paragraph1": "To continue your form, use the link we have emailed to"
   },
   "token-invalid": {
-    "header": "Your link has expired",
-    "paragraph": "<a href='/verify'>Get a new link</a> to continue your questionnaire."
+    "header": "This link has expired"
   }
 }
