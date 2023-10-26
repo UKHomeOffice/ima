@@ -8,8 +8,8 @@
     "paragraph": "There are no cases associated with this email. Please check you used the correct email, and access this service again via the <a href='/start'>IMA start page</a>."
   },
   "save-and-exit": {
-    "header": "You have left the form",
-    "paragraph1": "Your progress has been saved."
+    "header": "You have information has been saved",
+    "paragraph1": "To continue your form, use the link we have emailed to:"
   },
   "current-progress": {
     "header": "Information you have given us"
