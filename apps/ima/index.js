@@ -137,7 +137,7 @@ module.exports = {
         'postcode'
       ],
       locals: { showSaveAndExit: true },
-      next: '/'
+      next: '/medical-record'
     },
     '/cannot-use-form':{},
    
@@ -155,7 +155,18 @@ module.exports = {
     },
     '/legal-representative-details':{
       behaviours: SaveFormSession,
-      fields: ['has-legal-representative'],
+      fields: [
+        'legal-representative-fullname',
+        'legal-representative-organisation',
+        'legal-representative-house-number',
+        'legal-representative-street',
+        'legal-representative-townOrCity',
+        'legal-representative-county',
+        'legal-representative-postcode',
+        'legal-representative-phone-number',
+        'legal-representative-email',
+        'representative-email-detail'
+              ],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
       next:'/in-the-uk'
@@ -177,6 +188,30 @@ module.exports = {
       clearSession: true
     },
     '/application-expired': {},
-    
+    '/medical-record':{
+      behaviours: SaveFormSession,
+      fields: ['has-permission-access'],
+      locals: { showSaveAndExit: true },
+      forks: [
+        {
+          target: '/',
+          condition: {
+            field: 'has-permission-access',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/',
+          condition: {
+            field: 'has-permission-access',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/',
+      backLink: 'immigration-detention'
+    }
   }
 };

@@ -36,6 +36,7 @@ module.exports = {
   },
   'phone-number-details': {
     validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     dependent: {
       field: 'phone-number',
       value: 'yes'
@@ -55,6 +56,7 @@ module.exports = {
   },
   'email-address-details': {
    validate: ['required', 'email'],
+   className: ['govuk-input', 'govuk-!-width-two-thirds'],
     dependent: {
       field: 'email-address',
       value: 'yes'
@@ -127,21 +129,27 @@ module.exports = {
       value: 'no'
     }
   },
-  'has-legal-representative':{
+  'legal-representative-details':{
     isPageHeading: true
   },
 
   'legal-representative-phone-number': {
-    labelClassName: 'visuallyhidden',
-    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}]
+    labelClassName: 'bold',
+    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'legal-representative-fullname': {
     labelClassName: 'bold',
-    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}]  
+    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'legal-representative-organisation':{
     labelClassName: 'bold',
-    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}]
+    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'legal-representative-house-number': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
@@ -176,6 +184,26 @@ module.exports = {
       field: ''
     }
   },
+  'legal-representative-email':{
+    legendClassName: 'bold',
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no',
+      toggle: 'representative-email-detail',
+      child: 'input-text'
+    }]
+  },
+  'representative-email-detail':{
+    validate: ['required', 'email'],
+    dependent: {
+      field: 'legal-representative-email',
+      value: 'no'
+    },
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
   'someone-else':{
     isPageHeading: true
   },
@@ -189,5 +217,19 @@ module.exports = {
   }, 
   'helper-organisation':{
     mixin: 'input-text'
+  },
+  'has-permission-access': {
+    legend:{
+      className: 'bold'
+    },
+    mixin: 'radio-group',
+    options: [{
+      value: 'yes',
+      toggle: 'response-label',
+      child: 'partials/permission-response'
+    }, {
+      value: 'no'
+    }],
+    validate: 'required'
   }
 };

@@ -18,12 +18,22 @@ module.exports = {
       }
     ]
   },
+  'immigration-detention':{
+    steps: [
+      {
+        step: '/immigration-detention',
+        field: 'immigration-detention'
+      },
+     
+    ]
+  },
   'personal-details':{
     steps: [
       {
         step: '/who-are-you',
         field: 'who-are-you'
-      }
+      },
+     
     ]
   }
 };
