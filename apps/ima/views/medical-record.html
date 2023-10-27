@@ -1,0 +1,18 @@
+{{<partials-page}}
+  {{$page-content}}
+   <p>{{#t}}pages.medical-record.paragraph{{/t}}</p>
+
+    <p>
+        <span>{{#t}}pages.medical-record.ul{{/t}}</span>
+        <ul>
+            <li>{{#t}}pages.medical-record.li1{{/t}}</li>
+            <li>{{#t}}pages.medical-record.li2{{/t}}</li>
+            <li>{{#t}}pages.medical-record.li3{{/t}}</li>
+        </ul>
+    </p>
+   <p>{{#t}}pages.medical-record.paragraph1{{/t}}</p>
+
+   {{#renderField}}has-permission-access{{/renderField}}
+   {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

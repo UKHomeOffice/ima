@@ -21,6 +21,21 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "legal-representative-details":{
+    "header":"Immigration adviser details",
+    "paragraph":"We will use these detail if we need to contact you.",
+    "address":"Postal address"
+  },
+  "medical-record":{
+    "header":"Your medical records",
+    "paragraph":"We may need access to your immigration removal centre medical <br> records, to make a decision on your claim.",
+    "paragraph1":"You do not have to agree to give the Home Office this information,<br> but it would help us to fully consider any medical conditions which <br> may affect you.",
+    "ul":"This may include information about:",
+    "li1":"medical conditions you have",
+    "li2":"medication you are taking or treatment you are receiving",
+    "li3":"your health",
+    "response-label1":"You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to<br>access your medical records."
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",
