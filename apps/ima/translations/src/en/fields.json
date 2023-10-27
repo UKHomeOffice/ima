@@ -84,9 +84,20 @@
       }
     }
   },
+  "has-permission-access":{
+    "legend": "Do you give us permission to access your Immigration Removal Centre medical records?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "your-address": {
-    "legend": "Enter your address",
-    "label": "This must be where youl live."
+    "label": "Enter your address",
+    "hint": "This must be where you live."
   },
   "house-number": {
     "label": "Address line 1"
@@ -103,15 +114,14 @@
   "postcode": {
     "label": "Postcode"
   },
-  "has-legal-representative":{
-    "label":"Immigration adviser details",
-    "hint":"We will use these detail if we need to contact you."  
-  },
   "legal-representative-address":{
     "label": "Postal address"
   },
   "legal-representative-house-number": {
     "label": "Address line 1"
+  },
+  "legal-representative-postcode": {
+    "label": "Postcode"
   },
   "legal-representative-street": {
     "label": "Address line 2 (optional)"
@@ -122,14 +132,29 @@
   "legal-representative-county": {
     "label": "County (optional)"
   },
-  "legal-representative-email": {
-    "label": "Email"
-  },
   "legal-representative-fullname":{
     "label":"Full name"
   },
   "legal-representative-organisation":{
     "label":"Organisation or law firm"
+  },
+  "legal-representative-phone-number": {
+    "label": "Phone number",
+    "hint": "For international numbers, include the country code."
+  },
+  "legal-representative-email": {
+    "legend": "Is {{}} your email address?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "representative-email-detail": {
+    "label": "Enter your email address"
   },
   "someone-else":{
     "label": "Helper details"

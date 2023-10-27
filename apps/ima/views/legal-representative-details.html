@@ -1,13 +1,12 @@
 {{<partials-page}}
   {{$page-content}}
-  {{#renderField}}has-legal-representative{{/renderField}}
-
+     <p>{{#t}}pages.legal-representative-details.paragraph{{/t}}</p>
     {{#input-text}}legal-representative-fullname{{/input-text}}
 
     {{#input-text}}legal-representative-organisation{{/input-text}}
 
     <span class="govuk-label">
-      <strong>{{#t}}legal-representative-address{{/t}}</strong>
+      <strong>{{#t}}pages.legal-representative-details.address{{/t}}</strong>
     </span><br>
 
     {{#input-text}}legal-representative-house-number{{/input-text}}
@@ -16,9 +15,10 @@
     {{#input-text}}legal-representative-county{{/input-text}}
     {{#input-text}}legal-representative-postcode{{/input-text}}
     {{#input-text}}legal-representative-phone-number{{/input-text}}
+    {{#renderField}}legal-representative-email{{/renderField}}
    
     <span class="govuk-label">
-      {{#t}}Answer all the following questions as if you are the applicant{{/t}}
+      {{#t}}Answer all the following questions as if you are the person on the duty to remove notice{{/t}}
     </span><br>
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
