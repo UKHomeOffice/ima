@@ -16,11 +16,14 @@ module.exports = {
   'name':{
     isPageHeading: true
   },
-  'is-your-email': {
-    isPageHeading: true,
+  'current-email': {
+    legendClassName: 'bold',
     mixin: 'radio-group',
     options: ['yes', 'no'],
     validate: 'required'
+  },
+  'is-your-email':{
+    isPageHeading: true,
   },
   'phone-number': {
     isPageHeading: true,
@@ -184,25 +187,20 @@ module.exports = {
       field: ''
     }
   },
-  'legal-representative-email':{
-    legendClassName: 'bold',
+  'is-legal-representative-email': {
+    isPageHeading: true,
     mixin: 'radio-group',
     validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
     options: [{
       value: 'yes'
     }, {
       value: 'no',
-      toggle: 'representative-email-detail',
-      child: 'input-text'
+      toggle: 'legal-representative-email-details-fieldset',
+      child: 'partials/legal-representative-email-details'
     }]
-  },
-  'representative-email-detail':{
-    validate: ['required', 'email'],
-    dependent: {
-      field: 'legal-representative-email',
-      value: 'no'
-    },
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'someone-else':{
     isPageHeading: true

@@ -26,6 +26,9 @@
     "paragraph":"We will use these detail if we need to contact you.",
     "address":"Postal address"
   },
+  "is-legal-representative-email": {
+    "header": "Is {{values.user-email}} your email address?"
+  },
   "medical-record":{
     "header":"Your medical records",
     "paragraph":"We may need access to your immigration removal centre medical <br> records, to make a decision on your claim.",
@@ -41,7 +44,10 @@
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
-        "header": "Case details"
+        "header": "Form details"
+      },
+      "legal-representative-details":{
+        "header": "Immigration adviser details"
       },
       "personal-details":{
         "header": "Personal details"
@@ -51,14 +57,29 @@
       "uan": {
         "label": "Unique Application Number (UAN)"
       },
-      "name": {
+      "name": { 
         "label": "Full name"
+      },
+      "email-address-details":{
+        "label": "Email"
       },
       "date-of-birth": {
         "label": "Date of birth"
       },
       "who-are-you":{
-        "label": "Who completed the form"
+        "label": "Who completed this form"
+      },
+      "legal-representative-fullname":{
+        "label":"Full name"
+      },
+      "legal-representative-email":{
+        "label":"Email"
+      },
+      "legal-representative-phone-number":{
+        "label":"Phone number"
+      },
+      "legal-representative-address":{
+        "label":"Address"
       }
     }
   }
