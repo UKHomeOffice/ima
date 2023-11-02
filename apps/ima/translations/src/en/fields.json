@@ -32,8 +32,11 @@
   "name":{
     "label":"What is your full name?"
   },
-  "is-your-email": {
-    "legend": "Is this your email address?",
+  "is-your-email":{
+    "label": "Is this your email address?"
+  },
+  "current-email": {
+    "legend": "{{values.user-email}}",
     "options": {
       "yes": {
         "label": "Yes"
@@ -142,8 +145,8 @@
     "label": "Phone number",
     "hint": "For international numbers, include the country code."
   },
-  "legal-representative-email": {
-    "legend": "Is {{}} your email address?",
+  "is-legal-representative-email": {
+    "legend": "Is {{values.user-email}} your email address?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -153,7 +156,7 @@
       }
     }
   },
-  "representative-email-detail": {
+  "legal-representative-email": {
     "label": "Enter your email address"
   },
   "someone-else":{

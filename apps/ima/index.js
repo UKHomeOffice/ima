@@ -92,19 +92,19 @@ module.exports = {
     },
     '/is-your-email':{
       behaviours: SaveFormSession,
-      fields: ['is-your-email'],
+      fields: ['current-email'],
       forks: [
         {
           target: '/phone-number',
           condition: {
-            field: 'is-your-email',
+            field: 'current-email',
             value: 'yes'
           }
         },
         {
           target: '/has-email',
           condition: {
-            field: 'is-your-email',
+            field: 'current-email',
             value: 'no'
           }
         }
@@ -164,8 +164,8 @@ module.exports = {
         'legal-representative-county',
         'legal-representative-postcode',
         'legal-representative-phone-number',
-        'legal-representative-email',
-        'representative-email-detail'
+        'is-legal-representative-email',
+        'legal-representative-email'
               ],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
@@ -190,7 +190,7 @@ module.exports = {
     '/application-expired': {},
     '/medical-record':{
       behaviours: SaveFormSession,
-      fields: ['has-permission-access'],
+      fields: ['has-permission-access','permission-response'],
       locals: { showSaveAndExit: true },
       forks: [
         {
