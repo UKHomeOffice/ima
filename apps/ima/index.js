@@ -137,7 +137,22 @@ module.exports = {
         'postcode'
       ],
       locals: { showSaveAndExit: true },
-      next: '/medical-record'
+      next: '/life-or-liberty-threatened'
+    },
+    '/exception':{
+      behaviours: SaveFormSession,
+      fields: [
+        'does-exception-apply'
+      ],
+      template: 'does-exception-apply',
+      locals: { showSaveAndExit: true },
+    },
+    '/life-or-liberty-threatened': {
+      behaviours: SaveFormSession,
+      fields: [
+        'is-life-threatened'
+      ],
+      locals: { showSaveAndExit: true },
     },
     '/cannot-use-form':{},
    

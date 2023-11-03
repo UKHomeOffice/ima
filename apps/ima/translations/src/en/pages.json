@@ -36,6 +36,12 @@
     "li3":"your health",
     "response-label1":"You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to<br>access your medical records."
   },
+  "exception": {
+    "header": "Does an exception to the duty to remove apply to you?"
+  },
+  "life-or-liberty-threatened": {
+    "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",

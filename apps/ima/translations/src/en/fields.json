@@ -168,5 +168,37 @@
   "someone-else-organisation":{
     "label": "Oragnisation name (otional)",
     "hint": "For example, charity or law firm name"
+  },
+  "does-exception-apply":{
+    "label": "Does an exception to the duty to remove apply to you?",
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-exception-apply-detail":{
+    "label": "Explain why"
+  },
+  "is-life-threatened":{
+    "label": "Did you come directly to the UK from a country where your life or liberty was threatened?",
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes",
+        "hint": "Enter details of how you came to the UK"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-life-threatened-detail":{
+    "label": "If you passed through or stopped in another country, explain why your life or liberty was threatened there",
+    "hint": "Test"
   }
 }

@@ -231,5 +231,37 @@ module.exports = {
       value: 'no'
     }],
     validate: 'required'
+  },
+  'does-exception-apply': {
+    isPageHeading: false,
+    mixin: 'radio-group',
+    labelClassName: 'visuallyhidden',
+    options: [{
+      value: 'yes',
+      toggle: 'does-exception-apply-detail',
+      child: 'textarea'
+    }, {
+      value: 'no'
+    }],
+    validate: 'required'
+  },
+  'does-exception-apply-detail':{
+    mixin: 'textarea',
+  },
+  'is-life-threatened': {
+    isPageHeading: false,
+    mixin: 'radio-group',
+    labelClassName: 'visuallyhidden',
+    options: [{
+      value: 'yes',
+      toggle: 'is-life-threatened-detail',
+      child: 'textarea'
+    }, {
+      value: 'no'
+    }],
+    validate: 'required'
+  },
+  'is-life-threatened-detail':{
+    mixin: 'textarea',
   }
 };
