@@ -50,6 +50,13 @@
       }
     }
   },
+  "exception": {
+    "header": "Does an exception to the duty to remove apply to you?"
+  },
+  "exploitation": {
+    "header": "Have you ever been exploited or beleive you were going to be exploited?",
+    "paragraph1": "We have sent a copy of completed form to:"
+  },
   "confirmation": {
     "confirmed": "Submitted",
     "paragraph1": "We have sent a copy of completed form to:",

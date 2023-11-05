@@ -47,10 +47,35 @@ module.exports = {
       continueOnEdit: true,
       next: '/confirm'
     },
-
+    // '/evidence-upload1': {
+    //   behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+    //   fields: ['image'],
+    //   continueOnEdit: true,
+    //   next: '/confirm'
+    // },
     '/confirm': {
       behaviours: [Summary, SaveFormSession, Submit],
       sections: require('./sections/summary-data-sections'),
+      locals: { showSaveAndExit: true },
+      //next: '/exploitation'
+      next: '/exception'
+    },
+    '/exception':{
+     // behaviours: SaveFormSession,
+      fields: [
+        'does-exception-apply'
+      ],
+      template: 'does-exception-apply',
+      locals: { showSaveAndExit: true },
+      next: '/exploitation'
+    },
+    '/exploitation': {
+    //  behaviours: [Summary, Submit],
+     // behaviours: SaveFormSession,
+      fields: [
+        'have-you-been-exploited'
+      ],
+      template: 'have-you-been-exploited',
       locals: { showSaveAndExit: true },
       next: '/confirmation'
     },
