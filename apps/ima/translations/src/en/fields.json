@@ -17,5 +17,35 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "does-exception-apply": {
+    "label": "Does an exception to the duty to remove apply to you?",
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-exception-apply-detail": {
+    "label": "Explain why"
+  },
+  "have-you-been-exploited": {
+    "label": "Have you ever been exploited, or believe you were going to be be exploited?",
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "have-you-been-exploited-options-yes-detail": {
+    "label": "Enter details"
   }
 }
