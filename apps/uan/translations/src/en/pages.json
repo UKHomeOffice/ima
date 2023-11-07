@@ -1,0 +1,29 @@
+{
+  "dashboard": {
+    "header": "Upload UAN",
+    "paragraph1": "You must ensure the uploaded file follows the current criteria:",
+    "list1": "File is in .csv format",
+    "list2": "File is smaller than {{maxFileSize}}",
+    "list3": "Data is presented in the following format below",
+    "list4": "If an applicant does not have a relevant Applicant ID please enter the role they have applied for in the Job Role column.",
+    "list5": "Enter at least one of Applicant ID or Job Role for each applicant. Leave the other cell blank if it is not applicable."
+  },
+  "bulk-upload": {
+    "header": "Upload Candidates List",
+    "paragraph1": "You must ensure the uploaded file follows the current criteria:",
+    "list1": "File is in .csv format",
+    "list2": "File is smaller than {{maxFileSize}}",
+    "list3": "Data is presented in the following format below",
+    "list4": "If an applicant does not have a relevant Applicant ID please enter the role they have applied for in the Job Role column.",
+    "list5": "Enter at least one of Applicant ID or Job Role for each applicant. Leave the other cell blank if it is not applicable."
+  },
+  "confirmation": {
+    "header": "Confirm onboarding of candidates",
+    "paragraph1": "The following will be notified via email to use the <a href='{{formUrl}}'>ASC Online Service</a>.",
+    "paragraph2": "As soon as you submit, the candidates' 7 day submission window will start and they will be required to complete their application within this timeframe.",
+    "warning": "Once you submit, this action connect be undone. All emails will be notified immediately."
+  },
+  "complete": {
+    "confirmed": "Candidate notifications sent"
+  }
+}

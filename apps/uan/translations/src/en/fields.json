@@ -1,0 +1,8 @@
+{
+  "bulk-upload-candidates": {
+    "label": "Upload CSV File"
+  },
+  "confirm-data-checked": {
+    "label": "Have you checked the data is correct?"
+  }
+}

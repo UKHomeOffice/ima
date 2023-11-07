@@ -1,0 +1,17 @@
+{
+  "bulk-upload-candidates": {
+    "required": "Select a file",
+    "unsaved": "We have not been able to upload evidence",
+    "maxFileSize": "Select a file that is smaller than 25 MB",
+    "fileType": "This file is not a valid file format you can upload.",
+    "invalidColumns": "Please ensure you have at least the following columns in your CSV file: Name, Applicant ID, Job Role, Email Address",
+    "missingValues": "There are missing values in this file. Please check it to ensure no mandatory field values are missing.",
+    "missingReference": "Enter a value for Applicant ID or Job Role in each row in your CSV file.",
+    "hasDuplicates": "There are duplicate applications in this CSV file. Please remove any duplicates.",
+    "emptyCsvSheet": "This CSV file appears to be empty. Please upload a sheet with some data.",
+    "hasBadApplicantId": "Applicant IDs must only be numbers between 1 and 9 digits long. Please check all included IDs match this pattern."
+  },
+  "confirm-data-checked": {
+    "required": "Confirm you have checked the data and it is correct."
+  }
+}
