@@ -84,6 +84,20 @@
       }
     }
   },
+  "does-exception-apply":{
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-exception-apply-detail": {
+    "label": "Explain why"
+  },
   "has-permission-access":{
     "legend": "Do you give us permission to access your Immigration Removal Centre medical records?",
     "options": {
@@ -169,8 +183,7 @@
     "label": "Oragnisation name (otional)",
     "hint": "For example, charity or law firm name"
   },
-  "does-exception-apply":{
-    "label": "Does an exception to the duty to remove apply to you?",
+  "is-life-threatened": {
     "legend": " ",
     "options": {
       "yes": {
@@ -181,24 +194,21 @@
       }
     }
   },
-  "does-exception-apply-detail":{
-    "label": "Explain why"
+  "life-threatened-detail": {
+    "label": "Enter details of how you came to the UK"
   },
-  "is-life-threatened":{
-    "label": "Did you come directly to the UK from a country where your life or liberty was threatened?",
+  "permission-to-enter-or-stay": {
     "legend": " ",
     "options": {
       "yes": {
-        "label": "Yes",
-        "hint": "Enter details of how you came to the UK"
+        "label": "Yes"
       },
       "no": {
         "label": "No"
       }
     }
   },
-  "is-life-threatened-detail":{
-    "label": "If you passed through or stopped in another country, explain why your life or liberty was threatened there",
-    "hint": "Test"
+  "permission-to-enter-or-stay-detail": {
+    "label": "Explain what permission you have"
   }
 }

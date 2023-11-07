@@ -1,0 +1,15 @@
+{{<partials-page}}
+  {{$page-content}}
+    <p>Your life or liberty must have been threatened because of your:</p>
+    <ul class="list list-bullet">
+      <li>race</li>
+      <li>religion</li>
+      <li>nationality</li>
+      <li>membership of a social group</li>
+      <li>political opinions</li>
+    </ul>
+    <p>If you passed through or stopped in another country where your life or liberty was not threatened for these reasons, you did not come directly to the UK.</p>
+    {{#renderField}}is-life-threatened{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

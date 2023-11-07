@@ -137,21 +137,34 @@ module.exports = {
         'postcode'
       ],
       locals: { showSaveAndExit: true },
-      next: '/life-or-liberty-threatened'
+      next: '/exceptions'
     },
-    '/exception':{
+    '/exceptions':{
       behaviours: SaveFormSession,
       fields: [
-        'does-exception-apply'
+        'does-exception-apply',
+        'does-exception-apply-detail'
       ],
       template: 'does-exception-apply',
+      locals: { showSaveAndExit: true },
+      next: '/permission-to-enter-or-stay'
+    },
+    '/permission-to-enter-or-stay': {
+      behaviours: SaveFormSession,
+      fields: [
+        'permission-to-enter-or-stay',
+        'permission-to-enter-or-stay-detail'
+      ],
+      template: 'permission-to-enter-or-stay',
       locals: { showSaveAndExit: true },
     },
     '/life-or-liberty-threatened': {
       behaviours: SaveFormSession,
       fields: [
-        'is-life-threatened'
+        'is-life-threatened',
+        'life-threatened-detail'
       ],
+      template: 'life-or-liberty-threatened',
       locals: { showSaveAndExit: true },
     },
     '/cannot-use-form':{},
