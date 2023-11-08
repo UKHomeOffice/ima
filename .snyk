@@ -17,4 +17,9 @@ ignore:
         reason: No direct upgrade or patch available
         expires: 2024-07-01T00:00:00.000Z
         created: 2023-07-14T23:12:47.350Z
+  SNYK-JS-XLSX-5457926:
+    - '*':
+        reason: No direct upgrade or patch available
+        expires: 2024-07-01T00:00:00.000Z
+        created: 2023-10-23T10:12:47.350Z
 patch: {}

@@ -3,12 +3,7 @@
     "header": "Enter your details"
   },
   "not-found": {
-    "header": "Details not found",
-    "paragraph-1": "The case ID and date of birth must exactly match what is in the letter or email that the Home Office sent you.",
-    "paragraph-2": "Check you have the correct case ID and date of birth and try again."
-  },
-  "email-not-recognised": {
-    "header": "Email not recognised"
+    "header": "Details not found"
   },
   "verify": {
     "header": "Enter an email address"

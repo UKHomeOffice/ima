@@ -1,0 +1,31 @@
+{{<partials-page}} 
+{{$page-content}} 
+  <div class="govuk-form-group {{#errors.uan}}govuk-form-group--error{{/errors.uan}}">
+    <label class="govuk-label" for="uan">
+      <strong>{{#t}}fields.uan.label{{/t}}</strong>
+    </label>
+    <p class="details-uan-dob">Find this on the duty to remove letter given to you by the Home Office.</p>
+    {{#input-text}}uan{{/input-text}}
+  </div>
+
+  <div
+    class="govuk-form-group govuk-date-input {{#errors.date-of-birth}}govuk-form-group--error{{/errors.date-of-birth}}">
+    <fieldset>
+      <legend class="govuk-fieldset__legend">
+        <strong>{{#t}}fields.date-of-birth.legend{{/t}}</strong>
+        <p class="details-uan-dob">Find this on the duty to remove letter given to you by the Home Office.</p>
+        <span id="date-of-birth-hint" class="govuk-hint">
+          {{#t}}fields.date-of-birth.hint{{/t}}
+        </span>
+        {{#errors.date-of-birth}}
+        <p class="govuk-error-message">
+          {{errors.date-of-birth.message}}
+        </p>
+        {{/errors.date-of-birth}}
+      </legend>
+      {{#input-date}}date-of-birth{{/input-date}}
+    </fieldset>
+  </div>
+  {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+  {{/partials-page}}

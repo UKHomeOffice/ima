@@ -3,6 +3,10 @@
 
 const hof = require('hof');
 const Summary = hof.components.summary;
+const ContinueReport = require('./behaviours/continue-report');
+const CheckEmailToken = require('./behaviours/check-email-token');
+const ResumeSession = require('./behaviours/resume-form-session');
+const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 
 
@@ -12,26 +16,47 @@ module.exports = {
   baseUrl: '/ima',
   steps: {
     '/start': {
+      behaviours: CheckEmailToken,
       next: '/cases'
     },
+
+    '/cases': {
+      behaviours: [ResumeSession],
+      next: '/current-progress',
+      backLink: false
+    },
+
     '/current-progress': {
-      behaviours: [Summary],
+      behaviours: [Summary, ContinueReport],
       sections: require('./sections/summary-data-sections'),
       backLink: false,
       journeyStart: '/who-are-you'
     },
+
     '/save-and-exit': {
       behaviours: SaveAndExit,
       backLink: false
+
+    '/who-are-you': {
+      behaviours: SaveFormSession,
+      fields: ['who-are-you'],
+      locals: { showSaveAndExit: true },
+      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      backLink: 'current-progress'
+
     },
     '/confirm': {
-      behaviours: [Summary],
+      behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
       next: '/confirmation'
     },
     '/confirmation': {
       clearSession: true
+    },
+    '/save-and-exit': {
+      behaviours: SaveAndExit,
+      backLink: false
     },
     '/cannot-use-form': {},
     '/token-invalid': {

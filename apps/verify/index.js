@@ -5,9 +5,6 @@ const SendVerificationEmail = require('./behaviours/send-verification-email');
 module.exports = {
   name: 'verify',
   baseUrl: '/',
-  pages: {
-    '/email-not-recognised': 'email-not-recognised'
-  },
   steps: {
     '/your-details': {
       behaviours: [ValidateCaseDetails],
