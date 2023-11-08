@@ -104,6 +104,5 @@ $ yarn run test:lint
 ### Unit Tests
 
 ```bash
-$ yarn test:unit
+$ yarn test:unit 
 ```
- 

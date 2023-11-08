@@ -33,7 +33,7 @@ spec:
       containers:
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/hof-rds-api:7579613d7058828f2a6eb632114e13dbecfae7c1
+          image: quay.io/ukhomeofficedigital/hof-rds-api:966c644db0642b2a45b0e8c48ddb25cb41244ac2
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
