@@ -17,5 +17,78 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "is-serious-and-irreversible": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-risk-in-country":{
+    "paragraph":"This is physical or emotional harm which would be difficult or impossible to recover from.",
+    "list-header":"For example:",
+    "list1":"death",
+    "list2":"torture",
+    "list3":"inhumane or degrading treatment",
+    "list4":"physical, mental, or sexual violence",
+    "list5":"discrimination against you by the police, legal system, or a political party",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "reason-in-sih":{
+    "label":"Explain why you would be at risk of serious and irreversible harm in [SIH country]",
+    "list-header":"You must tell us:",
+    "list1":"why you specifically would be at risk",
+    "list2":"what you would be at risk of, including what you think would happen to you",
+    "list3":"what individuals or groups you fear in",
+    "list3-bold":"[SIH country]"
+  },
+  "has-anything-happened":{
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  }, 
+  "anything-happened-details":{
+    "label1":"Has anything happened to you since you arrived in the UK which would make it unsafe for you to go to [SIH country]?",
+    "label2": "Enter details",
+    "label3":"include:",
+    "list1":"What happened in the uk",
+    "list2":"why this would make it unsafe for you to go to [SIH country]"
+  },
+  "why-not-get-protection":{
+    "label":"Why would you not be able to get protection from this harm in [SIH country]?"
+  },
+  "country-1":{
+    "label": "Country 1",
+    "options": {
+      "null": "Select a country"
+    }
+  },
+  "country-2":{
+    "label": "Country 2",
+    "options": {
+      "null": "Select a country"
+    }
+  },
+  "country-3":{
+    "label": "Country 3",
+    "options": {
+      "null": "Select a country"
+    }
   }
 }
