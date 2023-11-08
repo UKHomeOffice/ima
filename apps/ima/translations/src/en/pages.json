@@ -21,6 +21,33 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "serious-and-irreversible-harm": {
+    "header": "Does your duty to remove notice say that you can make a serious and irreversible harm claim?" 
+  },
+  "risk-in-sih-country":{
+    "header":"Would you be at risk of serious and irreversible harm in [SIH country]?",
+    "paragraph":"This is physical or emotional harm which would be difficult or impossible to recover from",
+    "list-headers":"For example",
+    "list1":"death",
+    "list2":"torture",
+    "list3":"inhumane or degrading treatment",
+    "list4":"physical,mental,or sexual violence",
+    "list5":"discrimination against you by the police,legal system or political party"
+  },
+  "has-sih-details":{
+    "header":"Serious and irreversible harm in [SIH country]"
+  },
+  "sih-summary":{
+    "header":"Summary of your serious and irreversible harm claims",
+    "fields": {
+      "is-serious-and-irreversible":{
+        "label":"Making claim"
+      }
+    }
+  },
+  "country-claim-against": {
+    "header":"Which countries can you make a serious and irreversible harm claim against?"
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",
@@ -38,6 +65,9 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "is-serious-and-irreversible":{
+        "label":"Making claim"
       }
     }
   }

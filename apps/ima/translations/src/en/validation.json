@@ -1,5 +1,8 @@
 {
   "who-are-you": {
     "required": "You must select an option"
+  },
+  "is-serious-and-irreversible": {
+    "default": "You must select an option"
   }
 }
