@@ -11,6 +11,20 @@
     "header": "You have information has been saved",
     "paragraph1": "To continue your form, use the link we have emailed to:"
   },
+  "someone-else":{
+    "header":"Helper details",
+    "paragraph":"Answer all the following questions as if you are the person on the Illegal Migration Act notice."
+  },
+  "name":{ 
+    "header": "What is your full name?"
+  },
+  "who-are-you":{ 
+    "header": "Who are you?"
+  },
+  "is-your-email":{
+    "header": "Is this your email address?",
+    "hint":"{{values.user-email}}"  
+  },
   "current-progress": {
     "header": "Information you have given us"
   },
@@ -31,12 +45,17 @@
   },
   "medical-record":{
     "header":"Your medical records",
-    "paragraph":"We may need access to your immigration removal centre medical <br> records, to make a decision on your claim.",
+    "paragraph":"We may need access to your ",
+    "paragraph-continue1":"immigration removal centre",
+    "paragraph-continue2": " medical <br> records, to make a decision on your claim.",
     "paragraph1":"You do not have to agree to give the Home Office this information,<br> but it would help us to fully consider any medical conditions which <br> may affect you.",
-    "ul":"This may include information about:",
+    "label":"This may include information about:",
     "li1":"medical conditions you have",
     "li2":"medication you are taking or treatment you are receiving",
     "li3":"your health",
+    "label1": "Do you give us permission to access your ",
+    "label2":"Immigration Removal Centre",
+    "label3": " medical records?",
     "response-label1":"You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to<br>access your medical records."
   },
   "confirm": {
