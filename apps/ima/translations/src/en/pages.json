@@ -11,17 +11,14 @@
     "header": "You have information has been saved",
     "paragraph1": "To continue your form, use the link we have emailed to:"
   },
-  "someone-else":{
+  "helper-details":{
     "header":"Helper details",
     "paragraph":"Answer all the following questions as if you are the person on the Illegal Migration Act notice."
   },
-  "name":{ 
+  "full-name":{ 
     "header": "What is your full name?"
   },
-  "who-are-you":{ 
-    "header": "Who are you?"
-  },
-  "is-your-email":{
+  "your-email":{
     "header": "Is this your email address?",
     "hint":"{{values.user-email}}"  
   },
@@ -29,13 +26,12 @@
     "header": "Information you have given us"
   },
   "cannot-use-form": {
-    "header": "You cannot use this form",
-    "paragraph-1": "You can only continue your claim if you are in the UK."
+    "header": "You cannot use this form"
   },
   "token-invalid": {
     "header": "This link has expired"
   },
-  "legal-representative-details":{
+  "immigration-adviser-details":{
     "header":"Immigration adviser details",
     "paragraph":"We will use these detail if we need to contact you.",
     "address":"Postal address"
@@ -43,29 +39,18 @@
   "is-legal-representative-email": {
     "header": "Is {{values.user-email}} your email address?"
   },
-  "medical-record":{
+  "medical-records":{
     "header":"Your medical records",
-    "paragraph":"We may need access to your ",
-    "paragraph-continue1":"immigration removal centre",
-    "paragraph-continue2": " medical <br> records, to make a decision on your claim.",
-    "paragraph1":"You do not have to agree to give the Home Office this information,<br> but it would help us to fully consider any medical conditions which <br> may affect you.",
-    "label":"This may include information about:",
-    "li1":"medical conditions you have",
-    "li2":"medication you are taking or treatment you are receiving",
-    "li3":"your health",
-    "label1": "Do you give us permission to access your ",
-    "label2":"Immigration Removal Centre",
-    "label3": " medical records?",
-    "response-label1":"You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to<br>access your medical records."
+    "response-label1":"You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."
   },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
-        "header": "Form details"
+        "header": "Case details"
       },
-      "legal-representative-details":{
+      "immigration-adviser-details":{
         "header": "Immigration adviser details"
       },
       "personal-details":{
@@ -79,7 +64,7 @@
       "name": { 
         "label": "Full name"
       },
-      "email-address-details":{
+      "email-address":{
         "label": "Email"
       },
       "date-of-birth": {

@@ -1,6 +1,5 @@
 /* eslint max-len: 0 */
 const moment = require('moment');
-const fields = require('../fields');
 const PRETTY_DATE_FORMAT = 'DD/MM/YYYY';
 
 module.exports = {
@@ -19,56 +18,62 @@ module.exports = {
       }
     ]
   },
-  'legal-representative-details':{
+  'immigration-adviser-details': {
     steps: [
       {
         step: '/who-are-you',
         field: 'who-are-you'
       },
       {
-        step: '/legal-representative-details',
+        step: '/immigration-adviser-details',
         field: 'legal-representative-fullname',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/legal-representative-details')) {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
             return null;
           }
           return null;
         }
       },
       {
-        step: '/legal-representative-details',
+        step: '/immigration-adviser-details',
         field: 'legal-representative-email',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/legal-representative-details')) {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
             return null;
           }
           return req.sessionModel.get('is-legal-representative-email') === 'yes' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('legal-representative-email')}`;
         }
       },
       {
-        step: '/legal-representative-details',
+        step: '/immigration-adviser-details',
         field: 'legal-representative-phone-number'
       },
       {
-        step: '/legal-representative-details',
-        field:'legal-representative-address',
-        parse: (list,req)=>{
-          if(!req.sessionModel.get('steps').includes('/legal-representative-details')){
+        step: '/immigration-adviser-details',
+        field: 'legal-representative-address',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
             return null;
           }
           return `${req.sessionModel.get('legal-representative-house-number')} \n ${req.sessionModel.get('legal-representative-street')} \n ${req.sessionModel.get('legal-representative-townOrCity')}\n${req.sessionModel.get('legal-representative-county')}\n${req.sessionModel.get('legal-representative-postcode')}`;
         }
       }
     ]},
-  'personal-details':{
+  'personal-details': {
     steps: [
       {
-        step: '/name',
+        step: '/full-name',
         field: 'name'
       },
       {
-        step: '/has-email',
-        field: 'email-address-details'
+        step: '/email',
+        field: 'email-address',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/email')) {
+            return null;
+          }
+          return req.sessionModel.get('email-address') === 'no' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('email-address-details')}`;
+        }
       }
     ]
   }

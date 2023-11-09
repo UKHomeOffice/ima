@@ -2,12 +2,10 @@
 
 module.exports = {
   'who-are-you': {
+    isPageHeading: true,
     mixin: 'radio-group',
     options: ['person-named', 'has-legal-representative', 'someone-else'],
-    validate: 'required',
-    legend:{
-      className:'visuallyhidden'
-    }
+    validate: 'required'
   },
   'in-the-uk': {
     isPageHeading: true,
@@ -15,7 +13,7 @@ module.exports = {
     options: ['yes', 'no'],
     validate: 'required'
   },
-  'name':{
+  name: {
     labelClassName: 'visuallyhidden',
     validate: ['required'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
@@ -26,10 +24,10 @@ module.exports = {
     validate: 'required',
     legend: {
       className: 'visuallyhidden'
-    },
+    }
   },
-  'is-your-email':{
-    isPageHeading: true,
+  'is-your-email': {
+    isPageHeading: true
   },
   'phone-number': {
     isPageHeading: true,
@@ -64,8 +62,8 @@ module.exports = {
     }]
   },
   'email-address-details': {
-   validate: ['required', 'email'],
-   className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     dependent: {
       field: 'email-address',
       value: 'yes'
@@ -77,7 +75,7 @@ module.exports = {
     validate: ['required'],
     options: [{
       value: 'yes'
-    }, 
+    },
     {
       value: 'no',
       toggle: 'address-details-fieldset',
@@ -126,7 +124,7 @@ module.exports = {
       field: 'has-address',
       value: 'no'
     }
-  }, 
+  },
   postcode: {
     mixin: 'input-text',
     validate: ['required', 'postcode', { type: 'maxlength', arguments: [200] }],
@@ -138,10 +136,9 @@ module.exports = {
       value: 'no'
     }
   },
-  'legal-representative-details':{
+  'immigration-adviser-details': {
     isPageHeading: true
   },
-
   'legal-representative-phone-number': {
     labelClassName: 'bold',
     validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
@@ -154,7 +151,7 @@ module.exports = {
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'legal-representative-organisation':{
+  'legal-representative-organisation': {
     labelClassName: 'bold',
     validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}],
     includeInSummary: false,
@@ -208,29 +205,29 @@ module.exports = {
       child: 'partials/legal-representative-email-details'
     }]
   },
-  'someone-else':{
+  'helper-details': {
     isPageHeading: true
   },
-  'someone-else-fullname':{
+  'someone-else-fullname': {
     labelClassName: 'bold',
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'someone-else-relationship' :{
+  'someone-else-relationship': {
     labelClassName: 'bold',
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
-  }, 
-  'someone-else-organisation':{
+  },
+  'someone-else-organisation': {
     labelClassName: 'bold',
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'has-permission-access': {
     legend: {
-      className: 'visuallyhidden'
+      className: 'bold'
     },
     mixin: 'radio-group',
     options: [{

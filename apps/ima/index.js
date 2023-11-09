@@ -31,39 +31,68 @@ module.exports = {
     },
     '/who-are-you': {
       behaviours: SaveFormSession,
-      forks:[
+      forks: [
         {
-          target:'/in-the-uk',
-          condition:{
-            field:'who-are-you',
+          target: '/your-location',
+          condition: {
+            field: 'who-are-you',
             value: 'person-named'
           }
         },
         {
-          target:'/legal-representative-details',
-          condition:{
-            field:'who-are-you',
+          target: '/immigration-adviser-details',
+          condition: {
+            field: 'who-are-you',
             value: 'has-legal-representative'
           }
         },
         {
-          target:'/someone-else',
-          condition:{
-            field:'who-are-you',
+          target: '/helper-details',
+          condition: {
+            field: 'who-are-you',
             value: 'someone-else'
           }
         }
       ],
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/your-location',
       backLink: 'current-progress'
     },
-    '/in-the-uk':{
+    '/immigration-adviser-details': {
+      behaviours: SaveFormSession,
+      fields: [
+        'legal-representative-fullname',
+        'legal-representative-organisation',
+        'legal-representative-house-number',
+        'legal-representative-street',
+        'legal-representative-townOrCity',
+        'legal-representative-county',
+        'legal-representative-postcode',
+        'legal-representative-phone-number',
+        'is-legal-representative-email',
+        'legal-representative-email'
+      ],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      next: '/your-location'
+    },
+    '/helper-details': {
+      behaviours: SaveFormSession,
+      fields: [
+        'someone-else-fullname',
+        'someone-else-relationship',
+        'someone-else-organisation'
+      ],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      next: '/your-location'
+    },
+    '/your-location': {
       behaviours: SaveFormSession,
       forks: [
         {
-          target: '/name',
+          target: '/full-name',
           condition: {
             field: 'in-the-uk',
             value: 'yes'
@@ -80,17 +109,15 @@ module.exports = {
       fields: ['in-the-uk'],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/name',
-      backLink: 'who-are-you'
+      next: '/full-name'
     },
-    
-    '/name':{
+    '/full-name': {
       behaviours: SaveFormSession,
       fields: ['name'],
       locals: { showSaveAndExit: true },
-      next: '/is-your-email'
+      next: '/your-email'
     },
-    '/is-your-email':{
+    '/your-email': {
       behaviours: SaveFormSession,
       fields: ['current-email'],
       forks: [
@@ -102,7 +129,7 @@ module.exports = {
           }
         },
         {
-          target: '/has-email',
+          target: '/email',
           condition: {
             field: 'current-email',
             value: 'no'
@@ -112,7 +139,13 @@ module.exports = {
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
       next: '/phone-number',
-      backLink: 'name'
+      backLink: 'full-name'
+    },
+    '/email': {
+      behaviours: SaveFormSession,
+      fields: ['email-address', 'email-address-details'],
+      locals: { showSaveAndExit: true },
+      next: '/phone-number'
     },
     '/phone-number': {
       behaviours: SaveFormSession,
@@ -120,14 +153,24 @@ module.exports = {
       locals: { showSaveAndExit: true },
       next: '/immigration-detention'
     },
-    '/has-email':{
+    '/immigration-detention': {
       behaviours: SaveFormSession,
-      fields: ['email-address', 'email-address-details'],
-      locals: { showSaveAndExit: true },
-      next:'/phone-number'
-    },
-    '/immigration-detention':{
-      behaviours: SaveFormSession,
+      forks: [
+        {
+          target: '/medical-records', // TODO target url will be added by next TASK
+          condition: {
+            field: 'has-address',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/',
+          condition: {
+            fields: 'has-address',
+            value: 'no'
+          }
+        }
+      ],
       fields: [
         'has-address',
         'house-number',
@@ -137,38 +180,17 @@ module.exports = {
         'postcode'
       ],
       locals: { showSaveAndExit: true },
-      next: '/medical-record'
-    },
-    '/cannot-use-form':{},
-   
-    '/someone-else':{
-      behaviours: SaveFormSession,
-      fields:[
-        'someone-else-fullname',
-        'someone-else-relationship',
-        'someone-else-organisation'
-      ],
       continueOnEdit: true,
-      locals: { showSaveAndExit: true },
-      next:'/in-the-uk'
+      next: '/medical-records',
+      backLink: 'phone-number'
     },
-    '/legal-representative-details':{
+    '/medical-records': {
       behaviours: SaveFormSession,
-      fields: [
-        'legal-representative-fullname',
-        'legal-representative-organisation',
-        'legal-representative-house-number',
-        'legal-representative-street',
-        'legal-representative-townOrCity',
-        'legal-representative-county',
-        'legal-representative-postcode',
-        'legal-representative-phone-number',
-        'is-legal-representative-email',
-        'legal-representative-email'
-              ],
-      continueOnEdit: true,
+      fields: ['has-permission-access', 'permission-response'],
       locals: { showSaveAndExit: true },
-      next:'/in-the-uk'
+      continueOnEdit: true,
+      next: '/confirm', // TODO a url needs to be Changed
+      backLink: 'immigration-detention'
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
@@ -183,34 +205,10 @@ module.exports = {
       behaviours: SaveAndExit,
       backLink: false
     },
+    '/cannot-use-form': {},
     '/token-invalid': {
       clearSession: true
     },
-    '/application-expired': {},
-    '/medical-record':{
-      behaviours: SaveFormSession,
-      fields: ['has-permission-access','permission-response'],
-      locals: { showSaveAndExit: true },
-      forks: [
-        {
-          target: '/',
-          condition: {
-            field: 'has-permission-access',
-            value: 'yes'
-          }
-        },
-        {
-          target: '/',
-          condition: {
-            field: 'has-permission-access',
-            value: 'no'
-          }
-        }
-      ],
-      locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/',
-      backLink: 'immigration-detention'
-    }
+    '/application-expired': {}
   }
 };
