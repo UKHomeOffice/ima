@@ -38,48 +38,71 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
-      backLink: 'current-progress'
+      backLink: 'current-progress',
+      next: '/evidence-upload'
     },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
-      next: '/confirm'
+      next: '/summary'
     },
-    // '/evidence-upload1': {
-    //   behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
-    //   fields: ['image'],
-    //   continueOnEdit: true,
-    //   next: '/confirm'
-    // },
-    '/confirm': {
-      behaviours: [Summary, SaveFormSession, Submit],
+    '/summary': {
+      behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
-      //next: '/exploitation'
-      next: '/exception'
+      forks: [ // Update to late submission step
+        {
+          target: '/declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'person-named'
+          }
+        },
+        {
+          target: '/immigration-adviser-declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'has-legal-representative'
+          }
+        },
+        {
+          target: '/helper-declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'helper'
+          }
+        }
+      ]
     },
-    '/exception':{
-     // behaviours: SaveFormSession,
+    '/declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
       fields: [
-        'does-exception-apply'
+        'person-declaration'
       ],
-      template: 'does-exception-apply',
       locals: { showSaveAndExit: true },
-      next: '/exploitation'
+      next: '/form-submitted'
     },
-    '/exploitation': {
-    //  behaviours: [Summary, Submit],
-     // behaviours: SaveFormSession,
-      fields: [
-        'have-you-been-exploited'
+    '/immigration-adviser-declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: ['use-interpreter',
+        'immigration-adviser-declaration', 'language-used'
       ],
-      template: 'have-you-been-exploited',
       locals: { showSaveAndExit: true },
-      next: '/confirmation'
+      next: '/form-submitted'
     },
-    '/confirmation': {
+    '/helper-declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: ['use-interpreter1',
+        'helper-declaration', 'language-used1'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/form-submitted': {
       clearSession: true
     },
     '/save-and-exit': {

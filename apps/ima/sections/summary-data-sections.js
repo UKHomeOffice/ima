@@ -23,10 +23,13 @@ module.exports = {
       step: '/evidence-upload',
       field: 'images',
       parse: (list, req) => {
-        if (!req.sessionModel.get('images')) {
-          return 'None uploaded';
+        if (!req.sessionModel.get('steps').includes('/evidence-upload')) {
+          return null;
         }
-        return list && list.map(i => i.name).join('\n');
+        if (req.sessionModel.get('images')) {
+          return req.sessionModel.get('images').length > 0 ? list && list.map(i => i.name).join('\n') : 'None uploaded';
+        }
+        return 'None uploaded';
       }
     }
   ]
