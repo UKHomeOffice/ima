@@ -29,8 +29,8 @@ module.exports = {
         step: '/legal-representative-details',
         field: 'legal-representative-fullname',
         parse: (list, req) => {
-          if (req.sessionModel.get('legal-representative-fullname')) {
-            return req.sessionModel.get('legal-representative-fullname');
+          if (!req.sessionModel.get('steps').includes('/legal-representative-details')) {
+            return null;
           }
           return null;
         }
@@ -53,6 +53,9 @@ module.exports = {
         step: '/legal-representative-details',
         field:'legal-representative-address',
         parse: (list,req)=>{
+          if(!req.sessionModel.get('steps').includes('/legal-representative-details')){
+            return null;
+          }
           return `${req.sessionModel.get('legal-representative-house-number')} \n ${req.sessionModel.get('legal-representative-street')} \n ${req.sessionModel.get('legal-representative-townOrCity')}\n${req.sessionModel.get('legal-representative-county')}\n${req.sessionModel.get('legal-representative-postcode')}`;
         }
       }
