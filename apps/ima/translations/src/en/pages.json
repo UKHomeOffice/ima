@@ -21,12 +21,42 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "removal-condition": {
+    "header": "Why does your Illegal Migration Act notice say removal condition 1 applies to you?",
+    "hint": "Select all that apply"
+  },
+  "without-permission": {
+    "header": "Did you need permission to enter the UK but entered without it?"
+  },
+  "travel-ban": {
+    "header": "Did you arrive in or enter the UK, when a travel ban applied to you?",
+    "hint": "This includes a travel ban imposed by the United Nations Security Council, or UK under the sanctions and Anti-Money Laundering Act 2018."
+  },
+  "deception": {
+    "header": "Did you enter the UK with permission you got by deception?",
+    "hint": "For example, if you or someone else lied on your application."
+  },
+  "entry-clearance": {
+    "header": "Did you need a valid entry clearance (visa) but arrived without one?"
+  },
+  "deportation-order": {
+    "header": "Did you enter the UK when a deportation order applied to you?"
+  },
+  "electronic-travel-authorisation": {
+    "header": "Did you need a valid electronic travel authorisation (ETA) but arrived without one?"
+  },
+  "deportation-order-applied": {
+    "header": "Did you enter the UK when a deportation order applied to you?"
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
         "header": "Case details"
+      },
+      "claim-details": {
+        "header": "Claim details"
       }
     },
     "fields": {
@@ -38,6 +68,9 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "how-removal-condition-1-applies": {
+        "label": "Select what removal conditions apply"
       }
     }
   }

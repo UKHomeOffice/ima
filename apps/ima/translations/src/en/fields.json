@@ -17,5 +17,114 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "how-removal-condition-1-applies": {
+    "legend": "Why does your Illegal Migration Act notice say removal condition 1 applies to you?",
+    "options": {
+      "entered-without-permission": {
+        "label": "You needed permission to enter the UK and you entered without permission"
+      },
+      "by-deception": {
+        "label": "You entered the UK with permission which you got by deception",
+        "hint": "For example, if you or someone else lied on your application."
+      },
+      "deportation-order-applies": {
+        "label": "You entered the UK when a deportation order applied to you"
+      },
+      "travel-ban": {
+        "label": "When you arrived in or entered the UK, a travel ban applied to you",
+        "hint": "This includes a travel ban imposed by the United Nations Security Council, or UK under the Sanctions and Anti-Money Laundering Act 2018."
+      },
+      "arrived-without-visa": {
+        "label": "You needed a valid entry clearance (visa), and you arrived without it"
+      },
+      "arrived-without-eta": {
+        "label": "You needed a valid electronic travel authorisation (ETA), and you arrived without it"
+      }
+    }
+  },
+  "entered-without-permission": {
+    "legend": "Did you need permission to enter the UK but entered without it?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "entered-without-permission-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "entered-with-travel-ban": {
+    "legend": "Did you arrive in or enter the UK, when a travel ban applied to you?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "entered-with-travel-ban-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "entered-by-deception": {
+    "legend": "Did you enter the UK with permission you got by deception?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "entered-by-deception-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "arrived-without-clearance": {
+    "legend": "Did you need a valid entry clearance (visa) but arrived without one?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "arrived-without-clearance-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "without-eta": {
+    "legend": "Did you need a valid electronic travel authorisation (ETA) but arrived without one?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "without-eta-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "deportation-order-applied": {
+    "legend": "Did you enter the UK when a deportation order applied to you?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "deportation-order-applied-detail": {
+    "label": "Explain why this is not correct"
   }
 }
