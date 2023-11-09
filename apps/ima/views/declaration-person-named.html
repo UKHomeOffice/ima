@@ -1,0 +1,15 @@
+{{<partials-page}} {{$page-content}}
+ {{#markdown}}declaration-person-named{{/markdown}}
+ <br><br>
+ <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="childIdDocuments-passport" name="childIdDocuments" type="checkbox" value="passport" {{#childPassportChecked}}checked="checked"{{/childPassportChecked}}>
+    <label class="govuk-label govuk-checkboxes__label" for="childIdDocuments-passport">
+      {{#t}}fields.declaration-person-named.label{{/t}}
+    </label>
+  </div>
+  <br><br>
+  <p>You will not be able to change your answer after you submit.</p>
+  <br><br>
+  {{#input-submit}}confirm-submission{{/input-submit}}
+  {{/page-content}}
+  {{/partials-page}}

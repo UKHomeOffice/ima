@@ -47,5 +47,8 @@
   },
   "have-you-been-exploited-options-yes-detail": {
     "label": "Enter details"
+  },
+  "declaration": {
+    "label": " "
   }
 }

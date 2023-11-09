@@ -57,6 +57,18 @@
     "header": "Have you ever been exploited or beleive you were going to be exploited?",
     "paragraph1": "We have sent a copy of completed form to:"
   },
+  "who-are-you": {
+    "header": "Who are you?"
+  },
+  "declaration-immigration-adviser": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to [CLAIMANT'S NAME]?",
+    "paragraph2": "Include any dialects",
+    "paragraph3": "Did you use an interpreter?"
+  },
+  "declaration-person-named": {
+    "header": "Declaration"
+  },
   "confirmation": {
     "confirmed": "Submitted",
     "paragraph1": "We have sent a copy of completed form to:",

@@ -27,6 +27,20 @@ module.exports = {
   'does-exception-apply-detail':{
     mixin: 'textarea',
   },
+  'who-are-you': {
+    isPageHeading: false,
+    mixin: 'radio-group',
+    labelClassName: 'visuallyhidden',
+    options: [{
+      value: 'ban'
+    }, {
+      value: 'adviser'
+    }, {
+      value: 'helping'
+    }
+  ],
+    validate: 'required'
+  },
   'have-you-been-exploited': {
     isPageHeading: false,
     mixin: 'radio-group',
@@ -42,5 +56,16 @@ module.exports = {
   },
   'have-you-been-exploited-options-yes-detail':{
     mixin: 'textarea',
+  },
+  'declaration-immigration-adviser' : {
+    isPageHeading: false,
+    mixin: 'radio-group',
+    labelClassName: 'visuallyhidden',
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no'
+    }],
+    validate: 'required'
   }
 };

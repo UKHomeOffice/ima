@@ -45,7 +45,8 @@ module.exports = {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
-      next: '/confirm'
+      next: '/who-are-you'
+      //  next: '/declaration-immigration-adviser'
     },
     // '/evidence-upload1': {
     //   behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
@@ -53,30 +54,65 @@ module.exports = {
     //   continueOnEdit: true,
     //   next: '/confirm'
     // },
+    // '/exception': {
+    //   // behaviours: SaveFormSession,
+    //   fields: [
+    //     'does-exception-apply'
+    //   ],
+    //   template: 'does-exception-apply',
+    //   locals: { showSaveAndExit: true },
+    //   //next: '/exploitation'
+    //   next: '/confirmation'
+    // },
+    // '/exploitation': {
+    //   //  behaviours: [Summary, Submit],
+    //   // behaviours: SaveFormSession,
+    //   fields: [
+    //     'have-you-been-exploited'
+    //   ],
+    //   // template: 'have-you-been-exploited',
+    //   locals: { showSaveAndExit: true },
+    //   next: '/confirmation'
+    //   //next: '/declaration'
+
+    // },
+    '/who-are-you': {
+      fields: [
+        'who-are-you'
+      ],
+      // template: 'declaration-person-named',
+      locals: { showSaveAndExit: true },
+      next: '/declaration-person-named'
+    },
+    '/declaration-person-named': {
+      fields: [
+        'declaration-person-named'
+      ],
+      // template: 'declaration-person-named',
+      locals: { showSaveAndExit: true },
+      next: '/declaration-immigration-adviser'
+    },
+    '/declaration-person-named': {
+      fields: [
+        'declaration-person-named'
+      ],
+      // template: 'declaration-person-named',
+      locals: { showSaveAndExit: true },
+      next: '/declaration-immigration-adviser'
+    },
+    '/declaration-immigration-adviser': {
+      fields: [
+        'declaration-immigration-adviser'
+      ],
+      // template: 'declaration-immigration-adviser',
+      locals: { showSaveAndExit: true },
+      next: '/confirm'
+    },
     '/confirm': {
       behaviours: [Summary, SaveFormSession, Submit],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
-      //next: '/exploitation'
-      next: '/exception'
-    },
-    '/exception':{
-     // behaviours: SaveFormSession,
-      fields: [
-        'does-exception-apply'
-      ],
-      template: 'does-exception-apply',
-      locals: { showSaveAndExit: true },
-      next: '/exploitation'
-    },
-    '/exploitation': {
-    //  behaviours: [Summary, Submit],
-     // behaviours: SaveFormSession,
-      fields: [
-        'have-you-been-exploited'
-      ],
-      template: 'have-you-been-exploited',
-      locals: { showSaveAndExit: true },
+      //next: '/confirmation'
       next: '/confirmation'
     },
     '/confirmation': {
