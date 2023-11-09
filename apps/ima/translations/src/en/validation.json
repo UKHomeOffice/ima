@@ -1,5 +1,53 @@
 {
   "who-are-you": {
     "required": "You must select an option"
+  },
+  "entered-without-permission":{
+    "required": "You must select an option"
+  },
+  "entered-without-permission-detail":{
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "notUrl": "Enter a valid explanation"
+  },
+  "entered-with-travel-ban":{
+    "required": "You must select an option"
+  },
+  "entered-with-travel-ban-detail":{
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "notUrl": "Enter a valid explanation"
+  },
+  "entered-by-deception":{
+    "required": "You must select an option"
+  },
+  "entered-by-deception-detail":{
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "notUrl": "Enter a valid explanation"
+  },
+  "arrived-without-clearance":{
+    "required": "You must select an option"
+  },
+  "arrived-without-clearance-detail":{
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "notUrl": "Enter a valid explanation"
+  },
+  "without-eta":{
+    "required": "You must select an option"
+  },
+  "without-eta-detail":{
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "notUrl": "Enter a valid explanation"
+  },
+  "deportation-order-applied":{
+    "required": "You must select an option"
+  },
+  "deportation-order-applied-detail":{
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "notUrl": "Enter a valid explanation"
   }
 }

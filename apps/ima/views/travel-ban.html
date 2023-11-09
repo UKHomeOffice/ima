@@ -1,0 +1,9 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div id="travel-ban-hint" class="govuk-hint">
+      {{#t}}pages.travel-ban.hint{{/t}}
+    </div>
+    {{#renderField}}entered-with-travel-ban{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
