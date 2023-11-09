@@ -1,17 +1,33 @@
 {{<partials-page}}
   {{$page-content}}
-   <p>{{#t}}pages.medical-record.paragraph{{/t}}</p>
+   <p>{{#t}}pages.medical-record.paragraph{{/t}} 
+    <span class="other-details">{{#t}}pages.medical-record.paragraph-continue1{{/t}}</span>
+    <span>{{#t}}pages.medical-record.paragraph-continue2{{/t}}</span>
+  </p>
 
     <p>
-        <span>{{#t}}pages.medical-record.ul{{/t}}</span>
-        <ul>
+      <div>
+        <span>{{#t}}pages.medical-record.label{{/t}}</span>
+      </div>
+        <div class="list-margin">
+          <ul>
             <li>{{#t}}pages.medical-record.li1{{/t}}</li>
             <li>{{#t}}pages.medical-record.li2{{/t}}</li>
             <li>{{#t}}pages.medical-record.li3{{/t}}</li>
-        </ul>
-    </p>
+          </ul>
+        </div>
+        
+    </p><br>
+    
    <p>{{#t}}pages.medical-record.paragraph1{{/t}}</p>
 
+   <div>
+    <strong>
+      <span>{{#t}}pages.medical-record.label1{{/t}}</span>
+      <span class="other-details">{{#t}}pages.medical-record.label2{{/t}}</span>
+      <span>{{#t}}pages.medical-record.label3{{/t}}</span>
+    </strong>
+   </div><br>
    {{#renderField}}has-permission-access{{/renderField}}
    {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}

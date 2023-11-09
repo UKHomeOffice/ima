@@ -7,20 +7,19 @@
 
     <span class="govuk-label">
       <strong>{{#t}}pages.legal-representative-details.address{{/t}}</strong>
-    </span><br>
-
+    </span>
     {{#input-text}}legal-representative-house-number{{/input-text}}
     {{#input-text}}legal-representative-street{{/input-text}}
     {{#input-text}}legal-representative-townOrCity{{/input-text}}
     {{#input-text}}legal-representative-county{{/input-text}}
-    {{#input-text}}legal-representative-postcode{{/input-text}}
+    {{#input-text}}legal-representative-postcode{{/input-text}}<br>
     {{#input-text}}legal-representative-phone-number{{/input-text}}
     <span class="govuk-label">
       <strong>{{#t}}pages.is-legal-representative-email{{/t}}</strong>
-    </span><br>
+    </span>
     {{#renderField}}is-legal-representative-email{{/renderField}}
    
-    <span class="govuk-label">
+    <span class="govuk-label other-details">
       {{#t}}Answer all the following questions as if you are the person on the duty to remove notice{{/t}}
     </span><br>
     {{#input-submit}}continue{{/input-submit}}

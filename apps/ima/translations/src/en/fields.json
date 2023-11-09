@@ -3,17 +3,16 @@
     "legend": "Which claim do you want to continue?"
   },
   "who-are-you": {
-    "legend": "Who are you?",
     "options": {
       "person-named": {
-        "label": "The person named on the duty to remove notice"
+        "label": "<span class='other-details'>The person named on the duty to remove notice</span>"
       },
       "has-legal-representative": {
         "label": "An immigration advisor representing the claimant",
-        "hint": "Such as a solicitor or legal representative. You must have already sent a letter of authority to the Home Office to confirm that you can represent the person named on the duty to remove letter."
+        "hint": "Such as a solicitor or legal representative. You must have already sent a letter of authority to the Home Office to confirm that you can represent the person named on the <span class='other-details'>illegal Migration Act notice</span>."
       },
       "someone-else": {
-        "label": "Someone helping the person named on the duty to remove notice",
+        "label": "<span class='other-details'>Someone helping the person named on the duty to remove notice</span>",
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
@@ -29,14 +28,7 @@
       }
     }
   },
-  "name":{
-    "label":"What is your full name?"
-  },
-  "is-your-email":{
-    "label": "Is this your email address?"
-  },
   "current-email": {
-    "legend": "{{values.user-email}}",
     "options": {
       "yes": {
         "label": "Yes"
@@ -88,7 +80,6 @@
     }
   },
   "has-permission-access":{
-    "legend": "Do you give us permission to access your Immigration Removal Centre medical records?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -159,17 +150,14 @@
   "legal-representative-email": {
     "label": "Enter your email address"
   },
-  "someone-else":{
-    "label": "Helper details"
-  },
   "someone-else-fullname":{
     "label": "Full name"
   },
   "someone-else-relationship":{
-    "label": "What is your relationship to the person on the duty to remove notice? "
+    "label": "<span class='other-details'>What is your relationship to the person on the Illegal Migration Act notice?</span> "
   },
   "someone-else-organisation":{
-    "label": "Oragnisation name (otional)",
-    "hint": "For example, charity or law firm name"
+    "label": "Oragnisation name (optional)",
+    "hint": "For example, name of charity or support group."
   }
 }

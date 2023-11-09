@@ -2,10 +2,12 @@
 
 module.exports = {
   'who-are-you': {
-    isPageHeading: true,
     mixin: 'radio-group',
     options: ['person-named', 'has-legal-representative', 'someone-else'],
-    validate: 'required'
+    validate: 'required',
+    legend:{
+      className:'visuallyhidden'
+    }
   },
   'in-the-uk': {
     isPageHeading: true,
@@ -14,13 +16,17 @@ module.exports = {
     validate: 'required'
   },
   'name':{
-    isPageHeading: true
+    labelClassName: 'visuallyhidden',
+    validate: ['required'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'current-email': {
-    legendClassName: 'bold',
     mixin: 'radio-group',
     options: ['yes', 'no'],
-    validate: 'required'
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    },
   },
   'is-your-email':{
     isPageHeading: true,
@@ -205,20 +211,26 @@ module.exports = {
   'someone-else':{
     isPageHeading: true
   },
-  'helper-fullname':{
+  'someone-else-fullname':{
+    labelClassName: 'bold',
     mixin: 'input-text',
-    validate: ['required', 'notUrl']
+    validate: ['required', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'helper-relationship' :{
+  'someone-else-relationship' :{
+    labelClassName: 'bold',
     mixin: 'input-text',
-    validate: ['required', 'notUrl']
+    validate: ['required', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   }, 
-  'helper-organisation':{
-    mixin: 'input-text'
+  'someone-else-organisation':{
+    labelClassName: 'bold',
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'has-permission-access': {
-    legend:{
-      className: 'bold'
+    legend: {
+      className: 'visuallyhidden'
     },
     mixin: 'radio-group',
     options: [{

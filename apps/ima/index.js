@@ -144,7 +144,6 @@ module.exports = {
     '/someone-else':{
       behaviours: SaveFormSession,
       fields:[
-        'someone-else',
         'someone-else-fullname',
         'someone-else-relationship',
         'someone-else-organisation'

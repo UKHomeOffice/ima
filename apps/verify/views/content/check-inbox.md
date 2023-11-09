@@ -1,5 +1,5 @@
 We have emailed a link to:
 
-**{{values.user-email}}**
+<span class="other-details">**{{values.user-email}}**</span>
 
 Use the link to continue to your form
