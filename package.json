@@ -45,7 +45,7 @@
     "moment": "^2.29.4",
     "ms-nationalities": "^1.0.1",
     "node-cron": "^3.0.2",
-    "notifications-node-client": "^7.0.0",
+    "notifications-node-client": "^7.0.4",
     "uuid": "^9.0.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz",
     "winston": "^3.8.2"
