@@ -38,81 +38,65 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
-      backLink: 'current-progress'
+      backLink: 'current-progress',
+      next: '/evidence-upload'
     },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
-      next: '/who-are-you'
-      //  next: '/declaration-immigration-adviser'
-    },
-    // '/evidence-upload1': {
-    //   behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
-    //   fields: ['image'],
-    //   continueOnEdit: true,
-    //   next: '/confirm'
-    // },
-    // '/exception': {
-    //   // behaviours: SaveFormSession,
-    //   fields: [
-    //     'does-exception-apply'
-    //   ],
-    //   template: 'does-exception-apply',
-    //   locals: { showSaveAndExit: true },
-    //   //next: '/exploitation'
-    //   next: '/confirmation'
-    // },
-    // '/exploitation': {
-    //   //  behaviours: [Summary, Submit],
-    //   // behaviours: SaveFormSession,
-    //   fields: [
-    //     'have-you-been-exploited'
-    //   ],
-    //   // template: 'have-you-been-exploited',
-    //   locals: { showSaveAndExit: true },
-    //   next: '/confirmation'
-    //   //next: '/declaration'
-
-    // },
-    '/who-are-you': {
-      fields: [
-        'who-are-you'
-      ],
-      // template: 'declaration-person-named',
-      locals: { showSaveAndExit: true },
-      next: '/declaration-person-named'
-    },
-    '/declaration-person-named': {
-      fields: [
-        'declaration-person-named'
-      ],
-      // template: 'declaration-person-named',
-      locals: { showSaveAndExit: true },
-      next: '/declaration-immigration-adviser'
-    },
-    '/declaration-person-named': {
-      fields: [
-        'declaration-person-named'
-      ],
-      // template: 'declaration-person-named',
-      locals: { showSaveAndExit: true },
-      next: '/declaration-immigration-adviser'
-    },
-    '/declaration-immigration-adviser': {
-      fields: [
-        'declaration-immigration-adviser'
-      ],
-      // template: 'declaration-immigration-adviser',
-      locals: { showSaveAndExit: true },
       next: '/confirm'
     },
     '/confirm': {
-      behaviours: [Summary, SaveFormSession, Submit],
+      behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
-      //next: '/confirmation'
+      forks: [ // Update to late submission step
+        {
+          target: '/declaration-person-named',
+          condition: {
+            field: 'who-are-you',
+            value: 'person-named'
+          }
+        },
+        {
+          target: '/declaration-immigration-adviser',
+          condition: {
+            field: 'who-are-you',
+            value: 'has-legal-representative'
+          }
+        },
+        {
+          target: '/declaration-someone-else',
+          condition: {
+            field: 'who-are-you',
+            value: 'someone-else'
+          }
+        }
+      ]
+    },
+    '/declaration-person-named': {
+      behaviours: Submit,
+      fields: [
+        'declaration-person-named'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/confirmation'
+    },
+    '/declaration-immigration-adviser': {
+      behaviours: Submit,
+      fields: [
+        'declaration-immigration-adviser'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/confirmation'
+    },
+    '/declaration-someone-else': {
+      behaviours: Submit,
+      fields: [
+        'declaration-someone-else'
+      ],
+      locals: { showSaveAndExit: true },
       next: '/confirmation'
     },
     '/confirmation': {

@@ -4,14 +4,13 @@
 <div class="govuk-form-group">
     {{#textarea}}declaration{{/textarea}}
   </div>
-  <p class="govuk-body">{{#t}}pages.declaration-immigration-adviser.paragraph3{{/t}}</p>
+  <p class="govuk-heading-m">{{#t}}pages.declaration-immigration-adviser.header1{{/t}}</p>
   {{#renderField}}declaration-immigration-adviser{{/renderField}} 
  {{#markdown}}declaration-immigration-adviser{{/markdown}}
  <br><br>
  <div class="govuk-checkboxes__item">
-    <!-- <input class="govuk-checkboxes__input" id="childIdDocuments-passport" name="childIdDocuments" type="checkbox" value="passport" {{#childPassportChecked}}checked="checked"{{/childPassportChecked}}> -->
-    <input class="govuk-checkboxes__input" id="childIdDocuments-passport" name="childIdDocuments" type="checkbox">
-    <label class="govuk-label govuk-checkboxes__label" for="childIdDocuments-passport">
+    <input class="govuk-checkboxes__input" id="declaration-immigration-adviser" name="declarationImmigrationAdviser" type="checkbox">
+    <label class="govuk-label govuk-checkboxes__label" for="declaration-immigration-adviser">
       {{#t}}fields.declaration-immigration-adviser.label{{/t}}
     </label>
   </div>

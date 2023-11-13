@@ -1,0 +1,22 @@
+{{<partials-page}} {{$page-content}}
+<p class="govuk-heading-m">{{#t}}pages.declaration-someone-else.paragraph1{{/t}}</p>
+<p class="govuk-body">{{#t}}pages.declaration-someone-else.paragraph2{{/t}}</p>
+<div class="govuk-form-group">
+    {{#textarea}}declaration{{/textarea}}
+  </div>
+  <p class="govuk-heading-m">{{#t}}pages.declaration-someone-else.header1{{/t}}</p>
+  {{#renderField}}declaration-someone-else{{/renderField}} 
+ {{#markdown}}declaration-someone-else{{/markdown}}
+ <br><br>
+ <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="declaration-someone-else" name="declarationSomeoneElse" type="checkbox">
+    <label class="govuk-label govuk-checkboxes__label" for="declaration-isomeone-else">
+      {{#t}}fields.declaration-someone-else.label{{/t}}
+    </label>
+  </div>
+  <br><br>
+  <p>You will not be able to change your answer after you submit.</p>
+  <br><br>
+  {{#input-submit}}confirm-submission{{/input-submit}}
+  {{/page-content}}
+  {{/partials-page}}
