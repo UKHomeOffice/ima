@@ -1100,10 +1100,10 @@ axios@^0.25.0:
   dependencies:
     follow-redirects "^1.14.7"
 
-axios@^1.3.4:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.5.1.tgz#11fbaa11fc35f431193a9564109c88c1f27b585f"
-  integrity sha512-Q28iYCWzNHjAm+yEAot5QaAMxhMghWLFVf7rRdwhUI+c2jix2DUXjAHXVi+s1ibs3mjPO/cCgbA++3BjD0vP/A==
+axios@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.0.tgz#f1e5292f26b2fd5c2e66876adc5b06cdbd7d2102"
+  integrity "sha512-EZ1DYihju9pwVB+jg67ogm+Tmqc6JmhamRN6I4Zt8DfZu5lbcQGw3ozH9lFejSJgs/ibaef3A9PMXPLeefFGJg=="
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"
@@ -1309,9 +1309,9 @@ browserify-rsa@^4.0.0, browserify-rsa@^4.0.1:
     randombytes "^2.0.1"
 
 browserify-sign@^4.0.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/browserify-sign/-/browserify-sign-4.2.1.tgz#eaf4add46dd54be3bb3b36c0cf15abbeba7956c3"
-  integrity sha512-/vrA5fguVAKKAVTNJjgSm1tRQDHUU6DbwO9IROu/0WAzC8PKhucDSh18J0RMvVeHAn5puMd+QHC2erPRNf8lmg==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/browserify-sign/-/browserify-sign-4.2.2.tgz#e78d4b69816d6e3dd1c747e64e9947f9ad79bc7e"
+  integrity sha512-1rudGyeYY42Dk6texmv7c4VcQ0EsvVbLwZkA+AQB7SxvXxmcD93jcHie8bzecJ+ChDlmAm2Qyu0+Ccg5uhZXCg==
   dependencies:
     bn.js "^5.1.1"
     browserify-rsa "^4.0.1"
@@ -4526,9 +4526,9 @@ notifications-node-client@^6.0.0:
     jsonwebtoken "^9.0.0"
 
 notifications-node-client@^7.0.0:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-7.0.3.tgz#875265bb5daddb1c01a4ca1fb1ba0caa545871be"
-  integrity sha512-uLuABa7ZK2XIP6aahHbtiCP4noyNIGclJ2idPh7cojnk2retajkpo0AZctSsDP18SUB0kUmHbBxOOJm2Gkb60g==
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-7.0.4.tgz#f7fb3ee42d4cce7920122594621018c43f5bd3f5"
+  integrity sha512-xNhlxZAlS3HXQNIh38GEiA57kF3dnluGX2zPgl1wrczHPWHOa2vufSSvJ+UWn6sqSWvQ7sya+8ppIk/9vDWBjQ==
   dependencies:
     axios "^0.25.0"
     jsonwebtoken "^9.0.0"
