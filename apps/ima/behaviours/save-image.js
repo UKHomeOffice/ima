@@ -3,17 +3,20 @@
 const _ = require('lodash');
 const config = require('../../../config');
 const Model = require('../models/image-upload');
+const uuid = require('uuid');
 
 const fileSizeNum = size => size.match(/\d+/g)[0];
 
 module.exports = name => superclass => class extends superclass {
   process(req) {
     if (req.files && req.files[name]) {
+      const submissionID = req.sessionModel.get('submissionID') || uuid.v4();
+      req.sessionModel.set('submissionID', submissionID);
       // set image name on values for filename extension validation
       // N:B validation controller gets values from
       // req.form.values and not on req.files
       req.form.values[name] = req.files[name].name;
-      req.log('info', `Submission ID: ${req.sessionModel.get('submissionID')},
+      req.log('info', `Submission ID: ${submissionID},
                        Processing image: ${req.form.values[name]}`);
     }
     super.process.apply(this, arguments);
