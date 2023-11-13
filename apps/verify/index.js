@@ -1,5 +1,5 @@
 'use strict';
-const ValidateCaseDetails = require('./behaviours/validate-case-details');
+// const ValidateCaseDetails = require('./behaviours/validate-case-details');
 const SendVerificationEmail = require('./behaviours/send-verification-email');
 
 module.exports = {

@@ -49,7 +49,7 @@ module.exports = {
     },
     '/confirmation': {
       clearSession: true
-    },
+    }
     // '/save-and-exit': {
     //   behaviours: SaveAndExit,
     //   backLink: false
