@@ -46,7 +46,8 @@
     }
   },
   "country-claim-against": {
-    "header":"Which countries can you make a serious and irreversible harm claim against?"
+    "header":"Which countries can you make a serious and irreversible harm claim against?",
+    "paragraph":"Your Illegal Migration Act notice will say which countries you can make this type of claim against. You cannot make a claim against your country of nationality"
   },
   "confirm": {
     "header": "Check your answers",
