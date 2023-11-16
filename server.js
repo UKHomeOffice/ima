@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+/* eslint-disable consistent-return, max-len */
 
 const hof = require('hof');
 const config = require('./config.js');
@@ -117,7 +117,7 @@ async function updateCases() {
     const cases = new Cases(s3Id);
     await cases.fetch();
     await cases.processToJsonFile();
-  } catch(e) {
+  } catch (e) {
     logger.log('error', e);
   }
 }
@@ -130,5 +130,7 @@ if (config.casesIds.cronEnabled) {
     updateCases();
   });
 }
+
+console.log('*******WARNING: The data folder SHOULD NOT be deployed to production. Please ensure the data folder has not been pushed to Github and is added to the .gitignore file before deployment to production.******* \n');
 
 module.exports = app;
