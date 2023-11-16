@@ -25,6 +25,7 @@ module.exports = class Cases {
         Bucket: config.aws.bucket,
         Key: `uans/${this.s3Id}`
       };
+      console.log('bucket params ', params)
       const dataFile = path.join(__dirname + `../../../../data/${this.s3Id}.xlsx`);
       this.#createOrResetFile(dataFile);
 
