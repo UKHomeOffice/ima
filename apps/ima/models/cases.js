@@ -40,6 +40,7 @@ module.exports = class Cases {
 
   processToJsonFile() {
     let json = XLSXProcessor(this.s3Id);
+    console.log(json);
 
     if (config.env !== 'production') {
       json = json.concat(config.casesIds.testCases);
