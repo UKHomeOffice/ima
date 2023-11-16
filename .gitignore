@@ -17,4 +17,3 @@ apps/**/translations/**/*
 test/_accessibility/tmp/*
 .nyc_output
 ~$*
-data/*
