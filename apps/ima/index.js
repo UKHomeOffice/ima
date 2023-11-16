@@ -76,7 +76,8 @@ module.exports = {
       ]
     },
     '/declaration-person-named': {
-      behaviours: Submit,
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
       fields: [
         'declaration-person-named'
       ],
@@ -84,7 +85,8 @@ module.exports = {
       next: '/confirmation'
     },
     '/declaration-immigration-adviser': {
-      behaviours: Submit,
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
       fields: [
         'declaration-immigration-adviser'
       ],
@@ -92,7 +94,8 @@ module.exports = {
       next: '/confirmation'
     },
     '/declaration-someone-else': {
-      behaviours: Submit,
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
       fields: [
         'declaration-someone-else'
       ],

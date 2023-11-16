@@ -19,7 +19,6 @@ module.exports = superclass => class extends superclass {
     const userFormEmail = req.sessionModel.get('email-address-details');
     const advisorEmail = req.sessionModel.get('legal-representative-email');
     const allUniqueEmails = _.uniq([userEmail, userFormEmail, advisorEmail].filter(e => e));
-
     req.sessionModel.set('all-unique-emails', allUniqueEmails);
 
     return super.successHandler(req, res, next);

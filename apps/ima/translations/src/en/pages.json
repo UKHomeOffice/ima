@@ -48,7 +48,7 @@
       "date-of-birth": {
         "label": "Date of birth"
       },
-      "evidence-upload": {
+      "images": {
         "label": "Files uploaded"
       }
     }

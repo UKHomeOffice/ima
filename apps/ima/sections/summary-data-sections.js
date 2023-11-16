@@ -21,7 +21,7 @@ module.exports = {
   'evidence-documents': [
     {
       step: '/evidence-upload',
-      field: 'evidence-upload',
+      field: 'images',
       parse: (list, req) => {
         if (!req.sessionModel.get('steps').includes('/evidence-upload')) {
           return null;
