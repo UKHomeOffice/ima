@@ -19,7 +19,7 @@ module.exports = {
   casesIds: {
     uanValidLength: 19,
     cronEnabled: process.env.CRON_ENABLED,
-    S3Id: process.env.CASES_S3_ID || 'uans-data-2023-10-23',
+    S3Id: process.env.CASES_S3_ID || 'uans-data-2023-11-16',
     testCases: [{
       uan: '0000-0000-0000-0000', 'date-of-birth': '2000-01-01'
     }, {
