@@ -1,0 +1,19 @@
+{{<partials-page}}
+  {{$page-content}}
+ 
+  {{#markdown}}harm-claim-details{{/markdown}}
+    <br>
+    {{#renderField}}reason-in-sih{{/renderField}}
+
+  
+    <br>
+    <br>
+    {{#renderField}}why-not-get-protection{{/renderField}}
+    <br>
+    <span class="govuk-label">
+        {{#t}}If you have evidence that you would be at risk of serious or irreversible harm, upload it laterin this form{{/t}}
+    </span>
+    <br>
+  {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

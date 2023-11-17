@@ -19,6 +19,7 @@
     }
   },
   "is-serious-and-irreversible": {
+    "legend": "Does your Illegal Migration Act notice say that you can make a serious and irreversible harm claim?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -29,13 +30,6 @@
     }
   },
   "is-risk-in-country":{
-    "paragraph":"This is physical or emotional harm which would be difficult or impossible to recover from.",
-    "list-header":"For example:",
-    "list1":"death",
-    "list2":"torture",
-    "list3":"inhumane or degrading treatment",
-    "list4":"physical, mental, or sexual violence",
-    "list5":"discrimination against you by the police, legal system, or a political party",
     "options": {
       "yes": {
         "label": "Yes"
@@ -44,14 +38,6 @@
         "label": "No"
       }
     }
-  },
-  "reason-in-sih":{
-    "label":"Explain why you would be at risk of serious and irreversible harm in [SIH country]",
-    "list-header":"You must tell us:",
-    "list1":"why you specifically would be at risk",
-    "list2":"what you would be at risk of, including what you think would happen to you",
-    "list3":"what individuals or groups you fear in",
-    "list3-bold":"[SIH country]"
   },
   "has-anything-happened":{
     "options": {

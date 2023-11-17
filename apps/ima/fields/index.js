@@ -13,12 +13,8 @@ module.exports = {
     mixin: 'radio-group',
     options: ['yes', 'no'],
     validate: 'required',
-    legend: {
-      className: 'visuallyhidden'
-    }
   },
   'is-risk-in-country':{
-    isPageHeading: true,
     mixin: 'radio-group',
     options: ['yes', 'no'],
     validate: 'required',
@@ -27,31 +23,6 @@ module.exports = {
     }
   },
   'reason-in-sih':{
-    labelClassName:'visuallyhidden',
-    mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
-      { type: 'maxlength', arguments: 2000 }],
-    attributes: [{
-      attribute: 'rows',
-      value: 4
-    }]
-  },
-  'has-anything-happened':{
-    labelClassName:'visuallyhidden',
-    mixin: 'radio-group',
-    options: [{
-      value: 'yes',
-      toggle: 'has-anything-happened-fieldset',
-      child: 'partials/has-anything-happened-details'
-     }, {
-      value: 'no'
-      }],
-    validate: 'required',
-    legend: {
-      className: 'visuallyhidden'
-    }
-  },
-  'anything-happened-details':{
     labelClassName:'visuallyhidden',
     mixin: 'textarea',
     validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
@@ -69,7 +40,7 @@ module.exports = {
       { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
-      value: 4
+      value: 6
     }]
   },
   'country-1':{

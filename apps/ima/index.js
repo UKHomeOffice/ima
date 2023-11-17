@@ -16,7 +16,7 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: CheckEmailToken,
-      next: '/serious-and-irreversible-harm'
+      next: '/cases'
     },
     '/cases': {
       behaviours: [ResumeSession],
@@ -33,8 +33,83 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/harm-claim', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
+    },
+    '/harm-claim':{
+      behaviours: SaveFormSession,
+      fields: ['is-serious-and-irreversible'],
+      forks: [
+        {
+          target: '/harm-claim-countries',
+          condition: {
+            field: 'is-serious-and-irreversible',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/human-rights-claim',
+          condition: {
+            field: 'is-serious-and-irreversible',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/harm-claim-countries',
+      backLink: 'harm-claim'
+    },
+    '/harm-claim-countries': {
+      backLink: 'harm-claim',
+      behaviours: [SaveFormSession],
+      next: '/harm-claim-details',
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true }
+    },
+    '/risk-of-harm':{
+      behaviours: SaveFormSession,
+      fields: ['is-risk-in-country'],
+      forks: [
+        {
+          target: '/harm-claim-details',
+          condition: {
+            field: 'is-risk-in-country',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/harm-claim-summary',
+          condition: {
+            field: 'is-risk-in-country',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/harm-claim-details'
+    },
+    '/harm-claim-details':{
+      behaviours: SaveFormSession,
+      fields: ['reason-in-sih', 'why-not-get-protection'],
+      next: '/harm-claim-summary',
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      backLink: 'risk-of-harm'
+    },
+    '/harm-claim-summary': {
+      behaviours: [SaveFormSession],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/human-rights-claim',
+    },
+    '/human-rights-claim': {
+      behaviours: SaveFormSession,
+      fields: ['human-claim'],
+      locals: { showSaveAndExit: true },
+      backLink: 'harm-claim-summary',
+      next: '/confirm' // TODO a url needs to be Changed
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
@@ -54,85 +129,5 @@ module.exports = {
       clearSession: true
     },
     '/application-expired': {},
-    '/serious-and-irreversible-harm':{
-      behaviours: SaveFormSession,
-      fields: ['is-serious-and-irreversible'],
-      forks: [
-        {
-          target: '/country-claim-against',
-          condition: {
-            field: 'is-serious-and-irreversible',
-            value: 'yes'
-          }
-        },
-        {
-          target: '/human-rights-claim',
-          condition: {
-            field: 'is-serious-and-irreversible',
-            value: 'no'
-          }
-        }
-      ],
-      locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/country-claim-against',
-      backLink: 'current-progress'
-    },
-    '/country-claim-against':{
-      backLink: 'serious-and-irreversible-harm',
-      behaviours: [SaveFormSession],
-      next: '/risk-in-sih-country'
-    },
-    '/add-countries':{
-      behaviours: [SaveFormSession],
-      template: 'country-repeater',
-      locals: { showSaveAndExit: true },
-      fields: [
-        'country-1',
-        'country-2',
-        'country-3'
-      ],
-      next: '/applied-for-any-other-permission'
-    },
-    '/risk-in-sih-country':{
-      behaviours: SaveFormSession,
-      fields: ['is-risk-in-country'],
-      forks: [
-        {
-          target: '/has-sih-details',
-          condition: {
-            field: 'is-risk-in-country',
-            value: 'yes'
-          }
-        },
-        {
-          target: '/sih-summary',
-          condition: {
-            field: 'is-risk-in-country',
-            value: 'no'
-          }
-        }
-      ],
-      locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/has-sih-details',
-      backLink: 'country-claim-against'
-
-    },
-    '/has-sih-details':{
-      behaviours: SaveFormSession,
-      fields: ['reason-in-sih','has-anything-happened','anything-happened-details','why-not-get-protection'],
-      next: '/sih-summary',
-      backLink: 'risk-in-sih-country'
-    },
-    '/sih-summary':{
-      behaviours: [Summary, ContinueReport],
-      sections: require('./sections/sih-summary'),
-      backLink: false,
-      journeyStart: '/who-are-you'
-    },
-    '/human-rights-claim':{
-      
-    }
   }
 };
