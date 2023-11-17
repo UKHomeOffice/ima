@@ -21,33 +21,23 @@
   "token-invalid": {
     "header": "This link has expired"
   },
-  "serious-and-irreversible-harm": {
-    "header": "Does your duty to remove notice say that you can make a serious and irreversible harm claim?" 
+  "risk-of-harm": {
+    "header":"Would you be at risk of serious and irreversible harm in [SIH country]?"
   },
-  "risk-in-sih-country":{
-    "header":"Would you be at risk of serious and irreversible harm in [SIH country]?",
-    "paragraph":"This is physical or emotional harm which would be difficult or impossible to recover from",
-    "list-headers":"For example",
-    "list1":"death",
-    "list2":"torture",
-    "list3":"inhumane or degrading treatment",
-    "list4":"physical,mental,or sexual violence",
-    "list5":"discrimination against you by the police,legal system or political party"
+  "harm-claim-countries": {
+    "header":"Which countries can you make a serious and irreversible harm claim against?",
+    "paragraph":"Your Illegal Migration Act notice will say which countries you can make this type of claim against. You cannot make a claim against your country of nationality"
   },
-  "has-sih-details":{
+  "harm-claim-details": {
     "header":"Serious and irreversible harm in [SIH country]"
   },
-  "sih-summary":{
+  "harm-claim-summary":{
     "header":"Summary of your serious and irreversible harm claims",
     "fields": {
       "is-serious-and-irreversible":{
         "label":"Making claim"
       }
     }
-  },
-  "country-claim-against": {
-    "header":"Which countries can you make a serious and irreversible harm claim against?",
-    "paragraph":"Your Illegal Migration Act notice will say which countries you can make this type of claim against. You cannot make a claim against your country of nationality"
   },
   "confirm": {
     "header": "Check your answers",
