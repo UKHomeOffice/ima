@@ -27,6 +27,10 @@
   "evidence-upload": {
     "header": "Upload evidence"
   },
+  "why-are-you-submitting-late": {
+    "header": "Why are you submitting late?",
+    "paragraph1": "You must upload evidence of why you could not submit in time"
+  },
   "confirm": {
     "header": "Information you have given us",
     "submit-warning": "You will not be able to change your answers after you submit.",

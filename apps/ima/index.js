@@ -45,6 +45,12 @@ module.exports = {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
+      next: '/why-are-you-submitting-late'
+    },
+    '/why-are-you-submitting-late': {
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      fields: ['image'],
+      continueOnEdit: true,
       next: '/confirm'
     },
     '/confirm': {
