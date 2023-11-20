@@ -25,8 +25,6 @@ module.exports = {
   'reason-in-sih':{
     labelClassName:'visuallyhidden',
     mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
-      { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 6
@@ -36,8 +34,6 @@ module.exports = {
     isPageHeading: false,
     labelClassName: 'bold',
     mixin: 'textarea',
-    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]{1,2000}$/ },
-      { type: 'maxlength', arguments: 2000 }],
     attributes: [{
       attribute: 'rows',
       value: 6
