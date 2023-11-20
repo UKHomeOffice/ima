@@ -45,6 +45,15 @@ module.exports = {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
+      next: '/are-you-submitting-this-form-late'
+    },
+    '/are-you-submitting-this-form-late': {
+      behaviours: [SaveFormSession],
+      locals: { showSaveAndExit: true },
+      fields: [
+        'are-you-submitting-this-form-late', 'are-you-submitting-this-form-late-extension'
+      ],
+      continueOnEdit: true,
       next: '/why-are-you-submitting-late'
     },
     '/why-are-you-submitting-late': {

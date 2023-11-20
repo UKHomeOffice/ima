@@ -1,0 +1,11 @@
+{{<partials-page}} {{$page-content}}
+<p class="govuk-body">{{#t}}pages.are-you-submitting-this-form-late.paragraph1{{/t}}</p>
+{{#markdown}}are-you-submitting-this-form-late{{/markdown}}
+{{#renderField}}are-you-submitting-this-form-late{{/renderField}} 
+ <br><br>
+<p class="govuk-heading-m">{{#t}}pages.are-you-submitting-this-form-late.header1{{/t}}</p>
+ {{#renderField}}are-you-submitting-this-form-late-extension{{/renderField}}
+  <br><br>
+  {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+  {{/partials-page}}

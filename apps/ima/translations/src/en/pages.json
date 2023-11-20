@@ -27,8 +27,14 @@
   "evidence-upload": {
     "header": "Upload evidence"
   },
+  "are-you-submitting-this-form-late": {
+    "header": "Are you submitting this form late?",
+    "paragraph1": "select 'no' if there is no end to the claim period on on your duty to remove notice, and you have not been given another notice with an end date on it",
+    "header1": "Have you asked for an extension?"
+
+  }, 
   "why-are-you-submitting-late": {
-    "header": "Why are you submitting late?",
+    "header": "Why are you submitting this form late?",
     "paragraph1": "You must upload evidence of why you could not submit in time"
   },
   "confirm": {

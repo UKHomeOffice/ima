@@ -17,6 +17,30 @@
       }
     }
   },
+  "are-you-submitting-this-form-late": {
+    "label": "test ",
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "are-you-submitting-this-form-late-extension": {
+    "label": "test ",
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "declaration": {
     "label": " "
   },
