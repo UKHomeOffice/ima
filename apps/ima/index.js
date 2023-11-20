@@ -66,7 +66,7 @@ module.exports = {
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
       next: '/risk-of-harm',
-      backLink: 'harm-claim',
+      backLink: 'harm-claim'
     },
     '/risk-of-harm':{
       behaviours: SaveFormSession,
