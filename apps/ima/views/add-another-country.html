@@ -1,10 +1,8 @@
 {{<partials-page}}
   {{$page-content}}
     {{> partials-items-table}}
-    <td><a class="add-another-button">
-      <input type="submit" name="add-another-button" value="Add another {{addAnotherLinkText}}" class="govuk-button">
-    </a></td>
-    {{#markdown}}family-member-details{{/markdown}}
+    <p><a href="{{baseUrl}}/{{addStep}}" class="govuk-link">Add another {{addAnotherLinkText}}</a></p>
+    
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}

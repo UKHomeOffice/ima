@@ -62,7 +62,7 @@ module.exports = {
     },
     '/harm-claim-countries': {
       behaviours: [SaveFormSession],
-      fields:"country-1",
+      fields: ['country-1'],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
       next: '/risk-of-harm',
