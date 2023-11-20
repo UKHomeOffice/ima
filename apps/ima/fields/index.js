@@ -29,11 +29,17 @@ module.exports = {
     mixin: 'radio-group',
     labelClassName: 'visuallyhidden',
     options: [{
-      value: 'yes'
+      value: 'yes',
+      toggle: 'are-you-submitting-this-form-late-extension-options-yes-detail',
+      child: 'textarea'
     }, {
       value: 'no'
     }],
     validate: 'required'
+  },
+  'are-you-submitting-this-form-late-extension-options-yes-detail':{
+    label: 'When did you ask for an extension?',
+    mixin: 'textarea',
   },
   'declaration-immigration-adviser': {
     isPageHeading: false,

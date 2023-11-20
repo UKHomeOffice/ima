@@ -41,6 +41,10 @@
       }
     }
   },
+  "are-you-submitting-this-form-late-extension-options-yes-detail": {
+    "label": "When-did-you-ask-for-extension?"
+  },
+
   "declaration": {
     "label": " "
   },
