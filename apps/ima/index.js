@@ -61,11 +61,12 @@ module.exports = {
       backLink: 'harm-claim'
     },
     '/harm-claim-countries': {
-      backLink: 'harm-claim',
       behaviours: [SaveFormSession],
-      next: '/harm-claim-details',
+      fields:"country-1",
       continueOnEdit: true,
-      locals: { showSaveAndExit: true }
+      locals: { showSaveAndExit: true },
+      next: '/risk-of-harm',
+      backLink: 'harm-claim',
     },
     '/risk-of-harm':{
       behaviours: SaveFormSession,
