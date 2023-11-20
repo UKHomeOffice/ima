@@ -11,7 +11,7 @@
     "header": "You have left the form",
     "paragraph1": "Your progress has been saved."
   },
-  "current-progress": {
+  "summary": {
     "header": "Information you have given us"
   },
   "cannot-use-form": {
