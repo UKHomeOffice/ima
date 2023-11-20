@@ -77,7 +77,7 @@ module.exports = {
       `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
   },
   sessionDefaults: {
-    steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
+    steps: ['/start', '/continue-form', '/summary', '/who-are-you'],
     fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
   }
 };
