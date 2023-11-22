@@ -12,5 +12,10 @@
   "user-email": {
     "required": "Enter your email address",
     "noRecordMatch": "Your email does not match the UAN given. Please enter the correct email"
+  },
+  "late-extension": {
+    "required": "Enter your date of birth",
+    "before": "Enter a date in the past",
+    "after": "Enter a date after 01 01 1900"
   }
 }

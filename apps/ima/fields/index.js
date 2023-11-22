@@ -1,4 +1,6 @@
 'use strict';
+const dateComponent = require('hof').components.date;
+const after1900Validator = { type: 'after', arguments: ['1900'] };
 
 module.exports = {
   'who-are-you': {
@@ -30,17 +32,21 @@ module.exports = {
     labelClassName: 'visuallyhidden',
     options: [{
       value: 'yes',
-      toggle: 'are-you-submitting-this-form-late-extension-options-yes-detail',
-      child: 'textarea'
+      toggle: 'late-submission-extension-details-fieldset',
+      child: 'partials/late-submission-extension-details'
     }, {
       value: 'no'
     }],
     validate: 'required'
   },
-  'are-you-submitting-this-form-late-extension-options-yes-detail':{
-    label: 'When did you ask for an extension?',
-    mixin: 'textarea',
-  },
+  'are-you-submitting-this-form-late-extension-options-yes-detail':
+    dateComponent('are-you-submitting-this-form-late-extension-options-yes-detail', {
+      validate: ['required', after1900Validator],
+      validationLink: {
+        field: 'are-you-submitting-this-form-late-extension',
+        value: 'yes'
+      }
+    }),
   'declaration-immigration-adviser': {
     isPageHeading: false,
     mixin: 'radio-group',

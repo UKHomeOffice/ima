@@ -42,9 +42,9 @@
     }
   },
   "are-you-submitting-this-form-late-extension-options-yes-detail": {
-    "label": "When-did-you-ask-for-extension?"
+    "legend": "When did you ask for extension?",
+    "hint": "For example, 28 12 2023"
   },
-
   "declaration": {
     "label": " "
   },

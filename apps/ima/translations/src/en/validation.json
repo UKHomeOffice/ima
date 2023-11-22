@@ -8,5 +8,10 @@
     "maxFileSize": "Select a file that is smaller than 25 MB",
     "fileType": "This file is not a valid file format you can upload to this service.",
     "tooMany": "You can only submit up to 250 attachments."
+  },
+  "lateSubmission": {
+    "date": "Please enter a valid date",
+    "after": "Enter a date after 01 01 1900",
+    "before": "Please enter a date in the past"
   }
 }

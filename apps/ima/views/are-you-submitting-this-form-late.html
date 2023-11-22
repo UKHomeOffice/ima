@@ -4,7 +4,12 @@
 {{#renderField}}are-you-submitting-this-form-late{{/renderField}} 
  <br><br>
 <p class="govuk-heading-m">{{#t}}pages.are-you-submitting-this-form-late.header1{{/t}}</p>
- {{#renderField}}are-you-submitting-this-form-late-extension{{/renderField}}
+{{#renderField}}are-you-submitting-this-form-late-extension{{/renderField}}
+{{#errors.late-extension}}
+<p class="govuk-error-message">
+  {{errors.late-extension.message}}
+</p>
+{{/errors.late-extension}}
   <br><br>
   {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}

@@ -51,7 +51,9 @@ module.exports = {
       behaviours: [SaveFormSession],
       locals: { showSaveAndExit: true },
       fields: [
-        'are-you-submitting-this-form-late', 'are-you-submitting-this-form-late-extension'
+        'are-you-submitting-this-form-late',
+        'are-you-submitting-this-form-late-extension',
+        'are-you-submitting-this-form-late-extension-options-yes-detail'
       ],
       continueOnEdit: true,
       next: '/why-are-you-submitting-late'
