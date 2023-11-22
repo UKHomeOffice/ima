@@ -17,5 +17,20 @@ module.exports = {
         omitChangeLink: true
       }
     ]
+  },
+  'claim-details': {
+    steps: [
+      {
+        step: '/exception',
+        field: 'does-exception-apply',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exception')) {
+            return null;
+          }
+          return req.sessionModel.get('does-exception-apply') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      }
+    ]
   }
 };

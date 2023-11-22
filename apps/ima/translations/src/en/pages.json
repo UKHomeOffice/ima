@@ -21,12 +21,21 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "exception": {
+    "header": "Does an exception to the duty to remove apply to you?"
+  },
+  "threatened-life-or-liberty": {
+    "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
         "header": "Case details"
+      },
+      "claim-details": {
+        "header": "Claim details"
       }
     },
     "fields": {
@@ -38,6 +47,9 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "does-exception-apply": {
+        "label": "Does an exception to the duty to remove apply to you?"
       }
     }
   }

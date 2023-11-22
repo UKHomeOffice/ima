@@ -33,8 +33,39 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/exception', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
+    },
+    '/exception': {
+      behaviours: SaveFormSession,
+      fields: [
+        'does-exception-apply',
+        'does-exception-apply-detail'
+      ],
+      template: 'does-exception-apply',
+      locals: { showSaveAndExit: true },
+      next: '/threatened-life-or-liberty' // TO BE UPDATED AS STEPS ARE ADDED
+    },
+    '/threatened-life-or-liberty': {
+      behaviours: SaveFormSession,
+      fields: [
+        'is-life-threatened',
+        'life-threatened-detail'
+      ],
+      template: 'life-or-liberty-threatened',
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/permission'
+    },
+    '/permission': {
+      behaviours: SaveFormSession,
+      fields: [
+        'permission-to-enter-or-stay',
+        'permission-to-enter-or-stay-detail'
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: false,
+      next: '/confirm' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
