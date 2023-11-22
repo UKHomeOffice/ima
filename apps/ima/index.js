@@ -33,8 +33,15 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/arrival-date', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
+    },
+    '/arrival-date': {
+      behaviours: SaveFormSession,
+      fields: ['arrival-after-date', 'arrived-date', 'arrival-details'],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/confirm' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],

@@ -17,5 +17,23 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "arrived-date": {
+    "legend": "When did you arrive in or enter the UK?",
+    "hint": "For example, 28 12 2023"
+  },
+  "arrival-after-date": {
+    "legend": "Did you arrive in the UK on or after 20 July 2023?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "arrival-details": {
+    "label": "Enter details about when you arrived"
   }
 }
