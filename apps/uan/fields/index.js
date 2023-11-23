@@ -1,6 +1,6 @@
 
 module.exports = {
-  'bulk-upload-candidates': {
+  'bulk-upload-uan': {
     mixin: 'input-file',
     validate: [
       'required'
