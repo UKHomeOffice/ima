@@ -14,8 +14,8 @@
   "translations": "./apps/ima/translations",
   "routes": [
     "./apps/ima",
-    "./apps/verify",
-    "./apps/uan"
+    "./apps/uan",
+    "./apps/verify"
   ],
   "session": {
     "name": "ima.hof.sid"

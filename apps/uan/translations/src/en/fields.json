@@ -1,8 +1,8 @@
 {
-  "bulk-upload-candidates": {
+  "bulk-upload-uan": {
     "label": "Upload CSV File"
   },
   "confirm-data-checked": {
-    "label": "Have you checked the data is correct?"
+    "label": "I confirm that this file contains complete and correct records."
   }
 }

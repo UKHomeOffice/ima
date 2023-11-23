@@ -79,5 +79,18 @@ module.exports = {
   sessionDefaults: {
     steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
     fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
-  }
+  },
+  uanUpload: {
+    recordScanLimit: 5,
+    directUpload: false,
+    maxFileSize: '25mb',
+    mandatoryColumns: [
+      'uan',
+      'dob',
+    ],
+    allowedMimeTypes: [
+      'text/csv'
+    ],
+    destinationFilePath: '/Users/jamiecarter/hof/ima/data/uploaded.csv'
+  },
 };
