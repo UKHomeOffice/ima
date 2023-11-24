@@ -121,7 +121,7 @@ async function updateCases() {
     logger.log('error', e);
   }
 }
-
+console.log('helllllllooooooo: ', config.aws );
 updateCases();
 
 if (config.casesIds.cronEnabled) {
