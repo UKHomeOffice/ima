@@ -4,8 +4,11 @@ const _ = require('lodash');
 const config = require('../../../config');
 const parse = require('csv-parse').parse;
 const fs = require('fs/promises');
+const path = require('path');
 const axios = require('axios');
 const Bottleneck = require('bottleneck');
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, json } = format;
 
 const maxFileSize = config.uanUpload.maxFileSize;
 const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
@@ -13,11 +16,16 @@ const {
   allowedMimeTypes,
   mandatoryColumns,
   recordScanLimit,
-  directUpload,
-  destinationFilePath
+  filevaultUpload,
+  directUploadToDb,
+  writeFileToDataFolder
 } = config.uanUpload;
 
 const fileSizeNum = size => size.match(/\d+/g)[0];
+const logger = createLogger({
+  format: combine(timestamp(), json()),
+  transports: [new transports.Console({level: 'info', handleExceptions: true})]
+});
 
 module.exports = name => superclass => class extends superclass {
   locals(req, res, next) {
@@ -37,7 +45,7 @@ module.exports = name => superclass => class extends superclass {
     return {
       invalidMimetype: !allowedMimeTypes.includes(mimetype),
       invalidSize: uploadSizeTooBig || uploadSizeBeyondServerLimits
-    }
+    };
   }
 
   async process(req, res, next) {
@@ -46,7 +54,7 @@ module.exports = name => superclass => class extends superclass {
       // Stop processing early if the file is not in the correct format
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToProcess);
       if (invalidSize || invalidMimetype) {
-        return super.process(req, res, next)
+        return super.process(req, res, next);
       }
       // set image name on values for filename extension validation
       // N.B. validation controller gets values from
@@ -57,7 +65,7 @@ module.exports = name => superclass => class extends superclass {
 
       parser.on('readable', function () {
         let record;
-        while ((record = parser.read()) !== null && records.length < parseInt(recordScanLimit)) {
+        while ((record = parser.read()) !== null && records.length < parseInt(recordScanLimit, 10)) {
           records.push(record);
         }
       });
@@ -71,7 +79,7 @@ module.exports = name => superclass => class extends superclass {
       parser.end();
 
       req.sessionModel.set('csv-columns', Object.keys(records[0]) || []);
-      if (directUpload) {
+      if (directUploadToDb) {
         req.sessionModel.set('bulk-records', records);
       }
     }
@@ -103,7 +111,7 @@ module.exports = name => superclass => class extends superclass {
 
       // lowercase and trim whitespace to be flexible in case of column name inconsistency
       const transformedColumns = csvColumns.map(column => {
-        return column.toLowerCase().trim()
+        return column.toLowerCase().trim();
       });
 
       // checks if csv has at least columns needed for processing
@@ -123,9 +131,43 @@ module.exports = name => superclass => class extends superclass {
   }
 
   async saveValues(req, res, next) {
-    if (!directUpload) {
-      const fileToUpload = _.get(req.files, `${name}`);
+    const fileToUpload = _.get(req.files, `${name}`);
+    if (filevaultUpload) {
+      return new Promise((resolve, reject) => {
+        const form = new FormData();
+        form.append('document', new Blob([fileToUpload], { type: 'text/csv' }), 'uan-list.csv');
 
+        this.auth()
+          .then(auth => {
+            return axios.post(config.upload.hostname, form, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Basic ${auth.bearer}`
+              }
+            });
+          })
+          .then(response => {
+            const fileURL = response.data.url;
+            const fileUUID = response.data.url.split('/file/')[1].split('?')[0];
+            logger.log({
+              level: 'info',
+              message: `CSV file uploaded, URL is: ${fileURL}, UUID is: ${fileUUID}`
+            });
+            resolve(fileURL);
+          })
+          .catch(error => {
+            // eslint-disable-next-line no-console
+            logger.log({
+              level: 'info',
+              message: `Error uploading via file-vault CSV: ${error}`
+            });
+            reject(error);
+          });
+      });
+    }
+
+    if (writeFileToDataFolder) {
+      const destinationFilePath = path.join(__dirname, '/../../../data/uan-list.csv');
       try {
         await fs.writeFile(destinationFilePath, fileToUpload.data);
         return super.saveValues(req, res, next);
@@ -134,7 +176,7 @@ module.exports = name => superclass => class extends superclass {
       }
     }
 
-    if (directUpload) {
+    if (directUploadToDb) {
       const limiter = new Bottleneck({
         maxConcurrent: 50,
         minTime: 1000
@@ -144,7 +186,7 @@ module.exports = name => superclass => class extends superclass {
       const recordColumns = Object.keys(records[0]);
       // lowercase and trim whitespace to be flexible in case of column name inconsistency
       const cleanedRecords = records.map(record => {
-      const updatedRecord = {};
+        const updatedRecord = {};
         recordColumns.forEach(column => {
           updatedRecord[column.toLowerCase().trim()] = record[column] || null;
           // lowercase email address values to be flexible regarding case inconsistency
@@ -160,7 +202,7 @@ module.exports = name => superclass => class extends superclass {
           const submitRecords = cleanedRecords.map(record => {
             return this.submitRecord(record);
           });
-          return Promise.all(submitRecords)
+          return Promise.all(submitRecords);
         });
 
         return super.saveValues(req, res, next);
@@ -168,16 +210,43 @@ module.exports = name => superclass => class extends superclass {
         return next(e);
       }
     }
+    return super.saveValues(req, res, next);
   }
 
   async submitRecord(record) {
     const response = await axios.post(applicationsUrl, {
-      uan: record['uan'].trim(),
-      date_of_birth: record['dob'].trim(),
-      session: JSON.stringify({}),
+      uan: record.uan.trim(),
+      date_of_birth: record.dob.trim(),
+      session: JSON.stringify({})
     });
 
     const status = response.status;
     return Promise.resolve(status);
+  }
+
+  auth() {
+    if (!config.keycloak.token) {
+      // eslint-disable-next-line no-console
+      console.error('keycloak token url is not defined');
+      return Promise.resolve({
+        bearer: 'abc123'
+      });
+    }
+    const tokenReq = {
+      url: config.keycloak.token,
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        username: config.keycloak.username,
+        password: config.keycloak.password,
+        grant_type: 'password',
+        client_id: config.keycloak.clientId,
+        client_secret: config.keycloak.secret
+      }
+    };
+
+    return axios(tokenReq).then(response => {
+      return { bearer: response.data.access_token };
+    });
   }
 };

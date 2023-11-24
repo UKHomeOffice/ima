@@ -82,15 +82,16 @@ module.exports = {
   },
   uanUpload: {
     recordScanLimit: 5,
-    directUpload: false,
+    filevaultUpload: true,
+    directUploadToDb: false,
+    writeFileToDataFolder: false,
     maxFileSize: '25mb',
     mandatoryColumns: [
       'uan',
-      'dob',
+      'dob'
     ],
     allowedMimeTypes: [
       'text/csv'
-    ],
-    destinationFilePath: '/Users/jamiecarter/hof/ima/data/uploaded.csv'
-  },
+    ]
+  }
 };
