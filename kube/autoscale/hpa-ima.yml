@@ -11,15 +11,19 @@ metadata:
   name: {{ .APP_NAME }}
   {{ end }}
 spec:
-  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   minReplicas: 8
   maxReplicas: 20
-  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-  minReplicas: 2
-  maxReplicas: 5
-  {{ else }}
+  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 1
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  minReplicas: 1
+  maxReplicas: 2
+  {{ else }}
+  # The branch environment takes up a lot of resources so the number of pods has been kept low
+  minReplicas: 1
+  maxReplicas: 1
   {{ end }}
   scaleTargetRef:
     apiVersion: apps/v1
@@ -69,15 +73,19 @@ metadata:
   name: data-service
   {{ end }}
 spec:
-  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   minReplicas: 8
   maxReplicas: 20
-  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-  minReplicas: 2
-  maxReplicas: 5
-  {{ else }}
+  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 1
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  minReplicas: 1
+  maxReplicas: 2
+  {{ else }}
+  # The branch environment takes up a lot of resources so the number of pods has been kept low
+  minReplicas: 1
+  maxReplicas: 1
   {{ end }}
   scaleTargetRef:
     apiVersion: apps/v1
@@ -119,7 +127,6 @@ spec:
 # HorizontalPodAutoscaler for file-vault deployment resource.
 #==============================================================================
 apiVersion: autoscaling/v2beta2
-apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -128,12 +135,19 @@ metadata:
   name: file-vault
   {{ end }}
 spec:
-  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   minReplicas: 8
   maxReplicas: 20
+  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+  minReplicas: 1
+  maxReplicas: 1
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  minReplicas: 1
+  maxReplicas: 2
   {{ else }}
-  minReplicas: 2
-  maxReplicas: 5
+  # The branch environment takes up a lot of resources so the number of pods has been kept low
+  minReplicas: 1
+  maxReplicas: 1
   {{ end }}
   scaleTargetRef:
     apiVersion: apps/v1
@@ -175,7 +189,6 @@ spec:
 # HorizontalPodAutoscaler for html-pdf-converter deployment resource.
 #==============================================================================
 apiVersion: autoscaling/v2beta2
-apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -184,12 +197,19 @@ metadata:
   name: html-pdf-converter
   {{ end }}
 spec:
-  {{ if or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   minReplicas: 8
   maxReplicas: 20
+  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+  minReplicas: 1
+  maxReplicas: 1
+  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+  minReplicas: 1
+  maxReplicas: 2
   {{ else }}
-  minReplicas: 2
-  maxReplicas: 5
+  # The branch environment takes up a lot of resources so the number of pods has been kept low
+  minReplicas: 1
+  maxReplicas: 1
   {{ end }}
   scaleTargetRef:
     apiVersion: apps/v1
