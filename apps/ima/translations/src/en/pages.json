@@ -21,12 +21,18 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "temporary-permission-to-stay": {
+    "header": "Are there any other reasons you should be granted temporary permission to stay in the UK?"
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
         "header": "Case details"
+      },
+      "claim-details": {
+        "header": "Claim details"
       }
     },
     "fields": {
@@ -38,6 +44,9 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "temporary-permission": {
+        "label": "Request temporary permission to stay"
       }
     }
   }

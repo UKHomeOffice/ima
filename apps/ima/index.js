@@ -33,8 +33,14 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/temporary-permission-to-stay', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
+    },
+    '/temporary-permission-to-stay': {
+      behaviours: SaveFormSession,
+      fields: ['temporary-permission', 'temporary-permission-details', 'temporary-permission-reasons'],
+      locals: { showSaveAndExit: true },
+      next: '/confirm' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],
