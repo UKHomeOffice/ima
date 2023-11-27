@@ -1,5 +1,20 @@
 {
   "who-are-you": {
     "required": "You must select an option"
+  },
+  "temporary-permission": {
+    "required": "You must select an option"
+  },
+  "temporary-permission-reasons": {
+    "required": "You must select one or more reasons",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "temporary-permission-details": {
+    "required": "You must enter details of your reasons",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
   }
 }

@@ -17,5 +17,34 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "temporary-permission-reasons": {
+    "legend": "What are your reasons for applying for temporary permission to stay in the UK?",
+    "hint": "Select all that apply.",
+    "options": {
+      "human-rights": {
+        "label": "human rights"
+      },
+      "other-international-obligations": {
+        "label": "other international obligations"
+      },
+      "exceptional-circumstances": {
+        "label": "exceptional circumstances"
+      }
+    }
+  },
+  "temporary-permission": {
+    "legend": "Are there any reasons you should be granted temporary permission to stay in the UK?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "temporary-permission-details": {
+    "label": "Enter details"
   }
 }
