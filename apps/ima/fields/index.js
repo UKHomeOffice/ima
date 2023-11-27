@@ -65,5 +65,21 @@ module.exports = {
       value: '',
       label: 'fields.country-3.options.null'
     }].concat(countries)
+  },
+  'country-4':{
+    mixin: 'select',
+    className: ['js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.country-4.options.null'
+    }].concat(countries)
+  },
+  'country-5':{
+    mixin: 'select',
+    className: ['js-hidden'],
+    options: [{
+      value: '',
+      label: 'fields.country-5.options.null'
+    }].concat(countries)
   }
 };

@@ -1,10 +1,20 @@
+
+
 {{<partials-page}}
+{{$encoding}}enctype="multipart/form-data"{{/encoding}}
   {{$page-content}}
-  
+
     <p>{{#t}}pages.harm-claim-countries.paragraph{{/t}}</p>
   <br>
   
-  {{#renderField}}country-1{{/renderField}}
+  <div id="harm-claim-country-repeater" class="repeater">
+    {{#select}}country-1{{/select}}
+    {{#select}}country-2{{/select}}
+    {{#select}}country-3{{/select}}
+    {{#select}}country-4{{/select}}
+    {{#select}}country-5{{/select}}
+    <br>
+  </div>
   {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}

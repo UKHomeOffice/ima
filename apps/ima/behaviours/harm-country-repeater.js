@@ -2,11 +2,12 @@
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
-    req.form.values.['harm-claim-countries'] = [
+    req.form.values['harm-claim-countries'] = [
       req.form.values['country-1'],
       req.form.values['country-2'],
       req.form.values['country-3'],
-      req.form.values['country-4']
+      req.form.values['country-4'],
+      req.form.values['country-5']
     ].filter(Boolean);
     return super.saveValues(req, res, next);
   }
@@ -18,6 +19,7 @@ module.exports = superclass => class extends superclass {
       values['country-2'] = harmClaimCountries[1] || '';
       values['country-3'] = harmClaimCountries[2] || '';
       values['country-4'] = harmClaimCountries[3] || '';
+      values['country-5'] = harmClaimCountries[4] || '';
       next(err, values);
     });
   }
