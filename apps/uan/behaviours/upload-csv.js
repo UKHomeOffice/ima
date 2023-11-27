@@ -18,7 +18,7 @@ const {
   recordScanLimit,
   filevaultUpload,
   directUploadToDb,
-  writeFileToDataFolder
+  writeFileToSharedVolume
 } = config.uanUpload;
 
 const fileSizeNum = size => size.match(/\d+/g)[0];
@@ -132,6 +132,16 @@ module.exports = name => superclass => class extends superclass {
 
   async saveValues(req, res, next) {
     const fileToUpload = _.get(req.files, `${name}`);
+    if (writeFileToSharedVolume) {
+      const destinationFilePath = path.join(__dirname, '/../../../share/uan-list.csv');
+      try {
+        await fs.writeFile(destinationFilePath, fileToUpload.data);
+        return super.saveValues(req, res, next);
+      } catch (err) {
+        return next(err);
+      }
+    }
+
     if (filevaultUpload) {
       return new Promise((resolve, reject) => {
         const form = new FormData();
@@ -164,16 +174,6 @@ module.exports = name => superclass => class extends superclass {
             reject(error);
           });
       });
-    }
-
-    if (writeFileToDataFolder) {
-      const destinationFilePath = path.join(__dirname, '/../../../data/uan-list.csv');
-      try {
-        await fs.writeFile(destinationFilePath, fileToUpload.data);
-        return super.saveValues(req, res, next);
-      } catch (err) {
-        return next(err);
-      }
     }
 
     if (directUploadToDb) {

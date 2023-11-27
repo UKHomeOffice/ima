@@ -181,6 +181,8 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
+            - name: container-share
+              mountPath: /app/share
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4
@@ -202,6 +204,24 @@ spec:
               name: public
           securityContext:
             runAsNonRoot: true
+
+        - name: csv-process-save
+          image: node:lts-alpine@sha256:19eaf41f3b8c2ac2f609ac8103f9246a6a6d46716cdbe49103fdb116e55ff0cc
+          resources:
+          limits:
+            memory: 1024Mi
+            cpu: 200m
+            requests:
+              memory: 512Mi
+          volumeMounts:
+            - name: container-share
+              mountPath: /app/share
+          securityContext:
+            runAsNonRoot: true
+          command: ["/bin/sh", "-ec", "sleep 1000"]
+
       volumes:
         - name: public
+          emptyDir: {}
+        - name: container-share
           emptyDir: {}
