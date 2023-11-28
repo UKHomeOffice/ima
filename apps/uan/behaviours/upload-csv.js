@@ -140,7 +140,7 @@ module.exports = name => superclass => class extends superclass {
     }
 
     if (filevaultUpload) {
-      const filevaultUrl = await filevaultUpload(fileToUpload);
+      const filevaultUrl = await this.filevaultUpload(fileToUpload);
       const destinationFilePath = path.join(__dirname, '/../../../share/uan-list-links.csv');
       try {
         await fs.appendFile(destinationFilePath, filevaultUrl);
