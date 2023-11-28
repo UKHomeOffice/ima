@@ -206,7 +206,7 @@ spec:
             runAsNonRoot: true
 
         - name: csv-process-save
-          image: node:lts-alpine@sha256:19eaf41f3b8c2ac2f609ac8103f9246a6a6d46716cdbe49103fdb116e55ff0cc
+          image: node:lts-alpine
           resources:
             limits:
               memory: 1024Mi
@@ -218,7 +218,8 @@ spec:
               mountPath: /app/share
           securityContext:
             runAsNonRoot: true
-          command: ["/bin/sh", "-ec", "sleep 1000"]
+          command: ["/bin/sh"]
+          args: ["-ec", "sleep 1000"]
 
       volumes:
         - name: public
