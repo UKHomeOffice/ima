@@ -209,10 +209,10 @@ spec:
           image: node:lts-alpine
           resources:
             limits:
-              memory: 1024Mi
-              cpu: 200m
+              memory: 256Mi
+              cpu: 100m
             requests:
-              memory: 512Mi
+              memory: 128Mi
           volumeMounts:
             - name: container-share
               mountPath: /app/share
