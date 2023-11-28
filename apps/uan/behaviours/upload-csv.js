@@ -50,16 +50,14 @@ module.exports = name => superclass => class extends superclass {
 
   async process(req, res, next) {
     const fileToProcess = _.get(req.files, `${name}`);
+
     if (fileToProcess) {
       // Stop processing early if the file is not in the correct format
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToProcess);
       if (invalidSize || invalidMimetype) {
         return super.process(req, res, next);
       }
-      // set image name on values for filename extension validation
-      // N.B. validation controller gets values from
-      // req.form.values and not on req.files
-      req.form.values[name] = req.files[name].name;
+
       const records = [];
       const parser = parse({columns: true});
 
@@ -88,9 +86,6 @@ module.exports = name => superclass => class extends superclass {
 
   validateField(key, req) {
     const fileToValidate = _.get(req.files, `${name}`);
-    req.form.values[name] = req.files[name].name;
-
-    // console.log('UPLOADED', fileToValidate);
 
     if (fileToValidate) {
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToValidate);
@@ -126,17 +121,17 @@ module.exports = name => superclass => class extends superclass {
         });
       }
     }
-
     return super.validateField(key, req);
   }
 
   async saveValues(req, res, next) {
     const fileToUpload = _.get(req.files, `${name}`);
+
     if (writeFileToSharedVolume) {
       const destinationFilePath = path.join(__dirname, '/../../../share/uan-list.csv');
       try {
         await fs.writeFile(destinationFilePath, fileToUpload.data);
-        return super.saveValues(req, res, next);
+        // return super.saveValues(req, res, next);
       } catch (err) {
         return next(err);
       }
@@ -145,9 +140,9 @@ module.exports = name => superclass => class extends superclass {
     if (filevaultUpload) {
       return new Promise((resolve, reject) => {
         const form = new FormData();
-        form.append('document', new Blob([fileToUpload], { type: 'text/csv' }), 'uan-list.csv');
+        form.append('document', new Blob([fileToUpload.data], { type: 'text/csv' }), 'uan-list.csv');
 
-        this.auth()
+        return this.auth()
           .then(auth => {
             return axios.post(config.upload.hostname, form, {
               headers: {
