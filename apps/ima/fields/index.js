@@ -8,13 +8,13 @@ module.exports = {
     options: ['person-named', 'has-legal-representative', 'someone-else'],
     validate: 'required'
   },
-  'is-serious-and-irreversible':{
+  'is-serious-and-irreversible': {
     isPageHeading: true,
     mixin: 'radio-group',
     options: ['yes', 'no'],
-    validate: 'required',
+    validate: 'required'
   },
-  'is-risk-in-country':{
+  'is-risk-in-country': {
     mixin: 'radio-group',
     options: ['yes', 'no'],
     validate: 'required',
@@ -22,8 +22,8 @@ module.exports = {
       className: 'visuallyhidden'
     }
   },
-  'reason-in-sih':{
-    labelClassName:'visuallyhidden',
+  'reason-in-sih': {
+    labelClassName: 'visuallyhidden',
     mixin: 'textarea',
     validate: ['required', 'notUrl'],
     attributes: [{
@@ -31,7 +31,7 @@ module.exports = {
       value: 6
     }]
   },
-  'why-not-get-protection':{
+  'why-not-get-protection': {
     isPageHeading: false,
     labelClassName: 'bold',
     mixin: 'textarea',
@@ -41,7 +41,7 @@ module.exports = {
       value: 6
     }]
   },
-  'country-1':{
+  'country-1': {
     mixin: 'select',
     className: ['js-hidden'],
     validate: ['required'],
@@ -50,7 +50,11 @@ module.exports = {
       label: 'fields.country-1.options.null'
     }].concat(countries)
   },
-  'country-2':{
+  countryAddNumber: {
+    className: 'visuallyhidden',
+    labelClassName: 'visuallyhidden'
+  },
+  'country-2': {
     mixin: 'select',
     className: ['js-hidden'],
     options: [{
@@ -58,7 +62,7 @@ module.exports = {
       label: 'fields.country-2.options.null'
     }].concat(countries)
   },
-  'country-3':{
+  'country-3': {
     mixin: 'select',
     className: ['js-hidden'],
     options: [{
@@ -66,7 +70,7 @@ module.exports = {
       label: 'fields.country-3.options.null'
     }].concat(countries)
   },
-  'country-4':{
+  'country-4': {
     mixin: 'select',
     className: ['js-hidden'],
     options: [{
@@ -74,7 +78,7 @@ module.exports = {
       label: 'fields.country-4.options.null'
     }].concat(countries)
   },
-  'country-5':{
+  'country-5': {
     mixin: 'select',
     className: ['js-hidden'],
     options: [{

@@ -22,22 +22,14 @@
     "header": "This link has expired"
   },
   "risk-of-harm": {
-    "header":"Would you be at risk of serious and irreversible harm in {{values.country-1}}?"
+    "header":"Would you be at risk of serious and irreversible harm in {{values.country-placeholder}}?"
   },
   "harm-claim-countries": {
     "header":"Which countries can you make a serious and irreversible harm claim against?",
     "paragraph":"Your Illegal Migration Act notice will say which countries you can make this type of claim against. You cannot make a claim against your country of nationality"
   },
   "harm-claim-details": {
-    "header":"Serious and irreversible harm in {{values.country-1}}"
-  },
-  "harm-claim-summary":{
-    "header":"Summary of your serious and irreversible harm claims",
-    "fields": {
-      "is-serious-and-irreversible":{
-        "label":"Making claim"
-      }
-    }
+    "header":"Serious and irreversible harm in {{values.country-placeholder}}"
   },
   "confirm": {
     "header": "Check your answers",

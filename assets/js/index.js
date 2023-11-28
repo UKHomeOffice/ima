@@ -6,6 +6,7 @@ const $ = require('jquery');
 const accessibleAutocomplete = require('accessible-autocomplete');
 const harmCountriesRepeater = require('./harm-countries-repeater');
 
+
 $('.typeahead').each(function applyTypeahead() {
   accessibleAutocomplete.enhanceSelectElement({
     defaultValue: '',

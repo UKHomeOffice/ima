@@ -30,6 +30,7 @@
     }
   },
   "is-risk-in-country":{
+    "legend": "Making a claim",
     "options": {
       "yes": {
         "label": "Yes"
@@ -39,37 +40,30 @@
       }
     }
   },
-  "has-anything-happened":{
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  }, 
-  "anything-happened-details":{
-    "label1":"Has anything happened to you since you arrived in the UK which would make it unsafe for you to go to [SIH country]?",
-    "label2": "Enter details",
-    "label3":"include:",
-    "list1":"What happened in the uk",
-    "list2":"why this would make it unsafe for you to go to [SIH country]"
+  "reason-in-sih": {
+    "label": "Why would you be at risk?"
   },
-  "why-not-get-protection":{
-    "label":"Why would you not be able to get protection from this harm in [SIH country]?"
+  "why-not-get-protection": {
+    "label":"Why would you not be able to get protection from this harm in {{values.country-placeholder}}?",
+    "summary-heading1":"Why would you sece not be able to get protection from this harm in {{values.country-1}}",
+    "summary-heading2":"Why would you sece not be able to get protection from this harm in {{values.country-2}}",
+    "summary-heading3":"Why would you sece not be able to get protection from this harm in {{values.country-3}}",
+    "summary-heading4":"Why would you sece not be able to get protection from this harm in {{values.country-4}}",
+    "summary-heading5":"Why would you sece not be able to get protection from this harm in {{values.country-5}}"
   },
-  "country-1":{
+  "country-1": {
     "label": "Country 1",
     "options": {
       "null": "Select a country"
-    }
+    },
+    "summary-heading":"Why would you sece not be able to get protection from this harm in {values.country-1}}"
   },
-  "country-2":{
+  "country-2": {
     "label": "Country 2",
     "options": {
       "null": "Select a country"
-    }
+    },
+    "summary-heading":"Why would you sece not be able to get protection from this harm in {values.country-2}}"
   },
   "country-3":{
     "label": "Country 3",
@@ -77,13 +71,13 @@
       "null": "Select a country"
     }
   },
-  "country-4":{
+  "country-4": {
     "label": "Country 4",
     "options": {
       "null": "Select a country"
     }
   },
-  "country-5":{
+  "country-5": {
     "label": "Country 5",
     "options": {
       "null": "Select a country"

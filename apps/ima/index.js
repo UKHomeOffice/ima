@@ -8,6 +8,13 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
+const HarmCountryRepeater = require('./behaviours/harm-country-repeater');
+const HarmClaimCountries = require('./behaviours/harm-countries-name');
+const HarmCountryFormLoop = require('./behaviours/harm-country-form-loop');
+const HarmClaimSummary = require('./behaviours/harm-claim-summary');
+const FormUpdate = require('./behaviours/form-update');
+
 
 module.exports = {
   name: 'ima',
@@ -36,8 +43,8 @@ module.exports = {
       next: '/harm-claim', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
     },
-    '/harm-claim':{
-      behaviours: SaveFormSession,
+    '/harm-claim': {
+      behaviours: [SaveFormSession],
       fields: ['is-serious-and-irreversible'],
       forks: [
         {
@@ -61,16 +68,16 @@ module.exports = {
       backLink: 'harm-claim'
     },
     '/harm-claim-countries': {
-      behaviours: [SaveFormSession],
-      fields: ['country-1','country-2','country-3','country-4','country-5'],
+      behaviours: [SaveFormSession, HarmCountryRepeater],
+      fields: ['country-1', 'country-2', 'country-3', 'country-4', 'country-5'],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
       next: '/risk-of-harm',
       backLink: 'harm-claim'
     },
-    '/risk-of-harm':{
-      behaviours: SaveFormSession,
-      fields: ['is-risk-in-country'],
+    '/risk-of-harm': {
+      behaviours: [SaveFormSession, FormUpdate, HarmClaimCountries],
+      fields: ['is-risk-in-country', 'countryAddNumber'],
       forks: [
         {
           target: '/harm-claim-details',
@@ -91,8 +98,8 @@ module.exports = {
       continueOnEdit: true,
       next: '/harm-claim-details'
     },
-    '/harm-claim-details':{
-      behaviours: SaveFormSession,
+    '/harm-claim-details': {
+      behaviours: [SaveFormSession, FormUpdate, HarmClaimCountries],
       fields: ['reason-in-sih', 'why-not-get-protection'],
       next: '/harm-claim-summary',
       continueOnEdit: true,
@@ -100,16 +107,28 @@ module.exports = {
       backLink: 'risk-of-harm'
     },
     '/harm-claim-summary': {
-      behaviours: [SaveFormSession],
+      behaviours: [AggregateSaveUpdate, HarmCountryFormLoop, HarmClaimSummary,  SaveFormSession],
+      aggregateTo: 'sih-countries',
+      aggregateFrom: [
+        'countryAddNumber',
+        'is-risk-in-country',
+        'reason-in-sih',
+        'why-not-get-protection'
+      ],
+      titleField: 'countryAddNumber',
+      addStep: 'harm-claim-countries',
+      addAnotherLinkText: 'country',
+      template: 'add-another',
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
       next: '/human-rights-claim',
+      backLink: 'harm-claim-countries'
     },
     '/human-rights-claim': {
       behaviours: SaveFormSession,
       fields: ['human-claim'],
       locals: { showSaveAndExit: true },
-      backLink: 'harm-claim-summary',
+      // backLink: 'harm-claim-summary',
       next: '/confirm' // TODO a url needs to be Changed
     },
     '/confirm': {
@@ -129,6 +148,6 @@ module.exports = {
     '/token-invalid': {
       clearSession: true
     },
-    '/application-expired': {},
+    '/application-expired': {}
   }
 };

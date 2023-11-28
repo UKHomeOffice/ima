@@ -83,7 +83,6 @@ const init = function init() {
     field.removeLink = removeLink;
     field.appendChild(removeLink);
   });
-
   refresh();
 };
 
