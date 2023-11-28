@@ -181,8 +181,8 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            - name: container-share
-              mountPath: /app/share
+            - mountPath: /app/share
+              name: container-share
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4
@@ -202,24 +202,10 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
+            - mountPath: /container-share
+              name: container-share
           securityContext:
             runAsNonRoot: true
-
-        - name: csv-process-save
-          image: debian
-          resources:
-            limits:
-              memory: 1024Mi
-              cpu: 200m
-            requests:
-              memory: 512Mi
-          volumeMounts:
-            - name: container-share
-              mountPath: /app/share
-          securityContext:
-            runAsNonRoot: true
-          command: ["/bin/sh"]
-          args: ["-ec", "sleep 1000"]
 
       volumes:
         - name: public
