@@ -33,9 +33,17 @@
   },
   "harm-claim-summary":{
     "header":"Summary of your serious and irreversible harm claims",
+    "sections":{
+      "harm-claim-countries": {
+        "header":"Serious and irreversible harm in {{values.country-1}}"
+      }
+    },
     "fields": {
-      "is-serious-and-irreversible":{
+      "is-serious-and-irreversible": {
         "label":"Making claim"
+      },
+      "country-1": {
+       "label": "{{values.country-1}}"
       }
     }
   },

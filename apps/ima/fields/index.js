@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   'reason-in-sih':{
-    labelClassName:'visuallyhidden',
+    labelClassName: 'visuallyhidden',
     mixin: 'textarea',
     validate: ['required', 'notUrl'],
     attributes: [{

@@ -8,6 +8,8 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
+const HarmSummaryLoop = require('./behaviours/harm-summary-loop');
 
 module.exports = {
   name: 'ima',
@@ -100,7 +102,17 @@ module.exports = {
       backLink: 'risk-of-harm'
     },
     '/harm-claim-summary': {
-      behaviours: [SaveFormSession],
+      behaviours: [AggregateSaveUpdate, HarmSummaryLoop, SaveFormSession],
+      aggregateTo: 'sih-countries',
+      aggregateFrom: [
+        'is-risk-in-country',
+        'reason-in-sih',
+        'why-not-get-protection'    
+      ],
+      titleField: '{{values.country-1}}',
+      addStep: 'risk-of-harm',
+      addAnotherLinkText: 'country',
+      template: 'add-another',
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
       next: '/human-rights-claim',

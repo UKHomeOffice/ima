@@ -9,6 +9,7 @@ module.exports = superclass => class extends superclass {
       req.form.values['country-4'],
       req.form.values['country-5']
     ].filter(Boolean);
+    console.log(req.form.values['harm-claim-countries'])
     return super.saveValues(req, res, next);
   }
 
@@ -20,6 +21,8 @@ module.exports = superclass => class extends superclass {
       values['country-3'] = harmClaimCountries[2] || '';
       values['country-4'] = harmClaimCountries[3] || '';
       values['country-5'] = harmClaimCountries[4] || '';
+
+      console.log(harmClaimCountries)
       next(err, values);
     });
   }

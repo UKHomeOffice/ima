@@ -7,15 +7,12 @@ module.exports = {
     steps: [
       {
         step: '/harm-claim-countries',
-        field: ''
+        field: 'country-1'
       },
       {
         step: '/harm-claim',
         field: 'is-serious-and-irreversible'
       }
     ]
-  },
-  '':{
-    
   }
 };
