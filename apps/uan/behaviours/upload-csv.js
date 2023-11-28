@@ -134,44 +134,19 @@ module.exports = name => superclass => class extends superclass {
       const destinationFilePath = path.join(__dirname, '/../../../share/uan-list.csv');
       try {
         await fs.writeFile(destinationFilePath, fileToUpload.data);
-        // return super.saveValues(req, res, next);
       } catch (err) {
         return next(err);
       }
     }
 
     if (filevaultUpload) {
-      return new Promise((resolve, reject) => {
-        const form = new FormData();
-        form.append('document', new Blob([fileToUpload.data], { type: 'text/csv' }), 'uan-list.csv');
-
-        return this.auth()
-          .then(auth => {
-            return axios.post(config.upload.hostname, form, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-                Authorization: `Basic ${auth.bearer}`
-              }
-            });
-          })
-          .then(response => {
-            const fileURL = response.data.url;
-            const fileUUID = response.data.url.split('/file/')[1].split('?')[0];
-            logger.log({
-              level: 'info',
-              message: `CSV file uploaded, URL is: ${fileURL}, UUID is: ${fileUUID}`
-            });
-            resolve(fileURL);
-          })
-          .catch(error => {
-            // eslint-disable-next-line no-console
-            logger.log({
-              level: 'info',
-              message: `Error uploading via file-vault CSV: ${error}`
-            });
-            reject(error);
-          });
-      });
+      const filevaultUrl = await filevaultUpload(fileToUpload);
+      const destinationFilePath = path.join(__dirname, '/../../../share/uan-list-links.csv');
+      try {
+        await fs.appendFile(destinationFilePath, filevaultUrl);
+      } catch (err) {
+        return next(err);
+      }
     }
 
     if (directUploadToDb) {
@@ -220,6 +195,40 @@ module.exports = name => superclass => class extends superclass {
 
     const status = response.status;
     return Promise.resolve(status);
+  }
+
+  filevaultUpload(file) {
+    return new Promise((resolve, reject) => {
+      const form = new FormData();
+      form.append('document', new Blob([file.data], { type: 'text/csv' }), 'uan-list.csv');
+
+      return this.auth()
+        .then(auth => {
+          return axios.post(config.upload.hostname, form, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: `Basic ${auth.bearer}`
+            }
+          });
+        })
+        .then(response => {
+          const fileURL = response.data.url;
+          const fileUUID = response.data.url.split('/file/')[1].split('?')[0];
+          logger.log({
+            level: 'info',
+            message: `CSV file uploaded, URL is: ${fileURL}, UUID is: ${fileUUID}`
+          });
+          resolve(fileURL);
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          logger.log({
+            level: 'info',
+            message: `Error uploading via file-vault CSV: ${error}`
+          });
+          reject(error);
+        });
+    });
   }
 
   auth() {
