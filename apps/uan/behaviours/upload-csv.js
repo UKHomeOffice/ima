@@ -52,6 +52,7 @@ module.exports = name => superclass => class extends superclass {
     const fileToProcess = _.get(req.files, `${name}`);
 
     if (fileToProcess) {
+      req.form.values[name] = req.files[name].name;
       // Stop processing early if the file is not in the correct format
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToProcess);
       if (invalidSize || invalidMimetype) {
@@ -88,6 +89,8 @@ module.exports = name => superclass => class extends superclass {
     const fileToValidate = _.get(req.files, `${name}`);
 
     if (fileToValidate) {
+      req.form.values[name] = req.files[name].name;
+
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToValidate);
       if (invalidSize || invalidMimetype) {
         return new this.ValidationError('bulk-upload-uan', {
