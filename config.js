@@ -84,7 +84,7 @@ module.exports = {
     recordScanLimit: 5,
     filevaultUpload: true,
     directUploadToDb: false,
-    writeFileToSharedVolume: true,
+    writeFileToSharedVolume: false,
     maxFileSize: '25mb',
     mandatoryColumns: [
       'uan',
