@@ -206,13 +206,13 @@ spec:
             runAsNonRoot: true
 
         - name: csv-process-save
-          image: node:lts-alpine
+          image: debian
           resources:
             limits:
-              memory: 256Mi
-              cpu: 100m
+              memory: 1024Mi
+              cpu: 200m
             requests:
-              memory: 128Mi
+              memory: 512Mi
           volumeMounts:
             - name: container-share
               mountPath: /app/share
