@@ -9,6 +9,7 @@ const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
+const HarmCountryRepeater = require('./behaviours/harm-country-repeater');
 const HarmSummaryLoop = require('./behaviours/harm-summary-loop');
 
 module.exports = {
@@ -63,7 +64,7 @@ module.exports = {
       backLink: 'harm-claim'
     },
     '/harm-claim-countries': {
-      behaviours: [SaveFormSession],
+      behaviours: [SaveFormSession, HarmCountryRepeater],
       fields: ['country-1','country-2','country-3','country-4','country-5'],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
