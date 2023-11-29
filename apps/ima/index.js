@@ -45,15 +45,64 @@ module.exports = {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
-      next: '/confirm'
+      next: '/summary'
     },
-    '/confirm': {
-      behaviours: [Summary, Submit, SaveFormSession],
+    '/summary': {
+      behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
-      next: '/confirmation'
+      forks: [ // Update to late submission step
+        {
+          target: '/declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'person-named'
+          }
+        },
+        {
+          target: '/immigration-adviser-declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'has-legal-representative'
+          }
+        },
+        {
+          target: '/helper-declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'helper'
+          }
+        }
+      ]
     },
-    '/confirmation': {
+    '/declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: [
+        'person-declaration'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/immigration-adviser-declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: ['use-interpreter',
+        'immigration-adviser-declaration', 'language-used'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/helper-declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: ['use-interpreter',
+        'helper-declaration', 'language-used'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/form-submitted': {
       clearSession: true
     },
     '/save-and-exit': {

@@ -50,14 +50,33 @@
       }  
     }
   },
-  "confirmation": {
-    "confirmed": "Submitted",
+  "declaration": {
+    "header": "Declaration"
+  },
+  "immigration-adviser-declaration": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to {{values.name}}?",
+    "paragraph2": "Include any dialects",
+    "header1": "Did you use an interpreter?"
+  },
+  "helper-declaration": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to {{values.name}}?",
+    "paragraph2": "Include any dialects",
+    "header1": "Did you use an interpreter?"
+  },
+  "form-submitted": {
+    "confirmed": "Form-Submitted",
     "paragraph1": "We have sent a copy of completed form to:",
     "header2": "What happens next",
     "paragraph2": "We will make decision about your claim, then contact you to tell you what you need to do next.",
     "header3": "If you need to send more evidence",
     "paragraph3": "You can email evidence to [EMAIL ADDRESS]",
     "paragraph4": "Your email must include the Unique application number [UAN] and date of birth you used to sign in to this form.",
-    "paragraph5": "Information about how to send more evidence is also on the email we send you when you submitted this form."
+    "paragraph5": "Information about how to send more evidence is also on the email we send you when you submitted this form.",
+    "paragraph6": "Do not wait for confirmation that you have been granted an extension to send your evidence.",
+    "paragraph7": "Your email subject line must contain the Unique application number {{values.uan}} and date of birth you used to sign in to this form.",
+    "paragraph8": "Information about how to send more evidence is also on the email we send you when you submitted this form."
+
   }
 }

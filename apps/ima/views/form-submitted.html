@@ -1,0 +1,31 @@
+<title>{{#t}}pages.form-submitted.confirmed{{/t}} – GOV.UK</title>
+
+{{<partials-page}} {{$page-content}} <!-- alert-complete is the HOF supported class currently, should be using the
+  govuk-styles -->
+  <div class="govuk-panel alert-complete govuk-panel--confirmation">
+    <h1 class="govuk-panel__title">
+      {{#t}}pages.form-submitted.confirmed{{/t}}
+    </h1>
+  </div>
+
+  <p class="govuk-body">{{#t}}pages.form-submitted.paragraph1{{/t}}</p>
+  <ul class="govuk-list govuk-list--bullet">
+    {{#values.all-unique-emails}}
+    <li>{{.}}</li>
+    {{/values.all-unique-emails}}
+  </ul>
+
+  <h2 class="govuk-heading-m">{{#t}}pages.form-submitted.header2{{/t}}</h2>
+  <p class="govuk-body">{{#t}}pages.form-submitted.paragraph2{{/t}}</p>
+
+  <h3 class="govuk-heading-m">{{#t}}pages.form-submitted.header3{{/t}}</h2>
+
+    <p class="govuk-body">{{#t}}pages.form-submitted.paragraph3{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.form-submitted.paragraph4{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.form-submitted.paragraph5{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.form-submitted.paragraph6{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.form-submitted.paragraph7{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.form-submitted.paragraph8{{/t}}</p>
+
+    {{/page-content}}
+    {{/partials-page}}

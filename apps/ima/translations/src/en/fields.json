@@ -12,10 +12,33 @@
         "label": "An immigration advisor representing the claimant",
         "hint": "Such as a solicitor or legal representative. You must have already sent a letter of authority to the Home Office to confirm that you can represent the person named on the duty to remove letter."
       },
-      "someone-else": {
+      "helper": {
         "label": "Someone helping the person named on the duty to remove notice",
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "person-declaration": {
+    "label": "I understand and agree with this declaration."
+  },
+  "use-interpreter": {
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "language-used": {
+    "label": "Include any dialects"
+  },
+  "helper-declaration": {
+    "label": "I understand and agree with this declaration."
+  },
+  "immigration-adviser-declaration": {
+    "label": "I understand and agree with this declaration."
   }
 }
