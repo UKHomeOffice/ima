@@ -1,5 +1,7 @@
+<title>{{#t}}pages.confirm.header{{/t}} – GOV.UK</title>
 {{<partials-page}}
   {{$page-content}}
+  <h1 class="govuk-heading-l">{{#t}}pages.confirm.header{{/t}}</h1>
     <table class="table-details">
       <tbody>
         {{#rows}}
@@ -8,6 +10,6 @@
         {{> partials-evidence-thumbnails}}
       </tbody>
     </table>
-    {{#input-submit}}confirm-submission{{/input-submit}}
+    {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}
