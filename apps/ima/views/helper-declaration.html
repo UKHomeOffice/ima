@@ -1,15 +1,13 @@
-{{<partials-page}} {{$page-content}}
+{{<partials-page}}
+{{$page-content}}
 <p class="govuk-heading-m">{{#t}}pages.helper-declaration.paragraph1{{/t}}</p>
-  {{#renderField}}language-used1{{/renderField}}
-  <p class="govuk-heading-m">{{#t}}pages.helper-declaration.header1{{/t}}</p>
-  {{#renderField}}use-interpreter1{{/renderField}}
- {{#markdown}}helper-declaration{{/markdown}}
- <br><br>
-  {{#renderField}}helper-declaration{{/renderField}} 
-  <br><br>
-  <p>You will not be able to change your answers after you submit.</p>
-  <br><br>
-  {{#input-submit}}confirm-submission{{/input-submit}}
-  {{/page-content}}
-  {{/partials-page}}
-  
+{{#renderField}}language-used{{/renderField}}
+{{#renderField}}use-interpreter{{/renderField}}
+{{#markdown}}helper-declaration{{/markdown}}
+<br><br>
+{{#renderField}}helper-declaration{{/renderField}}
+<p>You will not be able to change your answers after you submit.</p>
+<br>
+{{#input-submit}}confirm-submission{{/input-submit}}
+{{/page-content}}
+{{/partials-page}}

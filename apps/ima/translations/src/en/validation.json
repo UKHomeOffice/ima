@@ -9,6 +9,22 @@
     "fileType": "This file is not a valid file format you can upload to this service.",
     "tooMany": "You can only submit up to 250 attachments."
   },
+  "are-you-submitting-this-form-late": {
+    "required": "You must select an option"
+  },
+  "are-you-submitting-this-form-late-extension": {
+    "required": "You must select an option"
+  },
+  "late-extension-options-yes-detail": {
+    "required": "Please provide a valid date",
+    "date": "Please provide a valid date",
+    "before": "Enter a date in the past",
+    "after": "Enter a date after 01 01 1900"
+  },
+  "late-submission": {
+    "required": "Please provide details for late submission",
+    "maxlength": "Maximum allowed characters are 15000"
+  },
   "language-used": {
     "required": "Please enter the language used"
   },

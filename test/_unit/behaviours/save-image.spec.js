@@ -95,6 +95,20 @@ describe("apps/ima 'save-image' behaviour should ", () => {
       expect(sessionModel.image.name).to.eql('guitar.png');
     });
 
+    it('should redirect to /evidence-upload when on evidence upload page', () => {
+      req.form.options.route = '/evidence-upload';
+      req.sessionModel.set('images', imageFiles);
+      instance.saveValues(req, res, next);
+      expect(req.form.options.route).to.eql('/evidence-upload');
+    });
+
+    it('should redirect to /submitting-late-details when on submitting late details page', () => {
+      req.form.options.route = '/submitting-late-details';
+      req.sessionModel.set('images', imageFiles);
+      instance.saveValues(req, res, next);
+      expect(req.form.options.route).to.eql('/submitting-late-details');
+    });
+
     after(() => {
       Base.prototype.saveValues.restore();
     });

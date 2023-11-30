@@ -1,11 +1,10 @@
-{{<partials-page}} {{$page-content}}
- {{#markdown}}declaration{{/markdown}}
- <br><br>
-  {{#renderField}}person-declaration{{/renderField}} 
-  <br><br>
-  <br><br>
-  <p>You will not be able to change your answers after you submit.</p>
-  <br><br>
-  {{#input-submit}}confirm-submission{{/input-submit}}
-  {{/page-content}}
-  {{/partials-page}}
+{{<partials-page}} 
+{{$page-content}}
+{{#markdown}}declaration{{/markdown}}
+<br><br>
+{{#renderField}}person-declaration{{/renderField}}
+<p>You will not be able to change your answers after you submit.</p>
+<br>
+{{#input-submit}}confirm-submission{{/input-submit}}
+{{/page-content}}
+{{/partials-page}}

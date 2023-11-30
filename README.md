@@ -109,7 +109,7 @@ The other services used for IMA include
 - [Html-pdf-converter](https://github.com/UKHomeOffice/html-pdf-converter)
 - [filevault](https://github.com/UKHomeOffice/file-vault)
 
-> **Note**: you will need hof-rds-api running locally to successfully run and use IMA's core user flows. You can also run both Html-pdf-converter and file-vault locally if you want to test integration beyond the IMA application.
+> **Note**: you will need hof-rds-api running locally to successfully run and use IMA's core user flows. You can also run both Html-pdf-converter and file-vault locally if you want to test integration beyond the IMA application. 
 
 ### Additional Env vars
 

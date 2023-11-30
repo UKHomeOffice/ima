@@ -8,6 +8,11 @@ a {
   @extend .govuk-link;
 }
 
+.evidence-list > ol {
+  margin-left: 20px;
+  @extend  .govuk-list--number;
+ }
+
 // Accessible autocomplete
 .autocomplete__wrapper {
   position: relative;
@@ -191,7 +196,12 @@ pre.looped-records {
 .button-as-link:active {
   background: #ffdd00;
 }
-
+#are-you-submitting-this-form-late-extension-group > fieldset > legend {
+@extend .govuk-heading-m;
+}
+#use-interpreter-group > fieldset > legend {
+  @extend .govuk-heading-m;
+  }
 .button-as-link .govuk-button:active {
   color: black;
   line-height: 23px;
@@ -207,3 +217,6 @@ pre.looped-records {
 .confirm-label[data-content="Files uploaded"] ~ .confirm-value {
   white-space: pre-line
  }
+ .govuk-character-count__message {
+  display: none;
+}

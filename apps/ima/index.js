@@ -45,13 +45,47 @@ module.exports = {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
-      next: '/summary'
+      next: '/final-summary'
     },
-    '/summary': {
+    '/final-summary': {
       behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
-      forks: [ // Update to late submission step
+      template: 'confirm',
+      next: '/submitting-late'
+    },
+    '/submitting-late': {
+      behaviours: [SaveFormSession],
+      locals: { showSaveAndExit: true },
+      fields: [
+        'are-you-submitting-this-form-late',
+        'are-you-submitting-this-form-late-extension',
+        'late-extension-options-yes-detail'
+      ],
+      continueOnEdit: true,
+      forks: [
+        {
+          target: '/declaration',
+          condition: {
+            field: 'are-you-submitting-this-form-late',
+            value: 'no'
+          }
+        },
+        {
+          target: '/submitting-late-details',
+          condition: {
+            field: 'are-you-submitting-this-form-late',
+            value: 'yes'
+          }
+        }
+      ]
+    },
+    '/submitting-late-details': {
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      locals: { showSaveAndExit: true },
+      fields: ['image', 'late-submission'],
+      continueOnEdit: true,
+      forks: [
         {
           target: '/declaration',
           condition: {
