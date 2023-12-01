@@ -1,16 +1,13 @@
 {
   "bulk-upload-uan": {
-    "required": "Select a file.",
-    "maxFileSize": "The selected file must be smaller than 25MB.",
+    "required": "Select a CSV",
+    "maxFileSize": "The selected file must be smaller than 25MB",
     "fileType": "The selected file must be a CSV.",
     "invalidColumns": "Please ensure you have at least the following columns in your CSV file: UAN, DOB",
-    "missingValues": "There are missing values in this file. Please check it to ensure no mandatory field values are missing.",
-    "hasDuplicates": "There are duplicate applications in this CSV file. Please remove any duplicates.",
-    "emptyCsvSheet": "The selected file is empty.",
-    "hasBadUan": "UANs must be in the format 1234-5678-1234-5678. Please check all included UANs match this pattern.",
-    "processingError": "There was an error processing this CSV. Please try again."
+    "emptyCsvSheet": "The selected file is empty",
+    "processingError": "The selected file could not be uploaded – try again"
   },
   "confirm-data-checked": {
-    "required": "Confirm that your file contains complete and correct records."
+    "required": "Confirm that this file contains complete and correct records."
   }
 }

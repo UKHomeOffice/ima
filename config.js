@@ -82,13 +82,14 @@ module.exports = {
   },
   uanUpload: {
     recordScanLimit: 5,
-    filevaultUpload: true,
+    filevaultUpload: false,
     directUploadToDb: false,
     writeFileToSharedVolume: true,
     maxFileSize: '25mb',
     mandatoryColumns: [
-      'uan',
-      'dob'
+      'uan which has ban alerts under ima 2023',
+      'date of birth',
+      'duty to remove alert'
     ],
     allowedMimeTypes: [
       'text/csv'
