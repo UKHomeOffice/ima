@@ -1,5 +1,14 @@
 {
   "who-are-you": {
     "required": "You must select an option"
+  },
+  "exceptional-circumstances": {
+    "required": "You must select an option"
+  },
+  "exceptional-circumstances-details": {
+    "required": "You must provide details",
+    "maxlength": "Details must be 15,000 characters or less",
+    "regex": "Details must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
   }
 }

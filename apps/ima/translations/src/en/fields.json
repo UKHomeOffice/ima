@@ -17,5 +17,18 @@
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "exceptional-circumstances": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "exceptional-circumstances-details": {
+    "label": "Enter details"
   }
 }

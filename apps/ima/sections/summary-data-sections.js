@@ -17,5 +17,20 @@ module.exports = {
         omitChangeLink: true
       }
     ]
+  },
+  'claim-details': {
+    steps: [
+      {
+        step: '/exceptional-circumstances-claim',
+        field: 'exceptional-circumstances',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exceptional-circumstances-claim')) {
+            return null;
+          }
+          return req.sessionModel.get('exceptional-circumstances') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      }
+    ]
   }
 };
