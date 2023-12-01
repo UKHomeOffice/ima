@@ -4,11 +4,10 @@
     "paragraph1": "You must only upload:",
     "list1": "CSV files",
     "list2": "files under {{maxFileSize}}",
-    "list3": "one file at a time",
-    "list4": "the latest version of all UAN records",
-    "list5": "correctly formatted data",
+    "list3": "the latest version of all UAN records",
+    "list4": "correctly formatted data",
     "detail-summary": "How to format data correctly",
-    "detail-text1": "The CSV must have only two columns of data: UAN, followed by DOB in left to right order.",
+    "detail-text1": "The CSV must have only three columns of data: UAN which has BAN alerts under IMA 2023, Date of birth and Duty to remove Alert in left-to-right order. Include a heading for each column.",
     "warning": "Importing a file will overwrite all existing records in this database."
   },
   "complete": {
