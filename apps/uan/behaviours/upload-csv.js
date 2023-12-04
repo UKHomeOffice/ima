@@ -60,25 +60,33 @@ module.exports = name => superclass => class extends superclass {
       }
 
       const records = [];
-      const parser = parse({columns: true});
+      const parser = parse({columns: true, to: recordScanLimit});
 
       parser.on('readable', function () {
         let record;
-        while ((record = parser.read()) !== null && records.length < parseInt(recordScanLimit, 10)) {
+        while ((record = parser.read()) !== null) {
           records.push(record);
         }
       });
 
       parser.on('error', function (err) {
-        req.log('error', err.message);
+        logger.log({
+          level: 'error',
+          message: err.message
+        });
       });
 
       await parser.write(req.files[name].data);
       // need to call end() otherwise last record is missed
       parser.end();
 
-      req.sessionModel.set('csv-columns', Object.keys(records[0]) || []);
-      if (directUploadToDb) {
+      if (records.length) {
+        req.sessionModel.set('csv-columns', Object.keys(records[0]));
+      } else {
+        req.sessionModel.set('csv-columns', []);
+      }
+
+      if (records.length && directUploadToDb) {
         req.sessionModel.set('bulk-records', records);
       }
     }
@@ -99,10 +107,17 @@ module.exports = name => superclass => class extends superclass {
         });
       }
 
-      const csvColumns = req.sessionModel.get('csv-columns');
+      if (!fileToValidate.data) {
+        return new this.ValidationError('bulk-upload-uan', {
+          type: 'emptyFile',
+          redirect: undefined
+        });
+      }
+
+      const csvColumns = req.sessionModel.get('csv-columns') || [];
       if (!csvColumns.length) {
         return new this.ValidationError('bulk-upload-uan', {
-          type: 'emptyCsvSheet',
+          type: 'processFormatError',
           redirect: undefined
         });
       }
@@ -113,14 +128,36 @@ module.exports = name => superclass => class extends superclass {
       });
 
       // checks if csv has at least columns needed for processing
-      const hasMandatoryColumns = mandatoryColumns.every(column => {
-        return transformedColumns.includes(column);
-      });
+      const missingColumns = mandatoryColumns.map(columnName => {
+        return transformedColumns.includes(columnName) ? null : columnName;
+      }).filter(x => x);
 
-      if (!hasMandatoryColumns) {
+      if (missingColumns.length) {
+        if (missingColumns.length === mandatoryColumns.length) {
+          return new this.ValidationError('bulk-upload-uan', {
+            type: 'noColumnHeadings',
+            redirect: undefined
+          });
+        }
+
+        const firstMissingColumn = missingColumns[0];
+        let columnError;
+        switch(firstMissingColumn) {
+          case 'uan which has ban alerts under ima 2023':
+            columnError = 'missingUanColumn';
+            break;
+          case 'date of birth':
+            columnError = 'missingDobColumn';
+            break;
+          case 'duty to remove alert':
+            columnError = 'missingDtrColumn';
+            break;
+          default:
+            columnError = 'invalidColumns';
+        };
         return new this.ValidationError('bulk-upload-uan', {
-          type: 'invalidColumns',
-          redirect: undefined
+          type: columnError,
+          redirect: undefined,
         });
       }
     }
