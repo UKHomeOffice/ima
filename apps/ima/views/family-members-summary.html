@@ -1,0 +1,10 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{> partials-items-table}}
+    <p>If you have included a British citizen who is your child, you must upload their birth certificate later in this form.</p>
+    <br>
+    <p><a href="{{baseUrl}}/{{addStep}}" class="govuk-link">Add another {{addAnotherLinkText}}</a></p>
+    <br>
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
