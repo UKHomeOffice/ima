@@ -6,7 +6,6 @@ const parse = require('csv-parse').parse;
 const fs = require('fs/promises');
 const path = require('path');
 const axios = require('axios');
-const Bottleneck = require('bottleneck');
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, json } = format;
 
@@ -180,6 +179,7 @@ module.exports = name => superclass => class extends superclass {
         return next(err);
       }
     }
+    return super.saveValues(req, res, next);
   }
 
   filevaultUpload(file) {
