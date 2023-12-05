@@ -11,13 +11,11 @@ const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, json } = format;
 
 const maxFileSize = config.uanUpload.maxFileSize;
-const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 const {
   allowedMimeTypes,
   mandatoryColumns,
   recordScanLimit,
   filevaultUpload,
-  directUploadToDb,
   writeFileToSharedVolume
 } = config.uanUpload;
 
@@ -84,10 +82,6 @@ module.exports = name => superclass => class extends superclass {
         req.sessionModel.set('csv-columns', Object.keys(records[0]));
       } else {
         req.sessionModel.set('csv-columns', []);
-      }
-
-      if (records.length && directUploadToDb) {
-        req.sessionModel.set('bulk-records', records);
       }
     }
     return super.process(req, res, next);
@@ -186,53 +180,6 @@ module.exports = name => superclass => class extends superclass {
         return next(err);
       }
     }
-
-    if (directUploadToDb) {
-      const limiter = new Bottleneck({
-        maxConcurrent: 50,
-        minTime: 1000
-      });
-
-      const records = req.sessionModel.get('bulk-records');
-      const recordColumns = Object.keys(records[0]);
-      // lowercase and trim whitespace to be flexible in case of column name inconsistency
-      const cleanedRecords = records.map(record => {
-        const updatedRecord = {};
-        recordColumns.forEach(column => {
-          updatedRecord[column.toLowerCase().trim()] = record[column] || null;
-          // lowercase email address values to be flexible regarding case inconsistency
-          if (updatedRecord['email address']) {
-            updatedRecord['email address'] = updatedRecord['email address'].toLowerCase();
-          }
-        });
-        return updatedRecord;
-      });
-
-      try {
-        await limiter.schedule(() => {
-          const submitRecords = cleanedRecords.map(record => {
-            return this.submitRecord(record);
-          });
-          return Promise.all(submitRecords);
-        });
-
-        return super.saveValues(req, res, next);
-      } catch (err) {
-        return next(err);
-      }
-    }
-    return super.saveValues(req, res, next);
-  }
-
-  async submitRecord(record) {
-    const response = await axios.post(applicationsUrl, {
-      uan: record.uan.trim(),
-      date_of_birth: record.dob.trim(),
-      session: JSON.stringify({})
-    });
-
-    const status = response.status;
-    return Promise.resolve(status);
   }
 
   filevaultUpload(file) {

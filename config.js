@@ -81,9 +81,8 @@ module.exports = {
     fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
   },
   uanUpload: {
-    recordScanLimit: 5,
+    recordScanLimit: 1,
     filevaultUpload: false,
-    directUploadToDb: false,
     writeFileToSharedVolume: true,
     maxFileSize: '25mb',
     mandatoryColumns: [
