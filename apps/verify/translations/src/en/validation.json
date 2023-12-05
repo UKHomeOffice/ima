@@ -1,7 +1,7 @@
 {
   "uan": {
     "required": "Enter your UAN reference",
-    "regex": "Enter a valid UAN. The format should be NNNN-nnnn-nnnn-nnnn (in digits)",
+    "regex": "Enter a valid UAN. For example, 3455-9874-2349-0753",
     "noUanRecordMatch": "Your UAN does not match our records, Check you have entered the UAN correctly"
   },
   "date-of-birth": {
