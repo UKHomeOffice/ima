@@ -154,10 +154,10 @@ module.exports = name => superclass => class extends superclass {
             break;
           default:
             columnError = 'invalidColumns';
-        };
+        }
         return new this.ValidationError('bulk-upload-uan', {
           type: columnError,
-          redirect: undefined,
+          redirect: undefined
         });
       }
     }
@@ -217,8 +217,8 @@ module.exports = name => superclass => class extends superclass {
         });
 
         return super.saveValues(req, res, next);
-      } catch (e) {
-        return next(e);
+      } catch (err) {
+        return next(err);
       }
     }
     return super.saveValues(req, res, next);
