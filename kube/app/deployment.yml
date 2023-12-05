@@ -202,8 +202,6 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            - mountPath: /container-share
-              name: container-share
           securityContext:
             runAsNonRoot: true
 
