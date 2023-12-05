@@ -168,18 +168,19 @@ module.exports = name => superclass => class extends superclass {
     const fileToUpload = _.get(req.files, `${name}`);
 
     if (writeFileToSharedVolume) {
-      const destinationFilePath = path.join(__dirname, '/../../../share/uan-list.csv');
-      try {
-        await fs.writeFile(destinationFilePath, fileToUpload.data);
-      } catch (err) {
-        return next(err);
-      }
+      const destinationPath = path.join(__dirname, '/../../../container-share/');
+      const destinationFilePath = destinationPath + 'uan-list.csv';
+      fs.mkdir(destinationPath, {recursive: true})
+        .then(() => fs.writeFile(destinationFilePath, fileToUpload.data))
+        .catch(err => {
+          return next(err);
+        });
     }
 
     if (filevaultUpload) {
-      const filevaultUrl = await this.filevaultUpload(fileToUpload);
-      const destinationFilePath = path.join(__dirname, '/../../../share/uan-list-urls.txt');
       try {
+        const filevaultUrl = await this.filevaultUpload(fileToUpload);
+        const destinationFilePath = path.join(__dirname, '/../../../container-share/uan-list-urls.txt');
         await fs.appendFile(destinationFilePath, filevaultUrl);
       } catch (err) {
         return next(err);

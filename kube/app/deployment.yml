@@ -181,7 +181,7 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            - mountPath: /app/share
+            - mountPath: /app/container-share
               name: container-share
 
         - name: nginx-proxy

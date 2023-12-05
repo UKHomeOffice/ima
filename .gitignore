@@ -19,3 +19,4 @@ test/_accessibility/tmp/*
 ~$*
 *.xlsx
 data/*
+container-share/
