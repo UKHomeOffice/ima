@@ -42,14 +42,19 @@ module.exports = superclass => class extends superclass {
       const fields = [];
   
       let itemTitle = '';
-  
+      
+       let currentCountry = req.sessionModel.get('country-count')[0];
+      // const countryName = [...req.sessionModel.get('harm-countries')];
+
       req.form.options.aggregateFrom.forEach(aggregateFromElement => {
+        
         const aggregateFromField = aggregateFromElement.field || aggregateFromElement;
         const isTitleField = req.form.options.titleField === aggregateFromField;
         const value = req.sessionModel.get(aggregateFromField);
-  
+
         if (isTitleField) {
-          itemTitle = value;
+         // itemTitle = value;
+          itemTitle = currentCountry;
         }
   
         fields.push({
@@ -66,7 +71,7 @@ module.exports = superclass => class extends superclass {
   
       const newItem = { itemTitle, fields };
   
-      items.push(newItem);
+      items.push(newItem); // Why push to new object ? Immutable .
   
       this.setAggregateArray(req, items);
       res.redirect(`${req.baseUrl}${req.form.options.route}`);

@@ -44,7 +44,7 @@
     "label": "Why would you be at risk?"
   },
   "why-not-get-protection": {
-    "label":"Why would you not be able to get protection from this harm in {{values.country-1}}?"
+    "label":"Why would you not be able to get protection from this harm in {{values.country-placeholder}}?"
   },
   "country-1": {
     "label": "Country 1",

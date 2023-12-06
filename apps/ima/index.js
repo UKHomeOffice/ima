@@ -10,7 +10,10 @@ const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
 const HarmCountryRepeater = require('./behaviours/harm-country-repeater');
-const HarmSummaryLoop = require('./behaviours/harm-summary-loop');
+const HarmCountriesName = require('./behaviours/harm-countries-name');
+const HarmCountryFormLoop = require('./behaviours/harm-country-form-loop');
+const CountryName = require('./behaviours/country-name');
+const { countries } = require('hof/utilities');
 
 module.exports = {
   name: 'ima',
@@ -72,8 +75,8 @@ module.exports = {
       backLink: 'harm-claim'
     },
     '/risk-of-harm':{
-      behaviours: SaveFormSession,
-      fields: ['is-risk-in-country'],
+      behaviours: [SaveFormSession, HarmCountriesName],
+      fields: ['is-risk-in-country','countryAddNumber'],
       forks: [
         {
           target: '/harm-claim-details',
@@ -94,8 +97,8 @@ module.exports = {
       continueOnEdit: true,
       next: '/harm-claim-details'
     },
-    '/harm-claim-details':{
-      behaviours: SaveFormSession,
+    '/harm-claim-details': {
+      behaviours: [SaveFormSession, HarmCountriesName],
       fields: ['reason-in-sih', 'why-not-get-protection'],
       next: '/harm-claim-summary',
       continueOnEdit: true,
@@ -103,20 +106,22 @@ module.exports = {
       backLink: 'risk-of-harm'
     },
     '/harm-claim-summary': {
-      behaviours: [AggregateSaveUpdate, HarmSummaryLoop, SaveFormSession],
+      behaviours: [AggregateSaveUpdate, HarmCountryFormLoop, CountryName, SaveFormSession],
       aggregateTo: 'sih-countries',
       aggregateFrom: [
+        'countryAddNumber',
         'is-risk-in-country',
         'reason-in-sih',
         'why-not-get-protection'    
       ],
-      titleField: '{{values.country-1}}',
+      titleField: 'countryAddNumber',
       addStep: 'risk-of-harm',
       addAnotherLinkText: 'country',
       template: 'add-another',
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
       next: '/human-rights-claim',
+      backLink: 'harm-claim-countries'
     },
     '/human-rights-claim': {
       behaviours: SaveFormSession,

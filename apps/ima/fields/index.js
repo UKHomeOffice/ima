@@ -43,12 +43,16 @@ module.exports = {
   },
   'country-1':{
     mixin: 'select',
-    className: ['js-hidden'],
+    className: ['change','js-hidden'],
     validate: ['required'],
     options: [{
       value: '',
       label: 'fields.country-1.options.null'
     }].concat(countries)
+  },
+  'countryAddNumber': {
+    className: 'visuallyhidden',
+    labelClassName: 'visuallyhidden'
   },
   'country-2':{
     mixin: 'select',
