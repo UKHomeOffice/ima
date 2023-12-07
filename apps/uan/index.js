@@ -6,7 +6,7 @@ module.exports = {
   baseUrl: '/uan',
   steps: {
     '/upload': {
-      behaviours: [UploadCSV('bulk-upload-uan')],
+      behaviours: [UploadCSV],
       fields: ['bulk-upload-uan', 'confirm-data-checked'],
       next: '/complete'
     },

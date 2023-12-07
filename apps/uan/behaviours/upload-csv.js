@@ -24,7 +24,9 @@ const logger = createLogger({
   transports: [new transports.Console({level: 'info', handleExceptions: true})]
 });
 
-module.exports = name => superclass => class extends superclass {
+const name = 'bulk-upload-uan';
+
+module.exports = superclass => class extends superclass {
   locals(req, res, next) {
     const maxNum = fileSizeNum(maxFileSize);
     const maxSize = maxFileSize.match(/[a-zA-Z]+/g)[0].toUpperCase();
@@ -86,33 +88,32 @@ module.exports = name => superclass => class extends superclass {
     return super.process(req, res, next);
   }
 
-  validateField(key, req) {
+  validate(req, res, next) {
     const fileToValidate = _.get(req.files, `${name}`);
-
     if (fileToValidate) {
       req.form.values[name] = req.files[name].name;
 
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToValidate);
       if (invalidSize || invalidMimetype) {
-        return new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
           type: invalidSize ? 'maxFileSize' : 'fileType',
           redirect: undefined
-        });
+        })});
       }
 
       if (!fileToValidate.data) {
-        return new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
           type: 'emptyFile',
           redirect: undefined
-        });
+        })});
       }
 
       const csvColumns = req.sessionModel.get('csv-columns') || [];
       if (!csvColumns.length) {
-        return new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
           type: 'processFormatError',
           redirect: undefined
-        });
+        })});
       }
 
       // lowercase and trim whitespace to be flexible in case of column name inconsistency
@@ -127,10 +128,10 @@ module.exports = name => superclass => class extends superclass {
 
       if (missingColumns.length) {
         if (missingColumns.length === mandatoryColumns.length) {
-          return new this.ValidationError('bulk-upload-uan', {
+          return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
             type: 'noColumnHeadings',
             redirect: undefined
-          });
+          })});
         }
 
         const firstMissingColumn = missingColumns[0];
@@ -148,13 +149,13 @@ module.exports = name => superclass => class extends superclass {
           default:
             columnError = 'invalidColumns';
         }
-        return new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
           type: columnError,
           redirect: undefined
-        });
+        })});
       }
     }
-    return super.validateField(key, req);
+    return super.validate(req, res, next);
   }
 
   async saveValues(req, res, next) {
