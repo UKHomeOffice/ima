@@ -20,6 +20,7 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+   
     super.getValues(req, res, (err, values) => {
       const harmClaimCountries = req.sessionModel.get('harm-claim-countries') || [];
       values['country-1'] = harmClaimCountries[0] || '';

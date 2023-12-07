@@ -43,7 +43,7 @@ module.exports = {
   },
   'country-1':{
     mixin: 'select',
-    className: ['change','js-hidden'],
+    className: ['js-hidden'],
     validate: ['required'],
     options: [{
       value: '',

@@ -69,6 +69,12 @@ module.exports = {
     '/harm-claim-countries': {
       behaviours: [SaveFormSession, HarmCountryRepeater],
       fields: ['country-1','country-2','country-3','country-4','country-5'],
+      condition:function(req,res){
+        return {
+          field: 'country-1',
+          value: req.form.values['country-1']
+        }
+      },
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
       next: '/risk-of-harm',

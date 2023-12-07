@@ -31,22 +31,6 @@
   "harm-claim-details": {
     "header":"Serious and irreversible harm in {{values.country-placeholder}}"
   },
-  "harm-claim-summary":{
-    "header":"Summary of your serious and irreversible harm claims",
-    "sections":{
-      "harm-claim-countries": {
-        "header":"Serious and irreversible harm in {{values.country-1}}"
-      }
-    },
-    "fields": {
-      "is-serious-and-irreversible": {
-        "label":"Making claim"
-      },
-      "country-1": {
-       "label": "{{values.country-1}}"
-      }
-    }
-  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "You will not be able to change your answers after you submit.",

@@ -5,7 +5,7 @@ const govuk = require('govuk-frontend');
 const $ = require('jquery');
 const accessibleAutocomplete = require('accessible-autocomplete');
 const harmCountriesRepeater = require('./harm-countries-repeater');
-const selectedCountry = require('./selected-country');
+const eventListners = require('./event-listeners');
 
 $('.typeahead').each(function applyTypeahead() {
   accessibleAutocomplete.enhanceSelectElement({
@@ -16,4 +16,4 @@ $('.typeahead').each(function applyTypeahead() {
 
 govuk.initAll();
 harmCountriesRepeater.init();
-selectedCountry.init();
+eventListners.init();
