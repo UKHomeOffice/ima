@@ -2,16 +2,21 @@
 
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
-    console.log(next)
-    req.form.values['harm-claim-countries'] = [
-      req.form.values['country-1'],
-      req.form.values['country-2'],
-      req.form.values['country-3'],
-      req.form.values['country-4'],
-      req.form.values['country-5']
-    ].filter(Boolean);
     
-   req.sessionModel.set('country-count', req.sessionModel.get('harm-claim-countries'));
+    const harmClaimCountry = req.form.values;
+    const harmClaimCountries = [harmClaimCountry['country-1'],
+                              harmClaimCountry['country-2'],
+                              harmClaimCountry['country-3'],
+                              harmClaimCountry['country-4'],
+                              harmClaimCountry['country-5']]
+                              .filter((countryValue) => countryValue !== '')
+                              .map(country=>country);
+   
+  req.sessionModel.set('harm-claim-countries',harmClaimCountries)
+    
+  req.sessionModel.set('country-count', [...harmClaimCountries]);
+
+  req.sessionModel.set('harm-country-state', [...harmClaimCountries]);
    
    return super.saveValues(req, res, next);
   }
@@ -24,8 +29,7 @@ module.exports = superclass => class extends superclass {
       values['country-3'] = harmClaimCountries[2] || '';
       values['country-4'] = harmClaimCountries[3] || '';
       values['country-5'] = harmClaimCountries[4] || '';
-
-    console.log(harmClaimCountries)
+      
       next(err, values);
     });
   }
