@@ -24,7 +24,8 @@ const logger = createLogger({
   transports: [new transports.Console({level: 'info', handleExceptions: true})]
 });
 
-const name = 'bulk-upload-uan';
+const fileSaveUrl = `${config.saveService.host}:${config.saveService.port}/csv_urls`;
+const fieldName = 'bulk-upload-uan';
 
 module.exports = superclass => class extends superclass {
   locals(req, res, next) {
@@ -48,10 +49,10 @@ module.exports = superclass => class extends superclass {
   }
 
   async process(req, res, next) {
-    const fileToProcess = _.get(req.files, `${name}`);
+    const fileToProcess = _.get(req.files, `${fieldName}`);
 
     if (fileToProcess) {
-      req.form.values[name] = req.files[name].name;
+      req.form.values[fieldName] = req.files[fieldName].name;
       // Stop processing early if the file is not in the correct format
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToProcess);
       if (invalidSize || invalidMimetype) {
@@ -68,14 +69,14 @@ module.exports = superclass => class extends superclass {
         }
       });
 
-      parser.on('error', function (err) {
+      parser.on('error', function (error) {
         logger.log({
           level: 'error',
-          message: err.message
+          message: error.message
         });
       });
 
-      await parser.write(req.files[name].data);
+      await parser.write(req.files[fieldName].data);
       // need to call end() otherwise last record is missed
       parser.end();
 
@@ -89,9 +90,9 @@ module.exports = superclass => class extends superclass {
   }
 
   validate(req, res, next) {
-    const fileToValidate = _.get(req.files, `${name}`);
+    const fileToValidate = _.get(req.files, `${fieldName}`);
     if (fileToValidate) {
-      req.form.values[name] = req.files[name].name;
+      req.form.values[fieldName] = req.files[fieldName].name;
 
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToValidate);
       if (invalidSize || invalidMimetype) {
@@ -159,25 +160,27 @@ module.exports = superclass => class extends superclass {
   }
 
   async saveValues(req, res, next) {
-    const fileToUpload = _.get(req.files, `${name}`);
+    const fileToUpload = _.get(req.files, `${fieldName}`);
 
     if (writeFileToSharedVolume) {
       const destinationPath = path.join(__dirname, '/../../../container-share/');
       const destinationFilePath = destinationPath + 'uan-list.csv';
       fs.mkdir(destinationPath, {recursive: true})
         .then(() => fs.writeFile(destinationFilePath, fileToUpload.data))
-        .catch(err => {
-          return next(err);
+        .catch(error => {
+          return next(error);
         });
     }
 
     if (filevaultUpload) {
       try {
         const filevaultUrl = await this.filevaultUpload(fileToUpload);
-        const destinationFilePath = path.join(__dirname, '/../../../container-share/uan-list-urls.txt');
-        await fs.appendFile(destinationFilePath, filevaultUrl);
-      } catch (err) {
-        return next(err);
+        console.log('Filevault URL: ', filevaultUrl);
+      } catch (error) {
+        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+          type: 'uploadError',
+          redirect: undefined
+        })});
       }
     }
     return super.saveValues(req, res, next);
@@ -209,8 +212,8 @@ module.exports = superclass => class extends superclass {
         .catch(error => {
           // eslint-disable-next-line no-console
           logger.log({
-            level: 'info',
-            message: `Error uploading via file-vault CSV: ${error}`
+            level: 'error',
+            message: `Error uploading CSV via file-vault: ${error}`
           });
           reject(error);
         });
@@ -241,5 +244,16 @@ module.exports = superclass => class extends superclass {
     return axios(tokenReq).then(response => {
       return { bearer: response.data.access_token };
     });
+  }
+
+  saveCsvFileUrl(url) {
+    return axios.post(fileSaveUrl, { url: url })
+      .then(response => response)
+      .catch(error => {
+        logger.log({
+          level: 'error',
+          message: `Error saving CSV URL to database: ${error}`
+        });
+      });
   }
 };
