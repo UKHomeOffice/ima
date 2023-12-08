@@ -1,5 +1,6 @@
 
 module.exports = superclass => class extends superclass {
+  
     constructor(options) {
       if (!options.aggregateTo) {
         throw new Error('options.aggregateTo is required for loops');
@@ -22,15 +23,31 @@ module.exports = superclass => class extends superclass {
   
     updateItem(req, res) {
       const id = req.params.id;
-  
       const items = this.getAggregateArray(req);
-  
+
+      var updatedCountry =items[id].itemTitle;
+      var harmClaimState =[...req.sessionModel.get('harm-country-state')]
+       console.log("Harm count",harmClaimState)
+      if(harmClaimState.length > 0 ){
+       /// harmClaimState.concat(updatedCountry)
+       harmClaimState.splice(0,0,updatedCountry);
+      }
+   //   req.sessionModel.set('harm-country-state',harmClaimState)
+
+      console.log("updated",req.sessionModel.get('harm-country-state'))
+      //console.log(items)
+    //  console.log(items[id])
+     // console.log(harmClaimState)
+    
       if (items[id]) {
+      /// req.sessionModel.set('country-placeholder',items[id].itemTitle)
+       req.sessionModel.set('harm-country-state',updatedCountry)
         items[id].fields.forEach(obj => {
           req.sessionModel.set(obj.field, obj.value);
         });
   
         items.splice(id, 1);
+        console.log("After Splice",items)
         this.setAggregateArray(req, items);
       }
   
@@ -40,11 +57,25 @@ module.exports = superclass => class extends superclass {
     addItem(req, res) {
       const items = this.getAggregateArray(req);
       const fields = [];
+      
   
       let itemTitle = '';
       
-       let currentCountry = req.sessionModel.get('country-count')[0];
-      // const countryName = [...req.sessionModel.get('harm-countries')];
+      let currentCountry = req.sessionModel.get('harm-country-state')[0];
+      var id =req.sessionModel.get('harm-country-state').length;
+      
+      //  var country = items.filter((country) => {
+      //    if(country.itemTitle === currentCountry){
+      //     return true;
+      //    }
+      //    return false;
+      //  });
+
+      var country = Object.values(items).includes(currentCountry);
+     
+       console.log("Country Result", country)
+       console.log("Current Country", currentCountry)
+       ///console.log(country);
 
       req.form.options.aggregateFrom.forEach(aggregateFromElement => {
         
@@ -64,12 +95,15 @@ module.exports = superclass => class extends superclass {
           showInSummary: !isTitleField,
           changeField: aggregateFromElement.changeField
         });
-  
+
+
+        
         this.setAggregateArray(req, items);
         req.sessionModel.unset(aggregateFromField);
       });
   
-      const newItem = { itemTitle, fields };
+      
+      const newItem = {id, itemTitle, fields };
   
       items.push(newItem); // Why push to new object ? Immutable .
   

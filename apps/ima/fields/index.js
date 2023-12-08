@@ -12,7 +12,7 @@ module.exports = {
     isPageHeading: true,
     mixin: 'radio-group',
     options: ['yes', 'no'],
-    validate: 'required',
+    validate: 'required'
   },
   'is-risk-in-country':{
     mixin: 'radio-group',

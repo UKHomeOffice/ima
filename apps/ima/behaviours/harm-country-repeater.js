@@ -13,9 +13,6 @@ module.exports = superclass => class extends superclass {
                               .map(country=>country);
    
   req.sessionModel.set('harm-claim-countries',harmClaimCountries)
-    
-  req.sessionModel.set('country-count', [...harmClaimCountries]);
-
   req.sessionModel.set('harm-country-state', [...harmClaimCountries]);
    
    return super.saveValues(req, res, next);
