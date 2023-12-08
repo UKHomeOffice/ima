@@ -44,19 +44,22 @@
     "label": "Why would you be at risk?"
   },
   "why-not-get-protection": {
-    "label":"Why would you not be able to get protection from this harm in {{values.country-placeholder}}?"
+    "label":"Why would you not be able to get protection from this harm in {{values.country-placeholder}}?",
+    "summary-heading":"Why would you sece not be able to get protection from this harm in {{items.aggregatedValues.itemTitle}}"
   },
   "country-1": {
     "label": "Country 1",
     "options": {
       "null": "Select a country"
-    }
+    },
+    "summary-heading":"Why would you sece not be able to get protection from this harm in {values.country-1}}"
   },
   "country-2": {
     "label": "Country 2",
     "options": {
       "null": "Select a country"
-    }
+    },
+    "summary-heading":"Why would you sece not be able to get protection from this harm in {values.country-2}}"
   },
   "country-3":{
     "label": "Country 3",

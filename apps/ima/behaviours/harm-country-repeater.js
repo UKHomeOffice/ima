@@ -11,10 +11,18 @@ module.exports = superclass => class extends superclass {
                               harmClaimCountry['country-5']]
                               .filter((countryValue) => countryValue !== '')
                               .map(country=>country);
-   
-  req.sessionModel.set('harm-claim-countries',harmClaimCountries)
+    // req.form.values.harmClaimCountries = [
+    //   req.form.values['country-1'],
+    //   req.form.values['country-2'],
+    //   req.form.values['country-3'],
+    //   req.form.values['country-4'],
+    //   req.form.values['country-5'],
+    // ].filter(Boolean);
+    // req.sessionModel.set('harm-claim-countries', req.form.values.harmClaimCountries)
+    // req.sessionModel.set('harm-country-state',req.sessionModel.get('harm-claim-countries'))
+    req.sessionModel.set('harm-claim-countries', harmClaimCountries)
   req.sessionModel.set('harm-country-state', [...harmClaimCountries]);
-   
+  
    return super.saveValues(req, res, next);
   }
 

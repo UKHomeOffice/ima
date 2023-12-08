@@ -25,23 +25,23 @@ module.exports = superclass => class extends superclass {
       const id = req.params.id;
       const items = this.getAggregateArray(req);
 
-      var updatedCountry =items[id].itemTitle;
-      var harmClaimState =[...req.sessionModel.get('harm-country-state')]
-       console.log("Harm count",harmClaimState)
-      if(harmClaimState.length > 0 ){
-       /// harmClaimState.concat(updatedCountry)
-       harmClaimState.splice(0,0,updatedCountry);
-      }
+     /// var updatedCountry =items[id].itemTitle;
+   //   var harmClaimState =[...req.sessionModel.get('harm-country-state')]
+      // console.log("Harm count",harmClaimState)
+      // if(harmClaimState.length > 0 ){
+      //  /// harmClaimState.concat(updatedCountry)
+      //  // harmClaimState.splice(0,0,updatedCountry);
+      // }
    //   req.sessionModel.set('harm-country-state',harmClaimState)
 
-      console.log("updated",req.sessionModel.get('harm-country-state'))
+      //console.log("updated",req.sessionModel.get('harm-country-state'))
       //console.log(items)
     //  console.log(items[id])
      // console.log(harmClaimState)
     
       if (items[id]) {
       /// req.sessionModel.set('country-placeholder',items[id].itemTitle)
-       req.sessionModel.set('harm-country-state',updatedCountry)
+      //  req.sessionModel.set('harm-country-state',updatedCountry)
         items[id].fields.forEach(obj => {
           req.sessionModel.set(obj.field, obj.value);
         });
@@ -61,8 +61,8 @@ module.exports = superclass => class extends superclass {
   
       let itemTitle = '';
       
-      let currentCountry = req.sessionModel.get('harm-country-state')[0];
-      var id =req.sessionModel.get('harm-country-state').length;
+     // let currentCountry = req.sessionModel.get('harm-country-state')[0];
+    //  var id =req.sessionModel.get('harm-country-state').length;
       
       //  var country = items.filter((country) => {
       //    if(country.itemTitle === currentCountry){
@@ -71,10 +71,9 @@ module.exports = superclass => class extends superclass {
       //    return false;
       //  });
 
-      var country = Object.values(items).includes(currentCountry);
+      //var country = Object.values(items).includes(currentCountry);
      
-       console.log("Country Result", country)
-       console.log("Current Country", currentCountry)
+    
        ///console.log(country);
 
       req.form.options.aggregateFrom.forEach(aggregateFromElement => {
@@ -84,8 +83,8 @@ module.exports = superclass => class extends superclass {
         const value = req.sessionModel.get(aggregateFromField);
 
         if (isTitleField) {
-         // itemTitle = value;
-          itemTitle = currentCountry;
+         itemTitle = value;
+         // itemTitle = currentCountry;
         }
   
         fields.push({
@@ -103,7 +102,7 @@ module.exports = superclass => class extends superclass {
       });
   
       
-      const newItem = {id, itemTitle, fields };
+      const newItem = {itemTitle, fields };
   
       items.push(newItem); // Why push to new object ? Immutable .
   

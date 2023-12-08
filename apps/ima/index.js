@@ -115,7 +115,7 @@ module.exports = {
         'why-not-get-protection'    
       ],
       titleField: 'countryAddNumber',
-      addStep: 'risk-of-harm',
+      addStep: 'harm-claim-countries',
       addAnotherLinkText: 'country',
       template: 'add-another',
       locals: { showSaveAndExit: true },
@@ -127,7 +127,7 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['human-claim'],
       locals: { showSaveAndExit: true },
-      backLink: 'harm-claim-summary',
+     // backLink: 'harm-claim-summary',
       next: '/confirm' // TODO a url needs to be Changed
     },
     '/confirm': {
