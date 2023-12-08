@@ -9,7 +9,13 @@ const axios = require('axios');
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, json } = format;
 
-const maxFileSize = config.uanUpload.maxFileSize;
+const fileSizeNum = size => size.match(/\d+/g)[0];
+const logger = createLogger({
+  format: combine(timestamp(), json()),
+  transports: [new transports.Console({level: 'info', handleExceptions: true})]
+});
+
+const { hostname, maxFileSize } = config.upload;
 const {
   allowedMimeTypes,
   mandatoryColumns,
@@ -17,13 +23,6 @@ const {
   filevaultUpload,
   writeFileToSharedVolume
 } = config.uanUpload;
-
-const fileSizeNum = size => size.match(/\d+/g)[0];
-const logger = createLogger({
-  format: combine(timestamp(), json()),
-  transports: [new transports.Console({level: 'info', handleExceptions: true})]
-});
-
 const fileSaveUrl = `${config.saveService.host}:${config.saveService.port}/csv_urls`;
 const fieldName = 'bulk-upload-uan';
 
@@ -162,38 +161,45 @@ module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
     const fileToUpload = _.get(req.files, `${fieldName}`);
 
-    if (writeFileToSharedVolume) {
-      const destinationPath = path.join(__dirname, '/../../../container-share/');
-      const destinationFilePath = destinationPath + 'uan-list.csv';
-      fs.mkdir(destinationPath, {recursive: true})
-        .then(() => fs.writeFile(destinationFilePath, fileToUpload.data))
-        .catch(error => {
-          return next(error);
-        });
-    }
-
     if (filevaultUpload) {
       try {
-        const filevaultUrl = await this.filevaultUpload(fileToUpload);
-        console.log('Filevault URL: ', filevaultUrl);
-      } catch (error) {
+        const filevaultUrl = await this.saveCsvToFilevault(fileToUpload);
+        await this.saveCsvUrlToDb(filevaultUrl);
+      } catch {
         return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
           type: 'uploadError',
           redirect: undefined
         })});
       }
     }
+
+    if (writeFileToSharedVolume) {
+      const destinationPath = path.join(__dirname, '/../../../container-share/');
+      const destinationFilePath = destinationPath + 'latest-uan-list.csv';
+      fs.mkdir(destinationPath, {recursive: true})
+        .then(() => fs.writeFile(destinationFilePath, fileToUpload.data))
+        .catch(error => {
+          logger.log({
+            level: 'error',
+            message: `Error sending CSV to shared volume: ${error}`
+          });
+          return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+            type: 'uploadError',
+            redirect: undefined
+          })});
+        });
+    }
     return super.saveValues(req, res, next);
   }
 
-  filevaultUpload(file) {
+  saveCsvToFilevault(file) {
     return new Promise((resolve, reject) => {
       const form = new FormData();
-      form.append('document', new Blob([file.data], { type: 'text/csv' }), 'uan-list.csv');
+      form.append('document', new Blob([file.data], { type: 'text/csv' }));
 
       return this.auth()
         .then(auth => {
-          return axios.post(config.upload.hostname, form, {
+          return axios.post(hostname, form, {
             headers: {
               'Content-Type': 'multipart/form-data',
               Authorization: `Basic ${auth.bearer}`
@@ -246,7 +252,7 @@ module.exports = superclass => class extends superclass {
     });
   }
 
-  saveCsvFileUrl(url) {
+  saveCsvUrlToDb(url) {
     return axios.post(fileSaveUrl, { url: url })
       .then(response => response)
       .catch(error => {

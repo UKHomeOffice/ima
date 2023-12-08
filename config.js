@@ -84,7 +84,6 @@ module.exports = {
     recordScanLimit: 1,
     filevaultUpload: true,
     writeFileToSharedVolume: false,
-    maxFileSize: '25mb',
     mandatoryColumns: [
       'uan which has ban alerts under ima 2023',
       'date of birth',
