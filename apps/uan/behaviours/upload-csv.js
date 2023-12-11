@@ -165,11 +165,20 @@ module.exports = superclass => class extends superclass {
       try {
         const filevaultUrl = await this.saveCsvToFilevault(fileToUpload);
         await this.saveCsvUrlToDb(filevaultUrl);
-      } catch {
-        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
-          type: 'uploadError',
-          redirect: undefined
-        })});
+      } catch (error) {
+        let uploadValidationError;
+        if (error.code === 'VirusFound') {
+          uploadValidationError = new this.ValidationError('bulk-upload-uan', {
+            type: 'virusFound',
+            redirect: undefined
+          });
+        } else {
+          uploadValidationError = new this.ValidationError('bulk-upload-uan', {
+            type: 'uploadError',
+            redirect: undefined
+          });
+        }
+        return next({'bulk-upload-uan': uploadValidationError});
       }
     }
 

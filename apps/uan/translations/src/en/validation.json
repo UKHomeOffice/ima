@@ -6,6 +6,7 @@
     "emptyFile": "The selected file is empty",
     "processFormatError": "The file is not formatted correctly – reformat the data and try again",
     "uploadError": "The selected file could not be uploaded – try again",
+    "virusFound": "The file contains a virus",
     "noColumnHeadings": "The file does not have column headings. Include headings for every column",
     "invalidColumns": "Please ensure you have at least the following columns in your CSV file: UAN which has BAN alerts under IMA 2023, Date of birth, Duty to remove Alert",
     "missingUanColumn": "The file is missing a UAN which has BAN alerts under IMA 2023 column. Include a UAN which has BAN alerts under IMA 2023 column with data and a heading",
