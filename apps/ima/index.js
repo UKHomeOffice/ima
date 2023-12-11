@@ -33,8 +33,32 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/exceptional-circumstances-claim', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
+    },
+    '/exceptional-circumstances-claim': {
+      behaviours: SaveFormSession,
+      fields: ['exceptional-circumstances'],
+      locals: { showSaveAndExit: true },
+      forks: [
+        {
+          target: '/exceptional-circumstances-details',
+          condition: req => req.sessionModel.get('exceptional-circumstances') === 'yes',
+          continueOnEdit: true
+        },
+        {
+          target: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+          condition: req => req.sessionModel.get('exceptional-circumstances') === 'no',
+          continueOnEdit: false
+        }
+      ],
+      next: '/exceptional-circumstances-details'
+    },
+    '/exceptional-circumstances-details': {
+      behaviours: SaveFormSession,
+      fields: ['exceptional-circumstances-details'],
+      locals: { showSaveAndExit: true },
+      next: '/confirm' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],

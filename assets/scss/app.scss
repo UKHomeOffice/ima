@@ -205,3 +205,18 @@ pre.looped-records {
   color: #d4351c;
   margin-bottom: -3px;
 }
+
+.govuk-character-count__message {
+  display: none;
+}
+
+.exceptional-circumstances-evidence-paragraph {
+  margin-top: -15px;
+  padding-bottom: 15px;
+}
+
+.wrap-table-cell,
+.confirm-row {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
