@@ -84,7 +84,6 @@ module.exports = superclass => class extends superclass {
 
         if (isTitleField) {
          itemTitle = value;
-         // itemTitle = currentCountry;
         }
   
         fields.push({
@@ -94,8 +93,6 @@ module.exports = superclass => class extends superclass {
           showInSummary: !isTitleField,
           changeField: aggregateFromElement.changeField
         });
-
-
         
         this.setAggregateArray(req, items);
         req.sessionModel.unset(aggregateFromField);

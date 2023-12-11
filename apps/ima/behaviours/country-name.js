@@ -6,13 +6,10 @@ module.exports = superclass => class extends superclass {
 
   locals(req, res) {
     const locals = super.locals(req, res);
-
-
     // render country number on country-details page
     _.forEach(locals.items, (i) => {
 
       const countryNumber = _.indexOf(locals.items, i);
-
       req.sessionModel.get('sih-countries').aggregatedValues
       var countryName = req.sessionModel.get('harm-claim-countries');
       req.form.values['country-name'] = countryName[countryNumber];
@@ -23,25 +20,27 @@ module.exports = superclass => class extends superclass {
           field.value = countryNumber
           field.parsed = countryNumber
         }
-        if ((field.field === 'why-not-get-protection') && (countryNumber === 0)) {
+        
+        if(field.field === 'why-not-get-protection'){
           locals['country-name'] = countryName[countryNumber];
-          field.field += '.summary-heading1';
-        }
-        if ((field.field === 'why-not-get-protection') && (countryNumber === 1)) {
-          locals['country-name'] = countryName[countryNumber];
-          field.field += '.summary-heading2';
-        }
-        if ((field.field === 'why-not-get-protection') && (countryNumber === 2)) {
-          locals['country-name'] = countryName[countryNumber];
-          field.field += '.summary-heading3';
-        }
-        if ((field.field === 'why-not-get-protection') && (countryNumber === 3)) {
-          locals['country-name'] = countryName[countryNumber];
-          field.field += '.summary-heading4';
-        }
-        if ((field.field === 'why-not-get-protection') && (countryNumber === 4)) {
-          locals['country-name'] = countryName[countryNumber];
-          field.field += '.summary-heading5';
+          switch(countryNumber) {
+            case 0:
+              field.field += '.summary-heading1';
+              break;
+            case 1:
+              field.field += '.summary-heading2';
+              break;
+            case 2:
+              field.field += '.summary-heading3';
+              break;
+            case 3:
+              field.field += '.summary-heading4';
+              break;
+            case 4:
+              field.field += '.summary-heading5';
+              break;
+            default:
+          }
         }
       })
     })
