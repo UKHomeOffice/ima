@@ -1,7 +1,6 @@
 /* eslint max-len: 0 */
 'use strict';
 
-// const Behaviour = require('../../../../apps/uan/behaviours/upload-csv');
 const Controller = require('hof').controller;
 const proxyquire = require('proxyquire').noCallThru();
 const reqres = require('reqres');
@@ -37,7 +36,7 @@ describe("apps/uan 'upload-csv' behaviour", () => {
 
     testFile = {
       data: Buffer.from(`
-      comma,separated,heading
+      comma,separated,headings
       comma,separated,values
       `),
       name: 'test.csv',

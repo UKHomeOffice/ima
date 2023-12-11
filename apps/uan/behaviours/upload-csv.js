@@ -121,7 +121,7 @@ module.exports = superclass => class extends superclass {
         return column.toLowerCase().trim();
       });
 
-      // checks if csv has at least columns needed for processing
+      // checks if csv is missing columns required for processing
       const missingColumns = mandatoryColumns.map(columnName => {
         return transformedColumns.includes(columnName) ? null : columnName;
       }).filter(x => x);
