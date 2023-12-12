@@ -5,7 +5,6 @@ module.exports = superclass => class extends superclass {
         _.forEach(req.sessionModel.get('sih-countries').aggregatedValues, (i) => {
             const countryNumber = _.indexOf(req.sessionModel.get('sih-countries').aggregatedValues, i);
             var countryName =  req.sessionModel.get('harm-claim-countries');
-            console.log("SIH COUNTRIES",req.sessionModel.get('sih-countries').aggregatedValues)
             req.form.values['country-name'] = countryName[countryNumber];
             i.itemTitle = countryName[countryNumber]
             _.forEach(i.fields, (field) => {
@@ -27,23 +26,20 @@ module.exports = superclass => class extends superclass {
         
       if(aggregatedCountriesLength < harmCountriesArrayLength){
             do{
-                console.log("Current State", currentState);
+                console.log("Current State first", currentState);
                 req.sessionModel.set('harm-country-state',currentState);
                 console.log("Country Array", currentState);
                 res.redirect('/ima/risk-of-harm');
             }
             while(currentState.length > 0)
-            currentState = req.sessionModel.get('harm-country-state').slice(1);
+      currentState = req.sessionModel.get('harm-country-state').slice(1);
         }
        return super.saveValues(req,res,next)
     }
     
     // getValues(req, res, next) {
     //     super.getValues(req, res, (err, values) => {
-    //       const harmClaimCountries = req.sessionModel.get('harm-claim-countries') || [];
-    //       harmClaimCountries.array.forEach(country => {
             
-    //       });
     
          
     //       next(err, values);

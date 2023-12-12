@@ -11,15 +11,7 @@ module.exports = superclass => class extends superclass {
                               harmClaimCountry['country-5']]
                               .filter((countryValue) => countryValue !== '')
                               .map(country=>country);
-    // req.form.values.harmClaimCountries = [
-    //   req.form.values['country-1'],
-    //   req.form.values['country-2'],
-    //   req.form.values['country-3'],
-    //   req.form.values['country-4'],
-    //   req.form.values['country-5'],
-    // ].filter(Boolean);
-    // req.sessionModel.set('harm-claim-countries', req.form.values.harmClaimCountries)
-    // req.sessionModel.set('harm-country-state',req.sessionModel.get('harm-claim-countries'))
+ 
     req.sessionModel.set('harm-claim-countries', harmClaimCountries)
   req.sessionModel.set('harm-country-state', [...harmClaimCountries]);
   
@@ -28,6 +20,7 @@ module.exports = superclass => class extends superclass {
 
   getValues(req, res, next) {
     super.getValues(req, res, (err, values) => {
+      req.sessionModel.set('update-country',{})
       const harmClaimCountries = req.sessionModel.get('harm-claim-countries') || [];
       values['country-1'] = harmClaimCountries[0] || '';
       values['country-2'] = harmClaimCountries[1] || '';

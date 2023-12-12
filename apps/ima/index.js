@@ -10,10 +10,10 @@ const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
 const HarmCountryRepeater = require('./behaviours/harm-country-repeater');
-const HarmCountriesName = require('./behaviours/harm-countries-name');
+const HarmClaimCountries = require('./behaviours/harm-countries-name');
 const HarmCountryFormLoop = require('./behaviours/harm-country-form-loop');
-const CountryName = require('./behaviours/country-name');
-const { countries } = require('hof/utilities');
+const HarmClaimSummary = require('./behaviours/harm-claim-summary');
+
 
 module.exports = {
   name: 'ima',
@@ -43,7 +43,7 @@ module.exports = {
       backLink: 'current-progress'
     },
     '/harm-claim':{
-      behaviours: SaveFormSession,
+      behaviours: [SaveFormSession],
       fields: ['is-serious-and-irreversible'],
       forks: [
         {
@@ -75,7 +75,7 @@ module.exports = {
       backLink: 'harm-claim'
     },
     '/risk-of-harm':{
-      behaviours: [SaveFormSession, HarmCountriesName],
+      behaviours: [SaveFormSession, HarmClaimCountries],
       fields: ['is-risk-in-country','countryAddNumber'],
       forks: [
         {
@@ -98,7 +98,7 @@ module.exports = {
       next: '/harm-claim-details'
     },
     '/harm-claim-details': {
-      behaviours: [SaveFormSession, HarmCountriesName],
+      behaviours: [SaveFormSession, HarmClaimCountries],
       fields: ['reason-in-sih', 'why-not-get-protection'],
       next: '/harm-claim-summary',
       continueOnEdit: true,
@@ -106,7 +106,7 @@ module.exports = {
       backLink: 'risk-of-harm'
     },
     '/harm-claim-summary': {
-      behaviours: [AggregateSaveUpdate, HarmCountryFormLoop, CountryName, SaveFormSession],
+      behaviours: [AggregateSaveUpdate, HarmCountryFormLoop, HarmClaimSummary, SaveFormSession],
       aggregateTo: 'sih-countries',
       aggregateFrom: [
         'countryAddNumber',
