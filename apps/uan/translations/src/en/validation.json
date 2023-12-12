@@ -1,8 +1,8 @@
 {
   "bulk-upload-uan": {
-    "required": "Select a CSV",
+    "required": "Select a file",
     "maxFileSize": "The selected file must be smaller than 25MB",
-    "fileType": "The selected file must be a CSV.",
+    "fileType": "The selected file must be a CSV",
     "emptyFile": "The selected file is empty",
     "processFormatError": "The file is not formatted correctly – reformat the data and try again",
     "uploadError": "The selected file could not be uploaded – try again",
