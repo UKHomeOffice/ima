@@ -12,11 +12,31 @@ describe("apps/uan 'upload-csv' behaviour", () => {
   let csvColumns;
   let sessionModel;
   let instance;
+  let axiosGetStub;
+  let axiosPostStub;
 
   beforeEach(done => {
+    axiosGetStub = sinon.stub();
+    axiosPostStub = sinon.stub();
+
     const Behaviour = proxyquire('../../../../apps/uan/behaviours/upload-csv',
       {
-        '../../ima/index': sinon.stub()
+        '../../ima/index': sinon.stub(),
+        '../../../config': Object.assign({}, config, {
+          login: {
+            appPath: '/ima/start',
+            allowSkip: true,
+            skipEmail: 'test@digital.homeoffice.gov.uk'
+          },
+          saveService: {
+            host: 'https://data-service.com',
+            port: 3001
+          }
+        }),
+        axios: {
+          get: axiosGetStub,
+          post: axiosPostStub
+        }
       }
     );
 
@@ -51,6 +71,11 @@ describe("apps/uan 'upload-csv' behaviour", () => {
       'Date of birth',
       'Duty to remove Alert'
     ];
+  });
+
+  afterEach(async () => {
+    axiosGetStub.reset();
+    axiosPostStub.reset();
   });
 
   describe("The upload-csv 'checkFileAttributes' method", () => {

@@ -262,13 +262,16 @@ module.exports = superclass => class extends superclass {
   }
 
   saveCsvUrlToDb(url) {
-    return axios.post(fileSaveUrl, { url: url })
-      .then(response => response)
-      .catch(error => {
-        logger.log({
-          level: 'error',
-          message: `Error saving CSV URL to database: ${error}`
+    return new Promise((resolve, reject) => {
+      axios.post(fileSaveUrl, { url: url })
+        .then(response => resolve(response))
+        .catch(error => {
+          logger.log({
+            level: 'error',
+            message: `Error saving CSV URL to database: ${error}`
+          });
+          reject(error);
         });
-      });
+    });
   }
 };
