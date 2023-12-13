@@ -52,11 +52,6 @@ module.exports = superclass => class extends superclass {
 
     if (fileToProcess) {
       req.form.values[fieldName] = req.files[fieldName].name;
-      // Stop processing early if the file is not in the correct format
-      const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToProcess);
-      if (invalidSize || invalidMimetype) {
-        return super.process(req, res, next);
-      }
 
       const records = [];
       const parser = parse({columns: true, to: recordScanLimit});
