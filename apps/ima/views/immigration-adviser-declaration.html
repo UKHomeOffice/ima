@@ -1,0 +1,13 @@
+{{<partials-page}}
+{{$page-content}}
+<p class="govuk-heading-m">{{#t}}pages.immigration-adviser-declaration.paragraph1{{/t}}</p>
+{{#renderField}}language-used{{/renderField}}
+{{#renderField}}use-interpreter{{/renderField}}
+{{#markdown}}immigration-adviser-declaration{{/markdown}}
+ <br><br>
+{{#renderField}}immigration-adviser-declaration{{/renderField}}
+<p>You will not be able to change your answers after you submit.</p>
+<br>
+{{#input-submit}}confirm-submission{{/input-submit}}
+{{/page-content}}
+{{/partials-page}}
