@@ -270,3 +270,15 @@ spec:
           emptyDir: {}
         - name: container-share
           emptyDir: {}
+        - name: certs
+          secret:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            secretName: branch-tls-external
+            {{ else if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+            secretName: ingress-internal
+            {{ else }}
+            secretName: cert-cmio
+            {{ end }}
+        - name: bundle
+          configMap:
+            name: bundle
