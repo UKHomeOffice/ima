@@ -233,22 +233,29 @@ spec:
                   key: id
             - name: PROXY_ADDRESS_FORWARDING
               value: "true"
-            - name: PROXY_LISTEN
-              value: 127.0.0.1:8081
-            - name: PROXY_UPSTREAM_URL
-              value: "http://127.0.0.1:8080"
-          command:
-            - "/opt/keycloak-proxy"
-            - "--enable-default-deny=false"
-            - "--resources=uri=/uan/*"
-            - "--enable-logging=true"
-            - "--enable-json-logging=true"
-            - "--upstream-timeout=60s"
-            - "--upstream-keepalive-timeout=60s"
-            - "--upstream-tls-handshake-timeout=60s"
-            - "--upstream-response-header-timeout=60s"
-            - "--upstream-expect-continue-timeout=60s"
-            - "--server-write-timeout=60s"
+          args:
+            - --listen=127.0.0.1:8081
+            # the url which is used to retrieve the OpenID configuration
+            - --discovery-url=$(PROXY_DISCOVERY_URL)
+            # the endpoint where requests are proxied to
+            - --upstream-url=https://127.0.0.1:8080
+            # URls that you wish to protect.
+            - --client-id=$(PROXY_CLIENT_ID)
+            - --client-secret=$(PROXY_CLIENT_SECRET)
+            - --enable-default-deny=false
+            - --resources=uri=/uan/*
+            - --enable-logging=true
+            - --enable-json-logging=true
+            - --upstream-timeout=60s
+            - --upstream-keepalive-timeout=60s
+            - --upstream-tls-handshake-timeout=60s
+            - --upstream-response-header-timeout=60s
+            - --upstream-expect-continue-timeout=60s
+            - --server-write-timeout=60s
+            - --http-only-cookie=true
+            - --enable-security-filter=true
+            - --enable-request-id=true
+            - --tls-min-version=tlsv1.2
           ports:
             - containerPort: 10080
             - containerPort: 10443
