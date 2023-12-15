@@ -240,10 +240,10 @@ spec:
             # the endpoint where requests are proxied to
             - --upstream-url=https://127.0.0.1:8080
             # URls that you wish to protect.
+            - --resources=uri=/uan/*
             - --client-id=$(PROXY_CLIENT_ID)
             - --client-secret=$(PROXY_CLIENT_SECRET)
             - --enable-default-deny=false
-            - --resources=uri=/uan/*
             - --enable-logging=true
             - --enable-json-logging=true
             - --upstream-timeout=60s
