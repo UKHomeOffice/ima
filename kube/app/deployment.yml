@@ -236,6 +236,8 @@ spec:
                   add_header X-XSS-Protection "1; mode=block" always;
                   alias /public;
                 }
+            - name: PROXY_SERVICE_PORT
+              value: "8081"
           ports:
             - containerPort: 10080
             - containerPort: 10443
