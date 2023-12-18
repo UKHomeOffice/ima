@@ -199,8 +199,6 @@ spec:
               value: 127.0.0.1
             - name: PROXY_SERVICE_PORT
               value: "8080"
-            - name: PROXY_SERVICE_PORT
-              value: "8081"
             - name: ENABLE_UUID_PARAM
               value: "FALSE"
             - name: CLIENT_MAX_BODY_SIZE
