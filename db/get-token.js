@@ -8,13 +8,20 @@ const redis = require('./redis');
  * @param {string} token - token used to verify user
  */
 const read = async token => {
-  const user = {};
-  user.valid = await redis.get(`token:${token}`);
-  user.email = await redis.get(`${token}:email`);
-  user.uan = await redis.get(`${token}:uan`);
-  user['date-of-birth'] = await redis.get(`${token}:date-of-birth`);
+  const [valid, name, email, uam, _dateOfBirth] = await Promise.all([
+    redis.get(`token:${token}`),
+    redis.get(`${token}:email`),
+    redis.get(`${token}:uan`),
+    redis.get(`${token}:date-of-birth`),
+  ]);
 
-  return user;
+  return {
+    valid,
+    name,
+    email,
+    uam,
+    'date-of-birth': _dateOfBirth,
+  };
 };
 
 /**
