@@ -292,9 +292,6 @@ spec:
             - --upstream-response-header-timeout=60s
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
-            - --http-only-cookie=true
-            - --enable-security-filter=true
-            - --enable-request-id=true
             - --tls-min-version=tlsv1.2
           ports:
             - containerPort: 10080
