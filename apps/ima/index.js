@@ -8,6 +8,11 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const SaveImage = require('./behaviours/save-image');
+const RemoveImage = require('./behaviours/remove-image');
+const LimitDocument = require('./behaviours/limit-documents');
+const Submit = require('./behaviours/submit');
+
 
 module.exports = {
   name: 'ima',
@@ -33,16 +38,90 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/evidence-upload', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'current-progress'
     },
-    '/confirm': {
+    '/evidence-upload': {
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      fields: ['image'],
+      continueOnEdit: true,
+      next: '/final-summary'
+    },
+    '/final-summary': {
       behaviours: [Summary, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
-      next: '/confirmation'
+      template: 'confirm',
+      next: '/submitting-late'
     },
-    '/confirmation': {
+    '/submitting-late': {
+      behaviours: [SaveFormSession],
+      locals: { showSaveAndExit: true },
+      fields: [
+        'are-you-submitting-this-form-late',
+        'are-you-submitting-this-form-late-extension',
+        'late-extension-options-yes-detail'
+      ],
+      continueOnEdit: true,
+      next: '/submitting-late-details'
+    },
+    '/submitting-late-details': {
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      locals: { showSaveAndExit: true },
+      fields: ['image', 'late-submission'],
+      continueOnEdit: true,
+      forks: [
+        {
+          target: '/declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'person-named'
+          }
+        },
+        {
+          target: '/immigration-adviser-declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'has-legal-representative'
+          }
+        },
+        {
+          target: '/helper-declaration',
+          condition: {
+            field: 'who-are-you',
+            value: 'helper'
+          }
+        }
+      ]
+    },
+    '/declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: [
+        'person-declaration'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/immigration-adviser-declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: ['use-interpreter',
+        'immigration-adviser-declaration', 'language-used'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/helper-declaration': {
+      behaviours: [Summary, Submit],
+      sections: require('./sections/summary-data-sections'),
+      fields: ['use-interpreter',
+        'helper-declaration', 'language-used'
+      ],
+      locals: { showSaveAndExit: true },
+      next: '/form-submitted'
+    },
+    '/form-submitted': {
       clearSession: true
     },
     '/save-and-exit': {

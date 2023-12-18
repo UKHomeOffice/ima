@@ -115,6 +115,7 @@ The other services used for IMA include
 
 - `PDF_CONVERTER_URL`: If you are running a local PDF converter this is the url and port it is running on. This URL should be in the format `PDF_CONVERTER_URL=http://localhost:<PORT>/convert`
 - `FILEVAULT_URL`: If you are running a filevault locally this is the url and port it is running on. This URL should be in the format `FILEVAULT_URL=http://localhost:<PORT>/file`
+If you want to run locally make sure you have different ports for Html-pdf-converter and filevault.  In order to download files from the email link received by caseworker, keycloak env variables KEYCLOAK_TOKEN_URL, KEYCLOAK_SECRET, KEYCLOAK_CLIENT_ID, KEYCLOAK_USERNAME and KEYCLOAK_PASSWORD have to be added.
 
 ## Testing
 

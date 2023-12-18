@@ -1,0 +1,11 @@
+{{#images.length}}
+  <tr>
+    <th id="evidence-uploads-thumbnails"><strong>{{#t}}pages.confirm.fields.evidence-upload-more.label{{/t}}</strong></th>
+    <td data-field="image" class="no-white-space">
+      {{#images}}
+        <p>{{name}}</p>
+      {{/images}}
+    </td>
+    <td><a href="{{baseUrl}}/evidence-upload/edit" id="image-change">{{#t}}buttons.change{{/t}}</a></td>
+  </tr>
+{{/images.length}}
