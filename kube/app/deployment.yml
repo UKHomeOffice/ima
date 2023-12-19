@@ -293,6 +293,7 @@ spec:
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
             - --tls-min-version=tlsv1.2
+            - --secure-cookie=false
           ports:
             - containerPort: 10080
             - containerPort: 10443
