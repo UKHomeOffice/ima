@@ -274,7 +274,7 @@ spec:
             - name: PROXY_ADDRESS_FORWARDING
               value: "true"
           args:
-            - --listen=127.0.0.1:8081
+            - --listen=:8081
             # the url which is used to retrieve the OpenID configuration
             - --discovery-url=$(PROXY_DISCOVERY_URL)
             # the endpoint where requests are proxied to
@@ -293,7 +293,8 @@ spec:
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
             - --tls-min-version=tlsv1.2
-            - --secure-cookie=false
+            - --verbose=true
+            - –-preserve-host=true
           ports:
             - containerPort: 10080
             - containerPort: 10443
