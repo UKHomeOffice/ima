@@ -294,6 +294,8 @@ spec:
             - --server-write-timeout=60s
             - --tls-min-version=tlsv1.2
             - --verbose=true
+            - --http-only-cookie=true
+            - --secure-cookie=true
             - –-preserve-host=true
           ports:
             - containerPort: 10080
