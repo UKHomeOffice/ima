@@ -331,6 +331,7 @@ spec:
             - --upstream-url=http://127.0.0.1:8080
             # URls that you wish to protect.
             - --resources=uri=/uan/*
+            - --redirection-url=http://127.0.0.1:8081
             - --client-id=$(PROXY_CLIENT_ID)
             - --client-secret=$(PROXY_CLIENT_SECRET)
             - --enable-default-deny=false
@@ -343,7 +344,6 @@ spec:
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
             - --tls-min-version=tlsv1.2
-            - --secure-cookie=false
             - --verbose=true
           ports:
             - containerPort: 10080
