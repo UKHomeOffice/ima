@@ -219,6 +219,16 @@ spec:
                 add_header X-Content-Type-Options "nosniff" always;
                 add_header X-XSS-Protection "1; mode=block" always;
 
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_set_header X-Forwarded-Server $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header Host $http_host;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "Upgrade";
+                proxy_pass_request_headers on;
+
                 location /public {
                   add_header Cache-Control max-age=86400;
                   add_header X-Frame-Options "SAMEORIGIN" always;
@@ -328,7 +338,7 @@ spec:
             # the url which is used to retrieve the OpenID configuration
             - --discovery-url=$(PROXY_DISCOVERY_URL)
             # the endpoint where requests are proxied to
-            - --upstream-url=https://127.0.0.1:8080
+            - --upstream-url=http://127.0.0.1:8080
             # URls that you wish to protect.
             - --resources=uri=/uan/*
             - --client-id=$(PROXY_CLIENT_ID)
@@ -342,9 +352,6 @@ spec:
             - --upstream-response-header-timeout=60s
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
-            - --tls-min-version=tlsv1.2
-            - --tls-cert=/certs/tls.crt
-            - --tls-private-key=/certs/tls.key
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
             {{ end }}
