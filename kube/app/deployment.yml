@@ -328,7 +328,7 @@ spec:
             # the url which is used to retrieve the OpenID configuration
             - --discovery-url=$(PROXY_DISCOVERY_URL)
             # the endpoint where requests are proxied to
-            - --upstream-url=http://127.0.0.1:8080
+            - --upstream-url=https://127.0.0.1:8080
             # URls that you wish to protect.
             - --resources=uri=/uan/*
             - --client-id=$(PROXY_CLIENT_ID)
