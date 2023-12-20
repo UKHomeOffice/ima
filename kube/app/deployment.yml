@@ -246,7 +246,7 @@ spec:
           command:
             - "/opt/keycloak-proxy"
             - "--enable-default-deny=false"
-            - "--resources=uri=/*"
+            - "--resources=uri=/uan/*"
             - "--enable-logging=true"
             - "--enable-json-logging=true"
             - "--upstream-timeout=60s"
