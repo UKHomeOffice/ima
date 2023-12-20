@@ -345,6 +345,7 @@ spec:
             - --server-write-timeout=60s
             - --tls-min-version=tlsv1.2
             - --verbose=true
+            - --secure-cookie=false
           ports:
             - containerPort: 10080
             - containerPort: 10443
