@@ -219,16 +219,6 @@ spec:
                 add_header X-Content-Type-Options "nosniff" always;
                 add_header X-XSS-Protection "1; mode=block" always;
 
-                proxy_set_header X-Forwarded-Host $host;
-                proxy_set_header X-Forwarded-Server $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header Host $http_host;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection "Upgrade";
-                proxy_pass_request_headers on;
-
                 location /public {
                   add_header Cache-Control max-age=86400;
                   add_header X-Frame-Options "SAMEORIGIN" always;
@@ -245,68 +235,8 @@ spec:
           securityContext:
             runAsNonRoot: true
 
-        - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
-          resources:
-            limits:
-              memory: 1024Mi
-              cpu: 200m
-            requests:
-              memory: 512Mi
-          envFrom:
-            - configMapRef:
-                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
-                {{ else }}
-                name: configmap
-                {{ end }}
-          env:
-            - name: PROXY_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-client
-                  key: secret
-            - name: PROXY_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-client
-                  key: id
-            - name: PROXY_ADDRESS_FORWARDING
-              value: "true"
-            - name: PROXY_LISTEN
-              value: 127.0.0.1:8081
-            - name: PROXY_UPSTREAM_URL
-              value: "http://127.0.0.1:8080"
-          command:
-            - "/opt/keycloak-proxy"
-            - "--enable-default-deny=false"
-            - "--resources=uri=/uan/*"
-            - "--enable-logging=true"
-            - "--enable-json-logging=true"
-            - "--upstream-timeout=60s"
-            - "--upstream-keepalive-timeout=60s"
-            - "--upstream-tls-handshake-timeout=60s"
-            - "--upstream-response-header-timeout=60s"
-            - "--upstream-expect-continue-timeout=60s"
-            - "--server-write-timeout=60s"
-          ports:
-            - containerPort: 10080
-            - containerPort: 10443
-          securityContext:
-            runAsNonRoot: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-            - mountPath: /public
-              name: public
-            - mountPath: /certs
-              name: certs
-            - mountPath: /etc/ssl/certs
-              name: bundle
-              readOnly: true
-
         # - name: keycloak-proxy
-        #   image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
+        #   image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
         #   resources:
         #     limits:
         #       memory: 1024Mi
@@ -333,29 +263,22 @@ spec:
         #           key: id
         #     - name: PROXY_ADDRESS_FORWARDING
         #       value: "true"
-        #   args:
-        #     - --listen=:8081
-        #     # the url which is used to retrieve the OpenID configuration
-        #     - --discovery-url=$(PROXY_DISCOVERY_URL)
-        #     # the endpoint where requests are proxied to
-        #     - --upstream-url=http://127.0.0.1:8080
-        #     # URls that you wish to protect.
-        #     - --resources=uri=/uan/*
-        #     - --client-id=$(PROXY_CLIENT_ID)
-        #     - --client-secret=$(PROXY_CLIENT_SECRET)
-        #     - --enable-default-deny=false
-        #     - --enable-logging=true
-        #     - --enable-json-logging=true
-        #     - --upstream-timeout=60s
-        #     - --upstream-keepalive-timeout=60s
-        #     - --upstream-tls-handshake-timeout=60s
-        #     - --upstream-response-header-timeout=60s
-        #     - --upstream-expect-continue-timeout=60s
-        #     - --server-write-timeout=60s
-        #     - --tls-min-version=tlsv1.2
-        #     - --verbose=true
-        #     - --secure-cookie=false
-        #     - –-preserve-host=true
+        #     - name: PROXY_LISTEN
+        #       value: 127.0.0.1:8081
+        #     - name: PROXY_UPSTREAM_URL
+        #       value: "http://127.0.0.1:8080"
+        #   command:
+        #     - "/opt/keycloak-proxy"
+        #     - "--enable-default-deny=false"
+        #     - "--resources=uri=/uan/*"
+        #     - "--enable-logging=true"
+        #     - "--enable-json-logging=true"
+        #     - "--upstream-timeout=60s"
+        #     - "--upstream-keepalive-timeout=60s"
+        #     - "--upstream-tls-handshake-timeout=60s"
+        #     - "--upstream-response-header-timeout=60s"
+        #     - "--upstream-expect-continue-timeout=60s"
+        #     - "--server-write-timeout=60s"
         #   ports:
         #     - containerPort: 10080
         #     - containerPort: 10443
@@ -371,6 +294,72 @@ spec:
         #     - mountPath: /etc/ssl/certs
         #       name: bundle
         #       readOnly: true
+
+        - name: keycloak-proxy
+          image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 200m
+            requests:
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: secret
+            - name: PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: id
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "true"
+          args:
+            - --listen=:8081
+            # the url which is used to retrieve the OpenID configuration
+            - --discovery-url=$(PROXY_DISCOVERY_URL)
+            # the endpoint where requests are proxied to
+            - --upstream-url=http://127.0.0.1:8080
+            # URls that you wish to protect.
+            - --resources=uri=/uan/*
+            - --client-id=$(PROXY_CLIENT_ID)
+            - --client-secret=$(PROXY_CLIENT_SECRET)
+            - --enable-default-deny=false
+            - --enable-logging=true
+            - --enable-json-logging=true
+            - --upstream-timeout=60s
+            - --upstream-keepalive-timeout=60s
+            - --upstream-tls-handshake-timeout=60s
+            - --upstream-response-header-timeout=60s
+            - --upstream-expect-continue-timeout=60s
+            - --server-write-timeout=60s
+            - --tls-min-version=tlsv1.2
+            - --verbose=true
+            - –-preserve-host=true
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          securityContext:
+            runAsNonRoot: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /public
+              name: public
+            - mountPath: /certs
+              name: certs
+            - mountPath: /etc/ssl/certs
+              name: bundle
+              readOnly: true
 
       volumes:
         - name: public
