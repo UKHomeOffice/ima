@@ -201,8 +201,6 @@ spec:
           ports:
             - containerPort: 10080
             - containerPort: 10443
-          securityContext:
-            runAsNonRoot: true
           volumeMounts:
             - mountPath: /public
               name: public
@@ -212,6 +210,8 @@ spec:
             - name: bundle
               mountPath: /etc/ssl/certs
               readOnly: true
+          securityContext:
+            runAsNonRoot: true
 
         - name: keycloak-proxy
           image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
