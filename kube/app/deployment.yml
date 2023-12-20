@@ -195,118 +195,26 @@ spec:
               memory: 256Mi
               cpu: 300m
           env:
-            - name: PROXY_SERVICE_HOST
-              value: 127.0.0.1
+{{ file .NGINX_SETTINGS | indent 12 }}
             - name: PROXY_SERVICE_PORT
               value: "8081"
-            - name: ENABLE_UUID_PARAM
-              value: "FALSE"
-            - name: CLIENT_MAX_BODY_SIZE
-              value: "200"
-            - name: PORT_IN_HOST_HEADER
-              value: "FALSE"
-            - name: VERBOSE_ERROR_PAGES
-              value: "TRUE"
-            - name: EXTRA_NAXSI_RULES
-              value: |-
-                BasicRule wl:2,1000,1001,1002,1007,1008,1009,1010,1011,1013,1015,1101,1205,1314 "mz:BODY";
-                BasicRule wl:0 "mz:$HEADERS_VAR:Cookie";
-                BasicRule wl:1500 "mz:FILE_EXT";
-            - name: ADD_NGINX_SERVER_CFG
-              value: |
-                add_header Cache-Control private;
-                add_header X-Frame-Options "SAMEORIGIN" always;
-                add_header X-Content-Type-Options "nosniff" always;
-                add_header X-XSS-Protection "1; mode=block" always;
-
-                proxy_set_header X-Forwarded-Host $host;
-                proxy_set_header X-Forwarded-Server $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header Host $http_host;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection "Upgrade";
-                proxy_pass_request_headers on;
-
-                location /public {
-                  add_header Cache-Control max-age=86400;
-                  add_header X-Frame-Options "SAMEORIGIN" always;
-                  add_header X-Content-Type-Options "nosniff" always;
-                  add_header X-XSS-Protection "1; mode=block" always;
-                  alias /public;
-                }
           ports:
             - containerPort: 10080
             - containerPort: 10443
+          securityContext:
+            runAsNonRoot: true
           volumeMounts:
             - mountPath: /public
               name: public
-          securityContext:
-            runAsNonRoot: true
-
-        # - name: keycloak-proxy
-        #   image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.2.2
-        #   resources:
-        #     limits:
-        #       memory: 1024Mi
-        #       cpu: 200m
-        #     requests:
-        #       memory: 512Mi
-        #   envFrom:
-        #     - configMapRef:
-        #         {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-        #         name: configmap-{{ .DRONE_SOURCE_BRANCH }}
-        #         {{ else }}
-        #         name: configmap
-        #         {{ end }}
-        #   env:
-        #     - name: PROXY_CLIENT_SECRET
-        #       valueFrom:
-        #         secretKeyRef:
-        #           name: keycloak-client
-        #           key: secret
-        #     - name: PROXY_CLIENT_ID
-        #       valueFrom:
-        #         secretKeyRef:
-        #           name: keycloak-client
-        #           key: id
-        #     - name: PROXY_ADDRESS_FORWARDING
-        #       value: "true"
-        #     - name: PROXY_LISTEN
-        #       value: 127.0.0.1:8081
-        #     - name: PROXY_UPSTREAM_URL
-        #       value: "http://127.0.0.1:8080"
-        #   command:
-        #     - "/opt/keycloak-proxy"
-        #     - "--enable-default-deny=false"
-        #     - "--resources=uri=/uan/*"
-        #     - "--enable-logging=true"
-        #     - "--enable-json-logging=true"
-        #     - "--upstream-timeout=60s"
-        #     - "--upstream-keepalive-timeout=60s"
-        #     - "--upstream-tls-handshake-timeout=60s"
-        #     - "--upstream-response-header-timeout=60s"
-        #     - "--upstream-expect-continue-timeout=60s"
-        #     - "--server-write-timeout=60s"
-        #   ports:
-        #     - containerPort: 10080
-        #     - containerPort: 10443
-        #   securityContext:
-        #     runAsNonRoot: true
-        #   terminationMessagePath: /dev/termination-log
-        #   terminationMessagePolicy: File
-        #   volumeMounts:
-        #     - mountPath: /public
-        #       name: public
-        #     - mountPath: /certs
-        #       name: certs
-        #     - mountPath: /etc/ssl/certs
-        #       name: bundle
-        #       readOnly: true
+            - mountPath: /certs
+              name: certs
+              readOnly: true
+            - name: bundle
+              mountPath: /etc/ssl/certs
+              readOnly: true
 
         - name: keycloak-proxy
-          image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
+          image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.3
           resources:
             limits:
               memory: 1024Mi
