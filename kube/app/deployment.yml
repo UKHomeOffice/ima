@@ -260,6 +260,7 @@ spec:
             - --upstream-response-header-timeout=60s
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
+            - –-http-only-cookie=false
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
             {{ end }}
