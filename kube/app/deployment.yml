@@ -241,6 +241,16 @@ spec:
                   key: id
             - name: PROXY_ADDRESS_FORWARDING
               value: "true"
+            - name: PROXY_REDIRECTION_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: {{ .PRODUCTION_URL }}
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://ima.stg.sas.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://ima.uat.sas-notprod.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://ima-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
+            {{ end }}
           args:
             - --listen=:8081
             # the url which is used to retrieve the OpenID configuration
@@ -249,6 +259,7 @@ spec:
             - --upstream-url=http://127.0.0.1:8080
             # URls that you wish to protect.
             - --resources=uri=/uan/*
+            - --redirect-url=
             - --client-id=$(PROXY_CLIENT_ID)
             - --client-secret=$(PROXY_CLIENT_SECRET)
             - --enable-default-deny=false
@@ -260,7 +271,7 @@ spec:
             - --upstream-response-header-timeout=60s
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
-            - –-secure-cookie=false
+            - --redirection-url=$(PROXY_REDIRECTION_URL)
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
             {{ end }}
