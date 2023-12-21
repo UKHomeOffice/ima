@@ -259,7 +259,7 @@ spec:
             - --upstream-url=http://127.0.0.1:8080
             # URls that you wish to protect.
             - --resources=uri=/uan/*
-            - --redirect-url=
+            - --redirection-url=$(PROXY_REDIRECTION_URL)
             - --client-id=$(PROXY_CLIENT_ID)
             - --client-secret=$(PROXY_CLIENT_SECRET)
             - --enable-default-deny=false
@@ -271,7 +271,6 @@ spec:
             - --upstream-response-header-timeout=60s
             - --upstream-expect-continue-timeout=60s
             - --server-write-timeout=60s
-            - --redirection-url=$(PROXY_REDIRECTION_URL)
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - --verbose=true
             {{ end }}
