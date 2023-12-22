@@ -1,0 +1,11 @@
+<fieldset id="is-life-threatened-detail-fieldset" class="govuk-radios__conditional" aria-hidden="false">
+    <strong>Enter details of how you came to the UK</strong>
+    <p>If you passed through or stopped in another country, explain why your life or liberty was threatened there</p>
+    {{#errors.life-threatened-detail}}
+        <p class="govuk-error-message">
+        {{errors.life-threatened-detail.message}}
+        </p>
+    {{/errors.life-threatened-detail}}
+    {{#textarea}}life-threatened-detail{{/textarea}}
+    <p>If you have evidence, upload it later in this form.</p>
+ </fieldset>
