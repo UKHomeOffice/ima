@@ -1,6 +1,6 @@
 /* eslint max-len: 0 */
 const moment = require('moment');
-const PRETTY_DATE_FORMAT = 'DD/MM/YYYY';
+const PRETTY_DATE_FORMAT = 'DD MMMM YYYY';
 
 module.exports = {
   'case-details': {
@@ -17,5 +17,20 @@ module.exports = {
         omitChangeLink: true
       }
     ]
-  }
+  },
+  'evidence-documents': [
+    {
+      step: '/evidence-upload',
+      field: 'images',
+      parse: (list, req) => {
+        if (!req.sessionModel.get('steps').includes('/evidence-upload')) {
+          return null;
+        }
+        if (req.sessionModel.get('images')) {
+          return req.sessionModel.get('images').length > 0 ? list && list.map(i => i.name).join('\n') : 'None uploaded';
+        }
+        return 'None uploaded';
+      }
+    }
+  ]
 };
