@@ -65,9 +65,9 @@ module.exports = superclass => class extends superclass {
         const loopedFieldMatchesForkCondition = loopedForkField &&
           req.form.values[loopedForkField] === loopedForkCondition;
 
-        if (req.sessionModel.get('redirect-to-current-progress') &&
+        if (req.sessionModel.get('redirect-to-summary') &&
           !isContinueOnEdit && !loopedFieldMatchesForkCondition) {
-          return res.redirect('/ima/current-progress');
+          return res.redirect('/ima/summary');
         }
 
         return next();

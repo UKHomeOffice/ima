@@ -1,6 +1,6 @@
 /* eslint max-len: 0 */
 const moment = require('moment');
-const PRETTY_DATE_FORMAT = 'DD/MM/YYYY';
+const PRETTY_DATE_FORMAT = 'DD MMMM YYYY';
 
 module.exports = {
   'case-details': {

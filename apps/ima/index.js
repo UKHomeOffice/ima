@@ -19,17 +19,18 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: CheckEmailToken,
-      next: '/cases'
+      next: '/continue-form'
     },
-    '/cases': {
+    '/continue-form': {
       behaviours: [ResumeSession],
-      next: '/current-progress',
+      next: '/summary',
       backLink: false
     },
-    '/current-progress': {
+    '/summary': {
       behaviours: [Summary, ContinueReport],
       sections: require('./sections/summary-data-sections'),
       backLink: false,
+      locals: { showSaveAndExit: true },
       journeyStart: '/who-are-you'
     },
     '/who-are-you': {
@@ -37,7 +38,7 @@ module.exports = {
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
       next: '/evidence-upload', // TO BE UPDATED AS STEPS ARE ADDED
-      backLink: 'current-progress'
+      backLink: 'summary'
     },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
