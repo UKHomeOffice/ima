@@ -5,7 +5,7 @@
   },
   "date-of-birth": {
     "legend": "Date of birth",
-    "hint": "For example, 31 3 1980"
+    "hint": "For example, 31 03 1980"
   },
   "user-email": {
     "hint": "We will email you a secure link, so you can save your information and return later."

@@ -2,13 +2,13 @@
   "your-details": {
     "header": "Enter your details"
   },
-  "not-found": {
+  "details-not-found": {
     "header": "Details not found"
   },
-  "verify": {
+  "enter-email": {
     "header": "Enter an email address"
   },
-  "check-inbox": {
+  "check-email": {
     "header": "Check your email"
   }
 }

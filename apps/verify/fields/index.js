@@ -3,7 +3,7 @@
 const dateComponent = require('hof').components.date;
 const UANRef = {
   type: 'regex',
-  arguments: /^(\d{4}-\d{4}-\d{4}-\d{4})$/
+  arguments: /^(\d{4}-\d{4}-\d{4}-\d{4}(?:\/\d{2})?)$/
 };
 const after1900Validator = { type: 'after', arguments: ['1900'] };
 

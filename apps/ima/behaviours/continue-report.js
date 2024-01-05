@@ -17,10 +17,10 @@ module.exports = superclass => class extends superclass {
     const uan = req.sessionModel.get('uan');
 
     if (!uan) {
-      return res.redirect('/ima/cases');
+      return res.redirect('/ima/continue-form');
     }
 
-    req.sessionModel.set('redirect-to-current-progress', true);
+    req.sessionModel.set('redirect-to-summary', true);
 
     // steps in the session fall out of sync when changed from the current progress report page
     // this reorders them to ensure the user jumps to the last step they filled out
@@ -68,8 +68,10 @@ module.exports = superclass => class extends superclass {
       if (err) {
         next(err);
       }
-      req.sessionModel.set('redirect-to-current-progress', false);
-
+      req.sessionModel.set('redirect-to-summary', false);
+      if (req.body['save-and-exit']) {
+        return res.redirect('/ima/save-and-exit');
+      }
       return res.redirect(`/ima${req.sessionModel.get('save-return-next-step')}`);
     });
   }
