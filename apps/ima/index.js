@@ -8,6 +8,9 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const SaveImage = require('./behaviours/save-image');
+const RemoveImage = require('./behaviours/remove-image');
+const LimitDocument = require('./behaviours/limit-documents');
 
 module.exports = {
   name: 'ima',
@@ -34,8 +37,14 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
-      next: '/confirm', // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/evidence-upload', // TO BE UPDATED AS STEPS ARE ADDED
       backLink: 'summary'
+    },
+    '/evidence-upload': {
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      fields: ['image'],
+      continueOnEdit: true,
+      next: '/confirm'
     },
     '/confirm': {
       behaviours: [Summary, SaveFormSession],

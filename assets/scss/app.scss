@@ -200,7 +200,9 @@ pre.looped-records {
   border-bottom-width: 4px;
   text-decoration: none;
 }
-
 .details-uan-dob {
   margin-bottom: -3px;
 }
+.confirm-label[data-content="Files uploaded"] ~ .confirm-value {
+  white-space: pre-line
+ }
