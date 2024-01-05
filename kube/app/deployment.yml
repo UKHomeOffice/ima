@@ -181,8 +181,6 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
-            - mountPath: /app/container-share
-              name: container-share
 
         - name: nginx-proxy
           # nginx-proxy-govuk:v4
@@ -207,6 +205,4 @@ spec:
 
       volumes:
         - name: public
-          emptyDir: {}
-        - name: container-share
           emptyDir: {}
