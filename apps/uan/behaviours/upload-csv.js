@@ -128,6 +128,7 @@ module.exports = superclass => class extends superclass {
 
         const firstMissingColumn = missingColumns[0];
         let columnError;
+        // TODO Update cases below if column names move away from UAN
         switch(firstMissingColumn) {
           case 'uan which has ban alerts under ima 2023':
             columnError = 'missingUanColumn';
