@@ -163,13 +163,14 @@ module.exports = {
       behaviours: SaveFormSession,
       forks: [
         {
-          target: '/medical-records', // TODO target url will be added by next TASK
+          target: '/medical-records',
           condition: {
             field: 'has-address',
             value: 'yes'
           }
         },
         {
+        // TODO - TARGET AND CONDITION MUST BE CHANGED BASED ON BAN-ONLY CONDITION
           target: '/',
           condition: {
             fields: 'has-address',
@@ -187,7 +188,7 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/medical-records',
+      next: '/medical-records', // TODO - URL MUST BE CHANGED BASED ON BAN-ONLY CONDITION
       backLink: 'phone-number'
     },
     '/medical-records': {
