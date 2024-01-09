@@ -2,6 +2,60 @@
   "who-are-you": {
     "required": "You must select an option"
   },
+  "someone-else-fullname": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "someone-else-relationship": {
+    "required": "Enter your relationship to you",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "name": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "email-address-details": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "phone-number-details": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "is-legal-representative-email": {
+    "required": "You must select an option"
+  },
+  "legal-representative-name": {
+    "required": "Enter your name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-phone-number": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "legal-representative-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "legal-representative-house-number": {
+    "required": "Enter your house number/name, and street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-street": {
+    "notUrl": "Enter a valid street name"
+  },
+  "legal-representative-townOrCity": {
+    "required": "Enter your town or city",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-county": {
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-postcode": {
+    "required": "Enter your postcode",
+    "postcode": "Enter a valid UK postcode",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "image": {
     "default": "We have not been able to upload evidence",
     "unsaved": "We have not been able to upload evidence",
