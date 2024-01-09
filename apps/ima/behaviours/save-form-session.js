@@ -71,10 +71,10 @@ module.exports = superclass => class extends superclass {
 
         if (req.body['save-and-exit']) {
           const host = req.get('host');
-          const useremail = req.form.values['user-email'] || req.sessionModel.get('user-email');
-          const token = tokenGenerator.save(req, useremail);
+          const userEmail = req.form.values['user-email'] || req.sessionModel.get('user-email');
+          const token = tokenGenerator.save(req, userEmail);
           try {
-            await notifyClient.sendEmail(templateId, useremail, {
+            await notifyClient.sendEmail(templateId, userEmail, {
               personalisation: getPersonalisation(host, token, req, req)
             });
           } catch (e) {
