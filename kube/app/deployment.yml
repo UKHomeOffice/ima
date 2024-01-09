@@ -181,9 +181,11 @@ spec:
           volumeMounts:
             - mountPath: /public
               name: public
+            - mountPath: /app/container-share
+              name: container-share
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4
+          # nginx-proxy-govuk: v4
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             requests:
@@ -194,14 +196,114 @@ spec:
               cpu: 300m
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
+            - name: PROXY_SERVICE_PORT
+              value: "8081"
           ports:
             - containerPort: 10080
             - containerPort: 10443
           volumeMounts:
             - mountPath: /public
               name: public
+            - mountPath: /certs
+              name: certs
+              readOnly: true
+            - name: bundle
+              mountPath: /etc/ssl/certs
+              readOnly: true
           securityContext:
             runAsNonRoot: true
+
+        - name: keycloak-proxy
+          image: quay.io/ukhomeofficedigital/gogatekeeper:2.9.2
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 200m
+            requests:
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: secret
+            - name: PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: id
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "true"
+            - name: PROXY_REDIRECTION_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: {{ .PRODUCTION_URL }}
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://ima.stg.sas.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://ima.uat.sas-notprod.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://ima-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
+            {{ end }}
+          args:
+            - --listen=:8081
+            # the url which is used to retrieve the OpenID configuration
+            - --discovery-url=$(PROXY_DISCOVERY_URL)
+            # the endpoint where requests are proxied to
+            - --upstream-url=http://127.0.0.1:8080
+            # URls that you wish to protect.
+            - --resources=uri=/uan/*
+            - --redirection-url=$(PROXY_REDIRECTION_URL)
+            - --client-id=$(PROXY_CLIENT_ID)
+            - --client-secret=$(PROXY_CLIENT_SECRET)
+            - --enable-default-deny=false
+            - --enable-logging=true
+            - --enable-json-logging=true
+            - --upstream-timeout=60s
+            - --upstream-keepalive-timeout=60s
+            - --upstream-tls-handshake-timeout=60s
+            - --upstream-response-header-timeout=60s
+            - --upstream-expect-continue-timeout=60s
+            - --server-write-timeout=60s
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - --verbose=true
+            {{ end }}
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          securityContext:
+            runAsNonRoot: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /public
+              name: public
+            - mountPath: /certs
+              name: certs
+            - mountPath: /etc/ssl/certs
+              name: bundle
+              readOnly: true
+
       volumes:
         - name: public
           emptyDir: {}
+        - name: container-share
+          emptyDir: {}
+        - name: certs
+          secret:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            secretName: branch-tls-external
+            {{ else if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+            secretName: ingress-internal
+            {{ else }}
+            secretName: cert-cmio
+            {{ end }}
+        - name: bundle
+          configMap:
+            name: bundle

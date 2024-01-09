@@ -79,5 +79,18 @@ module.exports = {
   sessionDefaults: {
     steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
     fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
+  },
+  uanUpload: {
+    recordScanLimit: 1,
+    filevaultUpload: true,
+    writeFileToSharedVolume: false,
+    mandatoryColumns: [
+      'uan which has ban alerts under ima 2023',
+      'date of birth',
+      'duty to remove alert'
+    ],
+    allowedMimeTypes: [
+      'text/csv'
+    ]
   }
 };
