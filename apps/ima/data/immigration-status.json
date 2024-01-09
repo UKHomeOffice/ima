@@ -1,0 +1,22 @@
+[
+  {
+    "value": "British citizen",
+    "label": "British citizen"
+  },
+  {
+    "value": "Settled",
+    "label": "Settled (also known as indefinite leave)"
+  },
+  {
+    "value": "Refugee",
+    "label": "Refugee"
+  },
+  {
+    "value": "Humanitarian Protection",
+    "label": "Humanitarian Protection"
+  },
+  {
+    "value": "Other",
+    "label": "Other"
+  }
+]

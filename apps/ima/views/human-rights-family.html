@@ -1,0 +1,15 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renderField}}family-member-relation{{/renderField}}
+    {{#renderField}}family-member-full-name{{/renderField}}
+    {{#renderField}}family-member-dob{{/renderField}}
+    {{#select}}family-member-nationality{{/select}}
+    {{#select}}uk-immigration-status{{/select}}
+    {{> partials-immigration-status-other}}
+    <br>
+    {{#checkbox-group}}reference-number-option{{/checkbox-group}}
+    <br>
+    {{#textarea}}human-rights-claim-details{{/textarea}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
