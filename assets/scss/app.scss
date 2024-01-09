@@ -201,17 +201,22 @@ pre.looped-records {
   text-decoration: none;
 }
 
-.details-uan-dob{
-  margin-bottom: -3px;
-}
-
- p:has(span.medical-paragraph){
+p:has(span.medical-paragraph) {
   margin-bottom: -5px;
 }
 
-.label-margin{
+.label-margin {
   margin-top: -5%;
 }
-.list-margin{
+
+.list-margin {
   margin-left: 10px;
+}
+
+.details-uan-dob {
+  margin-bottom: -3px;
+}
+
+.confirm-label[data-content="Files uploaded"] ~ .confirm-value {
+  white-space: pre-line
 }

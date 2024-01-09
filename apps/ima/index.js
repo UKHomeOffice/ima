@@ -8,6 +8,11 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const SaveImage = require('./behaviours/save-image');
+const RemoveImage = require('./behaviours/remove-image');
+const LimitDocument = require('./behaviours/limit-documents');
+const Submit = require('./behaviours/submit');
+
 
 module.exports = {
   name: 'ima',
@@ -16,17 +21,18 @@ module.exports = {
   steps: {
     '/start': {
       behaviours: CheckEmailToken,
-      next: '/cases'
+      next: '/continue-form'
     },
-    '/cases': {
+    '/continue-form': {
       behaviours: [ResumeSession],
-      next: '/current-progress',
+      next: '/summary',
       backLink: false
     },
-    '/current-progress': {
+    '/summary': {
       behaviours: [Summary, ContinueReport],
       sections: require('./sections/summary-data-sections'),
       backLink: false,
+      locals: { showSaveAndExit: true },
       journeyStart: '/who-are-you'
     },
     '/who-are-you': {
@@ -57,7 +63,7 @@ module.exports = {
       fields: ['who-are-you'],
       locals: { showSaveAndExit: true },
       next: '/your-location',
-      backLink: 'current-progress'
+      backLink: 'summary'
     },
     '/immigration-adviser-details': {
       behaviours: SaveFormSession,
@@ -189,11 +195,17 @@ module.exports = {
       fields: ['has-permission-access', 'permission-response'],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/confirm', // TODO a url needs to be Changed
+      next: '/evidence-upload', // TODO a url needs to be Changed
       backLink: 'immigration-detention'
     },
+    '/evidence-upload': {
+      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      fields: ['image'],
+      continueOnEdit: true,
+      next: '/confirm' 
+    },
     '/confirm': {
-      behaviours: [Summary, SaveFormSession],
+      behaviours: [Summary, Submit, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
       next: '/confirmation'
@@ -210,5 +222,5 @@ module.exports = {
     },
     '/cannot-use-form': {},
     '/application-expired': {}
-  }
+}
 };

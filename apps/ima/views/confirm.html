@@ -1,0 +1,13 @@
+{{<partials-page}}
+  {{$page-content}}
+    <table class="table-details">
+      <tbody>
+        {{#rows}}
+          {{> partials-summary-table}}
+        {{/rows}}
+        {{> partials-evidence-thumbnails}}
+      </tbody>
+    </table>
+    {{#input-submit}}confirm-submission{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

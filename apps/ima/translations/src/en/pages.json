@@ -22,7 +22,7 @@
     "header": "Is this your email address?",
     "hint": "{{values.user-email}}"
   },
-  "current-progress": {
+  "summary": {
     "header": "Information you have given us"
   },
   "cannot-use-form": {
@@ -43,8 +43,11 @@
     "header": "Your medical records",
     "response-label1": "You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."
   },
+  "evidence-upload": {
+    "header": "Upload evidence"
+  },
   "confirm": {
-    "header": "Check your answers",
+    "header": "Information you have given us",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
@@ -55,7 +58,10 @@
       },
       "personal-details": {
         "header": "Personal details"
-      }
+      },
+      "evidence-documents": {
+        "header": "Evidence"
+       }
     },
     "fields": {
       "uan": {
@@ -84,7 +90,20 @@
       },
       "legal-representative-address": {
         "label": "Address"
-      }
+      },
+      "images": {
+        "label": "Files uploaded"
+      }  
     }
+  },
+  "confirmation": {
+    "confirmed": "Submitted",
+    "paragraph1": "We have sent a copy of completed form to:",
+    "header2": "What happens next",
+    "paragraph2": "We will make decision about your claim, then contact you to tell you what you need to do next.",
+    "header3": "If you need to send more evidence",
+    "paragraph3": "You can email evidence to [EMAIL ADDRESS]",
+    "paragraph4": "Your email must include the Unique application number [UAN] and date of birth you used to sign in to this form.",
+    "paragraph5": "Information about how to send more evidence is also on the email we send you when you submitted this form."
   }
 }

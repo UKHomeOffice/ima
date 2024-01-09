@@ -238,5 +238,9 @@ module.exports = {
       value: 'no'
     }],
     validate: 'required'
+  },
+  image: {
+    mixin: 'input-file',
+    labelClassName: 'visuallyhidden'
   }
 };
