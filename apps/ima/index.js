@@ -202,7 +202,7 @@ module.exports = {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
-      next: '/confirm' 
+      next: '/confirm'
     },
     '/confirm': {
       behaviours: [Summary, Submit, SaveFormSession],
@@ -222,5 +222,5 @@ module.exports = {
     },
     '/cannot-use-form': {},
     '/application-expired': {}
-}
+  }
 };
