@@ -1,0 +1,10 @@
+<fieldset id="address-details-fieldset" class="govuk-radios__conditional" aria-hidden="false">
+   <strong>{{#t}}fields.your-address.label{{/t}}</strong>
+   <p>{{#t}}fields.your-address.hint{{/t}}</p>
+   
+    {{#renderField}}house-number{{/renderField}}
+    {{#renderField}}street{{/renderField}}
+    {{#renderField}}townOrCity{{/renderField}}
+    {{#renderField}}county{{/renderField}}
+    {{#renderField}}postcode{{/renderField}}
+</fieldset>
