@@ -8,18 +8,7 @@ const notifyApiKey = config.govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.saveAndExitTemplateId;
 const tokenGenerator = require('../../../db/save-token');
-
-const getPersonalisation = (host, token) => {
-  const protocol = host.includes('localhost') ? 'http' : 'https';
-  return {
-    // pass in `&` at the end in case there is another
-    // query e.g. ?hof-cookie-check
-    link: `${protocol}://${host + config.login.appPath}?token=${token}&`,
-    host: `${protocol}://${host}`
-  };
-};
-
-
+const utilities = require('../../../lib/utilities');
 const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 
 module.exports = superclass => class extends superclass {
@@ -71,11 +60,11 @@ module.exports = superclass => class extends superclass {
 
         if (req.body['save-and-exit']) {
           const host = req.get('host');
-          const useremail = req.form.values['user-email'] || req.sessionModel.get('user-email');
-          const token = tokenGenerator.save(req, useremail);
+          const userEmail = req.form.values['user-email'] || req.sessionModel.get('user-email');
+          const token = tokenGenerator.save(req, userEmail);
           try {
-            await notifyClient.sendEmail(templateId, useremail, {
-              personalisation: getPersonalisation(host, token, req, req)
+            await notifyClient.sendEmail(templateId, userEmail, {
+              personalisation: utilities.getPersonalisation(host, token)
             });
           } catch (e) {
             return next(e);
