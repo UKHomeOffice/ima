@@ -17,5 +17,20 @@ module.exports = {
         omitChangeLink: true
       }
     ]
+  },
+  'claim-details': {
+    steps: [
+      {
+        step: '/removal-condition',
+        field: 'how-removal-condition-1-applies',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/removal-condition')) {
+            return null;
+          }
+          return req.sessionModel.get('how-removal-condition-1-applies') !== '' ?
+            'Selected' + '\nDetails added' : 'Not selected';
+        }
+      }
+    ]
   }
 };
