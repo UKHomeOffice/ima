@@ -2,8 +2,8 @@
 
 ul {
   @extend .govuk-list--bullet;
- 
 }
+
 a {
   @extend .govuk-link;
 }
@@ -201,17 +201,7 @@ pre.looped-records {
   text-decoration: none;
 }
 
-.details-uan-dob{
+.details-uan-dob {
+  color: #d4351c;
   margin-bottom: -3px;
-}
-
- p:has(span.medical-paragraph){
-  margin-bottom: -5px;
-}
-
-.label-margin{
-  margin-top: -5%;
-}
-.list-margin{
-  margin-left: 10px;
 }
