@@ -4,19 +4,8 @@ const notifyApiKey = config.govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.saveAndExitTemplateId;
 const tokenGenerator = require('../../../db/save-token');
-
+const utilities = require('../../../lib/utilities');
 const DEFAULTS = config.sessionDefaults;
-
-const getPersonalisation = (host, token) => {
-  const protocol = host.includes('localhost') ? 'http' : 'https';
-  return {
-    // pass in `&` at the end in case there is another
-    // query e.g. ?hof-cookie-check
-    link: `${protocol}://${host + config.login.appPath}?token=${token}&`,
-    host: `${protocol}://${host}`
-  };
-};
-
 
 const getMandatorySteps = (mandatorySteps, steps) => {
   const currentStep = mandatorySteps[mandatorySteps.length - 1];
@@ -91,7 +80,7 @@ module.exports = superclass => class extends superclass {
         const token = tokenGenerator.save(req, userEmail);
         try {
           await notifyClient.sendEmail(templateId, userEmail, {
-            personalisation: getPersonalisation(host, token, req, req)
+            personalisation: utilities.getPersonalisation(host, token)
           });
         } catch (e) {
           return next(e);
