@@ -8,6 +8,11 @@ a {
   @extend .govuk-link;
 }
 
+.evidence-list > ol {
+  margin-left: 20px;
+  @extend  .govuk-list--number;
+ }
+
 // Accessible autocomplete
 .autocomplete__wrapper {
   position: relative;
@@ -191,7 +196,9 @@ pre.looped-records {
 .button-as-link:active {
   background: #ffdd00;
 }
-
+#use-interpreter-group > fieldset > legend {
+  @extend .govuk-heading-m;
+}
 .button-as-link .govuk-button:active {
   color: black;
   line-height: 23px;
