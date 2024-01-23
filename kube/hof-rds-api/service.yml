@@ -13,6 +13,7 @@ metadata:
     name: dataservice
     role: service
   {{ end }}
+  
 spec:
   selector:
     {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}

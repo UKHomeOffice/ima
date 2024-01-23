@@ -2,8 +2,8 @@
 
 ul {
   @extend .govuk-list--bullet;
+ 
 }
-
 a {
   @extend .govuk-link;
 }
@@ -207,10 +207,23 @@ pre.looped-records {
   border-bottom-width: 4px;
   text-decoration: none;
 }
+
+p:has(span.medical-paragraph) {
+  margin-bottom: -5px;
+}
+
+.label-margin {
+  margin-top: -5%;
+}
+
+.list-margin {
+  margin-left: 10px;
+}
+
 .details-uan-dob {
-  color: #d4351c;
   margin-bottom: -3px;
 }
+
 .confirm-label[data-content="Files uploaded"] ~ .confirm-value {
   white-space: pre-line
- }
+}

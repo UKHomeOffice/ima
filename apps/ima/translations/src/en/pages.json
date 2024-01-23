@@ -8,18 +8,40 @@
     "paragraph": "There are no cases associated with this email. Please check you used the correct email, and access this service again via the <a href='/start'>IMA start page</a>."
   },
   "save-and-exit": {
-    "header": "You have left the form",
-    "paragraph1": "Your progress has been saved."
+    "header": "You have information has been saved",
+    "paragraph1": "To continue your form, use the link we have emailed to:"
   },
-  "current-progress": {
+  "helper-details": {
+    "header": "Helper details",
+    "paragraph": "Answer all the following questions as if you are the person on the Illegal Migration Act notice."
+  },
+  "full-name": {
+    "header": "What is your full name?"
+  },
+  "your-email": {
+    "header": "Is this your email address?",
+    "hint": "{{values.user-email}}"
+  },
+  "summary": {
     "header": "Information you have given us"
   },
   "cannot-use-form": {
-    "header": "You cannot use this form",
-    "paragraph-1": "You can only continue your claim if you are in the UK."
+    "header": "You cannot use this form"
   },
   "token-invalid": {
     "header": "This link has expired"
+  },
+  "immigration-adviser-details": {
+    "header": "Immigration adviser details",
+    "paragraph": "We will use these detail if we need to contact you.",
+    "address": "Postal address"
+  },
+  "is-legal-representative-email": {
+    "header": "Is {{values.user-email}} your email address?"
+  },
+  "medical-records": {
+    "header": "Your medical records",
+    "response-label1": "You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."
   },
   "evidence-upload": {
     "header": "Upload evidence"
@@ -30,6 +52,12 @@
     "sections": {
       "case-details": {
         "header": "Case details"
+      },
+      "immigration-adviser-details": {
+        "header": "Immigration adviser details"
+      },
+      "personal-details": {
+        "header": "Personal details"
       },
       "evidence-documents": {
         "header": "Evidence"
@@ -42,8 +70,26 @@
       "name": {
         "label": "Full name"
       },
+      "email-address": {
+        "label": "Email"
+      },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "who-are-you": {
+        "label": "Who completed this form"
+      },
+      "legal-representative-fullname": {
+        "label": "Full name"
+      },
+      "legal-representative-email": {
+        "label": "Email"
+      },
+      "legal-representative-phone-number": {
+        "label": "Phone number"
+      },
+      "legal-representative-address": {
+        "label": "Address"
       },
       "images": {
         "label": "Files uploaded"
