@@ -2,11 +2,11 @@
   "who-are-you": {
     "required": "You must select an option"
   },
-  "someone-else-fullname": {
+  "helper-fullname": {
     "required": "Enter your full name",
     "notUrl": "Please do not enter a link/url into your answers"
   },
-  "someone-else-relationship": {
+  "helper-relationship": {
     "required": "Enter your relationship to you",
     "notUrl": "Please do not enter a link/url into your answers"
   },

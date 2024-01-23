@@ -227,3 +227,13 @@ p:has(span.medical-paragraph) {
 .confirm-label[data-content="Files uploaded"] ~ .confirm-value {
   white-space: pre-line
 }
+
+div > .section-header[data-content="Case details"]{
+ display: none;
+}
+
+.wrap-table-cell,
+ .confirm-row {
+   white-space: pre-wrap;
+   word-wrap: break-word;
+ }

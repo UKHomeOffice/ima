@@ -152,13 +152,13 @@
   "legal-representative-email": {
     "label": "Enter your email address"
   },
-  "someone-else-fullname": {
+  "helper-fullname": {
     "label": "Full name"
   },
-  "someone-else-relationship": {
+  "helper-relationship": {
     "label": "What is your relationship to the person on the Illegal Migration Act notice?"
   },
-  "someone-else-organisation": {
+  "helper-organisation": {
     "label": "Organisation name (optional)",
     "hint": "For example, name of charity or support group."
   },

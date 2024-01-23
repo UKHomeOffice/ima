@@ -208,19 +208,19 @@ module.exports = {
   'helper-details': {
     isPageHeading: true
   },
-  'someone-else-fullname': {
+  'helper-fullname': {
     labelClassName: 'bold',
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'someone-else-relationship': {
+  'helper-relationship': {
     labelClassName: 'bold',
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'someone-else-organisation': {
+  'helper-organisation': {
     labelClassName: 'bold',
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']

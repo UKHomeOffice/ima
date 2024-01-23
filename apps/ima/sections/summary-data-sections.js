@@ -15,15 +15,15 @@ module.exports = {
         field: 'date-of-birth',
         parse: d => d && moment(d).format(PRETTY_DATE_FORMAT),
         omitChangeLink: true
+      },
+      {
+        step: '/who-are-you',
+        field: 'who-are-you'
       }
     ]
   },
   'immigration-adviser-details': {
     steps: [
-      {
-        step: '/who-are-you',
-        field: 'who-are-you'
-      },
       {
         step: '/immigration-adviser-details',
         field: 'legal-representative-fullname',
@@ -31,7 +31,7 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
             return null;
           }
-          return null;
+          return list;
         }
       },
       {
@@ -55,10 +55,31 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
             return null;
           }
-          return `${req.sessionModel.get('legal-representative-house-number')} \n ${req.sessionModel.get('legal-representative-street')} \n ${req.sessionModel.get('legal-representative-townOrCity')}\n${req.sessionModel.get('legal-representative-county')}\n${req.sessionModel.get('legal-representative-postcode')}`;
+          return `${req.sessionModel.get('legal-representative-house-number')} \n` +
+            `${req.sessionModel.get('legal-representative-street')} \n` +
+            `${req.sessionModel.get('legal-representative-townOrCity')}\n` +
+            `${req.sessionModel.get('legal-representative-county')}\n` +
+            `${req.sessionModel.get('legal-representative-postcode')}`;
         }
       }
-    ]},
+    ]
+  },
+  'helper-details': {
+    steps: [
+      {
+        step: '/helper-details',
+        field: 'helper-fullname'
+      },
+      {
+        step: '/helper-details',
+        field: 'helper-relationship'
+      },
+      {
+        step: '/helper-details',
+        field: 'helper-organisation'
+      }
+    ]
+  },
   'personal-details': {
     steps: [
       {
@@ -66,14 +87,55 @@ module.exports = {
         field: 'name'
       },
       {
-        step: '/email',
-        field: 'email-address',
+        step: '/your-email',
+        field: 'current-email',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/email')) {
+          if (req.sessionModel.get('current-email') === 'yes') {
+            return `${req.sessionModel.get('user-email')}`;
+          }
+          return req.sessionModel.get('email-address') === 'no' ? 'None' : `${req.sessionModel.get('email-address-details')}`;
+        }
+      },
+      {
+        step: '/phone-number',
+        field: 'phone-number',
+        parse: (list, req) => {
+          return req.sessionModel.get('phone-number') === 'no' ? 'None' : `${req.sessionModel.get('phone-number-details')}`;
+        }
+      },
+      {
+        step: '/immigration-detention',
+        field: 'address-details',
+        parse: (list, req) => {
+          if (req.sessionModel.get('has-address') === 'yes') {
             return null;
           }
-          return req.sessionModel.get('email-address') === 'no' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('email-address-details')}`;
+          return `${req.sessionModel.get('house-number')}\n` +
+            `${req.sessionModel.get('street')}\n` +
+            `${req.sessionModel.get('townOrCity')}\n` +
+            `${req.sessionModel.get('county')}\n` +
+            `${req.sessionModel.get('postcode')}`;
         }
+      }
+    ]
+  },
+  'immigration-detention': {
+    steps: [
+      {
+        step: '/immigration-detention',
+        field: 'has-address',
+        parse: (list, req) => {
+          if (req.sessionModel.get('has-address') === 'no') {
+            return null;
+          }
+          return 'Yes';
+        },
+        dependsOn: 'has-address'
+      },
+      {
+        step: '/medical-records',
+        field: 'has-permission-access',
+        dependsOn: 'has-permission-access'
       }
     ]
   },

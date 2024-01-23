@@ -18,6 +18,7 @@ module.exports = {
   name: 'ima',
   params: '/:action?/:id?/:edit?',
   baseUrl: '/ima',
+  confirmStep: '/final-summary',
   steps: {
     '/start': {
       behaviours: CheckEmailToken,
@@ -56,7 +57,7 @@ module.exports = {
           target: '/helper-details',
           condition: {
             field: 'who-are-you',
-            value: 'someone-else'
+            value: 'helper'
           }
         }
       ],
@@ -86,9 +87,9 @@ module.exports = {
     '/helper-details': {
       behaviours: SaveFormSession,
       fields: [
-        'someone-else-fullname',
-        'someone-else-relationship',
-        'someone-else-organisation'
+        'helper-fullname',
+        'helper-relationship',
+        'helper-organisation'
       ],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
