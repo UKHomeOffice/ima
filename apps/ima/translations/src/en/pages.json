@@ -8,34 +8,70 @@
     "paragraph": "There are no cases associated with this email. Please check you used the correct email, and access this service again via the <a href='/start'>IMA start page</a>."
   },
   "save-and-exit": {
-    "header": "You have left the form",
-    "paragraph1": "Your progress has been saved."
+    "header": "Your information has been saved",
+    "paragraph1": "To continue your form, use the link we have emailed to:"
   },
-  "current-progress": {
+  "helper-details": {
+    "header": "Helper details",
+    "paragraph": "Answer all the following questions as if you are the person on the Illegal Migration Act notice."
+  },
+  "full-name": {
+    "header": "What is your full name?"
+  },
+  "your-email": {
+    "header": "Is this your email address?",
+    "hint": "{{values.user-email}}"
+  },
+  "summary": {
     "header": "Information you have given us"
   },
   "cannot-use-form": {
-    "header": "You cannot use this form",
-    "paragraph-1": "You can only continue your claim if you are in the UK."
+    "header": "You cannot use this form"
   },
   "token-invalid": {
     "header": "This link has expired"
+  },
+  "immigration-adviser-details": {
+    "header": "Immigration adviser details",
+    "paragraph": "We will use these detail if we need to contact you.",
+    "address": "Postal address"
+  },
+  "is-legal-representative-email": {
+    "header": "Is {{values.user-email}} your email address?"
+  },
+  "medical-records": {
+    "header": "Your medical records",
+    "response-label1": "You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."
   },
   "exception": {
     "header": "Does an exception to the duty to remove apply to you?"
   },
   "threatened-life-or-liberty": {
     "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
+  "evidence-upload": {
+    "header": "Upload evidence"
   },
   "confirm": {
-    "header": "Check your answers",
+    "header": "Information you have given us",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
         "header": "Case details"
       },
+      "immigration-adviser-details": {
+        "header": "Immigration adviser details"
+      },
+      "personal-details": {
+        "header": "Claimant details"
+      },
+      "immigration-detention": {
+        "header": "Immigration detention"
+      },
       "claim-details": {
         "header": "Claim details"
+      },
+      "evidence-documents": {
+        "header": "Evidence"
       }
     },
     "fields": {
@@ -45,12 +81,67 @@
       "name": {
         "label": "Full name"
       },
+      "email-address": {
+        "label": "Email"
+      },
       "date-of-birth": {
         "label": "Date of birth"
       },
+      "who-are-you": {
+        "label": "Form completed by"
+      },
+      "legal-representative-fullname": {
+        "label": "Full name"
+      },
+      "legal-representative-email": {
+        "label": "Email"
+      },
+      "legal-representative-phone-number": {
+        "label": "Phone number"
+      },
+      "legal-representative-address": {
+        "label": "Address"
+      },
+      "current-email": {
+        "label": "Email"
+      },
+      "phone-number": {
+        "label": "Phone number"
+      },
+      "has-address": {
+        "label": "Immigration detention"
+      },
+      "address-details": {
+        "label": "Address"
+      },
+      "has-permission-access": {
+        "label": "Access to medical records"
+      },
       "does-exception-apply": {
         "label": "Does an exception to the duty to remove apply to you?"
+      },
+      "images": {
+        "label": "Files uploaded"
       }
     }
+  },
+  "declaration": {
+    "header": "Declaration"
+  },
+  "immigration-adviser-declaration": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to {{values.name}}?",
+    "paragraph2": "Include any dialects"
+  },
+  "helper-declaration": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to {{values.name}}?",
+    "paragraph2": "Include any dialects"
+  },
+  "form-submitted": {
+    "confirmed": "Form Submitted",
+    "paragraph1": "We have sent a copy of completed form to:",
+    "header2": "What happens next",
+    "paragraph2": "We will make decision about your claim, then contact you to tell you what you need to do next."
   }
 }
