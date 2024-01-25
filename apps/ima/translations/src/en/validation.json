@@ -62,6 +62,18 @@
     "regex": "Explanation must not include the following special characters [ ] < > / |",
     "notUrl": "Please do not enter a link/url into your answers"
   },
+  "arrived-date": {
+    "required": "Please provide a valid date of when you arrived or entered the UK",
+    "date": "Please enter a valid date",
+    "after": "Enter a date after 01 01 1900",
+    "before": "Please enter a date prior to 20 July 2023"
+  },
+  "arrival-details": {
+    "required": "You must provide details about when you arrived",
+    "maxlength": "Arrival details must be 15,000 characters or less",
+    "regex": "Arrival details must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "life-threatened-detail": {
     "required": "You must provide an explanation",
     "maxlength": "Explanation must be 15,000 characters or less",

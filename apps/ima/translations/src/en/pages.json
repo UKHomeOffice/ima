@@ -46,6 +46,9 @@
   "exception": {
     "header": "Does an exception to the duty to remove apply to you?"
   },
+  "arrival-date": {
+    "header": "Did you arrive in the UK on or after 20 July 2023?"
+  },
   "threatened-life-or-liberty": {
     "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
   },
