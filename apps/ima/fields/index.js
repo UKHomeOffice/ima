@@ -42,7 +42,7 @@ module.exports = {
     }]
   },
   'phone-number-details': {
-    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', 'internationalPhoneNumber', { type: 'maxlength', arguments: [200] }],
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
     dependent: {
       field: 'phone-number',
@@ -141,19 +141,19 @@ module.exports = {
   },
   'legal-representative-phone-number': {
     labelClassName: 'bold',
-    validate: ['required', 'internationalPhoneNumber', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', 'internationalPhoneNumber', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'legal-representative-fullname': {
     labelClassName: 'bold',
-    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'legal-representative-organisation': {
     labelClassName: 'bold',
-    validate: ['required', 'notUrl', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
@@ -182,7 +182,7 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'legal-representative-postcode': {
-    validate: ['required', 'postcode', {type: 'maxlength', arguments: [200]}],
+    validate: ['required', 'postcode', { type: 'maxlength', arguments: [200] }],
     formatter: ['ukPostcode'],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-input--width-10'],
@@ -304,7 +304,7 @@ module.exports = {
       value: 'yes',
       toggle: 'permission-to-enter-or-stay-detail-fieldset',
       child: 'partials/permission-to-enter-or-stay-detail'
-      }, {
+    }, {
       value: 'no'
     }],
     validate: 'required'

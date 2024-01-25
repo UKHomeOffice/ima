@@ -69,47 +69,6 @@
   "email-address-details": {
     "label": "Enter your email address"
   },
-  "has-address": {
-    "legend": "Are you currently in immigration detention?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "has-permission-access": {
-    "legend": "Do you give us permission to access your Immigration Removal Centre medical records?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "your-address": {
-    "label": "Enter your address",
-    "hint": "This must be where you live."
-  },
-  "house-number": {
-    "label": "Address line 1"
-  },
-  "street": {
-    "label": "Address line 2 (optional)"
-  },
-  "townOrCity": {
-    "label": "Town or city"
-  },
-  "county": {
-    "label": "County (optional)"
-  },
-  "postcode": {
-    "label": "Postcode"
-  },
   "legal-representative-address": {
     "label": "Postal address"
   },
@@ -161,6 +120,47 @@
   "helper-organisation": {
     "label": "Organisation name (optional)",
     "hint": "For example, name of charity or support group."
+  },
+  "has-address": {
+    "legend": "Are you currently in immigration detention?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "has-permission-access": {
+    "legend": "Do you give us permission to access your Immigration Removal Centre medical records?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "your-address": {
+    "label": "Enter your address",
+    "hint": "This must be where you live."
+  },
+  "house-number": {
+    "label": "Address line 1"
+  },
+  "street": {
+    "label": "Address line 2 (optional)"
+  },
+  "townOrCity": {
+    "label": "Town or city"
+  },
+  "county": {
+    "label": "County (optional)"
+  },
+  "postcode": {
+    "label": "Postcode"
   },
   "does-exception-apply":{
     "legend": "Does an exception to the duty to remove apply to you?",
