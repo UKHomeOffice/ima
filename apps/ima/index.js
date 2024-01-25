@@ -197,8 +197,39 @@ module.exports = {
       fields: ['has-permission-access', 'permission-response'],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/evidence-upload', // TODO a url needs to be Changed
+      next: '/exception', // TODO - FORK NEEDS TO BE ADDED BASED ON BAN-ONLY CONDITION
       backLink: 'immigration-detention'
+    },
+    '/exception': {
+      behaviours: SaveFormSession,
+      fields: [
+        'does-exception-apply',
+        'does-exception-apply-detail'
+      ],
+      template: 'does-exception-apply',
+      locals: { showSaveAndExit: true },
+      next: '/threatened-life-or-liberty' // TO BE UPDATED AS STEPS ARE ADDED
+    },
+    '/threatened-life-or-liberty': {
+      behaviours: SaveFormSession,
+      fields: [
+        'is-life-threatened',
+        'life-threatened-detail'
+      ],
+      template: 'life-or-liberty-threatened',
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/permission'
+    },
+    '/permission': {
+      behaviours: SaveFormSession,
+      fields: [
+        'permission-to-enter-or-stay',
+        'permission-to-enter-or-stay-detail'
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: false,
+      next: '/evidence-upload' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],

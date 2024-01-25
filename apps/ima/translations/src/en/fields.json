@@ -162,6 +162,48 @@
     "label": "Organisation name (optional)",
     "hint": "For example, name of charity or support group."
   },
+  "does-exception-apply":{
+    "legend": "Does an exception to the duty to remove apply to you?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-exception-apply-detail": {
+    "label": "Explain why"
+  },
+  "is-life-threatened": {
+    "legend": "Did you come directly to the UK from a country where your life or liberty was threatened?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "life-threatened-detail": {
+    "label": "Enter details of how you came to the UK"
+  },
+  "permission-to-enter-or-stay": {
+    "legend": "Do you have permission to enter or stay in the UK?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "permission-to-enter-or-stay-detail": {
+    "label": "Explain what permission you have"
+  },
   "person-declaration": {
     "label": "I understand and agree with this declaration."
   },

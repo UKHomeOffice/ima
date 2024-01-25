@@ -224,6 +224,18 @@ p:has(span.medical-paragraph) {
   margin-bottom: -3px;
 }
 
+.govuk-radios__hint {
+  padding-left: 0px;
+}
+
+.list-bullet {
+  margin-left: 10px;
+}
+
+.govuk-character-count__message {
+  display: none;
+}
+
 .confirm-label[data-content="Files uploaded"] ~ .confirm-value {
   white-space: pre-line
 }

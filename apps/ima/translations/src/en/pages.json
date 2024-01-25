@@ -43,6 +43,11 @@
     "header": "Your medical records",
     "response-label1": "You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."
   },
+  "exception": {
+    "header": "Does an exception to the duty to remove apply to you?"
+  },
+  "threatened-life-or-liberty": {
+    "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
   "evidence-upload": {
     "header": "Upload evidence"
   },
@@ -61,6 +66,9 @@
       },
       "immigration-detention": {
         "header": "Immigration detention"
+      },
+      "claim-details": {
+        "header": "Claim details"
       },
       "evidence-documents": {
         "header": "Evidence"
@@ -108,6 +116,9 @@
       },
       "has-permission-access": {
         "label": "Access to medical records"
+      },
+      "does-exception-apply": {
+        "label": "Does an exception to the duty to remove apply to you?"
       },
       "images": {
         "label": "Files uploaded"

@@ -139,6 +139,21 @@ module.exports = {
       }
     ]
   },
+  'claim-details': {
+    steps: [
+      {
+        step: '/exception',
+        field: 'does-exception-apply',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exception')) {
+            return null;
+          }
+          return req.sessionModel.get('does-exception-apply') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      }
+    ]
+  },
   'evidence-documents': [
     {
       step: '/evidence-upload',
