@@ -277,7 +277,7 @@ module.exports = {
       className: 'visuallyhidden'
     },
     mixin: 'radio-group',
-        options: [{
+    options: [{
       value: 'yes'
     }, {
       value: 'no',
