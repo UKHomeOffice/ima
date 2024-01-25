@@ -1,0 +1,10 @@
+{{<partials-page}}
+  {{$page-content}}
+  <div class="label-margin">
+ <strong>{{#t}}{{values.user-email}}{{/t}}</strong>
+  </div>
+   <br>
+    {{#renderField}}current-email{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

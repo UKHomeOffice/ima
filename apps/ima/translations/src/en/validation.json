@@ -2,6 +2,66 @@
   "who-are-you": {
     "required": "You must select an option"
   },
+  "helper-fullname": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "helper-relationship": {
+    "required": "Enter your relationship to you",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "name": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "email-address-details": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "phone-number-details": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "is-legal-representative-email": {
+    "required": "You must select an option"
+  },
+  "legal-representative-name": {
+    "required": "Enter your name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-phone-number": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "legal-representative-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "legal-representative-house-number": {
+    "required": "Enter your house number/name, and street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-street": {
+    "notUrl": "Enter a valid street name"
+  },
+  "legal-representative-townOrCity": {
+    "required": "Enter your town or city",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-county": {
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-postcode": {
+    "required": "Enter your postcode",
+    "postcode": "Enter a valid UK postcode",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "does-exception-apply-detail": {
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "arrived-date": {
     "required": "Please provide a valid date of when you arrived or entered the UK",
     "date": "Please enter a valid date",
@@ -13,5 +73,39 @@
     "maxlength": "Arrival details must be 15,000 characters or less",
     "regex": "Arrival details must not include the following special characters [ ] < > / |",
     "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "life-threatened-detail": {
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "permission-to-enter-or-stay-detail": {
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "image": {
+    "default": "We have not been able to upload evidence",
+    "unsaved": "We have not been able to upload evidence",
+    "maxFileSize": "Select a file that is smaller than 25 MB",
+    "fileType": "This file is not a valid file format you can upload to this service.",
+    "tooMany": "You can only submit up to 250 attachments."
+  },
+  "language-used": {
+    "required": "Please enter the language used"
+  },
+  "use-interpreter": {
+    "required": "You must select an option"
+  },
+  "immigration-adviser-declaration": {
+    "required": "Please confirm you understand and agree with this declaration"
+  },
+  "helper-declaration": {
+    "required": "Please confirm you understand and agree with this declaration"
+  },
+  "person-declaration": {
+    "required": "Please confirm you understand and agree with this declaration"
   }
 }
