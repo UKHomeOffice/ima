@@ -174,11 +174,21 @@ module.exports = {
           }
         },
         {
-        // TODO - TARGET AND CONDITION MUST BE CHANGED BASED ON BAN-ONLY CONDITION
           target: '/temporary-permission',
-          condition: {
-            fields: 'has-address',
-            value: 'no'
+          condition: req => {
+            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'yes') {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/exception',
+          condition: req => {
+            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'no') {
+              return true;
+            }
+            return false;
           }
         }
       ],
@@ -192,7 +202,6 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/medical-records', // TODO - URL MUST BE CHANGED BASED ON BAN-ONLY CONDITION
       backLink: 'phone-number'
     },
     '/medical-records': {

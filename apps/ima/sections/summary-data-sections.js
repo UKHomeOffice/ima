@@ -6,8 +6,8 @@ module.exports = {
   'case-details': {
     steps: [
       {
-        step: '/uan',
-        field: 'uan',
+        step: '/cepr',
+        field: 'cepr',
         omitChangeLink: true
       },
       {

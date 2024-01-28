@@ -139,8 +139,8 @@
       }
     },
     "fields": {
-      "uan": {
-        "label": "Unique Application Number (UAN)"
+      "cepr": {
+        "label": "CEPR"
       },
       "name": {
         "label": "Full name"

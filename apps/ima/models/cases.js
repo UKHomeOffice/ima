@@ -23,7 +23,7 @@ module.exports = class Cases {
     return new Promise((resolve, reject) => {
       const params = {
         Bucket: config.aws.bucket,
-        Key: `uans/${this.s3Id}`
+        Key: `ceprs/${this.s3Id}`
       };
       const dataFile = path.join(__dirname + `../../../../data/${this.s3Id}.xlsx`);
       this.#createOrResetFile(dataFile);
@@ -41,7 +41,7 @@ module.exports = class Cases {
     let json = XLSXProcessor(this.s3Id);
 
     if (config.env !== 'production') {
-      json = json.concat(config.casesIds.testCases);
+      json = json.concat(config.casesIds.testCEPRCases);
     }
     const jsonFile = path.join(__dirname + `../../../../data/${this.s3Id}.json`);
     return fs.writeFile(jsonFile, JSON.stringify(json), console.log);

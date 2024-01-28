@@ -3,12 +3,12 @@
 const dateComponent = require('hof').components.date;
 const UANRef = {
   type: 'regex',
-  arguments: /^(\d{4}-\d{4}-\d{4}-\d{4}(?:\/\d{2})?)$/
+  arguments: /^([0-9]{6,10}?)$/
 };
 const after1900Validator = { type: 'after', arguments: ['1900'] };
 
 module.exports = {
-  uan: {
+  cepr: {
     labelClassName: 'visuallyhidden',
     validate: [
       'required',
