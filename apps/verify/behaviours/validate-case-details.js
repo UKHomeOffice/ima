@@ -15,6 +15,7 @@ module.exports = superclass => class extends superclass {
 
     const imaResult = casesJson.find(
       obj => obj.cepr === cepr && obj['date-of-birth'] === dob);
+    req.sessionModel.set('duty-to-remove-alert', imaResult['duty-to-remove-alert']);
     req.sessionModel.set('service', 'ima');
     return imaResult;
   }
