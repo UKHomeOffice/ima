@@ -176,7 +176,7 @@ module.exports = {
         {
           target: '/temporary-permission',
           condition: req => {
-            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'yes') {
+            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'no') {
               return true;
             }
             return false;
@@ -185,7 +185,7 @@ module.exports = {
         {
           target: '/exception',
           condition: req => {
-            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'no') {
+            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'yes') {
               return true;
             }
             return false;
@@ -206,10 +206,29 @@ module.exports = {
     },
     '/medical-records': {
       behaviours: SaveFormSession,
+      forks: [
+        {
+          target: '/temporary-permission',
+          condition: req => {
+            if (req.sessionModel.get('duty-to-remove-alert') === 'no') {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/exception',
+          condition: req => {
+            if (req.sessionModel.get('duty-to-remove-alert') === 'yes') {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
       fields: ['has-permission-access', 'permission-response'],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/temporary-permission', // TODO - FORK NEEDS TO BE ADDED BASED ON BAN-ONLY CONDITION
       backLink: 'immigration-detention'
     },
     '/exception': {
