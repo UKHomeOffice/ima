@@ -222,6 +222,90 @@
   "permission-to-enter-or-stay-detail": {
     "label": "Explain what permission you have"
   },
+  "human-rights-claim": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    },
+    "summary-heading": "Making a human rights claim because of family in the UK"
+  },
+  "family-member-relation": {
+    "label": "What is their relationship to you?",
+    "summary-heading": "Relationship"
+  },
+  "family-member-full-name": {
+    "label": "Full name"
+  },
+  "family-member-dob": {
+    "legend": "Date of birth",
+    "hint": "For example, 31 3 1980",
+    "summary-heading": "Date of birth"
+  },
+  "family-member-nationality": {
+    "label": "What is their country of nationality?",
+    "options": {
+      "null": "Select a country"
+    },
+    "summary-heading": "Country of nationality"
+  },
+  "uk-immigration-status": {
+    "label": "What is their UK immigration status?",
+    "options": {
+      "null": "Select an immigration status"
+    },
+    "summary-heading": "UK immigration status"
+  },
+  "immigration-status-other": {
+    "label": "Enter their immigration status"
+  },
+  "reference-number-option": {
+    "legend": "What reference number do they have?",
+    "options": {
+      "unique-application-number": {
+        "label": "Unique application number (UAN)",
+        "hint": "For example, 1234-5678-1234-5678"
+      },
+      "home-office-reference-number": {
+        "label": "Home Office (HO) reference number",
+        "hint": "For example, S1234567"
+      },
+      "do-not-know": {
+        "label": "I do not know"
+      }
+    },
+    "summary-heading": "Reference number"
+  },
+  "uan-detail": {
+    "legend": "Enter a UAN",
+    "label": "Enter a UAN",
+    "summary-heading": "Unique Application Number (UAN)"
+  },
+  "ho-number-detail": {
+    "legend": "Enter a HO Reference Number",
+    "label": "Enter a HO Reference Number",
+    "summary-heading": "Home Office (HO) reference number"
+  },
+  "human-rights-claim-details": {
+    "legend": "Enter details of the human rights claim",
+    "label": "Enter details of the human rights claim"
+  },
+  "other-human-rights-claim": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "other-human-rights-claims-details": {
+    "label": "Other human rights claim details"
+  },
   "person-declaration": {
     "label": "I understand and agree with this declaration."
   },

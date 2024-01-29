@@ -224,6 +224,14 @@ p:has(span.medical-paragraph) {
   margin-bottom: -3px;
 }
 
+#uan-detail-panel {
+  margin-top: -15px;
+}
+
+#home-office-reference-number-panel {
+  margin-top: -15px;
+}
+
 .govuk-radios__hint {
   padding-left: 0px;
 }
@@ -234,6 +242,30 @@ p:has(span.medical-paragraph) {
 
 .govuk-character-count__message {
   display: none;
+}
+
+.family-summary-label {
+  font-weight: bold !important;
+}
+
+#immigration-status-detail-panel {
+  display: none;
+  padding-left: 33px;
+  border-left: 4px solid #b1b4b6;
+}
+
+.wrap-table-cell,
+.confirm-row {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.loop-summary-table .govuk-table__cell:nth-child(1){
+  font-weight: bold !important;
+}
+
+.loop-summary-table .data-col {
+  font-size: 28px;
 }
 
 .confirm-label[data-content="Files uploaded"] ~ .confirm-value {
@@ -248,4 +280,4 @@ div > .section-header[data-content="Case details"]{
  .confirm-row {
    white-space: pre-wrap;
    word-wrap: break-word;
- }
+}

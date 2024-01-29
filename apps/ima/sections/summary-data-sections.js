@@ -139,6 +139,41 @@ module.exports = {
       }
     ]
   },
+  'human-rights': {
+    steps: [
+      {
+        step: '/human-rights-claim',
+        field: 'human-rights-claim',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/human-rights-claim')) {
+            return null;
+          }
+          return list;
+        }
+      },
+      {
+        step: '/human-rights-family-summary',
+        field: 'family-members',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/human-rights-family-summary') || req.sessionModel.get('human-rights-claim') === 'no') {
+            return null;
+          }
+          return 'Details added';
+        }
+      },
+      {
+        step: '/other-human-rights-claims',
+        field: 'other-human-rights-claim',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/other-human-rights-claims')) {
+            return null;
+          }
+          return req.sessionModel.get('other-human-rights-claim') === 'yes' ?
+            list + '\nDetails added' : list;
+        }
+      }
+    ]
+  },
   'claim-details': {
     steps: [
       {

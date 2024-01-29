@@ -31,6 +31,18 @@
   "token-invalid": {
     "header": "This link has expired"
   },
+  "human-rights-claim": {
+    "header": "Are you making a human rights claim because you have family in the UK?"
+  },
+  "human-rights-family": {
+    "header": "Tell us about a family member in the UK"
+  },
+  "human-rights-family-summary": {
+    "header": "Your family in the UK"
+  },
+  "other-human-rights-claims": {
+    "header": "Do you want to make any other human rights claims?"
+  },
   "immigration-adviser-details": {
     "header": "Immigration adviser details",
     "paragraph": "We will use these detail if we need to contact you.",
@@ -62,6 +74,9 @@
       "case-details": {
         "header": "Case details"
       },
+      "human-rights": {
+        "header": "Human rights"
+      },
       "immigration-adviser-details": {
         "header": "Immigration adviser details"
       },
@@ -90,6 +105,15 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "human-rights-claim": {
+        "label": "Making a human rights claim because of family in the UK"
+      },
+      "other-human-rights-claim": {
+        "label": "Other human rights claims"
+      },
+      "family-members": {
+        "label": "Your family in the UK"
       },
       "who-are-you": {
         "label": "Form completed by"

@@ -8,11 +8,14 @@ const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
 const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
+const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
+const FamilyMembersLocals = require('./behaviours/family-members-locals');
+const ModifyChangeURL = require('./behaviours/modify-change-link');
+const ResetHumanRightsSummary = require('./behaviours/reset-human-rights-summary');
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
 const LimitDocument = require('./behaviours/limit-documents');
 const Submit = require('./behaviours/submit');
-
 
 module.exports = {
   name: 'ima',
@@ -238,6 +241,68 @@ module.exports = {
       continueOnEdit: false,
       next: '/evidence-upload' // TODO - UPDATE AS STEPS ARE ADDED
     },
+    '/human-rights-claim': {
+      behaviours: [ResetHumanRightsSummary, SaveFormSession],
+      fields: ['human-rights-claim'],
+      locals: { showSaveAndExit: true },
+      forks: [
+        {
+          target: '/human-rights-family',
+          condition: {
+            field: 'human-rights-claim',
+            value: 'yes'
+          }
+        }
+      ],
+      continueOnEdit: true,
+      next: '/other-human-rights-claims'
+    },
+    '/human-rights-family': {
+      behaviours: SaveFormSession,
+      fields: ['family-member-relation',
+        'family-member-full-name',
+        'family-member-dob',
+        'family-member-nationality',
+        'uk-immigration-status',
+        'immigration-status-other',
+        'reference-number-option',
+        'uan-detail',
+        'ho-number-detail',
+        'human-rights-claim-details'],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/human-rights-family-summary'
+    },
+    '/human-rights-family-summary': {
+      behaviours: [AggregateSaveUpdate, FamilyMembersLocals, SaveFormSession],
+      aggregateTo: 'family-members',
+      aggregateFrom: [
+        'family-member-full-name',
+        'family-member-relation',
+        'family-member-dob',
+        'family-member-nationality',
+        'uk-immigration-status',
+        'immigration-status-other',
+        'reference-number-option',
+        'uan-detail',
+        'ho-number-detail',
+        'human-rights-claim-details'
+      ],
+      titleField: 'family-member-full-name',
+      addStep: 'human-rights-family',
+      addAnotherLinkText: 'family member',
+      template: 'family-members-summary',
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/other-human-rights-claims'
+    },
+    '/other-human-rights-claims': {
+      behaviours: [SaveFormSession],
+      fields: ['other-human-rights-claim', 'other-human-rights-claim-details'],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: false,
+      next: '/confirm' // TO BE UPDATED AS STEPS ARE ADDED
+    },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
@@ -245,7 +310,7 @@ module.exports = {
       next: '/final-summary'
     },
     '/final-summary': {
-      behaviours: [Summary, SaveFormSession],
+      behaviours: [Summary, ModifyChangeURL, SaveFormSession],
       sections: require('./sections/summary-data-sections'),
       locals: { showSaveAndExit: true },
       template: 'confirm',
