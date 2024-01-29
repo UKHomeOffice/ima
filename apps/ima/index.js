@@ -239,7 +239,7 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       continueOnEdit: false,
-      next: '/evidence-upload' // TODO - UPDATE AS STEPS ARE ADDED
+      next: '/human-rights-claim' // TODO - UPDATE AS STEPS ARE ADDED
     },
     '/human-rights-claim': {
       behaviours: [ResetHumanRightsSummary, SaveFormSession],
@@ -301,7 +301,7 @@ module.exports = {
       fields: ['other-human-rights-claim', 'other-human-rights-claim-details'],
       locals: { showSaveAndExit: true },
       continueOnEdit: false,
-      next: '/confirm' // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/evidence-upload' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
