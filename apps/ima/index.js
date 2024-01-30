@@ -303,6 +303,12 @@ module.exports = {
       continueOnEdit: false,
       next: '/evidence-upload' // TO BE UPDATED AS STEPS ARE ADDED
     },
+    '/temporary-permission-to-stay': {
+      behaviours: SaveFormSession,
+      fields: ['temporary-permission', 'temporary-permission-details', 'temporary-permission-reasons'],
+      locals: { showSaveAndExit: true },
+      next: '/evidence-upload'
+    },
     '/evidence-upload': {
       behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],

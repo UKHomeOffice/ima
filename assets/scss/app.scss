@@ -224,6 +224,15 @@ p:has(span.medical-paragraph) {
   margin-bottom: -3px;
 }
 
+#temporary-permission-reasons-hint {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#temporary-permission-details {
+  height: 8em;
+}
+
 #uan-detail-panel {
   margin-top: -15px;
 }

@@ -64,6 +64,9 @@
   "threatened-life-or-liberty": {
     "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
   },
+  "temporary-permission-to-stay": {
+    "header": "Are there any other reasons you should be granted temporary permission to stay in the UK?"
+  },
   "evidence-upload": {
     "header": "Upload evidence"
   },
@@ -147,6 +150,9 @@
       },
       "does-exception-apply": {
         "label": "Does an exception to the duty to remove apply to you?"
+      },
+      "temporary-permission": {
+        "label": "Request temporary permission to stay"
       },
       "images": {
         "label": "Files uploaded"

@@ -186,6 +186,17 @@ module.exports = {
           return req.sessionModel.get('does-exception-apply') === 'yes' ?
             'Yes' + '\nDetails added' : 'No';
         }
+      },
+      {
+        step: '/temporary-permission-to-stay',
+        field: 'temporary-permission',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/temporary-permission-to-stay')) {
+            return null;
+          }
+          return req.sessionModel.get('temporary-permission') === 'yes' ?
+          list + '\nDetails added' : list;
+        }
       }
     ]
   },
