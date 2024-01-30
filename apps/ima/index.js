@@ -301,7 +301,7 @@ module.exports = {
       fields: ['other-human-rights-claim', 'other-human-rights-claim-details'],
       locals: { showSaveAndExit: true },
       continueOnEdit: false,
-      next: '/evidence-upload' // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/temporary-permission-to-stay' // TO BE UPDATED AS STEPS ARE ADDED
     },
     '/temporary-permission-to-stay': {
       behaviours: SaveFormSession,

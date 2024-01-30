@@ -195,7 +195,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('temporary-permission') === 'yes' ?
-          list + '\nDetails added' : list;
+            list + '\nDetails added' : list;
         }
       }
     ]
