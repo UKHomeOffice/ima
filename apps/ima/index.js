@@ -211,14 +211,283 @@ module.exports = {
       ],
       template: 'does-exception-apply',
       locals: { showSaveAndExit: true },
-      next: '/arrival-date' // TODO -  UPDATE AS STEPS ARE ADDED
+      next: '/removal-condition'
+    },
+    '/removal-condition': {
+      behaviours: SaveFormSession,
+      fields: ['how-removal-condition-1-applies'],
+      forks: [
+        {
+          target: '/electronic-travel-authorisation',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-eta') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/entry-clearance',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-visa') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/travel-ban',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('travel-ban') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/deportation-order',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('deportation-order-applies') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/deception',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('by-deception') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/without-permission',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('entered-without-permission') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date',
+      backLink: '/exception'
+    },
+    '/without-permission': {
+      behaviours: SaveFormSession,
+      fields: [
+        'entered-without-permission',
+        'entered-without-permission-detail'
+      ],
+      forks: [
+        {
+          target: '/electronic-travel-authorisation',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-eta') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/entry-clearance',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-visa') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/travel-ban',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('travel-ban') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/deportation-order',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('deportation-order-applies') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/deception',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('by-deception') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date'
+    },
+    '/deception': {
+      behaviours: SaveFormSession,
+      fields: [
+        'entered-by-deception',
+        'entered-by-deception-detail'
+      ],
+      forks: [
+        {
+          target: '/electronic-travel-authorisation',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-eta') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/entry-clearance',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-visa') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/travel-ban',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('travel-ban') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/deportation-order',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('deportation-order-applies') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date'
+    },
+    '/deportation-order': {
+      behaviours: SaveFormSession,
+      fields: [
+        'deportation-order-applied',
+        'deportation-order-applied-detail'
+      ],
+      forks: [
+        {
+          target: '/electronic-travel-authorisation',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-eta') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/entry-clearance',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-visa') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/travel-ban',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('travel-ban') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date'
+    },
+    '/travel-ban': {
+      behaviours: SaveFormSession,
+      fields: [
+        'entered-with-travel-ban',
+        'entered-with-travel-ban-detail'
+      ],
+      forks: [
+        {
+          target: '/electronic-travel-authorisation',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-eta') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/entry-clearance',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-visa') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date'
+    },
+    '/entry-clearance': {
+      behaviours: SaveFormSession,
+      fields: [
+        'arrived-without-clearance',
+        'arrived-without-clearance-detail'
+      ],
+      forks: [
+        {
+          target: '/electronic-travel-authorisation',
+          condition: req => {
+            if (req.sessionModel.get('how-removal-condition-1-applies') && req.sessionModel.get('how-removal-condition-1-applies').indexOf('arrived-without-eta') >= 0) {
+              return true;
+            }
+            return false;
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date'
+    },
+    '/electronic-travel-authorisation': {
+      behaviours: SaveFormSession,
+      fields: [
+        'without-eta',
+        'without-eta-detail'
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/arrival-date'
     },
     '/arrival-date': {
       behaviours: SaveFormSession,
       fields: ['arrival-after-date', 'arrived-date', 'arrival-details'],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/threatened-life-or-liberty' // TODO - UPDATE AS STEPS ARE ADDED
+      next: '/threatened-life-or-liberty'
     },
     '/threatened-life-or-liberty': {
       behaviours: SaveFormSession,

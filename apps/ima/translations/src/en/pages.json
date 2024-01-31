@@ -31,18 +31,6 @@
   "token-invalid": {
     "header": "This link has expired"
   },
-  "human-rights-claim": {
-    "header": "Are you making a human rights claim because you have family in the UK?"
-  },
-  "human-rights-family": {
-    "header": "Tell us about a family member in the UK"
-  },
-  "human-rights-family-summary": {
-    "header": "Your family in the UK"
-  },
-  "other-human-rights-claims": {
-    "header": "Do you want to make any other human rights claims?"
-  },
   "immigration-adviser-details": {
     "header": "Immigration adviser details",
     "paragraph": "We will use these detail if we need to contact you.",
@@ -58,11 +46,50 @@
   "exception": {
     "header": "Does an exception to the duty to remove apply to you?"
   },
+  "removal-condition": {
+    "header": "Why does your Illegal Migration Act notice say removal condition 1 applies to you?",
+    "hint": "Select all that apply"
+  },
+  "without-permission": {
+    "header": "Did you need permission to enter the UK but entered without it?"
+  },
+  "travel-ban": {
+    "header": "Did you arrive in or enter the UK, when a travel ban applied to you?",
+    "hint": "This includes a travel ban imposed by the United Nations Security Council, or UK under the sanctions and Anti-Money Laundering Act 2018."
+  },
+  "deception": {
+    "header": "Did you enter the UK with permission you got by deception?",
+    "hint": "For example, if you or someone else lied on your application."
+  },
+  "entry-clearance": {
+    "header": "Did you need a valid entry clearance (visa) but arrived without one?"
+  },
+  "deportation-order": {
+    "header": "Did you enter the UK when a deportation order applied to you?"
+  },
+  "electronic-travel-authorisation": {
+    "header": "Did you need a valid electronic travel authorisation (ETA) but arrived without one?"
+  },
+  "deportation-order-applied": {
+    "header": "Did you enter the UK when a deportation order applied to you?"
+  },
   "arrival-date": {
     "header": "Did you arrive in the UK on or after 20 July 2023?"
   },
   "threatened-life-or-liberty": {
     "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
+  },
+  "human-rights-claim": {
+    "header": "Are you making a human rights claim because you have family in the UK?"
+  },
+  "human-rights-family": {
+    "header": "Tell us about a family member in the UK"
+  },
+  "human-rights-family-summary": {
+    "header": "Your family in the UK"
+  },
+  "other-human-rights-claims": {
+    "header": "Do you want to make any other human rights claims?"
   },
   "temporary-permission-to-stay": {
     "header": "Are there any other reasons you should be granted temporary permission to stay in the UK?"
@@ -150,6 +177,9 @@
       },
       "does-exception-apply": {
         "label": "Does an exception to the duty to remove apply to you?"
+      },
+      "how-removal-condition-1-applies": {
+        "label": "Select what removal conditions apply"
       },
       "temporary-permission": {
         "label": "Request temporary permission to stay"

@@ -188,6 +188,17 @@ module.exports = {
         }
       },
       {
+        step: '/removal-condition',
+        field: 'how-removal-condition-1-applies',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/removal-condition')) {
+            return null;
+          }
+          return req.sessionModel.get('how-removal-condition-1-applies') !== '' ?
+            'Selected' + '\nDetails added' : 'Not selected';
+        }
+      },
+      {
         step: '/temporary-permission-to-stay',
         field: 'temporary-permission',
         parse: (list, req) => {
