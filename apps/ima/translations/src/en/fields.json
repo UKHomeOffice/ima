@@ -486,6 +486,25 @@
   "late-submission": {
     "label": "Why are you submitting this form late?"
   },
+  "temporary-permission-reasons-ban-only": {
+    "label": "Select your reasons for applying for temporary permission to stay in the UK.",
+    "legend": "Select your reasons for applying for temporary permission to stay in the UK.",
+    "hint": "Select all that apply.",
+    "options": {
+      "human-rights": {
+        "label": "human rights"
+      },
+      "other-international-obligations": {
+        "label": "other international obligations"
+      },
+      "exceptional-circumstances": {
+        "label": "exceptional circumstances"
+      }
+    }
+  },
+  "temporary-permission-details-ban-only": {
+    "label": "Enter details"
+  },
   "person-declaration": {
     "label": "I understand and agree with this declaration."
   },
