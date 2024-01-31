@@ -2,6 +2,115 @@
   "who-are-you": {
     "required": "You must select an option"
   },
+  "family-member-relation": {
+    "required": "Please enter the family member's relationship to you"
+  },
+  "family-member-full-name": {
+    "required": "Please enter the family member's full name"
+  },
+  "family-member-dob": {
+    "required": "Please provide the family member's date of birth",
+    "date": "Please enter a valid date",
+    "after": "Enter a date after 01 01 1900",
+    "before": "Please enter a date in the past"
+  },
+  "family-member-nationality": {
+    "required": "Please provide a country of nationality"
+  },
+  "uk-immigration-status": {
+    "required": "Please provide an immigration status"
+  },
+  "immigration-status-other": {
+    "required": "Please specify their immigration status"
+  },
+  "reference-number-option": {
+    "required": "Please select a reference number option",
+    "notBothOptions": "You can't choose 'I don't know' and a reference number. You must deselect the 'I don't know' option, or the selected reference number(s) to continue"
+  },
+  "human-rights-claim-details": {
+    "required": "Please enter details of the human rights claim",
+    "maxlength": "Details must be 15,000 characters or less",
+    "regex": "Details must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/URL into your answers"
+  },
+  "other-human-rights-claim": {
+    "required": "You must select an option"
+  },
+  "other-human-rights-claim-details": {
+    "required": "You must enter details of your reasons",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/URL into your answers"
+  },
+  "uan-detail": {
+    "required": "Enter the UAN reference",
+    "regex": "Enter a valid UAN. For example, 3455-9874-2349-0753"
+  },
+  "ho-number-detail": {
+    "required": "Enter the Home Office reference number",
+    "notUrl": "Please do not enter a link/URL into your answers",
+    "regex": "Enter a valid Home Office (HO) reference number. The format should be one capital letter followed by seven numbers"
+  },
+  "helper-fullname": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "helper-relationship": {
+    "required": "Enter your relationship to you",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "name": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "email-address-details": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "phone-number-details": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "is-legal-representative-email": {
+    "required": "You must select an option"
+  },
+  "legal-representative-name": {
+    "required": "Enter your name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-phone-number": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "legal-representative-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "legal-representative-house-number": {
+    "required": "Enter your house number/name, and street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-street": {
+    "notUrl": "Enter a valid street name"
+  },
+  "legal-representative-townOrCity": {
+    "required": "Enter your town or city",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-county": {
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-postcode": {
+    "required": "Enter your postcode",
+    "postcode": "Enter a valid UK postcode",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "does-exception-apply-detail": {
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "entered-without-permission":{
     "required": "You must select an option"
   },
@@ -49,5 +158,66 @@
     "required": "You must provide an explanation",
     "maxlength": "Explanation must be 15,000 characters or less",
     "notUrl": "Enter a valid explanation"
+  },
+  "arrived-date": {
+    "required": "Please provide a valid date of when you arrived or entered the UK",
+    "date": "Please enter a valid date",
+    "after": "Enter a date after 01 01 1900",
+    "before": "Please enter a date prior to 20 July 2023"
+  },
+  "arrival-details": {
+    "required": "You must provide details about when you arrived",
+    "maxlength": "Arrival details must be 15,000 characters or less",
+    "regex": "Arrival details must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "life-threatened-detail": {
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "permission-to-enter-or-stay-detail": {
+    "required": "You must provide an explanation",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "temporary-permission": {
+    "required": "You must select an option"
+  },
+  "temporary-permission-reasons": {
+    "required": "You must select one or more reasons",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "temporary-permission-details": {
+    "required": "You must enter details of your reasons",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "image": {
+    "default": "We have not been able to upload evidence",
+    "unsaved": "We have not been able to upload evidence",
+    "maxFileSize": "Select a file that is smaller than 25 MB",
+    "fileType": "This file is not a valid file format you can upload to this service.",
+    "tooMany": "You can only submit up to 250 attachments."
+  },
+  "language-used": {
+    "required": "Please enter the language used"
+  },
+  "use-interpreter": {
+    "required": "You must select an option"
+  },
+  "immigration-adviser-declaration": {
+    "required": "Please confirm you understand and agree with this declaration"
+  },
+  "helper-declaration": {
+    "required": "Please confirm you understand and agree with this declaration"
+  },
+  "person-declaration": {
+    "required": "Please confirm you understand and agree with this declaration"
   }
 }
