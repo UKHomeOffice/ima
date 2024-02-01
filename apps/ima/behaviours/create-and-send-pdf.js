@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
+const axios = require('axios');
 const config = require('../../../config');
 const utilities = require('../../../lib/utilities');
 const _ = require('lodash');
@@ -9,9 +10,11 @@ const NotifyClient = utilities.NotifyClient;
 const PDFModel = require('hof').apis.pdfConverter;
 
 const submissionTemplateId = config.govukNotify.submissionTemplateId;
+const submissionFailedTemplateId = config.govukNotify.submissionFailedTemplateId;
 const caseworkerEmail = config.govukNotify.caseworkerEmail;
 const notifyKey = config.govukNotify.notifyApiKey;
 const dateTimeFormat = config.dateTimeFormat;
+const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 
 const notifyClient = new NotifyClient(notifyKey);
 
@@ -99,9 +102,21 @@ module.exports = class CreateAndSendPDF {
       await this.sendEmailWithAttachment(req, pdfData);
 
       req.log('info', 'ima.form.submit_form.successful');
+      const id = req.sessionModel.get('id');
+
+      return await axios.patch(`${baseUrl}/${id}`, { submitted_at: moment().format('YYYY-MM-DD HH:mm:ss') });
     } catch(e) {
       req.log('error', 'ima.form.submit_form.failed');
+      return await this.sendSubmissionFailure(req);
     }
+  }
+
+  async sendSubmissionFailure(req) {
+    return notifyClient.sendEmail(submissionFailedTemplateId, req.sessionModel.get('user-email'), {
+      personalisation: {
+        uan: req.sessionModel.get('uan')
+      }
+    });
   }
 
   sortSections(locals) {

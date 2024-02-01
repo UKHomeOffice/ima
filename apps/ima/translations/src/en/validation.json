@@ -63,6 +63,9 @@
     "required": "Enter your full name",
     "notUrl": "Please do not enter a link/url into your answers"
   },
+  "current-email": {
+    "required": "You must select an option"
+  },
   "email-address-details": {
     "required": "Enter your email address",
     "email": "Enter a valid email address"

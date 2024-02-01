@@ -90,7 +90,9 @@ module.exports = {
         step: '/your-email',
         field: 'current-email',
         parse: (list, req) => {
-          if (req.sessionModel.get('current-email') === 'yes') {
+          if (!req.sessionModel.get('steps').includes('/your-email')) {
+            return null;
+          } else if (req.sessionModel.get('current-email') === 'yes') {
             return `${req.sessionModel.get('user-email')}`;
           }
           return req.sessionModel.get('email-address') === 'no' ? 'None' : `${req.sessionModel.get('email-address-details')}`;
@@ -100,6 +102,9 @@ module.exports = {
         step: '/phone-number',
         field: 'phone-number',
         parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/phone-number')) {
+            return null;
+          }
           return req.sessionModel.get('phone-number') === 'no' ? 'None' : `${req.sessionModel.get('phone-number-details')}`;
         }
       },
@@ -107,7 +112,7 @@ module.exports = {
         step: '/immigration-detention',
         field: 'address-details',
         parse: (list, req) => {
-          if (req.sessionModel.get('has-address') === 'yes') {
+          if (!req.sessionModel.get('steps').includes('/immigration-detention') || req.sessionModel.get('has-address') === 'yes') {
             return null;
           }
           return `${req.sessionModel.get('house-number')}\n` +
@@ -125,7 +130,7 @@ module.exports = {
         step: '/immigration-detention',
         field: 'has-address',
         parse: (list, req) => {
-          if (req.sessionModel.get('has-address') === 'no') {
+          if (!req.sessionModel.get('steps').includes('/immigration-detention') || req.sessionModel.get('has-address') === 'no') {
             return null;
           }
           return 'Yes';
