@@ -204,6 +204,17 @@ module.exports = {
         }
       },
       {
+        step: '/exceptional-circumstances-claim',
+        field: 'exceptional-circumstances',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exceptional-circumstances-claim')) {
+            return null;
+          }
+          return req.sessionModel.get('exceptional-circumstances') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      },
+      {
         step: '/temporary-permission-to-stay',
         field: 'temporary-permission',
         parse: (list, req) => {

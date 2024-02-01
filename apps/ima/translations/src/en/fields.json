@@ -415,6 +415,19 @@
   "other-human-rights-claims-details": {
     "label": "Other human rights claim details"
   },
+  "exceptional-circumstances": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "exceptional-circumstances-details": {
+    "label": "Enter details"
+  },
   "temporary-permission-reasons": {
     "legend": "What are your reasons for applying for temporary permission to stay in the UK?",
     "hint": "Select all that apply.",

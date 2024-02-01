@@ -570,7 +570,31 @@ module.exports = {
       fields: ['other-human-rights-claim', 'other-human-rights-claim-details'],
       locals: { showSaveAndExit: true },
       continueOnEdit: false,
-      next: '/temporary-permission-to-stay' // TO BE UPDATED AS STEPS ARE ADDED
+      next: '/exceptional-circumstances-claim'
+    },
+    '/exceptional-circumstances-claim': {
+      behaviours: SaveFormSession,
+      fields: ['exceptional-circumstances'],
+      locals: { showSaveAndExit: true },
+      forks: [
+        {
+          target: '/exceptional-circumstances-details',
+          condition: req => req.sessionModel.get('exceptional-circumstances') === 'yes',
+          continueOnEdit: true
+        },
+        {
+          target: '/temporary-permission-to-stay',
+          condition: req => req.sessionModel.get('exceptional-circumstances') === 'no',
+          continueOnEdit: false
+        }
+      ],
+      next: '/exceptional-circumstances-details'
+    },
+    '/exceptional-circumstances-details': {
+      behaviours: SaveFormSession,
+      fields: ['exceptional-circumstances-details'],
+      locals: { showSaveAndExit: true },
+      next: '/temporary-permission-to-stay'
     },
     '/temporary-permission-to-stay': {
       behaviours: SaveFormSession,
