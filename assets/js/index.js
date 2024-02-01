@@ -4,6 +4,8 @@ require('hof/frontend/themes/gov-uk/client-js');
 const govuk = require('govuk-frontend');
 const $ = require('jquery');
 const accessibleAutocomplete = require('accessible-autocomplete');
+const harmCountriesRepeater = require('./harm-countries-repeater');
+
 
 $('.typeahead').each(function applyTypeahead() {
   accessibleAutocomplete.enhanceSelectElement({
@@ -13,3 +15,4 @@ $('.typeahead').each(function applyTypeahead() {
 });
 
 govuk.initAll();
+harmCountriesRepeater.init();

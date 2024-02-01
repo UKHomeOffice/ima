@@ -2,6 +2,7 @@
 
 ul {
   @extend .govuk-list--bullet;
+  margin-left: 10px;
 }
 
 a {
@@ -202,6 +203,70 @@ pre.looped-records {
 }
 
 .details-uan-dob {
-  color: #d4351c;
   margin-bottom: -3px;
+}
+
+p:has(span.margin-paragraph){
+  margin-bottom: -5px;
+}
+
+
+.repeater {
+  .govuk-form-group {
+    margin-bottom: 0;
+  }
+  .govuk-select {
+    width: 82%
+  }
+
+  .remove-harm-claim-country {
+    float: right;
+    // to position the anchor next to the dropdown field
+    margin-top: 10px;
+  }
+
+  a {
+    color: #1d70b8;
+  }
+}
+
+
+/* Links instead of regular buttons for the repeater link */
+// .repeater-button .govuk-button {
+//   background-color: Transparent;
+//   background: none !important;
+//   border: none;
+//   padding: 0 !important;
+//   font-family: inherit;
+//   line-height: 25px;
+//   -webkit-box-shadow: 0 0px 0 #003618;
+//   box-shadow: 0 0px 0 #003618;
+//   text-decoration: underline;
+//   cursor: pointer;
+//   margin-bottom: 1em;
+//   color: #1d70b8;
+//   font-size: 1em;
+// }
+
+// .repeater-button .govuk-button:active {
+//   color: #1d70b8;
+//   line-height: 23px;
+//   border-bottom-style: none;
+//   text-decoration: none;
+// }
+
+// .repeater-button .govuk-button:focus:not(:active):not(:hover) {
+//   border-color: #ffdd00;
+//   color: #1d70b8;
+//   background-color: #ffdd00;
+//   box-shadow: 0 0px 0 #1d70b8;
+//   text-decoration: underline;
+// }
+.repeater>* {
+  margin-top: 20px;
+}
+
+// this is no longer out of the box with hof so added custom css
+.hidden {
+  display: none
 }
