@@ -196,9 +196,15 @@ pre.looped-records {
 .button-as-link:active {
   background: #ffdd00;
 }
+
+#are-you-submitting-this-form-late-extension-group > fieldset > legend {
+@extend .govuk-heading-m;
+}
+
 #use-interpreter-group > fieldset > legend {
   @extend .govuk-heading-m;
 }
+
 .button-as-link .govuk-button:active {
   color: black;
   line-height: 23px;
@@ -288,10 +294,4 @@ p:has(span.medical-paragraph) {
 
 div > .section-header[data-content="Case details"]{
  display: none;
-}
-
-.wrap-table-cell,
- .confirm-row {
-   white-space: pre-wrap;
-   word-wrap: break-word;
 }

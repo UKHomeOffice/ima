@@ -457,6 +457,35 @@
   "temporary-permission-details": {
     "label": "Enter details"
   },
+  "are-you-submitting-this-form-late": {
+    "legend": "Are you submitting this form late?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "are-you-submitting-this-form-late-extension": {
+    "legend": "Have you asked for an extension?",
+     "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "late-extension-options-yes-detail": {
+    "legend": "When did you ask for extension?",
+    "hint": "For example, 28 12 2023"
+  },
+  "late-submission": {
+    "label": "Why are you submitting this form late?"
+  },
   "person-declaration": {
     "label": "I understand and agree with this declaration."
   },

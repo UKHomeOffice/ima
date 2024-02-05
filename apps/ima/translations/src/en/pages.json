@@ -103,6 +103,12 @@
   "evidence-upload": {
     "header": "Upload evidence"
   },
+  "submitting-late": {
+    "header": "Are you submitting this form late?"
+  },
+  "submitting-late-details": {
+    "header": "Why are you submitting this form late?"
+  },
   "confirm": {
     "header": "Information you have given us",
     "submit-warning": "You will not be able to change your answers after you submit.",

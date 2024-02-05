@@ -1,4 +1,6 @@
 'use strict';
+const dateComponent = require('hof').components.date;
+const after1900Validator = { type: 'after', arguments: ['1900'] };
 
 const dateComponent = require('hof').components.date;
 const after1900Validator = { type: 'after', arguments: ['1900'] };
@@ -779,6 +781,51 @@ module.exports = {
   image: {
     mixin: 'input-file',
     labelClassName: 'visuallyhidden'
+  },
+  'are-you-submitting-this-form-late': {
+    isPageHeading: false,
+    mixin: 'radio-group',
+    legend: {
+      className: ['visuallyhidden']
+    },
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no'
+    }],
+    validate: 'required'
+  },
+  'are-you-submitting-this-form-late-extension': {
+    isPageHeading: false,
+    mixin: 'radio-group',
+    legend: {
+      className: ['govuk-heading-m']
+    },
+    options: [{
+      value: 'yes',
+      toggle: 'late-submission-extension-details-fieldset',
+      child: 'partials/late-submission-extension-details'
+    }, {
+      value: 'no'
+    }],
+    validate: 'required'
+  },
+  'late-extension-options-yes-detail':
+    dateComponent('late-extension-options-yes-detail', {
+      validate: ['required', 'date', 'before', after1900Validator],
+      validationLink: {
+        field: 'are-you-submitting-this-form-late-extension',
+        value: 'yes'
+      }
+    }),
+  'late-submission': {
+    labelClassName: 'visuallyhidden',
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 15000 }],
+    attributes: [{
+      attribute: 'rows',
+      value: 6
+    }]
   },
   'language-used': {
     mixin: 'textarea',

@@ -84,7 +84,11 @@ module.exports = name => superclass => class extends superclass {
         return model.save()
           .then(() => {
             req.sessionModel.set('images', [...images, model.toJSON()]);
-            res.redirect('/ima/evidence-upload');
+            if (req.form.options.route === '/evidence-upload') {
+              res.redirect('/ima/evidence-upload');
+            } else if (req.form.options.route === '/submitting-late-details') {
+              res.redirect('/ima/submitting-late-details');
+            }
             return super.saveValues(req, res, next);
           })
           .catch(next);
