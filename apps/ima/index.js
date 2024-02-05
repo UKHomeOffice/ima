@@ -174,7 +174,7 @@ module.exports = {
           }
         },
         {
-        // TODO - TARGET AND CONDITION MUST BE CHANGED BASED ON BAN-ONLY CONDITION
+          // TODO - TARGET AND CONDITION MUST BE CHANGED BASED ON BAN-ONLY CONDITION
           target: '/',
           condition: {
             fields: 'has-address',
@@ -579,16 +579,14 @@ module.exports = {
       forks: [
         {
           target: '/exceptional-circumstances-details',
-          condition: req => req.sessionModel.get('exceptional-circumstances') === 'yes',
-          continueOnEdit: true
-        },
-        {
-          target: '/temporary-permission-to-stay',
-          condition: req => req.sessionModel.get('exceptional-circumstances') === 'no',
-          continueOnEdit: false
+          condition: {
+            field: 'exceptional-circumstances',
+            value: 'yes'
+          }
         }
       ],
-      next: '/exceptional-circumstances-details'
+      continueOnEdit: true,
+      next: '/temporary-permission-to-stay'
     },
     '/exceptional-circumstances-details': {
       behaviours: SaveFormSession,
@@ -603,7 +601,7 @@ module.exports = {
       next: '/evidence-upload'
     },
     '/evidence-upload': {
-      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      behaviours: [SaveFormSession, SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
       next: '/final-summary'
@@ -642,7 +640,7 @@ module.exports = {
       ]
     },
     '/submitting-late-details': {
-      behaviours: [SaveImage('image'), RemoveImage, LimitDocument],
+      behaviours: [SaveFormSession, SaveImage('image'), RemoveImage, LimitDocument],
       locals: { showSaveAndExit: true },
       fields: ['image', 'late-submission'],
       continueOnEdit: true,

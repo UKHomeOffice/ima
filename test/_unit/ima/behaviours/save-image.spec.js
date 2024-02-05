@@ -1,7 +1,7 @@
 'use strict';
 
 const expect = chai.expect;
-const Behaviour = require('../../../apps/ima/behaviours/save-image');
+const Behaviour = require('../../../../apps/ima/behaviours/save-image');
 
 describe("apps/ima 'save-image' behaviour should ", () => {
   it('export a function', () => {

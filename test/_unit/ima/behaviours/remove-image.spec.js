@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('chai');
-const Behaviour = require('../../../apps/ima/behaviours/remove-image');
+const Behaviour = require('../../../../apps/ima/behaviours/remove-image');
 
 describe("apps/ima 'remove-image' behaviour should ", () => {
   it('export a function', () => {

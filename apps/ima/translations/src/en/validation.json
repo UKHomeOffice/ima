@@ -2,6 +2,9 @@
   "who-are-you": {
     "required": "You must select an option"
   },
+  "in-the-uk": {
+    "required": "You must select an option"
+  },
   "helper-fullname": {
     "required": "Enter your full name",
     "notUrl": "Please do not enter a link/url into your answers"
@@ -17,9 +20,15 @@
   "current-email": {
     "required": "You must select an option"
   },
+  "email-address": {
+    "required": "You must select an option"
+  },
   "email-address-details": {
     "required": "Enter your email address",
     "email": "Enter a valid email address"
+  },
+  "phone-number": {
+    "required": "You must select an option"
   },
   "phone-number-details": {
     "required": "Enter your phone number",
@@ -58,6 +67,15 @@
     "required": "Enter your postcode",
     "postcode": "Enter a valid UK postcode",
     "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "has-address": {
+    "required": "You must select an option"
+  },
+  "has-permission-access": {
+    "required": "You must select an option"
+  },
+  "does-exception-apply": {
+    "required": "You must select an option"
   },
   "does-exception-apply-detail": {
     "required": "You must provide an explanation",
@@ -116,6 +134,9 @@
     "maxlength": "Explanation must be 15,000 characters or less",
     "notUrl": "Enter a valid explanation"
   },
+  "arrival-after-date": {
+    "required": "You must select an option"
+  },
   "arrived-date": {
     "required": "Please provide a valid date of when you arrived or entered the UK",
     "date": "Please enter a valid date",
@@ -128,11 +149,17 @@
     "regex": "Arrival details must not include the following special characters [ ] < > / |",
     "notUrl": "Please do not enter a link/url into your answers"
   },
+  "is-life-threatened": {
+    "required": "You must select an option"
+  },
   "life-threatened-detail": {
     "required": "You must provide an explanation",
     "maxlength": "Explanation must be 15,000 characters or less",
     "regex": "Explanation must not include the following special characters [ ] < > / |",
     "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "permission-to-enter-or-stay": {
+    "required": "You must select an option"
   },
   "permission-to-enter-or-stay-detail": {
     "required": "You must provide an explanation",
@@ -164,6 +191,9 @@
   "reference-number-option": {
     "required": "Please select a reference number option",
     "notBothOptions": "You can't choose 'I don't know' and a reference number. You must deselect the 'I don't know' option, or the selected reference number(s) to continue"
+  },
+  "human-rights-claim": {
+    "required": "You must select an option"
   },
   "human-rights-claim-details": {
     "required": "Please enter details of the human rights claim",

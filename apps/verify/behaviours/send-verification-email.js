@@ -1,3 +1,4 @@
+/* eslint max-len: 0 */
 'use strict';
 
 const config = require('../../../config');
@@ -51,9 +52,10 @@ module.exports = superclass => class extends superclass {
     const claimantRecords = response.data;
     const recordEmail = claimantRecords.map(f => { return f.email; });
     const unSubmittedCase = _.filter(response.data, record => !record.submitted_at);
+    const unSubmittedCaseEmail = unSubmittedCase.map(record => { return record.email; });
 
     // if form has not been submitted, throws an error if a second form is opened with same UAN but different email
-    if (recordEmail.length && req.form.values['user-email'] !== recordEmail.toString() && unSubmittedCase.length > 0) {
+    if (recordEmail.length && req.form.values['user-email'] !== unSubmittedCaseEmail.toString() && unSubmittedCase.length > 0) {
       return next({
         'user-email': new this.ValidationError(
           'user-email',

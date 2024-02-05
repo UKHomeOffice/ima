@@ -54,6 +54,7 @@ module.exports = {
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
     submissionTemplateId: process.env.SUBMISSION_TEMPLATE_ID,
     saveAndExitTemplateId: process.env.SAVE_AND_EXIT_TEMPLATE_ID,
+    customerReceiptTemplateId: process.env.CUSTOMER_RECEIPT_TEMPLATE_ID,
     submissionFailedTemplateId: process.env.SUBMISSION_FAILED_TEMPLATE_ID
   },
   hosts: {

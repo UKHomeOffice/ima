@@ -1,4 +1,4 @@
-const AggregatorBehaviour = require('../../../apps/ima/behaviours/aggregator-save-update');
+const AggregatorBehaviour = require('../../../../apps/ima/behaviours/aggregator-save-update');
 const Model = require('hof').model;
 
 describe('aggregator behaviour', () => {

@@ -1,9 +1,6 @@
 'use strict';
 const dateComponent = require('hof').components.date;
 const after1900Validator = { type: 'after', arguments: ['1900'] };
-
-const dateComponent = require('hof').components.date;
-const after1900Validator = { type: 'after', arguments: ['1900'] };
 const countries = require('hof').utils.countries();
 const familyMemberImmigrationStatus = require('../data/immigration-status');
 const UANRef = {
