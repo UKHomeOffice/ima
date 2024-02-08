@@ -1,21 +1,512 @@
 {
   "uan": {
-    "legend": "Which claim do you want to continue?"
+    "legend": "Which form do you need to continue?"
   },
   "who-are-you": {
     "legend": "Who are you?",
     "options": {
       "person-named": {
-        "label": "The person named on the duty to remove notice"
+        "label": "The person named on the Illegal Migration Act notice"
       },
       "has-legal-representative": {
         "label": "An immigration advisor representing the claimant",
-        "hint": "Such as a solicitor or legal representative. You must have already sent a letter of authority to the Home Office to confirm that you can represent the person named on the duty to remove letter."
+        "hint": "Such as a solicitor or legal representative. You must have already sent a letter of authority to the Home Office to confirm that you can represent the person named on the Illegal Migration Act notice."
       },
-      "someone-else": {
+      "helper": {
         "label": "Someone helping the person named on the duty to remove notice",
         "hint": "You cannot give immigration advice. You must answer all the questions as if you are the person named on the duty to remove letter."
       }
     }
+  },
+  "in-the-uk": {
+    "legend": "Are you currently in the UK?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "current-email": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "phone-number": {
+    "legend": "Do you have a phone number?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "phone-number-details": {
+    "label": "Enter your phone number",
+    "hint": "For international numbers, please include country code"
+  },
+  "email-address": {
+    "legend": "Do you have an email address?",
+    "hint": "We will use this to send you a copy of this form and to contact you about your claim.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "email-address-details": {
+    "label": "Enter your email address"
+  },
+  "legal-representative-address": {
+    "label": "Postal address"
+  },
+  "legal-representative-house-number": {
+    "label": "Address line 1"
+  },
+  "legal-representative-postcode": {
+    "label": "Postcode"
+  },
+  "legal-representative-street": {
+    "label": "Address line 2 (optional)"
+  },
+  "legal-representative-townOrCity": {
+    "label": "Town or city"
+  },
+  "legal-representative-county": {
+    "label": "County (optional)"
+  },
+  "legal-representative-fullname": {
+    "label": "Full name"
+  },
+  "legal-representative-organisation": {
+    "label": "Organisation or law firm"
+  },
+  "legal-representative-phone-number": {
+    "label": "Phone number",
+    "hint": "For international numbers, include the country code."
+  },
+  "is-legal-representative-email": {
+    "legend": "Is {{values.user-email}} your email address?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-representative-email": {
+    "label": "Enter your email address"
+  },
+  "helper-fullname": {
+    "label": "Full name"
+  },
+  "helper-relationship": {
+    "label": "What is your relationship to the person on the Illegal Migration Act notice?"
+  },
+  "helper-organisation": {
+    "label": "Organisation name (optional)",
+    "hint": "For example, name of charity or support group."
+  },
+  "has-address": {
+    "legend": "Are you currently in immigration detention?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "has-permission-access": {
+    "legend": "Do you give us permission to access your Immigration Removal Centre medical records?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "your-address": {
+    "label": "Enter your address",
+    "hint": "This must be where you live."
+  },
+  "house-number": {
+    "label": "Address line 1"
+  },
+  "street": {
+    "label": "Address line 2 (optional)"
+  },
+  "townOrCity": {
+    "label": "Town or city"
+  },
+  "county": {
+    "label": "County (optional)"
+  },
+  "postcode": {
+    "label": "Postcode"
+  },
+  "does-exception-apply":{
+    "legend": "Does an exception to the duty to remove apply to you?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "does-exception-apply-detail": {
+    "label": "Explain why"
+  },
+  "how-removal-condition-1-applies": {
+    "legend": "Why does your Illegal Migration Act notice say removal condition 1 applies to you?",
+    "options": {
+      "entered-without-permission": {
+        "label": "You needed permission to enter the UK and you entered without permission"
+      },
+      "by-deception": {
+        "label": "You entered the UK with permission which you got by deception",
+        "hint": "For example, if you or someone else lied on your application."
+      },
+      "deportation-order-applies": {
+        "label": "You entered the UK when a deportation order applied to you"
+      },
+      "travel-ban": {
+        "label": "When you arrived in or entered the UK, a travel ban applied to you",
+        "hint": "This includes a travel ban imposed by the United Nations Security Council, or UK under the Sanctions and Anti-Money Laundering Act 2018."
+      },
+      "arrived-without-visa": {
+        "label": "You needed a valid entry clearance (visa), and you arrived without it"
+      },
+      "arrived-without-eta": {
+        "label": "You needed a valid electronic travel authorisation (ETA), and you arrived without it"
+      }
+    }
+  },
+  "entered-without-permission": {
+    "legend": "Did you need permission to enter the UK but entered without it?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "entered-without-permission-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "entered-with-travel-ban": {
+    "legend": "Did you arrive in or enter the UK, when a travel ban applied to you?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "entered-with-travel-ban-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "entered-by-deception": {
+    "legend": "Did you enter the UK with permission you got by deception?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "entered-by-deception-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "arrived-without-clearance": {
+    "legend": "Did you need a valid entry clearance (visa) but arrived without one?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "arrived-without-clearance-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "without-eta": {
+    "legend": "Did you need a valid electronic travel authorisation (ETA) but arrived without one?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "without-eta-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "deportation-order-applied": {
+    "legend": "Did you enter the UK when a deportation order applied to you?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "deportation-order-applied-detail": {
+    "label": "Explain why this is not correct"
+  },
+  "arrived-date": {
+    "legend": "When did you arrive in or enter the UK?",
+    "hint": "For example, 28 12 2023"
+  },
+  "arrival-after-date": {
+    "legend": "Did you arrive in the UK on or after 20 July 2023?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "arrival-details": {
+    "label": "Enter details about when you arrived"
+  },
+  "is-life-threatened": {
+    "legend": "Did you come directly to the UK from a country where your life or liberty was threatened?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "life-threatened-detail": {
+    "label": "Enter details of how you came to the UK"
+  },
+  "permission-to-enter-or-stay": {
+    "legend": "Do you have permission to enter or stay in the UK?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "permission-to-enter-or-stay-detail": {
+    "label": "Explain what permission you have"
+  },
+  "human-rights-claim": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    },
+    "summary-heading": "Making a human rights claim because of family in the UK"
+  },
+  "family-member-relation": {
+    "label": "What is their relationship to you?",
+    "summary-heading": "Relationship"
+  },
+  "family-member-full-name": {
+    "label": "Full name"
+  },
+  "family-member-dob": {
+    "legend": "Date of birth",
+    "hint": "For example, 31 3 1980",
+    "summary-heading": "Date of birth"
+  },
+  "family-member-nationality": {
+    "label": "What is their country of nationality?",
+    "options": {
+      "null": "Select a country"
+    },
+    "summary-heading": "Country of nationality"
+  },
+  "uk-immigration-status": {
+    "label": "What is their UK immigration status?",
+    "options": {
+      "null": "Select an immigration status"
+    },
+    "summary-heading": "UK immigration status"
+  },
+  "immigration-status-other": {
+    "label": "Enter their immigration status"
+  },
+  "reference-number-option": {
+    "legend": "What reference number do they have?",
+    "options": {
+      "unique-application-number": {
+        "label": "Unique application number (UAN)",
+        "hint": "For example, 1234-5678-1234-5678"
+      },
+      "home-office-reference-number": {
+        "label": "Home Office (HO) reference number",
+        "hint": "For example, S1234567"
+      },
+      "do-not-know": {
+        "label": "I do not know"
+      }
+    },
+    "summary-heading": "Reference number"
+  },
+  "uan-detail": {
+    "legend": "Enter a UAN",
+    "label": "Enter a UAN",
+    "summary-heading": "Unique Application Number (UAN)"
+  },
+  "ho-number-detail": {
+    "legend": "Enter a HO Reference Number",
+    "label": "Enter a HO Reference Number",
+    "summary-heading": "Home Office (HO) reference number"
+  },
+  "human-rights-claim-details": {
+    "legend": "Enter details of the human rights claim",
+    "label": "Enter details of the human rights claim"
+  },
+  "other-human-rights-claim": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "other-human-rights-claims-details": {
+    "label": "Other human rights claim details"
+  },
+  "exceptional-circumstances": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "exceptional-circumstances-details": {
+    "label": "Enter details"
+  },
+  "temporary-permission-reasons": {
+    "legend": "What are your reasons for applying for temporary permission to stay in the UK?",
+    "hint": "Select all that apply.",
+    "options": {
+      "human-rights": {
+        "label": "human rights"
+      },
+      "other-international-obligations": {
+        "label": "other international obligations"
+      },
+      "exceptional-circumstances": {
+        "label": "exceptional circumstances"
+      }
+    }
+  },
+  "temporary-permission": {
+    "legend": "Are there any reasons you should be granted temporary permission to stay in the UK?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "temporary-permission-details": {
+    "label": "Enter details"
+  },
+  "are-you-submitting-this-form-late": {
+    "legend": "Are you submitting this form late?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "are-you-submitting-this-form-late-extension": {
+    "legend": "Have you asked for an extension?",
+     "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "late-extension-options-yes-detail": {
+    "legend": "When did you ask for extension?",
+    "hint": "For example, 28 12 2023"
+  },
+  "late-submission": {
+    "label": "Why are you submitting this form late?"
+  },
+  "person-declaration": {
+    "label": "I understand and agree with this declaration."
+  },
+  "use-interpreter": {
+    "legend": "Did you use an interpreter?",
+        "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "language-used": {
+    "label": "Include any dialects"
+  },
+  "helper-declaration": {
+    "label": "I understand and agree with this declaration."
+  },
+  "immigration-adviser-declaration": {
+    "label": "I understand and agree with this declaration."
   }
 }

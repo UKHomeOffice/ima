@@ -50,7 +50,12 @@ module.exports = {
   },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,
-    userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID
+    userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID,
+    caseworkerEmail: process.env.CASEWORKER_EMAIL,
+    submissionTemplateId: process.env.SUBMISSION_TEMPLATE_ID,
+    saveAndExitTemplateId: process.env.SAVE_AND_EXIT_TEMPLATE_ID,
+    customerReceiptTemplateId: process.env.CUSTOMER_RECEIPT_TEMPLATE_ID,
+    submissionFailedTemplateId: process.env.SUBMISSION_FAILED_TEMPLATE_ID
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
@@ -61,7 +66,33 @@ module.exports = {
   },
   upload: {
     maxFileSize: '25mb',
-    hostname: process.env.FILE_VAULT_URL
+    hostname: process.env.FILE_VAULT_URL,
+    allowedMimeTypes: [
+      'application/json',
+      'application/msword',
+      'application/pdf',
+      'application/rtf',
+      'application/vnd.ms-excel',
+      'application/vnd.ms-outlook',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/xml',
+      'application/x-tika-ooxml',
+      'audio/vnd.wave',
+      'audio/wav',
+      'audio/x-wav',
+      'image/bmp',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'message/rfc822',
+      'text/csv',
+      'text/plain',
+      'text/xml'
+    ]
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
@@ -77,7 +108,7 @@ module.exports = {
       `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
   },
   sessionDefaults: {
-    steps: ['/start', '/cases', '/current-progress', '/who-are-you'],
+    steps: ['/start', '/continue-form', '/summary', '/who-are-you'],
     fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
   }
 };
