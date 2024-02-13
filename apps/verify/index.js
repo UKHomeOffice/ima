@@ -11,7 +11,9 @@ module.exports = {
       fields: ['uan', 'date-of-birth'],
       next: '/enter-email'
     },
-    '/details-not-found': {},
+    '/details-not-found': {
+      backLink: 'your-details'
+    },
     '/enter-email': {
       fields: ['user-email'],
       behaviours: [SendVerificationEmail],
