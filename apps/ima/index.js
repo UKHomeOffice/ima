@@ -604,6 +604,7 @@ module.exports = {
       behaviours: [SaveFormSession, SaveImage('image'), RemoveImage, LimitDocument],
       fields: ['image'],
       continueOnEdit: true,
+      locals: { showSaveAndExit: true },
       next: '/final-summary'
     },
     '/final-summary': {
