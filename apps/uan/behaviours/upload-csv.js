@@ -193,10 +193,9 @@ module.exports = superclass => class extends superclass {
         })
         .then(response => {
           const fileURL = response.data.url;
-          const fileUUID = response.data.url.split('/file/')[1].split('?')[0];
           logger.log({
             level: 'info',
-            message: `CSV file uploaded, URL is: ${fileURL}, UUID is: ${fileUUID}`
+            message: 'CSV file was successfully uploaded to storage'
           });
           resolve(fileURL);
         })
@@ -240,7 +239,13 @@ module.exports = superclass => class extends superclass {
   saveCsvUrlToDb(url) {
     return new Promise((resolve, reject) => {
       axios.post(fileSaveUrl, { url: url })
-        .then(response => resolve(response))
+        .then(response => {
+          logger.log({
+            level: 'info',
+            message: 'File store URL was successfully saved to database'
+          });
+          resolve(response)
+        })
         .catch(error => {
           logger.log({
             level: 'error',
