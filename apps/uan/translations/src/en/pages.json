@@ -1,0 +1,24 @@
+{
+  "upload": {
+    "header": "Import UAN records",
+    "paragraph1": "You must only upload:",
+    "list1": "CSV files",
+    "list2": "files under {{maxFileSize}}",
+    "list3": "the latest version of all UAN records",
+    "list4": "correctly formatted data",
+    "detail-summary": "How to format data correctly",
+    "detail-text1": "The CSV must have only three columns of data: UAN which has BAN alerts under IMA 2023, Date of birth and Duty to remove Alert in left-to-right order. Include a heading for each column.",
+    "warning": "Importing a file will overwrite all existing records in this database."
+  },
+  "confirmation": {
+    "panel": {
+      "heading": "Import pending",
+      "text": "Your import will happen overnight"
+    },
+    "what-next": {
+      "heading": "What happens next",
+      "para1": "You will get a confirmation email once the import has happened. The email will tell you whether the import succeeded or failed.",
+      "para2": "You can now close this page."
+    }
+  }
+}

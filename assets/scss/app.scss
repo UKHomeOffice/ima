@@ -230,6 +230,25 @@ p:has(span.medical-paragraph) {
   margin-bottom: -3px;
 }
 
+.spinner-loader {
+  border: 5px solid #DEE0E2;
+  border-radius: 50%;
+  border-top-color: #005EA5;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 #temporary-permission-reasons-hint {
   padding-top: 10px;
   padding-bottom: 10px;

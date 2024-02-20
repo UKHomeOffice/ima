@@ -12,6 +12,15 @@ $('.typeahead').each(function applyTypeahead() {
   });
 });
 
+$(document).ready(function () {
+  if ($('#loader-container')) {
+    $('.govuk-button').on('click', function () {
+      $('#loader-container').addClass('spinner-loader');
+      $('#onboard-cases').addClass('visuallyhidden');
+    });
+  }
+});
+
 // Show/hide input if 'Other' is selected for the UK immigration status including page refreshes
 $( document ).ready(function () {
   if ($('#uk-immigration-status').val() === 'Other') {
