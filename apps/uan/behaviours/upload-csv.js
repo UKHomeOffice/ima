@@ -203,7 +203,7 @@ module.exports = superclass => class extends superclass {
           // eslint-disable-next-line no-console
           logger.log({
             level: 'error',
-            message: `Error uploading CSV via file-vault: ${error}`
+            message: `Error uploading CSV to storage: ${error}`
           });
           reject(error);
         });
@@ -244,7 +244,7 @@ module.exports = superclass => class extends superclass {
             level: 'info',
             message: 'File store URL was successfully saved to database'
           });
-          resolve(response)
+          resolve(response);
         })
         .catch(error => {
           logger.log({
