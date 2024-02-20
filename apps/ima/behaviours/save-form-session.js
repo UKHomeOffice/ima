@@ -3,7 +3,12 @@
 const axios = require('axios');
 const config = require('../../../config');
 const _ = require('lodash');
-
+const NotifyClient = require('notifications-node-client').NotifyClient;
+const notifyApiKey = config.govukNotify.notifyApiKey;
+const notifyClient = new NotifyClient(notifyApiKey);
+const templateId = config.govukNotify.saveAndExitTemplateId;
+const tokenGenerator = require('../../../db/save-token');
+const utilities = require('../../../lib/utilities');
 const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 
 module.exports = superclass => class extends superclass {
@@ -54,6 +59,16 @@ module.exports = superclass => class extends superclass {
         }
 
         if (req.body['save-and-exit']) {
+          const host = req.get('host');
+          const userEmail = req.form.values['user-email'] || req.sessionModel.get('user-email');
+          const token = tokenGenerator.save(req, userEmail);
+          try {
+            await notifyClient.sendEmail(templateId, userEmail, {
+              personalisation: utilities.getPersonalisation(host, token)
+            });
+          } catch (e) {
+            return next(e);
+          }
           return res.redirect('/ima/save-and-exit');
         }
 

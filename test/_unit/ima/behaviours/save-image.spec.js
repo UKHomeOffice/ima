@@ -1,7 +1,7 @@
 'use strict';
 
 const expect = chai.expect;
-const Behaviour = require('../../../apps/ima/behaviours/save-image');
+const Behaviour = require('../../../../apps/ima/behaviours/save-image');
 
 describe("apps/ima 'save-image' behaviour should ", () => {
   it('export a function', () => {
@@ -93,6 +93,20 @@ describe("apps/ima 'save-image' behaviour should ", () => {
       instance.saveValues(req, res, next);
       const sessionModel = req.sessionModel.get('images');
       expect(sessionModel.image.name).to.eql('guitar.png');
+    });
+
+    it('should redirect to /evidence-upload when on evidence upload page', () => {
+      req.form.options.route = '/evidence-upload';
+      req.sessionModel.set('images', imageFiles);
+      instance.saveValues(req, res, next);
+      expect(req.form.options.route).to.eql('/evidence-upload');
+    });
+
+    it('should redirect to /submitting-late-details when on submitting late details page', () => {
+      req.form.options.route = '/submitting-late-details';
+      req.sessionModel.set('images', imageFiles);
+      instance.saveValues(req, res, next);
+      expect(req.form.options.route).to.eql('/submitting-late-details');
     });
 
     after(() => {

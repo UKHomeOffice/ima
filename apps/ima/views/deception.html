@@ -1,0 +1,9 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div id="deception-hint" class="govuk-hint">
+      {{#t}}pages.deception.hint{{/t}}
+    </div>
+    {{#renderField}}entered-by-deception{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

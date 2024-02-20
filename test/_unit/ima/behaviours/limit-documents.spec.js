@@ -1,6 +1,6 @@
 'use strict';
 
-const Behaviour = require('../../../apps/ima/behaviours/limit-documents');
+const Behaviour = require('../../../../apps/ima/behaviours/limit-documents');
 const Controller = require('hof').controller;
 
 
