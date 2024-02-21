@@ -2,12 +2,12 @@
 const UploadCSV = require('./behaviours/upload-csv');
 
 module.exports = {
-  name: 'uan',
-  baseUrl: '/uan',
+  name: 'cepr',
+  baseUrl: '/cepr',
   steps: {
     '/upload': {
       behaviours: [UploadCSV],
-      fields: ['bulk-upload-uan', 'confirm-data-checked'],
+      fields: ['bulk-upload-cepr', 'confirm-data-checked'],
       next: '/confirmation'
     },
     '/confirmation': {

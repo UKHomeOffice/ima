@@ -1,6 +1,6 @@
 
 module.exports = {
-  'bulk-upload-uan': {
+  'bulk-upload-cepr': {
     mixin: 'input-file',
     validate: [
       'required'
