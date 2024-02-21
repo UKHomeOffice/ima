@@ -625,9 +625,29 @@ module.exports = {
       forks: [
         {
           target: '/declaration',
-          condition: {
-            field: 'are-you-submitting-this-form-late',
-            value: 'no'
+          condition: req => {
+            if (req.sessionModel.get('are-you-submitting-this-form-late') === 'no' &&  req.sessionModel.get('who-are-you') === 'person-named') {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/immigration-adviser-declaration',
+          condition: req => {
+            if (req.sessionModel.get('are-you-submitting-this-form-late') === 'no' &&  req.sessionModel.get('who-are-you') === 'has-legal-representative') {
+              return true;
+            }
+            return false;
+          }
+        },
+        {
+          target: '/helper-declaration',
+          condition: req => {
+            if (req.sessionModel.get('are-you-submitting-this-form-late') === 'no' &&  req.sessionModel.get('who-are-you') === 'helper') {
+              return true;
+            }
+            return false;
           }
         },
         {
