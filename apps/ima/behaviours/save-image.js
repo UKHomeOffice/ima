@@ -41,15 +41,13 @@ module.exports = name => superclass => class extends superclass {
         const invalidSize = uploadSizeTooBig || uploadSizeBeyondServerLimits;
 
         if (invalidSize || invalidMimetype) {
-          return new this.ValidationError(key, {
-            key,
+          return new this.ValidationError('image', {
             type: invalidSize ? 'maxFileSize' : 'fileType',
             redirect: undefined
           });
         }
       } else {
-        return new this.ValidationError(key, {
-          key,
+        return new this.ValidationError('image', {
           type: 'required',
           redirect: undefined
         });
@@ -65,6 +63,11 @@ module.exports = name => superclass => class extends superclass {
       const noMoreImagesToUpload = req.form.values['evidence-upload-more'] === 'no';
       const noImagesInSession = !_.get(req.sessionModel.get('images'), 'length');
       const steps = req.sessionModel.get('steps');
+      const lateSubmissionDetails = req.form.values['late-submission'];
+
+      if(lateSubmissionDetails) {
+        req.sessionModel.set('late-submission', lateSubmissionDetails);
+      }
 
       if (noImagesToUpload || (noMoreImagesToUpload && noImagesInSession)) {
         req.sessionModel.set('evidence-upload', 'no');
