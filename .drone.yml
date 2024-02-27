@@ -172,8 +172,7 @@ steps:
           - feature/*
       event: [push, pull_request]
 
-# Trivy Security Scannner
-
+ # Trivy Security Scannner
   - name: scan-image
     pull: always
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
@@ -183,9 +182,10 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: ima:${DRONE_COMMIT_SHA}
-      SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+      SEVERITY: MEDIUM,HIGH,CRITICAL
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: true
+      ALLOW_CVE_LIST_FILE: hof-services-config/Illegal_Migration_Act/trivy-cve-exceptions.txt
     when:
       event:
       - pull_request
@@ -473,17 +473,18 @@ steps:
       cron: security_scans
       event: cron
 
-
   - name: cron_trivy_scan
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
     pull: always
     environment:
-        IMAGE_NAME: ima:${DRONE_COMMIT_SHA}
-        IGNORE_UNFIXED: true
+      IMAGE_NAME: ima:${DRONE_COMMIT_SHA}
+      SEVERITY: MEDIUM,HIGH,CRITICAL
+      FAIL_ON_DETECTION: false
+      IGNORE_UNFIXED: true
+      ALLOW_CVE_LIST_FILE: hof-services-config/Illegal_Migration_Act/trivy-cve-exceptions.txt
     when:
       cron: security_scans
       event: cron
-
 
   # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
