@@ -31,7 +31,7 @@ module.exports = {
   },
   name: {
     labelClassName: 'visuallyhidden',
-    validate: ['required'],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'current-email': {
