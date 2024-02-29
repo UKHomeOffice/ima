@@ -21,8 +21,6 @@ $(document).ready(function () {
   }
 });
 
-<<<<<<< HEAD
-=======
 // Show/hide input if 'Other' is selected for the UK immigration status including page refreshes
 $( document ).ready(function () {
   if ($('#uk-immigration-status').val() === 'Other') {
@@ -40,5 +38,4 @@ $('#uk-immigration-status').change(function () {
   }
 });
 
->>>>>>> master
 govuk.initAll();
