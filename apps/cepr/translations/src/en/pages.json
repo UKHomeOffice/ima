@@ -7,7 +7,11 @@
     "list3": "the latest version of all CEPR records",
     "list4": "correctly formatted data",
     "detail-summary": "How to format data correctly",
-    "detail-text1": "The CSV must have only three columns of data: CEPR for banned under the IMA2023, DOB and Duty to remove alert in left-to-right order. Include a heading for each column.",
+    "detail-text1": "The CSV file must have:",
+    "detail-list1": "only 3 columns of data",
+    "detail-list2": "the first column labelled as \"CEPR for banned under the IMA2023\"",
+    "detail-list3": "the second column labelled as \"DOB\"",
+    "detail-list4": "the third column labelled as \"Duty to remove alert\"",
     "warning": "Importing a file will overwrite all existing records in this database."
   },
   "confirmation": {
