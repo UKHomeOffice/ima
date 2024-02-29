@@ -3,8 +3,11 @@
 const _ = require('lodash');
 const config = require('../../../config');
 const parse = require('csv-parse').parse;
+<<<<<<< HEAD
 const fs = require('fs/promises');
 const path = require('path');
+=======
+>>>>>>> master
 const axios = require('axios');
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, json } = format;
@@ -20,8 +23,12 @@ const {
   allowedMimeTypes,
   mandatoryColumns,
   recordScanLimit,
+<<<<<<< HEAD
   filevaultUpload,
   writeFileToSharedVolume
+=======
+  filevaultUpload
+>>>>>>> master
 } = config.uanUpload;
 const fileSaveUrl = `${config.saveService.host}:${config.saveService.port}/csv_urls`;
 const fieldName = 'bulk-upload-uan';
@@ -131,6 +138,10 @@ module.exports = superclass => class extends superclass {
 
         const firstMissingColumn = missingColumns[0];
         let columnError;
+<<<<<<< HEAD
+=======
+        // TODO Update cases below if column names move away from UAN
+>>>>>>> master
         switch(firstMissingColumn) {
           case 'uan which has ban alerts under ima 2023':
             columnError = 'missingUanColumn';
@@ -176,6 +187,7 @@ module.exports = superclass => class extends superclass {
         return next({'bulk-upload-uan': uploadValidationError});
       }
     }
+<<<<<<< HEAD
 
     if (writeFileToSharedVolume) {
       const destinationPath = path.join(__dirname, '/../../../container-share/');
@@ -193,6 +205,8 @@ module.exports = superclass => class extends superclass {
           })});
         });
     }
+=======
+>>>>>>> master
     return super.saveValues(req, res, next);
   }
 
@@ -212,10 +226,16 @@ module.exports = superclass => class extends superclass {
         })
         .then(response => {
           const fileURL = response.data.url;
+<<<<<<< HEAD
           const fileUUID = response.data.url.split('/file/')[1].split('?')[0];
           logger.log({
             level: 'info',
             message: `CSV file uploaded, URL is: ${fileURL}, UUID is: ${fileUUID}`
+=======
+          logger.log({
+            level: 'info',
+            message: 'CSV file was successfully uploaded to storage'
+>>>>>>> master
           });
           resolve(fileURL);
         })
@@ -223,7 +243,11 @@ module.exports = superclass => class extends superclass {
           // eslint-disable-next-line no-console
           logger.log({
             level: 'error',
+<<<<<<< HEAD
             message: `Error uploading CSV via file-vault: ${error}`
+=======
+            message: `Error uploading CSV to storage: ${error}`
+>>>>>>> master
           });
           reject(error);
         });
@@ -259,7 +283,17 @@ module.exports = superclass => class extends superclass {
   saveCsvUrlToDb(url) {
     return new Promise((resolve, reject) => {
       axios.post(fileSaveUrl, { url: url })
+<<<<<<< HEAD
         .then(response => resolve(response))
+=======
+        .then(response => {
+          logger.log({
+            level: 'info',
+            message: 'File store URL was successfully saved to database'
+          });
+          resolve(response);
+        })
+>>>>>>> master
         .catch(error => {
           logger.log({
             level: 'error',

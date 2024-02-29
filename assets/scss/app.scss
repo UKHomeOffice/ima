@@ -2,11 +2,16 @@
 
 ul {
   @extend .govuk-list--bullet;
+ 
 }
-
 a {
   @extend .govuk-link;
 }
+
+.evidence-list > ol {
+  margin-left: 20px;
+  @extend  .govuk-list--number;
+ }
 
 // Accessible autocomplete
 .autocomplete__wrapper {
@@ -192,6 +197,14 @@ pre.looped-records {
   background: #ffdd00;
 }
 
+#are-you-submitting-this-form-late-extension-group > fieldset > legend {
+@extend .govuk-heading-m;
+}
+
+#use-interpreter-group > fieldset > legend {
+  @extend .govuk-heading-m;
+}
+
 .button-as-link .govuk-button:active {
   color: black;
   line-height: 23px;
@@ -201,8 +214,19 @@ pre.looped-records {
   text-decoration: none;
 }
 
+p:has(span.medical-paragraph) {
+  margin-bottom: -5px;
+}
+
+.label-margin {
+  margin-top: -5%;
+}
+
+.list-margin {
+  margin-left: 10px;
+}
+
 .details-uan-dob {
-  color: #d4351c;
   margin-bottom: -3px;
 }
 
@@ -224,3 +248,76 @@ pre.looped-records {
     transform: rotate(360deg);
   }
 }
+<<<<<<< HEAD
+=======
+
+#temporary-permission-reasons-hint {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#temporary-permission-details {
+  height: 8em;
+}
+
+#uan-detail-panel {
+  margin-top: -15px;
+}
+
+#home-office-reference-number-panel {
+  margin-top: -15px;
+}
+
+.govuk-radios__hint {
+  padding-left: 0px;
+}
+
+.list-bullet {
+  margin-left: 10px;
+}
+
+.govuk-character-count__message {
+  display: none;
+}
+
+.exceptional-circumstances-evidence-paragraph {
+  margin-top: -15px;
+  padding-bottom: 15px;
+}
+
+.family-summary-label {
+  font-weight: bold !important;
+}
+
+#immigration-status-detail-panel {
+  display: none;
+  padding-left: 33px;
+  border-left: 4px solid #b1b4b6;
+}
+
+.wrap-table-cell,
+.confirm-row {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.loop-summary-table .govuk-table__cell:nth-child(1){
+  font-weight: bold !important;
+}
+
+.loop-summary-table .data-col {
+  font-size: 28px;
+}
+
+.confirm-label[data-content="Files uploaded"] ~ .confirm-value {
+  white-space: pre-line
+}
+
+div > .section-header[data-content="Case details"]{
+ display: none;
+}
+
+.save-and-exit-button {
+  margin-left: 15px;
+}
+>>>>>>> master

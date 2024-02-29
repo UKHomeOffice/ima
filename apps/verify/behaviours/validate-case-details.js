@@ -3,7 +3,7 @@ const config = require('../../../config');
 module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     if (!this.isValidCase(req)) {
-      return res.redirect('/not-found');
+      return res.redirect('/details-not-found');
     }
     return super.saveValues(req, res, next);
   }

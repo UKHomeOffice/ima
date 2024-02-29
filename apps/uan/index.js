@@ -8,9 +8,15 @@ module.exports = {
     '/upload': {
       behaviours: [UploadCSV],
       fields: ['bulk-upload-uan', 'confirm-data-checked'],
+<<<<<<< HEAD
       next: '/complete'
     },
     '/complete': {
+=======
+      next: '/confirmation'
+    },
+    '/confirmation': {
+>>>>>>> master
       backLink: false,
       clearSession: true
     }

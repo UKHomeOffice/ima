@@ -1,3 +1,4 @@
+/* eslint max-len: 0 */
 'use strict';
 
 const config = require('../../../config');
@@ -8,6 +9,7 @@ const notifyClient = new NotifyClient(notifyApiKey);
 const templateId = config.govukNotify.userAuthTemplateId;
 const baseUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 const tokenGenerator = require('../../../db/save-token');
+const _ = require('lodash');
 
 const getPersonalisation = (host, token) => {
   const protocol = host.includes('localhost') ? 'http' : 'https';
@@ -49,7 +51,11 @@ module.exports = superclass => class extends superclass {
     const response = await axios.get(baseUrl + '/uan/' + req.sessionModel.get('uan'));
     const claimantRecords = response.data;
     const recordEmail = claimantRecords.map(f => { return f.email; });
-    if (recordEmail.length && req.form.values['user-email'] !== recordEmail.toString()) {
+    const unSubmittedCase = _.filter(response.data, record => !record.submitted_at);
+    const unSubmittedCaseEmail = unSubmittedCase.map(record => { return record.email; });
+
+    // if form has not been submitted, throws an error if a second form is opened with same UAN but different email
+    if (recordEmail.length && req.form.values['user-email'] !== unSubmittedCaseEmail.toString() && unSubmittedCase.length > 0) {
       return next({
         'user-email': new this.ValidationError(
           'user-email',

@@ -1,13 +1,14 @@
 {
   "uan": {
     "required": "Enter your UAN reference",
-    "regex": "Enter a valid UAN. The format should be NNNN-nnnn-nnnn-nnnn (in digits)",
+    "regex": "Enter a valid UAN. For example, 3455-9874-2349-0753 or 3455-9874-2349-0753/01",
     "noUanRecordMatch": "Your UAN does not match our records, Check you have entered the UAN correctly"
   },
   "date-of-birth": {
     "required": "Enter your date of birth",
     "before": "Enter a date in the past",
-    "after": "Enter a date after 01 01 1900"
+    "after": "Enter a date after 01 01 1900",
+    "date": "Enter a valid date of birth"
   },
   "user-email": {
     "required": "Enter your email address",
