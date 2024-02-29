@@ -5,6 +5,10 @@
   "in-the-uk": {
     "required": "You must select an option"
   },
+  "full-name": {
+    "required": "Enter your full name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "helper-fullname": {
     "required": "Enter your full name",
     "notUrl": "Please do not enter a link/url into your answers"
