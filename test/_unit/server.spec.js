@@ -5,7 +5,9 @@ describe('Server.js app file', () => {
   let sendStub;
   let appsVerifyStub;
   let appsImaStub;
+  let appsUanStub;
   let behavioursClearSessionStub;
+  let casesStub;
   let req;
   let res;
   let next;
@@ -28,8 +30,10 @@ describe('Server.js app file', () => {
     hofStub = sinon.stub();
     useStub = sinon.stub();
     appsVerifyStub = sinon.stub();
+    appsUanStub = sinon.stub();
     appsImaStub = sinon.stub();
     behavioursClearSessionStub = sinon.stub();
+    casesStub = sinon.stub();
     req.get.withArgs('host').returns('localhost');
 
     useStub.onCall(0).yields(req, res, next);
@@ -39,9 +43,11 @@ describe('Server.js app file', () => {
     proxyquire('../server', {
       hof: hofStub,
       './apps/ima': appsImaStub,
+      './apps/uan': appsUanStub,
       './apps/verify': appsVerifyStub,
       'hof/components/clear-session': behavioursClearSessionStub,
-      './config': { env: 'test' }
+      './config': { env: 'test' },
+      './apps/ima/models/cases': casesStub
     });
   });
 
@@ -63,6 +69,7 @@ describe('Server.js app file', () => {
         translations: './apps/ima/translations',
         routes: [
           appsImaStub,
+          appsUanStub,
           appsVerifyStub
         ],
         session: { name: 'ima.hof.sid' },
@@ -82,7 +89,8 @@ describe('Server.js app file', () => {
 
       proxyquire('../server', {
         hof: hof,
-        './config': { env: 'development' }
+        './config': { env: 'development' },
+        './apps/ima/models/cases': casesStub
       });
 
       useStub.callCount.should.equal(3);
@@ -94,7 +102,8 @@ describe('Server.js app file', () => {
 
       proxyquire('../server', {
         hof: hof,
-        './config': { env: 'production' }
+        './config': { env: 'production' },
+        './apps/ima/models/cases': casesStub
       });
 
       use.should.have.been.calledTwice;

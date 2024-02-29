@@ -9,15 +9,17 @@ module.exports = {
     '/your-details': {
       behaviours: [ValidateCaseDetails],
       fields: ['uan', 'date-of-birth'],
-      next: '/verify'
+      next: '/enter-email'
     },
-    '/not-found': {},
-    '/verify': {
+    '/details-not-found': {
+      backLink: 'your-details'
+    },
+    '/enter-email': {
       fields: ['user-email'],
       behaviours: [SendVerificationEmail],
-      next: '/check-inbox'
+      next: '/check-email'
     },
-    '/check-inbox': {
+    '/check-email': {
       behaviours: SendVerificationEmail
     }
   }
