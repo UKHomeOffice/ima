@@ -114,10 +114,6 @@ module.exports = {
   uanUpload: {
     recordScanLimit: 1,
     filevaultUpload: true,
-<<<<<<< HEAD
-    writeFileToSharedVolume: false,
-=======
->>>>>>> master
     mandatoryColumns: [
       'uan which has ban alerts under ima 2023',
       'date of birth',
