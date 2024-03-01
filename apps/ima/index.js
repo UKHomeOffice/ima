@@ -275,7 +275,7 @@ module.exports = {
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
       next: '/arrival-date',
-      backLink: '/exception'
+      backLink: 'exception'
     },
     '/without-permission': {
       behaviours: SaveFormSession,
