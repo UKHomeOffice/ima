@@ -111,12 +111,12 @@ module.exports = {
     steps: ['/start', '/continue-form', '/summary', '/who-are-you'],
     fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
   },
-  uanUpload: {
+  ceprUpload: {
     recordScanLimit: 1,
     filevaultUpload: true,
     mandatoryColumns: [
-      'uan which has ban alerts under ima 2023',
-      'date of birth',
+      'cepr for banned under the ima2023',
+      'dob',
       'duty to remove alert'
     ],
     allowedMimeTypes: [
