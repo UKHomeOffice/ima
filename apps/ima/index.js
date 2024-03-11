@@ -174,8 +174,8 @@ module.exports = {
           }
         },
         {
-          // TODO - TARGET AND CONDITION MUST BE CHANGED BASED ON BAN-ONLY CONDITION
-          target: '/',
+        // TODO - TARGET AND CONDITION MUST BE CHANGED BASED ON BAN-ONLY CONDITION
+          target: '/temporary-permission',
           condition: {
             fields: 'has-address',
             value: 'no'
@@ -200,7 +200,7 @@ module.exports = {
       fields: ['has-permission-access', 'permission-response'],
       locals: { showSaveAndExit: true },
       continueOnEdit: true,
-      next: '/exception', // TODO - FORK NEEDS TO BE ADDED BASED ON BAN-ONLY CONDITION
+      next: '/temporary-permission', // TODO - FORK NEEDS TO BE ADDED BASED ON BAN-ONLY CONDITION
       backLink: 'immigration-detention'
     },
     '/exception': {
@@ -593,6 +593,12 @@ module.exports = {
       fields: ['exceptional-circumstances-details'],
       locals: { showSaveAndExit: true },
       next: '/temporary-permission-to-stay'
+    },
+    '/temporary-permission': {
+      behaviours: SaveFormSession,
+      fields: ['temporary-permission-reasons-ban-only', 'temporary-permission-details-ban-only'],
+      locals: { showSaveAndExit: true },
+      next: '/evidence-upload'
     },
     '/temporary-permission-to-stay': {
       behaviours: SaveFormSession,
