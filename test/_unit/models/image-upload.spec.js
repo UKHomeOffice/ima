@@ -3,6 +3,7 @@
 
 const Model = require('../../../apps/ima/models/image-upload');
 const config = require('../../../config');
+const FormData = require('form-data');
 
 describe('File Upload Model', () => {
   let sandbox;
@@ -29,7 +30,11 @@ describe('File Upload Model', () => {
     });
 
     it('makes a call to file upload api', () => {
-      const model = new Model();
+      const model = new Model({
+        data: 'foo',
+        name: 'myfile.png',
+        mimetype: 'image/png'
+      });
       const response = model.save();
       return response.then(() => {
         expect(model.request).to.have.been.calledOnce;
@@ -51,15 +56,7 @@ describe('File Upload Model', () => {
       const response = uploadedFile.save();
       return response.then(() => {
         expect(uploadedFile.request).to.have.been.calledWith(sinon.match({
-          formData: {
-            document: {
-              value: 'foo',
-              options: {
-                filename: 'myfile.png',
-                contentType: 'image/png'
-              }
-            }
-          }
+          data: sinon.match.instanceOf(FormData)
         }));
       });
     });
