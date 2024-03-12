@@ -5,7 +5,7 @@ describe('Server.js app file', () => {
   let sendStub;
   let appsVerifyStub;
   let appsImaStub;
-  let appsUanStub;
+  let appsCeprStub;
   let behavioursClearSessionStub;
   let casesStub;
   let req;
@@ -30,7 +30,7 @@ describe('Server.js app file', () => {
     hofStub = sinon.stub();
     useStub = sinon.stub();
     appsVerifyStub = sinon.stub();
-    appsUanStub = sinon.stub();
+    appsCeprStub = sinon.stub();
     appsImaStub = sinon.stub();
     behavioursClearSessionStub = sinon.stub();
     casesStub = sinon.stub();
@@ -43,7 +43,7 @@ describe('Server.js app file', () => {
     proxyquire('../server', {
       hof: hofStub,
       './apps/ima': appsImaStub,
-      './apps/uan': appsUanStub,
+      './apps/cepr': appsCeprStub,
       './apps/verify': appsVerifyStub,
       'hof/components/clear-session': behavioursClearSessionStub,
       './config': { env: 'test' },
@@ -69,7 +69,7 @@ describe('Server.js app file', () => {
         translations: './apps/ima/translations',
         routes: [
           appsImaStub,
-          appsUanStub,
+          appsCeprStub,
           appsVerifyStub
         ],
         session: { name: 'ima.hof.sid' },

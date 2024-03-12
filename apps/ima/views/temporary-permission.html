@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$page-content}}
+    <p class="govuk-body">Do not use this question to make an asylum claim. Any asylum claim will be inadmissible.</p>
+    {{#t}}fields.temporary-permission-reasons-ban-only.legend{{/t}}
+    <p class="govuk-body">Any reasons given may not prevent you being removed from the UK.</p>
+    {{#renderField}}temporary-permission-reasons-ban-only{{/renderField}}
+    {{#renderField}}temporary-permission-details-ban-only{{/renderField}}
+    <p class="govuk-body">If you have evidence that being removed from the UK would be against your human rights, upload it later in this form.</p>
+    <br>
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

@@ -5,7 +5,7 @@ const Controller = require('hof').controller;
 const proxyquire = require('proxyquire').noCallThru();
 const reqres = require('reqres');
 
-describe("apps/uan 'upload-csv' behaviour", () => {
+describe("apps/cepr 'upload-csv' behaviour", () => {
   let req;
   let res;
   let testFile;
@@ -19,7 +19,7 @@ describe("apps/uan 'upload-csv' behaviour", () => {
     axiosGetStub = sinon.stub();
     axiosPostStub = sinon.stub();
 
-    const Behaviour = proxyquire('../../../../apps/uan/behaviours/upload-csv',
+    const Behaviour = proxyquire('../../../../apps/cepr/behaviours/upload-csv',
       {
         '../../ima/index': sinon.stub(),
         '../../../config': Object.assign({}, config, {
@@ -67,9 +67,9 @@ describe("apps/uan 'upload-csv' behaviour", () => {
     };
 
     csvColumns = [
-      'UAN which has BAN alerts under IMA 2023',
-      'Date of birth',
-      'Duty to remove Alert'
+      'CEPR for banned under the IMA2023',
+      'DOB',
+      'Duty to remove alert'
     ];
   });
 
@@ -111,64 +111,64 @@ describe("apps/uan 'upload-csv' behaviour", () => {
   describe("The upload-csv '.validateField' method", () => {
     it('Should not return an error if the file is properly formatted', () => {
       req.sessionModel.get.withArgs('csv-columns').returns(csvColumns);
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
         should.not.exist(err);
       });
     });
 
-    it("returns a fileType error if the 'bulk-upload-uan' file field has the wrong mimetype'", () => {
+    it("returns a fileType error if the 'bulk-upload-cepr' file field has the wrong mimetype'", () => {
       testFile.mimetype = 'wrong/mimetype';
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
-        err['bulk-upload-uan'].should.be.an.instanceof(instance.ValidationError);
-        err['bulk-upload-uan'].should.have.property('type').and.equal('fileType');
+        err['bulk-upload-cepr'].should.be.an.instanceof(instance.ValidationError);
+        err['bulk-upload-cepr'].should.have.property('type').and.equal('fileType');
       });
     });
 
-    it("returns a maxFileSize error if the 'bulk-upload-uan' file field has an invalid size'", () => {
+    it("returns a maxFileSize error if the 'bulk-upload-cepr' file field has an invalid size'", () => {
       testFile.size = 100000000000;
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
-        err['bulk-upload-uan'].should.be.an.instanceof(instance.ValidationError);
-        err['bulk-upload-uan'].should.have.property('type').and.equal('maxFileSize');
+        err['bulk-upload-cepr'].should.be.an.instanceof(instance.ValidationError);
+        err['bulk-upload-cepr'].should.have.property('type').and.equal('maxFileSize');
       });
     });
 
-    it("returns an emptyFile error if the 'bulk-upload-uan' file field has no data'", () => {
+    it("returns an emptyFile error if the 'bulk-upload-cepr' file field has no data'", () => {
       testFile.data = null;
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
-        err['bulk-upload-uan'].should.be.an.instanceof(instance.ValidationError);
-        err['bulk-upload-uan'].should.have.property('type').and.equal('emptyFile');
+        err['bulk-upload-cepr'].should.be.an.instanceof(instance.ValidationError);
+        err['bulk-upload-cepr'].should.have.property('type').and.equal('emptyFile');
       });
     });
 
     it("returns a processFormatError error if processing detects a general format error'", () => {
       req.sessionModel.get.withArgs('csv-columns').returns([]);
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
-        err['bulk-upload-uan'].should.be.an.instanceof(instance.ValidationError);
-        err['bulk-upload-uan'].should.have.property('type').and.equal('processFormatError');
+        err['bulk-upload-cepr'].should.be.an.instanceof(instance.ValidationError);
+        err['bulk-upload-cepr'].should.have.property('type').and.equal('processFormatError');
       });
     });
 
     it("returns a noColumnHeadings error if processing detects none of the mandatory columns'", () => {
       req.sessionModel.get.withArgs('csv-columns').returns(['a', 'b', 'c']);
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
-        err['bulk-upload-uan'].should.be.an.instanceof(instance.ValidationError);
-        err['bulk-upload-uan'].should.have.property('type').and.equal('noColumnHeadings');
+        err['bulk-upload-cepr'].should.be.an.instanceof(instance.ValidationError);
+        err['bulk-upload-cepr'].should.have.property('type').and.equal('noColumnHeadings');
       });
     });
 
-    it("returns a missingUanColumn error if processing does not detect that column'", () => {
+    it("returns a missingCeprColumn error if processing does not detect that column'", () => {
       csvColumns.shift();
       req.sessionModel.get.withArgs('csv-columns').returns(csvColumns);
-      req.files['bulk-upload-uan'] = testFile;
+      req.files['bulk-upload-cepr'] = testFile;
       instance.validate(req, res, err => {
-        err['bulk-upload-uan'].should.be.an.instanceof(instance.ValidationError);
-        err['bulk-upload-uan'].should.have.property('type').and.equal('missingUanColumn');
+        err['bulk-upload-cepr'].should.be.an.instanceof(instance.ValidationError);
+        err['bulk-upload-cepr'].should.have.property('type').and.equal('missingCeprColumn');
       });
     });
   });

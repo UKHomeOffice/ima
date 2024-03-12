@@ -19,9 +19,9 @@ const {
   mandatoryColumns,
   recordScanLimit,
   filevaultUpload
-} = config.uanUpload;
+} = config.ceprUpload;
 const fileSaveUrl = `${config.saveService.host}:${config.saveService.port}/csv_urls`;
-const fieldName = 'bulk-upload-uan';
+const fieldName = 'bulk-upload-cepr';
 
 module.exports = superclass => class extends superclass {
   locals(req, res, next) {
@@ -87,14 +87,14 @@ module.exports = superclass => class extends superclass {
 
       const { invalidSize, invalidMimetype } = this.checkFileAttributes(fileToValidate);
       if (invalidSize || invalidMimetype) {
-        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-cepr': new this.ValidationError('bulk-upload-cepr', {
           type: invalidSize ? 'maxFileSize' : 'fileType',
           redirect: undefined
         })});
       }
 
       if (!fileToValidate.data) {
-        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-cepr': new this.ValidationError('bulk-upload-cepr', {
           type: 'emptyFile',
           redirect: undefined
         })});
@@ -102,7 +102,7 @@ module.exports = superclass => class extends superclass {
 
       const csvColumns = req.sessionModel.get('csv-columns') || [];
       if (!csvColumns.length) {
-        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-cepr': new this.ValidationError('bulk-upload-cepr', {
           type: 'processFormatError',
           redirect: undefined
         })});
@@ -120,7 +120,7 @@ module.exports = superclass => class extends superclass {
 
       if (missingColumns.length) {
         if (missingColumns.length === mandatoryColumns.length) {
-          return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+          return next({'bulk-upload-cepr': new this.ValidationError('bulk-upload-cepr', {
             type: 'noColumnHeadings',
             redirect: undefined
           })});
@@ -128,12 +128,12 @@ module.exports = superclass => class extends superclass {
 
         const firstMissingColumn = missingColumns[0];
         let columnError;
-        // TODO Update cases below if column names move away from UAN
+
         switch(firstMissingColumn) {
-          case 'uan which has ban alerts under ima 2023':
-            columnError = 'missingUanColumn';
+          case 'cepr for banned under the ima2023':
+            columnError = 'missingCeprColumn';
             break;
-          case 'date of birth':
+          case 'dob':
             columnError = 'missingDobColumn';
             break;
           case 'duty to remove alert':
@@ -142,7 +142,7 @@ module.exports = superclass => class extends superclass {
           default:
             columnError = 'invalidColumns';
         }
-        return next({'bulk-upload-uan': new this.ValidationError('bulk-upload-uan', {
+        return next({'bulk-upload-cepr': new this.ValidationError('bulk-upload-cepr', {
           type: columnError,
           redirect: undefined
         })});
@@ -161,17 +161,17 @@ module.exports = superclass => class extends superclass {
       } catch (error) {
         let uploadValidationError;
         if (error.code === 'VirusFound') {
-          uploadValidationError = new this.ValidationError('bulk-upload-uan', {
+          uploadValidationError = new this.ValidationError('bulk-upload-cepr', {
             type: 'virusFound',
             redirect: undefined
           });
         } else {
-          uploadValidationError = new this.ValidationError('bulk-upload-uan', {
+          uploadValidationError = new this.ValidationError('bulk-upload-cepr', {
             type: 'uploadError',
             redirect: undefined
           });
         }
-        return next({'bulk-upload-uan': uploadValidationError});
+        return next({'bulk-upload-cepr': uploadValidationError});
       }
     }
     return super.saveValues(req, res, next);

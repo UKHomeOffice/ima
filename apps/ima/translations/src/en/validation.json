@@ -247,6 +247,15 @@
     "regex": "Explanation must not include the following special characters [ ] < > / |",
     "notUrl": "Please do not enter a link/url into your answers"
   },
+  "temporary-permission-reasons-ban-only": {
+    "required": "You must select a reason"
+  },
+  "temporary-permission-details-ban-only": {
+    "required": "You must enter details of your reasons",
+    "maxlength": "Explanation must be 15,000 characters or less",
+    "regex": "Explanation must not include the following special characters [ ] < > / |",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "image": {
     "default": "We have not been able to upload evidence",
     "unsaved": "We have not been able to upload evidence",

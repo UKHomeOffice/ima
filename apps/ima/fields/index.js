@@ -775,6 +775,30 @@ module.exports = {
       value: 7
     }]
   },
+  'temporary-permission-reasons-ban-only': {
+    mixin: 'checkbox-group',
+    labelClassName: 'visuallyhidden',
+    legend: {
+      className: 'bold'
+    },
+    validate: 'required',
+    options: [{
+      value: 'human-rights'
+    }, {
+      value: 'other-international-obligations'
+    }, {
+      value: 'exceptional-circumstances'
+    }]
+  },
+  'temporary-permission-details-ban-only': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]*$/ },
+      { type: 'maxlength', arguments: 15000 }],
+    attributes: [{
+      attribute: 'rows',
+      value: 7
+    }]
+  },
   image: {
     mixin: 'input-file',
     labelClassName: 'visuallyhidden'
