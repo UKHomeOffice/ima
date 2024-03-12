@@ -194,15 +194,96 @@ spec:
               cpu: 300m
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
+            - name: PROXY_SERVICE_PORT
+              value: "8081"
           ports:
             - containerPort: 10080
             - containerPort: 10443
           volumeMounts:
             - mountPath: /public
               name: public
+            - mountPath: /certs
+              name: certs
+              readOnly: true
+            - name: bundle
+              mountPath: /etc/ssl/certs
+              readOnly: true
           securityContext:
             runAsNonRoot: true
+
+        - name: keycloak-proxy
+          image: quay.io/ukhomeofficedigital/go-keycloak-proxy:v2.3.0
+          resources:
+            limits:
+              memory: 1024Mi
+              cpu: 200m
+            requests:
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: secret
+            - name: PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: id
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "true"
+            - name: PROXY_LISTEN
+              value: 127.0.0.1:8081
+            - name: PROXY_UPSTREAM_URL
+              value: "http://127.0.0.1:8080"
+          command:
+            - "/opt/keycloak-proxy"
+            - "--enable-default-deny=false"
+            - "--resources=uri=/cepr/*"
+            - "--enable-logging=true"
+            - "--enable-json-logging=true"
+            - "--upstream-timeout=60s"
+            - "--upstream-keepalive-timeout=60s"
+            - "--upstream-tls-handshake-timeout=60s"
+            - "--upstream-response-header-timeout=60s"
+            - "--upstream-expect-continue-timeout=60s"
+            - "--server-write-timeout=60s"
+            - "--preserve-host=true"
+          ports:
+            - containerPort: 10080
+            - containerPort: 10443
+          securityContext:
+            runAsNonRoot: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /public
+              name: public
+            - mountPath: /certs
+              name: certs
+            - mountPath: /etc/ssl/certs
+              name: bundle
+              readOnly: true
 
       volumes:
         - name: public
           emptyDir: {}
+        - name: certs
+          secret:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            secretName: branch-tls-external
+            {{ else if not (eq .KUBE_NAMESPACE .PROD_ENV) }}
+            secretName: ingress-internal
+            {{ else }}
+            secretName: cert-cmio
+            {{ end }}
+        - name: bundle
+          configMap:
+            name: bundle
