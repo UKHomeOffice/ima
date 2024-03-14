@@ -11,8 +11,9 @@ const read = async token => {
   const user = {};
   user.valid = await redis.get(`token:${token}`);
   user.email = await redis.get(`${token}:email`);
-  user.uan = await redis.get(`${token}:uan`);
+  user.cepr = await redis.get(`${token}:cepr`);
   user['date-of-birth'] = await redis.get(`${token}:date-of-birth`);
+  user['duty-to-remove-alert'] = await redis.get(`${token}:duty-to-remove-alert`);
 
   return user;
 };

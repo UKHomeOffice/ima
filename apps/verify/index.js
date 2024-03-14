@@ -8,7 +8,7 @@ module.exports = {
   steps: {
     '/your-details': {
       behaviours: [ValidateCaseDetails],
-      fields: ['uan', 'date-of-birth'],
+      fields: ['cepr', 'date-of-birth'],
       next: '/enter-email'
     },
     '/details-not-found': {

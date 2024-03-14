@@ -10,11 +10,11 @@ module.exports = superclass => class extends superclass {
 
   isValidCase(req) {
     const casesJson = require(`../../../data/${config.casesIds.S3Id}.json`);
-    const uan = req.form.values.uan;
+    const cepr = req.form.values.cepr;
     const dob = req.form.values['date-of-birth'];
 
     const imaResult = casesJson.find(
-      obj => obj.uan === uan && obj['date-of-birth'] === dob);
+      obj => obj.cepr === cepr && obj['date-of-birth'] === dob);
     req.sessionModel.set('service', 'ima');
     return imaResult;
   }

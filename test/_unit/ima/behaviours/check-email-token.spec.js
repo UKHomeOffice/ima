@@ -85,7 +85,7 @@ describe('apps/ima/behaviours/check-email-token', () => {
 
     describe('bypasses email authentication', () => {
       it('when we provide a skip token, allowSkip, & skip email environment variable', () => {
-        req.session['hof-wizard-verify'].uan = '1904-5678-9101-1121';
+        req.session['hof-wizard-verify'].cepr = '1904-5678-9101-1121';
         req.query = {
           token: 'skip'
         };
@@ -107,7 +107,7 @@ describe('apps/ima/behaviours/check-email-token', () => {
 
     describe('when it bypasses the email authentication', () => {
       it('sets the user email based on the email params if it bypasses the email authentication', () => {
-        req.session['hof-wizard-verify'].uan = '1904-5678-9101-1121';
+        req.session['hof-wizard-verify'].cepr = '1904-5678-9101-1121';
         req.session['hof-wizard-verify']['date-of-birth'] = '2000/01/01';
         req.query = {
           token: 'skip'
@@ -116,12 +116,12 @@ describe('apps/ima/behaviours/check-email-token', () => {
         configStub.login.allowSkip = true;
         instance.saveValues(req, res);
         expect(sessionModel.set).to.have.been.calledWith('user-email', 'wanda@mail.com');
-        expect(sessionModel.set).to.have.been.calledWith('uan', '1904-5678-9101-1121');
+        expect(sessionModel.set).to.have.been.calledWith('cepr', '1904-5678-9101-1121');
         expect(sessionModel.set).to.have.been.calledWith('date-of-birth', '2000/01/01');
       });
 
       it('sets the user email based on the skipEmail environment variable if', () => {
-        req.session['hof-wizard-verify'].uan = '1234-5678-9101-1121';
+        req.session['hof-wizard-verify'].cepr = '1234-5678-9101-1121';
         req.session['hof-wizard-verify']['date-of-birth'] = '2000/01/01';
         req.query = {
           token: 'skip'
@@ -130,7 +130,7 @@ describe('apps/ima/behaviours/check-email-token', () => {
         configStub.login.skipEmail = 'pparker@gmail.com';
         instance.saveValues(req, res);
         expect(sessionModel.set).to.have.been.calledWith('user-email', 'pparker@gmail.com');
-        expect(sessionModel.set).to.have.been.calledWith('uan', '1234-5678-9101-1121');
+        expect(sessionModel.set).to.have.been.calledWith('cepr', '1234-5678-9101-1121');
         expect(sessionModel.set).to.have.been.calledWith('date-of-birth', '2000/01/01');
       });
     });

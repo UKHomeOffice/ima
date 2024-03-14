@@ -38,8 +38,9 @@ module.exports = superclass => class extends superclass {
 
       const id = req.sessionModel.get('id');
       const email = req.sessionModel.get('user-email');
-      const uan = req.sessionModel.get('uan');
+      const cepr = req.sessionModel.get('cepr');
       const date_of_birth = req.sessionModel.get('date-of-birth');
+      const duty_to_remove_alert = req.sessionModel.get('duty-to-remove-alert');
 
       req.log('info', `Saving Form Session: ${id}`);
 
@@ -47,7 +48,7 @@ module.exports = superclass => class extends superclass {
         const response = await axios({
           url: id ? applicationsUrl + `/${id}` : applicationsUrl,
           method: id ? 'PATCH' : 'POST',
-          data: id ? { session } : { session, email, uan, date_of_birth }
+          data: id ? { session } : { session, email, cepr, date_of_birth, duty_to_remove_alert }
         });
 
         const resBody = response.data;
@@ -87,7 +88,7 @@ module.exports = superclass => class extends superclass {
 
         return next();
       } catch (e) {
-        return next(e);
+        return next(e.response.data);
       }
     });
   }

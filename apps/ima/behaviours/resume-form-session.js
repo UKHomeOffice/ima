@@ -43,9 +43,9 @@ module.exports = superclass => class extends superclass {
 
         const cases = _.unionBy(parsedBody, sessionCases, 'id');
 
-        const uan = req.sessionModel.get('uan');
+        const cepr = req.sessionModel.get('cepr');
         const singleCase = cases.length < 2;
-        const isSameCase = _.get(cases, "[0].session['uan']") === uan;
+        const isSameCase = _.get(cases, "[0].session['cepr']") === cepr;
         const noCaseOrSameCase = !cases[0] || isSameCase;
         const multipleCasesInSession = _.get(req.sessionModel.get('user-cases'), 'length') > 1;
 
@@ -57,7 +57,7 @@ module.exports = superclass => class extends superclass {
           return res.redirect(super.getNextStep(req, res, next));
         }
 
-        const filteredCases = this.addCasesToSession(req, cases, uan);
+        const filteredCases = this.addCasesToSession(req, cases, cepr);
         this.setupRadioButtons(req, filteredCases);
 
         return super.configure(req, res, next);
@@ -65,19 +65,19 @@ module.exports = superclass => class extends superclass {
       .catch(next);
   }
 
-  addCasesToSession(req, cases, uan) {
-    const caseAlreadyInSession = cases.find(obj => obj.session.uan === uan);
+  addCasesToSession(req, cases, cepr) {
+    const caseAlreadyInSession = cases.find(obj => obj.session.cepr === cepr);
 
     if (!caseAlreadyInSession) {
       this.addSessionCaseToList(req, cases);
     }
 
-    const filteredCases = cases.filter(uanCase => {
+    const filteredCases = cases.filter(ceprCase => {
       const isDuplicate = cases.filter(obj => {
-        return obj.session.uan === uanCase.session.uan;
+        return obj.session.cepr === ceprCase.session.cepr;
       }).length > 1;
 
-      return uanCase.id || (!uanCase.id && !isDuplicate);
+      return ceprCase.id || (!ceprCase.id && !isDuplicate);
     });
 
     req.sessionModel.set('user-cases', filteredCases);
@@ -99,12 +99,12 @@ module.exports = superclass => class extends superclass {
     let cases = body;
 
     if (cases.length) {
-      cases = cases.map(uanCase => {
-        const session = uanCase.session;
-        uanCase.session = typeof session === 'string' ?
+      cases = cases.map(ceprCase => {
+        const session = ceprCase.session;
+        ceprCase.session = typeof session === 'string' ?
           JSON.parse(session) : session;
 
-        return uanCase;
+        return ceprCase;
       });
     }
     return cases;
@@ -112,29 +112,29 @@ module.exports = superclass => class extends superclass {
   // POST lifecycle
   saveValues(req, res, next) {
     const cases = req.sessionModel.get('user-cases');
-    const uanCase = cases.find(obj => obj.session.uan === req.form.values.uan);
+    const ceprCase = cases.find(obj => obj.session.cepr === req.form.values.cepr);
 
-    if (uanCase) {
-      req.sessionModel.set('id', uanCase.id);
+    if (ceprCase) {
+      req.sessionModel.set('id', ceprCase.id);
     }
 
-    this.setupSession(req, uanCase.session);
+    this.setupSession(req, ceprCase.session);
     req.sessionModel.set('multipleCases', true);
 
     return super.saveValues(req, res, next);
   }
 
   setupRadioButtons(req, cases) {
-    req.form.options.fields.uan = {
+    req.form.options.fields.cepr = {
       mixin: 'radio-group',
       isPageHeading: true,
       validate: ['required'],
       options: cases.map(obj => {
-        const uan = obj.session.uan;
+        const cepr = obj.session.cepr;
         const dob = obj.session['date-of-birth'];
         return {
-          label: `UAN: ${uan}`,
-          value: uan,
+          label: `CEPR: ${cepr}`,
+          value: cepr,
           useHintText: true,
           hint: `Date of birth ${moment(dob, 'YYYY-MM-DD').format('DD/MM/YYYY')}`
         };
@@ -142,8 +142,8 @@ module.exports = superclass => class extends superclass {
     };
   }
 
-  setupSession(req, uanCase) {
-    const session = uanCase;
+  setupSession(req, ceprCase) {
+    const session = ceprCase;
     const cases = req.sessionModel.get('user-cases');
     // ensure no /edit steps are add to the steps property when session resumed
     session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
