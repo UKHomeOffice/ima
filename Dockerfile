@@ -2,7 +2,8 @@ FROM node:lts-alpine@sha256:19eaf41f3b8c2ac2f609ac8103f9246a6a6d46716cdbe49103fd
 
 USER root
 
-RUN apk update && apk upgrade --no-cache
+RUN apk update && apk upgrade --no-cache && \
+    apk add postgresql
 
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
