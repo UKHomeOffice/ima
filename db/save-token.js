@@ -18,6 +18,8 @@ module.exports = {
     redis.expire(`${token}:date-of-birth`, tokenExpiry);
     redis.expire(`${token}:duty-to-remove-alert`, tokenExpiry);
 
+    console.log("REDIS" + redis.get(`${token}`));
+
     return token;
   }
 };

@@ -50,6 +50,7 @@ module.exports = superclass => class extends superclass {
     }
     const response = await axios.get(baseUrl + '/cepr/' + req.sessionModel.get('cepr'));
     const claimantRecords = response.data;
+    console.log("CR: " + claimantRecords);
     const recordEmail = claimantRecords.map(f => { return f.email; });
     const unSubmittedCase = _.filter(response.data, record => !record.submitted_at);
     const unSubmittedCaseEmail = unSubmittedCase.map(record => { return record.email; });

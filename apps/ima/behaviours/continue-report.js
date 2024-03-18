@@ -21,6 +21,8 @@ module.exports = superclass => class extends superclass {
   getValues(req, res, next) {
     const cepr = req.sessionModel.get('cepr');
 
+    console.log("DTR Value (continue report): " + req.sessionModel.get('duty-to-remove-alert'));
+
     if (!cepr) {
       return res.redirect('/ima/continue-form');
     }

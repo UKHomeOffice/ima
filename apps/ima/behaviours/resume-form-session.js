@@ -22,6 +22,7 @@ module.exports = superclass => class extends superclass {
   }
   // GET lifecycle
   configure(req, res, next) {
+    console.log("xyz: " + req.sessionModel.get('duty-to-remove-alert'));
     // reset session but keeping login fields, csrf and preexisting cases garnered from API
     this.cleanSession(req);
     // skip requesting data service api when running in local and test mode
@@ -43,6 +44,8 @@ module.exports = superclass => class extends superclass {
 
         const cases = _.unionBy(parsedBody, sessionCases, 'id');
 
+        cases
+
         const cepr = req.sessionModel.get('cepr');
         const singleCase = cases.length < 2;
         const isSameCase = _.get(cases, "[0].session['cepr']") === cepr;
@@ -51,9 +54,10 @@ module.exports = superclass => class extends superclass {
 
         if (singleCase && noCaseOrSameCase && !multipleCasesInSession) {
           if (cases[0]) {
+            console.log("cases" + cases[0]);
             this.setupSession(req, cases[0].session);
           }
-          req.sessionModel.set('multipleCases', false);
+          req.sessionModel.set(' multipleCases', false);
           return res.redirect(super.getNextStep(req, res, next));
         }
 
@@ -67,6 +71,9 @@ module.exports = superclass => class extends superclass {
 
   addCasesToSession(req, cases, cepr) {
     const caseAlreadyInSession = cases.find(obj => obj.session.cepr === cepr);
+
+    console.log("sessionCase" + caseAlreadyInSession);
+    console.log("CASES:" + cases);
 
     if (!caseAlreadyInSession) {
       this.addSessionCaseToList(req, cases);
@@ -111,11 +118,14 @@ module.exports = superclass => class extends superclass {
   }
   // POST lifecycle
   saveValues(req, res, next) {
+    console.log("reached here");
     const cases = req.sessionModel.get('user-cases');
     const ceprCase = cases.find(obj => obj.session.cepr === req.form.values.cepr);
+    console.log("ceprCase: " + JSON.stringify(ceprCase));
 
     if (ceprCase) {
       req.sessionModel.set('id', ceprCase.id);
+      req.sessionModel.set('duty-to-remove-alert', ceprCase['duty-to-remove-alert']);
     }
 
     this.setupSession(req, ceprCase.session);
@@ -132,6 +142,8 @@ module.exports = superclass => class extends superclass {
       options: cases.map(obj => {
         const cepr = obj.session.cepr;
         const dob = obj.session['date-of-birth'];
+        const dutyToRemoveAlert = obj.session['duty-to-remove-alert'];
+        console.log("Resume form dtr: " + dutyToRemoveAlert);
         return {
           label: `CEPR: ${cepr}`,
           value: cepr,
@@ -145,6 +157,7 @@ module.exports = superclass => class extends superclass {
   setupSession(req, ceprCase) {
     const session = ceprCase;
     const cases = req.sessionModel.get('user-cases');
+    console.log("CASES: " + cases);
     // ensure no /edit steps are add to the steps property when session resumed
     session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
 

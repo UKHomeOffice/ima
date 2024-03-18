@@ -33,7 +33,7 @@ spec:
       containers:
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/hof-rds-api:ee9ea8ca6881fa8e50b1e8945a3f4d13bb355c5e
+          image: quay.io/ukhomeofficedigital/hof-rds-api:f0fe62e70a22fbc28004b0d57f900b57e977d1de
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -46,7 +46,7 @@ spec:
             - name: SERVICE_NAME
               value: "ima"
             - name: LATEST_MIGRATION
-              # value: TO BE UPDATED WITH LATEST MIGRATION
+              # value: "20240202143333_rename_uan_column_to_cepr"
             - name: MAX_PAYLOAD_SIZE
               value: "30mb"
             - name: REQUEST_TIMEOUT

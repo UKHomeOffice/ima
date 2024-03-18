@@ -12,6 +12,14 @@ const utilities = require('../../../lib/utilities');
 const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/saved_applications`;
 
 module.exports = superclass => class extends superclass {
+  configure(req, res, next) {
+    console.log(req.sessionModel);
+    console.log(req.sessionModel.get('email'));
+    console.log(req.sessionModel.get('duty-to-remove-alert'));
+    next();
+
+  }
+
   saveValues(req, res, next) {
     return super.saveValues(req, res, async err => {
       if (err) {
@@ -38,9 +46,10 @@ module.exports = superclass => class extends superclass {
 
       const id = req.sessionModel.get('id');
       const email = req.sessionModel.get('user-email');
-      const cepr = req.sessionModel.get('cepr');
+      const CEPR = req.sessionModel.get('cepr');
       const date_of_birth = req.sessionModel.get('date-of-birth');
       const duty_to_remove_alert = req.sessionModel.get('duty-to-remove-alert');
+      console.log("Values: " + email + " " + CEPR + " " + date_of_birth+ " " + duty_to_remove_alert)
 
       req.log('info', `Saving Form Session: ${id}`);
 
@@ -48,7 +57,7 @@ module.exports = superclass => class extends superclass {
         const response = await axios({
           url: id ? applicationsUrl + `/${id}` : applicationsUrl,
           method: id ? 'PATCH' : 'POST',
-          data: id ? { session } : { session, email, cepr, date_of_birth, duty_to_remove_alert }
+          data: id ? { session } : { session, email, CEPR, date_of_birth, duty_to_remove_alert }
         });
 
         const resBody = response.data;
