@@ -116,6 +116,7 @@ module.exports = superclass => class extends superclass {
 
     if (ceprCase) {
       req.sessionModel.set('id', ceprCase.id);
+      req.sessionModel.set('duty-to-remove-alert', ceprCase['duty-to-remove-alert']);
     }
 
     this.setupSession(req, ceprCase.session);
