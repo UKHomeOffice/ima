@@ -126,7 +126,7 @@ module.exports = {
   },
   sessionDefaults: {
     steps: ['/start', '/continue-form', '/summary', '/who-are-you'],
-    fields: ['user-email', 'cepr', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
+    fields: ['user-email', 'cepr', 'date-of-birth', 'duty-to-remove-alert', 'csrf-secret', 'errorValues', 'errors']
   },
   ceprUpload: {
     recordScanLimit: 1,

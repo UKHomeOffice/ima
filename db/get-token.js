@@ -15,6 +15,8 @@ const read = async token => {
   user['date-of-birth'] = await redis.get(`${token}:date-of-birth`);
   user['duty-to-remove-alert'] = await redis.get(`${token}:duty-to-remove-alert`);
 
+  console.log("USER: " + JSON.stringify(user));
+
   return user;
 };
 
