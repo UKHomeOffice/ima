@@ -18,6 +18,7 @@ module.exports = superclass => class extends superclass {
       req.sessionModel.set('user-email', skipEmail);
       req.sessionModel.set('cepr', id);
       req.sessionModel.set('date-of-birth', _.get(req.session['hof-wizard-verify'], 'date-of-birth'));
+      req.sessionModel.set('duty-to-remove-alert', _.get(req.session['hof-wizard-verify'], 'duty-to-remove-alert'));
       return super.saveValues(req, res, next);
     }
 
@@ -34,6 +35,7 @@ module.exports = superclass => class extends superclass {
           req.sessionModel.set('user-email', user.email);
           req.sessionModel.set('cepr', user.cepr);
           req.sessionModel.set('date-of-birth', user['date-of-birth']);
+          req.sessionModel.set('duty-to-remove-alert', user['duty-to-remove-alert']);
           return super.saveValues(req, res, next);
         }
         return res.redirect(config.login.invalidTokenPath);
