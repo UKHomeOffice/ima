@@ -779,7 +779,7 @@ module.exports = {
     mixin: 'checkbox-group',
     labelClassName: 'visuallyhidden',
     legend: {
-      className: 'bold'
+      className: 'visuallyhidden'
     },
     validate: 'required',
     options: [{
