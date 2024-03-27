@@ -75,6 +75,26 @@
   "has-address": {
     "required": "You must select an option"
   },
+  "house-number": {
+    "required": "Enter your house number/name, and street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "street": {
+    "required": "Enter a valid street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "townOrCity": {
+    "required": "Enter your town or city",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "county": {
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "postcode": {
+    "required": "Enter your postcode",
+    "postcode": "Enter a valid UK postcode",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "has-permission-access": {
     "required": "You must select an option"
   },
