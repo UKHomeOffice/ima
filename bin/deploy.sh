@@ -28,7 +28,8 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml -f kube/certs
   $kd -f kube/file-vault/file-vault-ingress.yml -f kube/html-pdf
   $kd -f kube/redis -f kube/hof-rds-api  -f kube/file-vault
-  $kd -f kube/app
+  #Added cron to Branch for testing
+  $kd -f kube/app -f kube/cron
   $kd -f kube/autoscale/hpa-ima.yml
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
