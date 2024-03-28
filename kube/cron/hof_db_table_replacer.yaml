@@ -1,0 +1,84 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: hof-db-table-replacer-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: hof-db-table-replacer
+  {{ end }}
+spec:
+  schedule: "0 9 * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 10
+      template:
+        metadata:
+          labels:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            name: hof-db-table-replacer-{{ .DRONE_SOURCE_BRANCH }}
+            {{ else }}
+            name: hof-db-table-replacer
+            {{ end }}
+        spec:
+          containers:
+          - name: hof-db-table-replacer
+            image: quay.io/ukhomeofficedigital/hof-db-table-replacer@sha256:241e0d20f87f4dbeb988a026d0d84590edf65a4a3b8a1f46dd67592f919297b9
+            imagePullPolicy: Always
+            securityContext:
+              runAsNonRoot: true
+            envFrom:
+              - configMapRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                  {{ else }}
+                  name: configmap
+                  {{ end }}
+            env:
+              - name: TZ
+                value: Europe/London
+              - name: NODE_TLS_REJECT_UNAUTHORIZED
+                value: "0"
+              - name: NOTIFY_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: notify-key
+                    key: notify-key
+              - name: FILE_VAULT_URL
+              {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+                value: fv-ima.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                value: fv-ima.stg.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+                value: fv-ima.uat.sas-notprod.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
+              {{ end }}
+              - name: KEYCLOAK_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-client
+                    key: secret
+              - name: KEYCLOAK_CLIENT_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-client
+                    key: id
+              - name: KEYCLOAK_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-user
+                    key: username
+              - name: KEYCLOAK_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-user
+                    key: password
+            command: ["yarn", "run", "generate:reports"]
+            resources:
+              requests:
+                memory: 4Gi
+                cpu: 200m
+              limits:
+                memory: 8Gi
+                cpu: 400m
+          restartPolicy: OnFailure
