@@ -32,7 +32,7 @@
     "accessible-autocomplete": "^2.0.4",
     "aws-sdk": "^2.1333.0",
     "axios": "^1.6.0",
-    "bl": "^6.0.1",
+    "bl": "^6.0.11",
     "bottleneck": "^2.19.5",
     "busboy": "^1.6.0",
     "bytes": "^3.1.2",
