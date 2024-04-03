@@ -46,8 +46,8 @@ spec:
               - name: FILE_VAULT_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
                 value: fv-ima.sas.homeoffice.gov.uk/file
-              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                value: fv-ima.stg.sas.homeoffice.gov.uk/file
+#              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+#                value: fv-ima.stg.sas.homeoffice.gov.uk/file
               {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
                 value: fv-ima.uat.sas-notprod.homeoffice.gov.uk/file
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -73,7 +73,28 @@ spec:
                   secretKeyRef:
                     name: keycloak-user
                     key: password
-            command: ["yarn", "run", "generate:reports"]
+              - name: DB_REPLACER_TARGET_TABLE
+                valueFrom:
+                  configMapKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                  {{ else }}
+                  name: configmap
+                  {{ end }}
+                    name: 
+                    key: DB_REPLACER_TARGET_TABLE
+              - name: DB_REPLACER_SOURCE_FILE_TABLE
+                valueFrom:
+                  configMapKeyRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                  {{ else }}
+                  name: configmap
+                  {{ end }}
+                    name: 
+                    key: DB_REPLACER_SOURCE_FILE_TABLE
+              
+#            command: ["yarn", "run", "generate:reports"]
             resources:
               requests:
                 memory: 4Gi
