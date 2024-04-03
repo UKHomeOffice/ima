@@ -76,22 +76,20 @@ spec:
               - name: DB_REPLACER_TARGET_TABLE
                 valueFrom:
                   configMapKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
-                  {{ else }}
-                  name: configmap
-                  {{ end }}
-                    name: 
+                    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                    name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                    {{ else }}
+                    name: configmap
+                    {{ end }}
                     key: DB_REPLACER_TARGET_TABLE
               - name: DB_REPLACER_SOURCE_FILE_TABLE
                 valueFrom:
                   configMapKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
-                  {{ else }}
-                  name: configmap
-                  {{ end }}
-                    name: 
+                    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                    name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                    {{ else }}
+                    name: configmap
+                    {{ end }}
                     key: DB_REPLACER_SOURCE_FILE_TABLE
               
 #            command: ["yarn", "run", "generate:reports"]
