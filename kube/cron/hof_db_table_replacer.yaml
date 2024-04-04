@@ -72,26 +72,53 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: keycloak-user
+                    key: password             
+              - name: DB_HOST
+                valueFrom:
+                  secretKeyRef:
+                    key: endpoint
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    name: ima-notprod-rds
+                    {{ else }}
+                    name: ima-prod
+                    {{ end }}
+              - name: DB_NAME
+                valueFrom:
+                  secretKeyRef:
+                    key: db_name
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    name: ima-notprod-rds
+                    {{ else }}
+                    name: ima-prod
+                    {{ end }}
+              - name: DB_USER
+                valueFrom:
+                  secretKeyRef:
+                    key: username
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    name: ima-notprod-rds
+                    {{ else }}
+                    name: ima-prod
+                    {{ end }}
+              - name: DB_PASS
+                valueFrom:
+                  secretKeyRef:
                     key: password
-              - name: DB_REPLACER_TARGET_TABLE
-                valueFrom:
-                  configMapKeyRef:
-                    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                    name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    name: ima-notprod-rds
                     {{ else }}
-                    name: configmap
+                    name: ima-prod
                     {{ end }}
-                    key: DB_REPLACER_TARGET_TABLE
-              - name: DB_REPLACER_SOURCE_FILE_TABLE
-                valueFrom:
-                  configMapKeyRef:
-                    {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                    name: configmap-{{ .DRONE_SOURCE_BRANCH }}
-                    {{ else }}
-                    name: configmap
-                    {{ end }}
-                    key: DB_REPLACER_SOURCE_FILE_TABLE
-              
+              - name: DB_PORT
+                value: "5432"
+              - name: DB_INSERT_BATCH_SIZE
+                value: "2000"
+              - name: DB_CLIENT
+                value: knex
+              - name: DB_MODEL
+                value: knex-postgres-model
+              - name: SERVICE_NAME
+                value: ima
 #            command: ["yarn", "run", "generate:reports"]
             resources:
               requests:
