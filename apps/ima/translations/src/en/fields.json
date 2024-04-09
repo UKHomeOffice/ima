@@ -331,6 +331,41 @@
   "permission-to-enter-or-stay-detail": {
     "label": "Explain what permission you have"
   },
+  "is-serious-and-irreversible": {
+    "legend": "Does your Illegal Migration Act notice say that you can make a serious and irreversible harm claim?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-risk-in-country":{
+    "legend": "Would you be at risk?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "reason-in-sih": {
+    "label": "Why would you be at risk?"
+  },
+  "why-not-get-protection": {
+    "label":"Why would you not be able to get protection from this harm in {{values.country-1}}?",
+    "summary-heading1":"Why would you not be able to get protection from this harm in ?"
+   },
+  "country-1": {
+    "label": "Country",
+    "options": {
+      "null": "Select a country"
+    }
+  }, 
   "human-rights-claim": {
     "options": {
       "yes": {
