@@ -4,12 +4,10 @@
         {{> partials-items-table}}
         <p>If you have included a British citizen who is your child, you must upload their birth certificate later in this form.</p>
         <br>
+        {{^noMoreHarmClaims}}
         <p><a href="{{baseUrl}}/{{addStep}}" class="govuk-link">Add another {{addAnotherLinkText}}</a></p>
         <br>
-
+        {{/noMoreHarmClaims}}
   {{#input-submit}}continue{{/input-submit}}
-  <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
-    Delete
-  </button>
   {{/page-content}}
 {{/partials-page}}

@@ -10,17 +10,15 @@ const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
 const FamilyMembersLocals = require('./behaviours/family-members-locals');
-const HarmCountryRepeater = require('./behaviours/harm-country-repeater');
-const HarmClaimCountries = require('./behaviours/harm-countries-name');
-const HarmCountryFormLoop = require('./behaviours/harm-country-form-loop');
 const HarmClaimSummary = require('./behaviours/harm-claim-summary');
+const LimitHarmClaims = require('./behaviours/limit-countries');
 const ModifyChangeURL = require('./behaviours/modify-change-link');
 const ResetHumanRightsSummary = require('./behaviours/reset-human-rights-summary');
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
 const LimitDocument = require('./behaviours/limit-documents');
 const Submit = require('./behaviours/submit');
-const FormUpdate = require('./behaviours/form-update');
+
 
 module.exports = {
   name: 'ima',
@@ -229,7 +227,7 @@ module.exports = {
       locals: { showSaveAndExit: true }
     },
    '/harm-claim-summary': {
-     behaviours: [AggregateSaveUpdate, HarmClaimSummary,  SaveFormSession],
+     behaviours: [AggregateSaveUpdate, HarmClaimSummary, LimitHarmClaims, SaveFormSession],
       aggregateTo: 'sih-countries',
       aggregateFrom: [
         'country-1',
@@ -238,7 +236,6 @@ module.exports = {
         'why-not-get-protection'
       ],
       titleField: 'country-1',
-      countryName: 'country-1',
       addStep: 'harm-claim-countries',
       addAnotherLinkText: 'country',
       template: 'add-another',
