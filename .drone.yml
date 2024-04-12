@@ -484,7 +484,7 @@ steps:
       cron: security_scans
       event: cron
 
-  # Slack notification upon a CRON job fail
+  ## Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
     pull: if-not-exists
     image: plugins/slack
