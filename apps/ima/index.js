@@ -164,86 +164,7 @@ module.exports = {
       behaviours: SaveFormSession,
       fields: ['phone-number', 'phone-number-details'],
       locals: { showSaveAndExit: true },
-      next: '/harm-claim'  //harm-claim   immigration-detention
-    },
-    '/harm-claim': {
-      behaviours: [SaveFormSession],
-      fields: ['is-serious-and-irreversible'],
-      forks: [
-        {
-          target: '/harm-claim-countries',
-          condition: {
-            field: 'is-serious-and-irreversible',
-            value: 'yes'
-          }
-        },
-        {
-          target: '/human-rights-claim',
-          condition: {
-            field: 'is-serious-and-irreversible',
-            value: 'no'
-          }
-        }
-      ],
-      locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/harm-claim-countries'
-    },
-    '/harm-claim-countries': {
-      behaviours: [SaveFormSession],
-      fields: ['country-1','countryAddNumber'],
-      continueOnEdit: true,
-      locals: { showSaveAndExit: true },
-      next: '/risk-of-harm'
-    },
-    '/risk-of-harm': {
-      behaviours: [SaveFormSession],
-      fields: ['is-risk-in-country'],
-      forks: [
-        {
-          target: '/harm-claim-details',
-          condition: {
-            field: 'is-risk-in-country',
-            value: 'yes'
-          }
-        },
-        {
-          target: '/harm-claim-summary',
-          condition: {
-            field: 'is-risk-in-country',
-            value: 'no'
-          }
-        }
-      ],
-      locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/harm-claim-details'
-    },
-    '/harm-claim-details': {
-      behaviours: [SaveFormSession],
-      fields: ['reason-in-sih', 'why-not-get-protection'],
-      next: '/harm-claim-summary',
-      continueOnEdit: true,
-      locals: { showSaveAndExit: true }
-    },
-   '/harm-claim-summary': {
-     behaviours: [AggregateSaveUpdate, HarmClaimSummary, LimitHarmClaims, SaveFormSession],
-      aggregateTo: 'sih-countries',
-      aggregateFrom: [
-        'country-1',
-        'is-risk-in-country',
-        'reason-in-sih',
-        'why-not-get-protection'
-      ],
-      titleField: 'country-1',
-      addStep: 'harm-claim-countries',
-      addAnotherLinkText: 'country',
-      template: 'add-another',
-      locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      template: 'harm-claim-summary',
-      next: '/human-rights-claim',
-      backLink: 'harm-claim'
+      next: '/immigration-detention'
     },
     '/immigration-detention': {
       behaviours: SaveFormSession,
@@ -618,7 +539,85 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       continueOnEdit: false,
-      next: '/human-rights-claim' // TODO - UPDATE AS STEPS ARE ADDED
+      next: '/harm-claim'
+    },
+    '/harm-claim': {
+      behaviours: [SaveFormSession],
+      fields: ['is-serious-and-irreversible'],
+      forks: [
+        {
+          target: '/harm-claim-countries',
+          condition: {
+            field: 'is-serious-and-irreversible',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/human-rights-claim',
+          condition: {
+            field: 'is-serious-and-irreversible',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/harm-claim-countries'
+    },
+    '/harm-claim-countries': {
+      behaviours: [SaveFormSession],
+      fields: ['country-1', 'countryAddNumber'],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      next: '/risk-of-harm'
+    },
+    '/risk-of-harm': {
+      behaviours: [SaveFormSession],
+      fields: ['is-risk-in-country'],
+      forks: [
+        {
+          target: '/harm-claim-details',
+          condition: {
+            field: 'is-risk-in-country',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/harm-claim-summary',
+          condition: {
+            field: 'is-risk-in-country',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/harm-claim-details'
+    },
+    '/harm-claim-details': {
+      behaviours: [SaveFormSession],
+      fields: ['reason-in-sih', 'why-not-get-protection'],
+      next: '/harm-claim-summary',
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true }
+    },
+    '/harm-claim-summary': {
+      behaviours: [AggregateSaveUpdate, HarmClaimSummary, LimitHarmClaims, SaveFormSession],
+      aggregateTo: 'sih-countries',
+      aggregateFrom: [
+        'country-1',
+        'is-risk-in-country',
+        'reason-in-sih',
+        'why-not-get-protection'
+      ],
+      titleField: 'country-1',
+      addStep: 'harm-claim-countries',
+      addAnotherLinkText: 'country',
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      template: 'harm-claim-summary',
+      next: '/human-rights-claim',
+      backLink: 'harm-claim'
     },
     '/human-rights-claim': {
       behaviours: [ResetHumanRightsSummary, SaveFormSession],

@@ -5,5 +5,5 @@ This is physical or emotional harm which would be difficult or impossible to rec
 - death
 - torture
 - inhumane or degrading treatment
-- physical,mental,or sexual violence
-- discrimination against you by the police,legal system or political party
+- physical, mental, or sexual violence
+- discrimination against you by the police,legal system, or a political party

@@ -1,8 +1,10 @@
 {{<partials-page}}
   {{$page-content}}
    <br>
-        {{> partials-items-table}}
-        <p>If you have included a British citizen who is your child, you must upload their birth certificate later in this form.</p>
+        {{> partials-harm-claim-summary-table}}
+        {{#noMoreHarmClaims}}
+        <p>You cannot add any more countries</p>
+        {{/noMoreHarmClaims}}
         <br>
         {{^noMoreHarmClaims}}
         <p><a href="{{baseUrl}}/{{addStep}}" class="govuk-link">Add another {{addAnotherLinkText}}</a></p>

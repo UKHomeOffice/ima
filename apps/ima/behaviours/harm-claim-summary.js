@@ -3,9 +3,9 @@ const _ = require('lodash');
 module.exports = superclass => class extends superclass {
   configure(req, res, next) {
     if(req.sessionModel.get('sih-countries') && !req.sessionModel.get('sih-countries').aggregatedValues.length) {
-      req.form.options.addStep ='harm-claim';
-     }
-     super.configure(req, res, next)
+      req.form.options.addStep = 'harm-claim';
+    }
+    super.configure(req, res, next);
   }
 
   locals(req, res) {
@@ -14,14 +14,26 @@ module.exports = superclass => class extends superclass {
       const countryNumber = _.indexOf(locals.items, i);
       const countryName = req.sessionModel.get('sih-countries').aggregatedValues;
       _.forEach(i.fields, field => {
+        if (field.field === 'is-risk-in-country') {
+          if (field.value.includes('yes')) {
+            field.parsed = 'Yes';
+          } else if (field.value.includes('no')) {
+            field.parsed = 'No';
+          }
+        }
         if (field.field === 'reason-in-sih') {
+          field.claimDetails = true;
           if (!field.value) {
             field.showInSummary = false;
+          } else {
+            field.parsed = 'Details added';
           }
         }
         if (field.field === 'why-not-get-protection') {
           if (!field.value) {
             field.showInSummary = false;
+          } else {
+            field.parsed = 'Details added';
           }
           switch (countryNumber) {
             case 0:
