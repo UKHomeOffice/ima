@@ -48,7 +48,7 @@ module.exports = superclass => class extends superclass {
     if (this.skipEmailVerification(email)) {
       return super.saveValues(req, res, next);
     }
-    const response = await axios.get(baseUrl + '/uan/' + req.sessionModel.get('uan'));
+    const response = await axios.get(baseUrl + '/cepr/' + req.sessionModel.get('cepr'));
     const claimantRecords = response.data;
     const recordEmail = claimantRecords.map(f => { return f.email; });
     const unSubmittedCase = _.filter(response.data, record => !record.submitted_at);

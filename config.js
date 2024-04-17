@@ -19,7 +19,7 @@ module.exports = {
   casesIds: {
     uanValidLength: 19,
     cronEnabled: process.env.CRON_ENABLED,
-    S3Id: process.env.CASES_S3_ID || 'uans-data-2023-11-16',
+    S3Id: process.env.CASES_S3_ID || 'ceprs-data-2023-02-05',
     testCases: [{
       uan: '0000-0000-0000-0000', 'date-of-birth': '2000-01-01'
     }, {
@@ -36,6 +36,23 @@ module.exports = {
       uan: '0000-0000-0000-0006', 'date-of-birth': '2000-01-01'
     }, {
       uan: '0000-0000-0000-0007', 'date-of-birth': '2000-01-01'
+    }],
+    testCEPRCases: [{
+      cepr: '0000000001', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+    }, {
+      cepr: '0000000002', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'no'
+    }, {
+      cepr: '0000000003', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+    }, {
+      cepr: '0000000004', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+    }, {
+      cepr: '0000000005', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+    }, {
+      cepr: '0000000006', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+    }, {
+      cepr: '0000000007', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+    }, {
+      cepr: '0000000008', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'no'
     }]
   },
   csp: {
@@ -109,7 +126,7 @@ module.exports = {
   },
   sessionDefaults: {
     steps: ['/start', '/continue-form', '/summary', '/who-are-you'],
-    fields: ['user-email', 'uan', 'date-of-birth', 'csrf-secret', 'errorValues', 'errors']
+    fields: ['user-email', 'cepr', 'date-of-birth', 'duty-to-remove-alert', 'csrf-secret', 'errorValues', 'errors']
   },
   ceprUpload: {
     recordScanLimit: 1,

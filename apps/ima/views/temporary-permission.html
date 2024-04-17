@@ -1,7 +1,7 @@
 {{<partials-page}}
   {{$page-content}}
     <p class="govuk-body">Do not use this question to make an asylum claim. Any asylum claim will be inadmissible.</p>
-    {{#t}}fields.temporary-permission-reasons-ban-only.legend{{/t}}
+    <strong>{{#t}}fields.temporary-permission-reasons-ban-only.label{{/t}}</strong>
     <p class="govuk-body">Any reasons given may not prevent you being removed from the UK.</p>
     {{#renderField}}temporary-permission-reasons-ban-only{{/renderField}}
     {{#renderField}}temporary-permission-details-ban-only{{/renderField}}

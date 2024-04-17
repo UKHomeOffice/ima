@@ -25,14 +25,16 @@ describe('db/get-token', () => {
       const token = 'test';
       redis.get.withArgs('token:test').returns(token);
       redis.get.withArgs('test:email').returns('s@mail.com');
-      redis.get.withArgs('test:uan').returns('1234-5678-9101-1121');
+      redis.get.withArgs('test:cepr').returns('1234567890');
       redis.get.withArgs('test:date-of-birth').returns('2000/01/01');
+      redis.get.withArgs('test:duty-to-remove-alert').returns('true');
 
       const expected = {
         valid: 'test',
         email: 's@mail.com',
-        uan: '1234-5678-9101-1121',
-        'date-of-birth': '2000/01/01'
+        cepr: '1234567890',
+        'date-of-birth': '2000/01/01',
+        'duty-to-remove-alert': 'true'
       };
 
       try {
@@ -49,8 +51,9 @@ describe('db/get-token', () => {
       const expected = {
         valid: undefined,
         email: undefined,
-        uan: undefined,
-        'date-of-birth': undefined
+        cepr: undefined,
+        'date-of-birth': undefined,
+        'duty-to-remove-alert': undefined
       };
 
       try {

@@ -6,8 +6,8 @@ module.exports = {
   'case-details': {
     steps: [
       {
-        step: '/uan',
-        field: 'uan',
+        step: '/cepr',
+        field: 'cepr',
         omitChangeLink: true
       },
       {
@@ -223,6 +223,17 @@ module.exports = {
           }
           return req.sessionModel.get('temporary-permission') === 'yes' ?
             list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/temporary-permission',
+        field: 'temporary-permission-details-ban-only',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/temporary-permission')) {
+            return null;
+          }
+          return (typeof req.sessionModel.get('temporary-permission-details-ban-only') !== 'undefined') ?
+            'Details added' : list;
         }
       }
     ]
