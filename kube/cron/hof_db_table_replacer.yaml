@@ -22,7 +22,7 @@ spec:
         spec:
           containers:
           - name: hof-db-table-replacer
-            image: quay.io/ukhomeofficedigital/hof-db-table-replacer@sha256:241e0d20f87f4dbeb988a026d0d84590edf65a4a3b8a1f46dd67592f919297b9
+            image: quay.io/ukhomeofficedigital/hof-db-table-replacer:d98604c8d6d3679ecc61d0bb55ac2015a144d5c8
             imagePullPolicy: Always
             securityContext:
               runAsNonRoot: true
@@ -72,7 +72,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: keycloak-user
-                    key: password             
+                    key: password
               - name: DB_HOST
                 valueFrom:
                   secretKeyRef:
@@ -119,7 +119,10 @@ spec:
                 value: knex-postgres-model
               - name: SERVICE_NAME
                 value: ima
-#            command: ["yarn", "run", "generate:reports"]
+              - name: NOTIFICATIONS_CLIENT
+                value: govuk-notify
+              - name: NOTIFICATIONS_MODEL
+                value: govuk-notify-model
             resources:
               requests:
                 memory: 4Gi
