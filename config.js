@@ -69,10 +69,12 @@ module.exports = {
     notifyApiKey: process.env.NOTIFY_STUB === 'true' ? 'USE_MOCK' : process.env.NOTIFY_KEY,
     userAuthTemplateId: process.env.USER_AUTHORISATION_TEMPLATE_ID,
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
+    csvReportEmail: process.env.CASEWORKER_EMAIL,
     submissionTemplateId: process.env.SUBMISSION_TEMPLATE_ID,
     saveAndExitTemplateId: process.env.SAVE_AND_EXIT_TEMPLATE_ID,
     customerReceiptTemplateId: process.env.CUSTOMER_RECEIPT_TEMPLATE_ID,
-    submissionFailedTemplateId: process.env.SUBMISSION_FAILED_TEMPLATE_ID
+    submissionFailedTemplateId: process.env.SUBMISSION_FAILED_TEMPLATE_ID,
+    csvReportTemplateId: process.env.CSV_REPORT_TEMPLATE_ID
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
