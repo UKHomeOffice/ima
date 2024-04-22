@@ -50,7 +50,8 @@ module.exports = {
           }
         },
         {
-          target: '/immigration-adviser-details',
+        //  target: '/immigration-adviser-details',
+        target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
             value: 'has-legal-representative'
@@ -69,6 +70,27 @@ module.exports = {
       next: '/your-location',
       backLink: 'summary'
     },
+    '/have-immigration-adviser': {
+      behaviours: SaveFormSession,
+      fields: ['have-immigration-adviser'],
+      forks: [
+        {
+          target: '/immigration-adviser-details',
+          condition: {
+            field: 'have-immigration-adviser',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/your-location',
+          condition: {
+            field: 'have-immigration-adviser',
+            value: 'no'
+          }
+        }
+      ],
+      next: '/immigration-adviser-details'
+    },
     '/immigration-adviser-details': {
       behaviours: SaveFormSession,
       fields: [
@@ -80,7 +102,6 @@ module.exports = {
         'legal-representative-county',
         'legal-representative-postcode',
         'legal-representative-phone-number',
-        'is-legal-representative-email',
         'legal-representative-email'
       ],
       continueOnEdit: true,

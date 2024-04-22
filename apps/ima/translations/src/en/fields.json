@@ -29,6 +29,17 @@
       }
     }
   },
+  "have-immigration-adviser": {
+    "legend": " ",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "current-email": {
     "options": {
       "yes": {
@@ -97,19 +108,8 @@
     "label": "Phone number",
     "hint": "For international numbers, include the country code."
   },
-  "is-legal-representative-email": {
-    "legend": "Is {{values.user-email}} your email address?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
   "legal-representative-email": {
-    "label": "Enter your email address"
+    "label": "Email address"
   },
   "helper-fullname": {
     "label": "Full name"

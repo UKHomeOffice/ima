@@ -15,6 +15,9 @@
     "header": "Helper details",
     "paragraph": "Answer all the following questions as if you are the person on the Illegal Migration Act notice."
   },
+  "have-immigration-adviser": {
+     "header": "Do you have an immigration adviser?"
+  },
   "full-name": {
     "header": "What is your full name?"
   },
@@ -35,9 +38,6 @@
     "header": "Immigration adviser details",
     "paragraph": "We will use these detail if we need to contact you.",
     "address": "Postal address"
-  },
-  "is-legal-representative-email": {
-    "header": "Is {{values.user-email}} your email address?"
   },
   "medical-records": {
     "header": "Your medical records",

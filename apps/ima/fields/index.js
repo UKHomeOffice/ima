@@ -29,6 +29,12 @@ module.exports = {
     options: ['yes', 'no'],
     validate: 'required'
   },
+  'have-immigration-adviser': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   name: {
     labelClassName: 'visuallyhidden',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
@@ -205,21 +211,6 @@ module.exports = {
     validationLink: {
       field: ''
     }
-  },
-  'is-legal-representative-email': {
-    isPageHeading: true,
-    mixin: 'radio-group',
-    validate: ['required'],
-    legend: {
-      className: 'visuallyhidden'
-    },
-    options: [{
-      value: 'yes'
-    }, {
-      value: 'no',
-      toggle: 'legal-representative-email-details-fieldset',
-      child: 'partials/legal-representative-email-details'
-    }]
   },
   'helper-details': {
     isPageHeading: true

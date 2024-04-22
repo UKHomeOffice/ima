@@ -38,9 +38,6 @@
     "required": "Enter your phone number",
     "internationalPhoneNumber": "Enter a valid phone number"
   },
-  "is-legal-representative-email": {
-    "required": "You must select an option"
-  },
   "legal-representative-name": {
     "required": "Enter your name",
     "notUrl": "Please do not enter a link/url into your answers"
