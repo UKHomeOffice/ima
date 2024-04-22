@@ -2,14 +2,14 @@
 
 const hof = require('hof');
 const config = require('./config.js');
-const cron = require('node-cron');
+// const cron = require('node-cron');
 const busboy = require('busboy');
 const bytes = require('bytes');
 const bl = require('bl');
 const _ = require('lodash');
-const Cases = require('./apps/ima/models/cases');
-const logger = require('hof/lib/logger')({ env: config.env });
-const s3Id = config.casesIds.S3Id;
+// const Cases = require('./apps/ima/models/cases');
+// const logger = require('hof/lib/logger')({ env: config.env });
+// const s3Id = config.casesIds.S3Id;
 
 let settings = require('./hof.settings');
 
@@ -112,24 +112,24 @@ app.use((req, res, next) => {
   }
 });
 
-async function updateCases() {
-  try {
-    const cases = new Cases(s3Id);
-    await cases.fetch();
-    await cases.processToJsonFile();
-  } catch (e) {
-    logger.log('error', e);
-  }
-}
+// async function updateCases() {
+//   try {
+//     const cases = new Cases(s3Id);
+//     await cases.fetch();
+//     await cases.processToJsonFile();
+//   } catch (e) {
+//     logger.log('error', e);
+//   }
+// }
 
-updateCases();
+// updateCases();
 
-if (config.casesIds.cronEnabled) {
-  cron.schedule('0 0 * * *', async () => {
-    logger.log('info', 'updating local cases sheet...');
-    updateCases();
-  });
-}
+// if (config.casesIds.cronEnabled) {
+//   cron.schedule('0 0 * * *', async () => {
+//     logger.log('info', 'updating local cases sheet...');
+//     updateCases();
+//   });
+// }
 
 console.log('*******WARNING: The data folder SHOULD NOT be deployed to production. Please ensure the data folder has not been pushed to Github and is added to the .gitignore file before deployment to production.******* \n');
 
