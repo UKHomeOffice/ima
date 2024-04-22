@@ -16,45 +16,45 @@ module.exports = {
     kmsKeyId: process.env.AWS_KMS_KEY_ID,
     region: process.env.AWS_REGION
   },
-  casesIds: {
-    uanValidLength: 19,
-    cronEnabled: process.env.CRON_ENABLED,
-    S3Id: process.env.CASES_S3_ID || 'ceprs-data-2023-02-05',
-    testCases: [{
-      uan: '0000-0000-0000-0000', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0001', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0002', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0003', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0004', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0005', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0006', 'date-of-birth': '2000-01-01'
-    }, {
-      uan: '0000-0000-0000-0007', 'date-of-birth': '2000-01-01'
-    }],
-    testCEPRCases: [{
-      cepr: '0000000001', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
-    }, {
-      cepr: '0000000002', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'no'
-    }, {
-      cepr: '0000000003', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
-    }, {
-      cepr: '0000000004', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
-    }, {
-      cepr: '0000000005', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
-    }, {
-      cepr: '0000000006', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
-    }, {
-      cepr: '0000000007', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
-    }, {
-      cepr: '0000000008', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'no'
-    }]
-  },
+  // casesIds: {
+  //   uanValidLength: 19,
+  //   cronEnabled: process.env.CRON_ENABLED,
+  //   S3Id: process.env.CASES_S3_ID || 'ceprs-data-2023-02-05',
+  //   testCases: [{
+  //     uan: '0000-0000-0000-0000', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0001', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0002', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0003', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0004', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0005', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0006', 'date-of-birth': '2000-01-01'
+  //   }, {
+  //     uan: '0000-0000-0000-0007', 'date-of-birth': '2000-01-01'
+  //   }],
+  //   testCEPRCases: [{
+  //     cepr: '0000000001', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+  //   }, {
+  //     cepr: '0000000002', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'no'
+  //   }, {
+  //     cepr: '0000000003', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+  //   }, {
+  //     cepr: '0000000004', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+  //   }, {
+  //     cepr: '0000000005', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+  //   }, {
+  //     cepr: '0000000006', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+  //   }, {
+  //     cepr: '0000000007', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'yes'
+  //   }, {
+  //     cepr: '0000000008', 'date-of-birth': '2000-01-01', 'duty-to-remove-alert': 'no'
+  //   }]
+  // },
   csp: {
     imgSrc: ['data:']
   },
