@@ -45,7 +45,7 @@ spec:
             - name: SERVICE_NAME
               value: "ima"
             - name: LATEST_MIGRATION
-              value: "20240202143333_rename_uan_column_to_cepr"
+              value: "20240418094037_create_cepr_lookup"
             - name: MAX_PAYLOAD_SIZE
               value: "30mb"
             - name: REQUEST_TIMEOUT
