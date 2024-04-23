@@ -212,6 +212,9 @@ module.exports = {
       field: ''
     }
   },
+  'legal-representative-email': {
+    validate: ['required', 'email']
+  },
   'helper-details': {
     isPageHeading: true
   },

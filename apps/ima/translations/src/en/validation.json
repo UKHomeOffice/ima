@@ -38,8 +38,12 @@
     "required": "Enter your phone number",
     "internationalPhoneNumber": "Enter a valid phone number"
   },
-  "legal-representative-name": {
+  "legal-representative-fullname": {
     "required": "Enter your name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-organisation": {
+    "required": "Enter the organisation",
     "notUrl": "Please do not enter a link/url into your answers"
   },
   "legal-representative-phone-number": {

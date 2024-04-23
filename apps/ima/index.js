@@ -51,7 +51,7 @@ module.exports = {
         },
         {
         //  target: '/immigration-adviser-details',
-        target: '/have-immigration-adviser',
+          target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
             value: 'has-legal-representative'
