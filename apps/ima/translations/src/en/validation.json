@@ -2,6 +2,9 @@
   "who-are-you": {
     "required": "You must select an option"
   },
+  "have-immigration-adviser": {
+    "required": "You must select an option"
+  },
   "in-the-uk": {
     "required": "You must select an option"
   },

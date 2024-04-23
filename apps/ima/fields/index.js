@@ -162,7 +162,6 @@ module.exports = {
     isPageHeading: true
   },
   'legal-representative-phone-number': {
-    labelClassName: 'bold',
     validate: ['required', 'internationalPhoneNumber', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
@@ -213,6 +212,7 @@ module.exports = {
     }
   },
   'legal-representative-email': {
+    labelClassName: 'bold',
     validate: ['required', 'email']
   },
   'helper-details': {
