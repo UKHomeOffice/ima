@@ -43,15 +43,16 @@ module.exports = {
       behaviours: SaveFormSession,
       forks: [
         {
-          target: '/your-location',
+         // target: '/immigration-adviser-details',
+          target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
             value: 'person-named'
           }
         },
         {
-        //  target: '/immigration-adviser-details',
-          target: '/have-immigration-adviser',
+         target: '/immigration-adviser-details',
+       //  target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
             value: 'has-legal-representative'
