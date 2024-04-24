@@ -22,44 +22,86 @@ module.exports = {
       }
     ]
   },
-  'immigration-adviser-details': {
+  'immigration-adviser-claimant-details': {
     steps: [
       {
-        step: '/immigration-adviser-details',
-        field: 'legal-representative-fullname',
+        step: '/immigration-adviser-claimant-details',
+        field: 'legal-representative-claimant-fullname',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-claimant-details')) {
             return null;
           }
           return list;
         }
       },
       {
-        step: '/immigration-adviser-details',
+        step: '/immigration-adviser-claimant-details',
         field: 'legal-representative-claimant-email',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-claimant-details')) {
             return null;
           }
-          return req.sessionModel.get('is-legal-representative-email') === 'yes' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('legal-representative-email')}`;
+          return req.sessionModel.get('is-legal-representative-claimant-email') === 'yes' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('legal-representative-claimant-email')}`;
         }
       },
       {
-        step: '/immigration-adviser-details',
-        field: 'legal-representative-phone-number'
+        step: '/immigration-adviser-claimant-details',
+        field: 'legal-representative-claimant-phone-number'
       },
       {
-        step: '/immigration-adviser-details',
-        field: 'legal-representative-address',
+        step: '/immigration-adviser-claimant-details',
+        field: 'legal-representative-claimant-address',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-claimant-details')) {
             return null;
           }
-          return `${req.sessionModel.get('legal-representative-house-number')} \n` +
-            `${req.sessionModel.get('legal-representative-street')} \n` +
-            `${req.sessionModel.get('legal-representative-townOrCity')}\n` +
-            `${req.sessionModel.get('legal-representative-county')}\n` +
-            `${req.sessionModel.get('legal-representative-postcode')}`;
+          return `${req.sessionModel.get('legal-representative-claimant-house-number')} \n` +
+            `${req.sessionModel.get('legal-representative-claimant-street')} \n` +
+            `${req.sessionModel.get('legal-representative-claimant-townOrCity')}\n` +
+            `${req.sessionModel.get('legal-representative-claimant-county')}\n` +
+            `${req.sessionModel.get('legal-representative-claimant-postcode')}`;
+        }
+      }
+    ]
+  },
+  'immigration-adviser-named-person-details': {
+    steps: [
+      {
+        step: '/immigration-adviser-named-person-details',
+        field: 'legal-representative-named-person-fullname',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-named-person-details')) {
+            return null;
+          }
+          return list;
+        }
+      },
+      {
+        step: '/immigration-adviser-named-person-details',
+        field: 'legal-representative-named-person-email',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-named-person-details')) {
+            return null;
+          }
+          return req.sessionModel.get('is-legal-representative-named-person-email') === 'yes' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('legal-representative-named-person-email')}`;
+        }
+      },
+      {
+        step: '/immigration-adviser-named-person-details',
+        field: 'legal-representative-named-person-phone-number'
+      },
+      {
+        step: '/immigration-adviser-named-person-details',
+        field: 'legal-representative-named-person-address',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-named-person-details')) {
+            return null;
+          }
+          return `${req.sessionModel.get('legal-representative-named-person-house-number')} \n` +
+            `${req.sessionModel.get('legal-representative-named-person-street')} \n` +
+            `${req.sessionModel.get('legal-representative-named-person-townOrCity')}\n` +
+            `${req.sessionModel.get('legal-representative-named-person-county')}\n` +
+            `${req.sessionModel.get('legal-representative-named-person-postcode')}`;
         }
       }
     ]

@@ -43,7 +43,6 @@ module.exports = {
       behaviours: SaveFormSession,
       forks: [
         {
-         // target: '/immigration-adviser-details',
           target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
@@ -52,7 +51,6 @@ module.exports = {
         },
         {
          target: '/immigration-adviser-claimant-details',
-       //  target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
             value: 'has-legal-representative'

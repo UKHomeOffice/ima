@@ -79,6 +79,82 @@
     "postcode": "Enter a valid UK postcode",
     "notUrl": "Please do not enter a link/url into your answers"
   },
+  "legal-representative-named-person-fullname": {
+    "required": "Enter your name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-named-person-organisation": {
+    "required": "Enter the organisation",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-named-person-phone-number": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "legal-representative-named-person-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "is-legal-representative-named-person-email": {
+    "required": "You must select an option"
+  },
+  "legal-representative-named-person-house-number": {
+    "required": "Enter your house number/name, and street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-named-person-street": {
+    "notUrl": "Enter a valid street name"
+  },
+  "legal-representative-named-person-townOrCity": {
+    "required": "Enter your town or city",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-named-person-county": {
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-named-person-postcode": {
+    "required": "Enter your postcode",
+    "postcode": "Enter a valid UK postcode",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-claimant-fullname": {
+    "required": "Enter your name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-claimant-organisation": {
+    "required": "Enter the organisation",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-claimant-phone-number": {
+    "required": "Enter your phone number",
+    "internationalPhoneNumber": "Enter a valid phone number"
+  },
+  "legal-representative-claimant-email": {
+    "required": "Enter your email address",
+    "email": "Enter a valid email address"
+  },
+  "is-legal-representative-claimant-email": {
+    "required": "You must select an option"
+  },
+  "legal-representative-claimant-house-number": {
+    "required": "Enter your house number/name, and street name",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-claimant-street": {
+    "notUrl": "Enter a valid street name"
+  },
+  "legal-representative-claimant-townOrCity": {
+    "required": "Enter your town or city",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-claimant-county": {
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
+  "legal-representative-claimant-postcode": {
+    "required": "Enter your postcode",
+    "postcode": "Enter a valid UK postcode",
+    "notUrl": "Please do not enter a link/url into your answers"
+  },
   "has-address": {
     "required": "You must select an option"
   },
