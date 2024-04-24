@@ -20,7 +20,7 @@ module.exports = {
   'who-are-you': {
     isPageHeading: true,
     mixin: 'radio-group',
-    options: ['person-named', 'has-legal-representative', 'helper'],
+    options: ['named-person', 'has-legal-representative', 'helper'],
     validate: 'required'
   },
   'in-the-uk': {
@@ -161,32 +161,38 @@ module.exports = {
   'immigration-adviser-details': {
     isPageHeading: true
   },
-  'legal-representative-phone-number': {
+  'immigration-adviser-named-person-details': {
+    isPageHeading: true
+  },
+  'immigration-adviser-claimant-details': {
+    isPageHeading: true
+  },
+  'legal-representative-named-person-phone-number': {
     validate: ['required', 'internationalPhoneNumber', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'legal-representative-fullname': {
+  'legal-representative-named-person-fullname': {
     labelClassName: 'bold',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'legal-representative-organisation': {
+  'legal-representative-named-person-organisation': {
     labelClassName: 'bold',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'legal-representative-house-number': {
+  'legal-representative-named-person-house-number': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
-  'legal-representative-street': {
+  'legal-representative-named-person-street': {
     validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
     includeInSummary: false
   },
-  'legal-representative-townOrCity': {
+  'legal-representative-named-person-townOrCity': {
     validate: ['required', 'notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
       { type: 'maxlength', arguments: 200 }
@@ -194,7 +200,7 @@ module.exports = {
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'legal-representative-county': {
+  'legal-representative-named-person-county': {
     validate: ['notUrl',
       { type: 'regex', arguments: /^([^0-9]*)$/ },
       { type: 'maxlength', arguments: 200 }
@@ -202,7 +208,7 @@ module.exports = {
     includeInSummary: false,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'legal-representative-postcode': {
+  'legal-representative-named-person-postcode': {
     validate: ['required', 'postcode', { type: 'maxlength', arguments: [200] }],
     formatter: ['ukPostcode'],
     includeInSummary: false,
@@ -211,9 +217,78 @@ module.exports = {
       field: ''
     }
   },
-  'legal-representative-email': {
+  'legal-representative-named-person-email': {
     labelClassName: 'bold',
     validate: ['required', 'email']
+  },  
+  'legal-representative-claimant-phone-number': {
+    validate: ['required', 'internationalPhoneNumber', { type: 'maxlength', arguments: [200] }],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'legal-representative-claimant-fullname': {
+    labelClassName: 'bold',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'legal-representative-claimant-organisation': {
+    labelClassName: 'bold',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [200] }],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'legal-representative-claimant-house-number': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 200 }],
+    includeInSummary: false
+  },
+  'legal-representative-claimant-street': {
+    validate: ['notUrl', { type: 'maxlength', arguments: 200 }],
+    includeInSummary: false
+  },
+  'legal-representative-claimant-townOrCity': {
+    validate: ['required', 'notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 200 }
+    ],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'legal-representative-claimant-county': {
+    validate: ['notUrl',
+      { type: 'regex', arguments: /^([^0-9]*)$/ },
+      { type: 'maxlength', arguments: 200 }
+    ],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'legal-representative-claimant-postcode': {
+    validate: ['required', 'postcode', { type: 'maxlength', arguments: [200] }],
+    formatter: ['ukPostcode'],
+    includeInSummary: false,
+    className: ['govuk-input', 'govuk-input--width-10'],
+    validationLink: {
+      field: ''
+    }
+  },
+  'legal-representative-claimant-email': {
+    labelClassName: 'bold',
+    validate: ['required', 'email']
+  },
+  'is-legal-representative-email': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    legend: {
+      className: 'visuallyhidden'
+    },
+    options: [{
+      value: 'yes'
+    }, {
+      value: 'no',
+      toggle: 'legal-representative-email-details-fieldset',
+      child: 'partials/legal-representative-claimant-email-details'
+    }]
   },
   'helper-details': {
     isPageHeading: true

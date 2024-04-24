@@ -36,13 +36,13 @@ module.exports = {
       },
       {
         step: '/immigration-adviser-details',
-        field: 'legal-representative-email'
-        // parse: (list, req) => {
-        //   if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
-        //     return null;
-        //   }
-        //   return req.sessionModel.get('is-legal-representative-email') === 'yes' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('legal-representative-email')}`;
-        // }
+        field: 'legal-representative-claimant-email',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/immigration-adviser-details')) {
+            return null;
+          }
+          return req.sessionModel.get('is-legal-representative-email') === 'yes' ? `${req.sessionModel.get('user-email')}` : `${req.sessionModel.get('legal-representative-email')}`;
+        }
       },
       {
         step: '/immigration-adviser-details',

@@ -13,8 +13,10 @@
     {{#input-text}}legal-representative-county{{/input-text}}
     {{#input-text}}legal-representative-postcode{{/input-text}}<br>
     {{#input-text}}legal-representative-phone-number{{/input-text}}
-    {{#renderField}}legal-representative-email{{/renderField}}
-    <br>
+    <span class="govuk-label">
+      <strong>{{#t}}pages.is-legal-representative-email{{/t}}</strong>
+    </span>
+    {{#renderField}}is-legal-representative-email{{/renderField}}
     {{#input-submit}}continue{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}

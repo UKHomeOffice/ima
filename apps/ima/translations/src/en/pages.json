@@ -38,6 +38,17 @@
     "header": "Immigration adviser details",
     "address": "Postal address"
   },
+  "immigration-adviser-named-person-details": {
+    "header": "Immigration adviser details",
+    "address": "Postal address"
+  },
+  "immigration-adviser-claimant-details": {
+    "header": "Immigration adviser details",
+    "address": "Postal address"
+  },
+  "is-legal-representative-email": {
+    "header": "Is {{values.user-email}} your email address?"
+  },
   "medical-records": {
     "header": "Your medical records",
     "response-label1": "You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."

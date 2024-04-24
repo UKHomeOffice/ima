@@ -47,11 +47,11 @@ module.exports = {
           target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
-            value: 'person-named'
+            value: 'named-person'
           }
         },
         {
-         target: '/immigration-adviser-details',
+         target: '/immigration-adviser-claimant-details',
        //  target: '/have-immigration-adviser',
           condition: {
             field: 'who-are-you',
@@ -76,7 +76,7 @@ module.exports = {
       fields: ['have-immigration-adviser'],
       forks: [
         {
-          target: '/immigration-adviser-details',
+          target: '/immigration-adviser-named-person-details',
           condition: {
             field: 'have-immigration-adviser',
             value: 'yes'
@@ -90,20 +90,38 @@ module.exports = {
           }
         }
       ],
-      next: '/immigration-adviser-details'
+      next: '/immigration-adviser-named-person-details'
     },
-    '/immigration-adviser-details': {
+    '/immigration-adviser-claimant-details': {
       behaviours: SaveFormSession,
       fields: [
-        'legal-representative-fullname',
-        'legal-representative-organisation',
-        'legal-representative-house-number',
-        'legal-representative-street',
-        'legal-representative-townOrCity',
-        'legal-representative-county',
-        'legal-representative-postcode',
-        'legal-representative-phone-number',
+        'legal-representative-claimant-fullname',
+        'legal-representative-claimant-organisation',
+        'legal-representative-claimant-house-number',
+        'legal-representative-claimant-street',
+        'legal-representative-claimant-townOrCity',
+        'legal-representative-claimant-county',
+        'legal-representative-claimant-postcode',
+        'legal-representative-claimant-phone-number',
+        'is-legal-representative-email',
         'legal-representative-email'
+      ],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      next: '/your-location'
+    },
+    '/immigration-adviser-named-person-details': {
+      behaviours: SaveFormSession,
+      fields: [
+        'legal-representative-named-person-fullname',
+        'legal-representative-named-person-organisation',
+        'legal-representative-named-person-house-number',
+        'legal-representative-named-person-street',
+        'legal-representative-named-person-townOrCity',
+        'legal-representative-named-person-county',
+        'legal-representative-named-person-postcode',
+        'legal-representative-named-person-phone-number',
+        'legal-representative-named-person-email'
       ],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
@@ -683,7 +701,7 @@ module.exports = {
         {
           target: '/declaration',
           condition: req => {
-            if (req.sessionModel.get('are-you-submitting-this-form-late') === 'no' &&  req.sessionModel.get('who-are-you') === 'person-named') {
+            if (req.sessionModel.get('are-you-submitting-this-form-late') === 'no' &&  req.sessionModel.get('who-are-you') === 'named-person') {
               return true;
             }
             return false;
@@ -726,7 +744,7 @@ module.exports = {
           target: '/declaration',
           condition: {
             field: 'who-are-you',
-            value: 'person-named'
+            value: 'named-person'
           }
         },
         {

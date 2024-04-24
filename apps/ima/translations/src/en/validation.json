@@ -57,6 +57,9 @@
     "required": "Enter your email address",
     "email": "Enter a valid email address"
   },
+  "is-legal-representative-email": {
+    "required": "You must select an option"
+  },
   "legal-representative-house-number": {
     "required": "Enter your house number/name, and street name",
     "notUrl": "Please do not enter a link/url into your answers"

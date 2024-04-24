@@ -5,7 +5,7 @@
   "who-are-you": {
     "legend": "Who are you?",
     "options": {
-      "person-named": {
+      "named-person": {
         "label": "The person named on the Illegal Migration Act notice"
       },
       "has-legal-representative": {
@@ -80,6 +80,79 @@
   },
   "email-address-details": {
     "label": "Enter your email address"
+  },
+  "legal-representative-named-person-address": {
+    "label": "Postal address"
+  },
+  "legal-representative-named-person-house-number": {
+    "label": "Address line 1"
+  },
+  "legal-representative-named-person-postcode": {
+    "label": "Postcode"
+  },
+  "legal-representative-named-person-street": {
+    "label": "Address line 2 (optional)"
+  },
+  "legal-representative-named-person-townOrCity": {
+    "label": "Town or city"
+  },
+  "legal-representative-named-person-county": {
+    "label": "County (optional)"
+  },
+  "legal-representative-named-person-fullname": {
+    "label": "Full name"
+  },
+  "legal-representative-named-person-organisation": {
+    "label": "Organisation or law firm"
+  },
+  "legal-representative-named-person-phone-number": {
+    "label": "Phone number",
+    "hint": "For international numbers, include the country code."
+  },
+  "legal-representative-named-person-email": {
+    "label": "Email address"
+  },
+  "legal-representative-claimant-address": {
+    "label": "Postal address"
+  },
+  "legal-representative-claimant-house-number": {
+    "label": "Address line 1"
+  },
+  "legal-representative-claimant-postcode": {
+    "label": "Postcode"
+  },
+  "legal-representative-claimant-street": {
+    "label": "Address line 2 (optional)"
+  },
+  "legal-representative-claimant-townOrCity": {
+    "label": "Town or city"
+  },
+  "legal-representative-claimant-county": {
+    "label": "County (optional)"
+  },
+  "legal-representative-claimant-fullname": {
+    "label": "Full name"
+  },
+  "legal-representative-claimant-organisation": {
+    "label": "Organisation or law firm"
+  },
+  "legal-representative-claimant-phone-number": {
+    "label": "Phone number",
+    "hint": "For international numbers, include the country code."
+  },
+  "is-legal-representative-email": {
+    "legend": "Is {{values.user-email}} your email address?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-representative-claimant-email": {
+    "label": "Email address"
   },
   "legal-representative-address": {
     "label": "Postal address"
