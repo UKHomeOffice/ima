@@ -79,6 +79,20 @@
   "threatened-life-or-liberty": {
     "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
   },
+  "risk-of-harm": {
+    "header":"Would you be at risk of serious and irreversible harm in {{values.country-1}}?"
+  },
+  "harm-claim-countries": {
+    "header":"Which country can you make a serious and irreversible harm claim against?",
+    "paragraph1":"Check your Illegal Migration Act notice for the countries this applies to. You cannot make a claim against your country of nationality.",
+    "paragraph2":"You can add another country later"
+  },
+  "harm-claim-details": {
+    "header":"Serious and irreversible harm in {{values.country-1}}"
+  },
+  "harm-claim-summary": {
+    "header":"Summary of your serious and irreversible harm claims"
+  },
   "human-rights-claim": {
     "header": "Are you making a human rights claim because you have family in the UK?"
   },
@@ -130,6 +144,9 @@
       },
       "personal-details": {
         "header": "Claimant details"
+      },
+      "is-serious-and-irreversible":{
+        "label":"Making claim"
       },
       "immigration-detention": {
         "header": "Immigration detention"

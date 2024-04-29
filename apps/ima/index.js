@@ -10,12 +10,15 @@ const SaveFormSession = require('./behaviours/save-form-session');
 const SaveAndExit = require('./behaviours/save-and-exit');
 const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
 const FamilyMembersLocals = require('./behaviours/family-members-locals');
+const HarmClaimSummary = require('./behaviours/harm-claim-summary');
+const LimitHarmClaims = require('./behaviours/limit-countries');
 const ModifyChangeURL = require('./behaviours/modify-change-link');
 const ResetHumanRightsSummary = require('./behaviours/reset-human-rights-summary');
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
 const LimitDocument = require('./behaviours/limit-documents');
 const Submit = require('./behaviours/submit');
+
 
 module.exports = {
   name: 'ima',
@@ -536,7 +539,85 @@ module.exports = {
       ],
       locals: { showSaveAndExit: true },
       continueOnEdit: false,
-      next: '/human-rights-claim' // TODO - UPDATE AS STEPS ARE ADDED
+      next: '/harm-claim'
+    },
+    '/harm-claim': {
+      behaviours: [SaveFormSession],
+      fields: ['is-serious-and-irreversible'],
+      forks: [
+        {
+          target: '/harm-claim-countries',
+          condition: {
+            field: 'is-serious-and-irreversible',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/human-rights-claim',
+          condition: {
+            field: 'is-serious-and-irreversible',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/harm-claim-countries'
+    },
+    '/harm-claim-countries': {
+      behaviours: [SaveFormSession],
+      fields: ['country-1', 'countryAddNumber'],
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true },
+      next: '/risk-of-harm'
+    },
+    '/risk-of-harm': {
+      behaviours: [SaveFormSession],
+      fields: ['is-risk-in-country'],
+      forks: [
+        {
+          target: '/harm-claim-details',
+          condition: {
+            field: 'is-risk-in-country',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/harm-claim-summary',
+          condition: {
+            field: 'is-risk-in-country',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      next: '/harm-claim-details'
+    },
+    '/harm-claim-details': {
+      behaviours: [SaveFormSession],
+      fields: ['reason-in-sih', 'why-not-get-protection'],
+      next: '/harm-claim-summary',
+      continueOnEdit: true,
+      locals: { showSaveAndExit: true }
+    },
+    '/harm-claim-summary': {
+      behaviours: [AggregateSaveUpdate, HarmClaimSummary, LimitHarmClaims, SaveFormSession],
+      aggregateTo: 'sih-countries',
+      aggregateFrom: [
+        'country-1',
+        'is-risk-in-country',
+        'reason-in-sih',
+        'why-not-get-protection'
+      ],
+      titleField: 'country-1',
+      addStep: 'harm-claim-countries',
+      addAnotherLinkText: 'country',
+      locals: { showSaveAndExit: true },
+      continueOnEdit: true,
+      template: 'harm-claim-summary',
+      next: '/human-rights-claim',
+      backLink: 'harm-claim'
     },
     '/human-rights-claim': {
       behaviours: [ResetHumanRightsSummary, SaveFormSession],
