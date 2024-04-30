@@ -118,12 +118,17 @@ The correct format in CSV would be:
 
 ```csv
 CEPR for banned under the IMA2023,DOB,Duty to remove alert
-1000234061,21/12/1996,Yes # CEPR: 6-10 digits, DOB: dd/mm/yyyy, DTR: Yes/No
+1000234061,21/12/1996,Yes
 1000957326,20/11/1928,No
 ```
 
+Note current rules for content are CEPR: 6-10 digits, DOB: dd/mm/yyyy, DTR: Yes/No (1st letter in caps)
+
 For a [PostgreSQL database you can use the following to copy above CSV directly to your IMA DB via psql](https://www.postgresql.org/docs/current/sql-copy.html):
-`\copy cepr_lookup(cepr, dob, dtr) FROM ‘/path/to/file.csv’ DELIMITER ',' CSV HEADER;`
+
+```sql
+\copy cepr_lookup(cepr, dob, dtr) FROM ‘/path/to/file.csv’ DELIMITER ',' CSV HEADER;`
+```
 
 ### Tokenised email
 
