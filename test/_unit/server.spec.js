@@ -7,7 +7,6 @@ describe('Server.js app file', () => {
   let appsImaStub;
   let appsCeprStub;
   let behavioursClearSessionStub;
-  let casesStub;
   let req;
   let res;
   let next;
@@ -33,7 +32,6 @@ describe('Server.js app file', () => {
     appsCeprStub = sinon.stub();
     appsImaStub = sinon.stub();
     behavioursClearSessionStub = sinon.stub();
-    casesStub = sinon.stub();
     req.get.withArgs('host').returns('localhost');
 
     useStub.onCall(0).yields(req, res, next);
@@ -46,8 +44,7 @@ describe('Server.js app file', () => {
       './apps/cepr': appsCeprStub,
       './apps/verify': appsVerifyStub,
       'hof/components/clear-session': behavioursClearSessionStub,
-      './config': { env: 'test' },
-      './apps/ima/models/cases': casesStub
+      './config': { env: 'test' }
     });
   });
 
@@ -89,8 +86,7 @@ describe('Server.js app file', () => {
 
       proxyquire('../server', {
         hof: hof,
-        './config': { env: 'development' },
-        './apps/ima/models/cases': casesStub
+        './config': { env: 'development' }
       });
 
       useStub.callCount.should.equal(3);
@@ -102,8 +98,7 @@ describe('Server.js app file', () => {
 
       proxyquire('../server', {
         hof: hof,
-        './config': { env: 'production' },
-        './apps/ima/models/cases': casesStub
+        './config': { env: 'production' }
       });
 
       use.should.have.been.calledTwice;
