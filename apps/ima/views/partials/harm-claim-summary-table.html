@@ -1,0 +1,43 @@
+{{#hasItems}}
+<div class="loop-summary-table">
+    {{#items}}
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header data-col head-details" colspan="2">{{itemTitle}}</th>
+            <th scope="col" class="govuk-table__header action-col head-details">
+                <a href="{{baseUrl}}/{{route}}/edit/{{index}}">{{#t}}buttons.edit{{/t}}<span class="visuallyhidden"> {{itemTitle}}</span></a>
+            </th>
+            <th scope="col" class="govuk-table__header action-col head-details">
+                <a href="{{baseUrl}}/{{route}}/delete/{{index}}">{{#t}}buttons.delete{{/t}}<span
+                        class="visuallyhidden"> {{itemTitle}}</span></a>
+            </th>
+        </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        {{#fields}}
+        {{#showInSummary}}
+          {{#claimDetails}} 
+        <tr class="govuk-table__row">
+
+         <td class="govuk-table__cell claim-details" class="govuk-table__header data-col">{{itemTitle}} claim details</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell" class="govuk-table__header data-col">{{#t}}fields.{{field}}{{/t}}</td>
+            {{/claimDetails}} 
+            {{^claimDetails}} 
+            <tr class="govuk-table__row">
+          <td class="govuk-table__cell" class="govuk-table__header data-col">{{#t}}fields.{{field}}{{/t}}</td>
+
+        {{/claimDetails}}
+        <td></td>
+            <td class="govuk-table__cell" class="govuk-table__header data-col">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
+            <td></td>
+        </tr>
+        {{/showInSummary}}
+        {{/fields}}
+        </tbody>
+    </table>
+    {{/items}}
+</div>
+{{/hasItems}}

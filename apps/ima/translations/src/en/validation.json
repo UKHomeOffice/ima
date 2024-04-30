@@ -72,6 +72,30 @@
     "postcode": "Enter a valid UK postcode",
     "notUrl": "Please do not enter a link/url into your answers"
   },
+  "is-serious-and-irreversible": {
+    "default": "You must select an option"
+  },
+  "country-1": {
+    "required": "Please select a country"
+  },
+  "why-not-get-protection": {
+    "required": "You must provide an explanation",
+    "regex": "Explanation must be 15,000 characters or less and must not include [ ] < > / |",
+    "notUrl": "Enter a valid explanation"
+  },
+  "is-risk-in-country": {
+    "required": "You must select an option"
+  },
+  "has-anything-happened": {
+    "required": "You must provide an explanation",
+    "regex": "Explanation must be 15,000 characters or less and must not include [ ] < > / |",
+    "notUrl": "Enter a valid explanation"
+  },
+  "reason-in-sih": {
+    "required": "You must provide an explanation",
+    "regex": "Explanation must be 15,000 characters or less and must not include [ ] < > / |",
+    "notUrl": "Enter a valid explanation"
+  },
   "has-address": {
     "required": "You must select an option"
   },
