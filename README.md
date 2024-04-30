@@ -25,28 +25,6 @@ Illegal Migration Act Removal Notice Claim Form
 
 You'll need to have the relevant gov notify API key to run the app. Notify is crucial to user flow functionality throughout the app. Save this value as `NOTIFY_KEY` in your `.env` file. 
 
-## Updating UAN sheets
-To upload a new UAN sheet into our S3 buckets, you will need to do the following for our notprod and prod buckets:
-
-1. Setup your local environment to have the relevant access key id, secret access key, kms key id, bucket name and aws region to be able to upload a new object to S3. Please get the assistance of a senior dev/devops who has access to the notprod and prod kube namespaces, if relevant secrets are needed to access the relevant buckets.
-
-2. Place the relevant Excel sheet into the `data` folder and name with the following name convention:
-```
-uans-<Year>-<Month>-<Day>
-```
-e.g. uans-data-2023-03-12
-
-3. Go to the bin folder and run the following bash script with the sheet name as the first argument:
-```
-cd bin
-./upload_cases_sheet.sh uans-data-<Year>-<Month>-<Day>
-```
-
-4. Update in `config.js` the `casesIds.S3Id` property with the filename, e.g. uans-data-2023-03-12
-
-5. .gitignore file checks entire repo for any .xlsx files to ensure they are not accidentally commited. However, any .xlsx files in the test folder are left alone for unit testing. Please ensure when you are finished you *REMOVE* the relevant sheet as a precaution when you are finished with it. It may be a more automated approach in future where stakeholders upload the sheet to S3 and then the service references it without the above approach needed by the team.
-
-
 ### Database setup and integration
 
 If this is a first-time install get postgres running on the default port and setup a new, empty local database called `ima`.  
