@@ -110,7 +110,20 @@ User verification on IMA comes in two parts; checking CEPR number and DOB agains
 
 A list of valid users is held in the RDS (`cepr_lookup` table). The behaviour when a user enters their CEPR number and DOB on the start page is to make an Axios request to that table with the CEPR returning any records where that CEPR was found (there should only be one as CEPR is unique and a primary key in the `cepr_lookup` table). The found record is then comapred against the DOB entered in the form as an additional check. A user who has entered a CEPR and DOb that matches a row in `cepr_lookup` can continue with the form.
 
-The `cepr_lookup` table can be updated by caseworkers on the `/cepr` route of the form (requires Keycloak login). The upload process here accepts a CSV file with certain formattig rules. This will upload the CSV to the IMS S3 bucket for later processing into the DB table by a scehduled job. See [hof-db-table-replacer](https://github.com/UKHomeOffice/hof-db-table-replacer) for more information.
+The `cepr_lookup` table can be updated by caseworkers on the `/cepr` route of the form (requires Keycloak login). The upload process here accepts a CSV file with certain formattig rules. This will upload the CSV to the IMS S3 bucket for later processing into the DB table by a [scheduled job](/kube/cron/hof_db_table_replacer.yaml). See [hof-db-table-replacer](https://github.com/UKHomeOffice/hof-db-table-replacer) for more information.
+
+For local development once the current DB migrations have run you should have an empty `cepr_lookup` table configured correctly. You can either upload appropriate CSV files to a test S3 bucket via `localhost:8080/cepr/upload` and use a local version of hof-db-table-replacer to import the CSV to your local database, or otherwise manually insert correctly formatted rows to your local `cepr_lookup` table.
+
+The correct format in CSV would be:
+
+```csv
+CEPR for banned under the IMA2023,DOB,Duty to remove alert
+1000234061,21/12/1996,Yes # CEPR: 6-10 digits, DOB: dd/mm/yyyy, DTR: Yes/No
+1000957326,20/11/1928,No
+```
+
+For a [PostgreSQL database you can use the following to copy above CSV directly to your IMA DB via psql](https://www.postgresql.org/docs/current/sql-copy.html):
+`\copy cepr_lookup(cepr, dob, dtr) FROM ‘/path/to/file.csv’ DELIMITER ',' CSV HEADER;`
 
 ### Tokenised email
 
