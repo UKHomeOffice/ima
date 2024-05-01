@@ -1,12 +1,14 @@
 const config = require('../../../config');
 const _ = require('lodash');
 const axios = require('axios');
+const logger = require('hof/lib/logger')({ env: config.env });
 
 const baseUrl = `${config.saveService.host}:${config.saveService.port}/cepr_lookup/cepr/`;
 
 module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
-    if (!await this.isValidCase(req)) {
+    const validCase = await this.isValidCase(req);
+    if (!validCase) {
       return res.redirect('/details-not-found');
     }
     return super.saveValues(req, res, next);
@@ -31,6 +33,7 @@ module.exports = superclass => class extends superclass {
 
       return imaResult;
     } catch (error) {
+      logger.log('error', `Could not get valid cases: ${error}`);
       return null;
     }
   }
