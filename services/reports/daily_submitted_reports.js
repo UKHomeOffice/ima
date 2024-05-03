@@ -11,7 +11,7 @@ module.exports = class DailySubmittedReports {
 
       const report = new Reports({
         type,
-        tableName: 'reports',
+        tableName: 'saved_applications',
         from: time10am.clone().subtract(1, 'day').format(postgresDateFormat),
         to: time10am.clone().subtract(1, 'second').format(postgresDateFormat)
       });
