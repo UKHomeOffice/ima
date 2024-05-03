@@ -22,7 +22,7 @@ spec:
         spec:
           containers:
           - name: hof-db-table-replacer
-            image: quay.io/ukhomeofficedigital/hof-db-table-replacer:d98604c8d6d3679ecc61d0bb55ac2015a144d5c8
+            image: quay.io/ukhomeofficedigital/hof-db-table-replacer:e0d59bb9dd3212434b16ebeb18661bd3e6c2d744
             imagePullPolicy: Always
             securityContext:
               runAsNonRoot: true

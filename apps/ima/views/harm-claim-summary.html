@@ -1,0 +1,15 @@
+{{<partials-page}}
+  {{$page-content}}
+   <br>
+        {{> partials-harm-claim-summary-table}}
+        {{#noMoreHarmClaims}}
+        <p>You cannot add any more countries</p>
+        {{/noMoreHarmClaims}}
+        <br>
+        {{^noMoreHarmClaims}}
+        <p><a href="{{baseUrl}}/{{addStep}}" class="govuk-link">Add another {{addAnotherLinkText}}</a></p>
+        <br>
+        {{/noMoreHarmClaims}}
+  {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

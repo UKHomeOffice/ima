@@ -557,6 +557,55 @@ module.exports = {
       value: 'yes'
     }
   },
+  'is-serious-and-irreversible': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
+  'is-risk-in-country': {
+    mixin: 'radio-group',
+    options: ['yes', 'no'],
+    validate: 'required',
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'reason-in-sih': {
+    labelClassName: 'visuallyhidden',
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]*$/ },
+      { type: 'maxlength', arguments: 15000 }],
+    attributes: [{
+      attribute: 'rows',
+      value: 6
+    }]
+  },
+  'why-not-get-protection': {
+    isPageHeading: false,
+    labelClassName: 'bold',
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'regex', arguments: /^[^\[\]\|<>]*$/ },
+      { type: 'maxlength', arguments: 15000 }],
+    attributes: [{
+      attribute: 'rows',
+      value: 6
+    }]
+  },
+  'country-1': {
+    mixin: 'select',
+    labelClassName: 'visuallyhidden',
+    className: ['js-hidden'],
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.country-1.options.null'
+    }].concat(countries)
+  },
+  countryAddNumber: {
+    className: 'visuallyhidden',
+    labelClassName: 'visuallyhidden'
+  },
   'human-rights-claim': {
     isPageHeading: false,
     legend: {
