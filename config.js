@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV || 'production';
 
 module.exports = {
   PRETTY_DATE_FORMAT: 'Do MMMM YYYY',
-  dateTimeFormat: 'DD MMM YYYY HH:mm:ss',
+  dateTimeFormat: 'D MMM YYYY HH:mm:ss',
   env: env,
   dataDirectory: './data',
   aws: {

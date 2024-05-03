@@ -117,9 +117,6 @@
   "temporary-permission-to-stay": {
     "header": "Are there any other reasons you should be granted temporary permission to stay in the UK?"
   },
-  "temporary-permission": {
-    "header": "Why should you be granted temporary permission to stay in the UK?"
-  },
   "evidence-upload": {
     "header": "Upload evidence"
   },
@@ -245,8 +242,10 @@
   },
   "form-submitted": {
     "confirmed": "Form Submitted",
-    "paragraph1": "We have sent a copy of completed form to:",
+    "paragraph1": "We have sent a copy of your completed form to:",
     "header2": "What happens next",
-    "paragraph2": "We will make decision about your claim, then contact you to tell you what you need to do next."
+    "paragraph2": "We will email our decision on your claim to your immigration adviser. If you do not have one, we will send our decision directly to you by:",
+    "list1": "email",
+    "list2": "post, if you do not have email"
   }
 }
