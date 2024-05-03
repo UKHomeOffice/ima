@@ -73,8 +73,6 @@ spec:
                   secretKeyRef:
                     name: keycloak-user
                     key: password
-              - name: DATASERVICE_SERVICE_PORT_HTTPS
-                value: "10443"
             command: ["npm", "run", "generate:reports"]
             resources:
               requests:
