@@ -136,17 +136,32 @@
       "case-details": {
         "header": "Case details"
       },
-      "human-rights": {
-        "header": "Human rights"
-      },
       "immigration-adviser-details": {
         "header": "Immigration adviser details"
       },
       "personal-details": {
         "header": "Claimant details"
       },
+      "exception-duty-to-remove": {
+        "header": "Exception to duty to remove"
+      },
+      "removal-condition": {
+        "header": "Removal conditions"
+      },
+      "harm-claim": {
+        "header": "Serious and irreversible harm"
+      },
+      "human-rights": {
+        "header": "Human rights"
+      },
+      "temporary-permission-to-stay": {
+        "header": "Temporary permission to stay"
+      },
+      "exceptional-circumstances": {
+        "header": "Exceptional circumstances"
+      },
       "is-serious-and-irreversible":{
-        "label":"Making claim"
+        "label": "Making claim"
       },
       "immigration-detention": {
         "header": "Immigration detention"
@@ -170,6 +185,9 @@
       },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "is-serious-and-irreversible": {
+        "label": "Making a serious irreversible harm claim"
       },
       "human-rights-claim": {
         "label": "Making a human rights claim because of family in the UK"
@@ -211,13 +229,13 @@
         "label": "Access to medical records"
       },
       "does-exception-apply": {
-        "label": "Does an exception to the duty to remove apply to you?"
+        "label": "Exception applies"
       },
       "how-removal-condition-1-applies": {
         "label": "Select what removal conditions apply"
       },
       "exceptional-circumstances": {
-        "label": "Do exceptional circumstances apply?"
+        "label": "Cannot be removed from the UK or to your home country"
       },
       "temporary-permission": {
         "label": "Request temporary permission to stay"
