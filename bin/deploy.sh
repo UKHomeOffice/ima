@@ -40,7 +40,7 @@ elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
   $kd -f kube/file-vault/file-vault-ingress.yml -f kube/html-pdf
   $kd -f kube/hof-rds-api -f kube/redis -f kube/file-vault
-  $kd -f kube/app
+  $kd -f kube/app -f kube/cron
   $kd -f kube/autoscale/hpa-ima.yml
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml  -f kube/app/service.yml

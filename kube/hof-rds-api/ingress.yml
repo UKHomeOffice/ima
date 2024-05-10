@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-        # - TO BE UPDATED ONCE URL IS PROVIDED
+        - data-service.illegal-migration-act.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - ima-data-service.stg.sas.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
@@ -29,7 +29,7 @@ spec:
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-    # - host: TO BE UPDATED ONCE URL IS PROVIDED
+    - data-service.illegal-migration-act.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - host: ima-data-service.stg.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
