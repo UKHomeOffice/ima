@@ -13,6 +13,7 @@ const FamilyMembersLocals = require('./behaviours/family-members-locals');
 const HarmClaimSummary = require('./behaviours/harm-claim-summary');
 const LimitHarmClaims = require('./behaviours/limit-countries');
 const ModifyChangeURL = require('./behaviours/modify-change-link');
+const ResetHarmClaimSummary = require('./behaviours/reset-harm-claim-summary');
 const ResetHumanRightsSummary = require('./behaviours/reset-human-rights-summary');
 const SaveImage = require('./behaviours/save-image');
 const RemoveImage = require('./behaviours/remove-image');
@@ -36,7 +37,7 @@ module.exports = {
       backLink: false
     },
     '/summary': {
-      behaviours: [Summary, ContinueReport],
+      behaviours: [Summary, ModifyChangeURL, ContinueReport],
       sections: require('./sections/summary-data-sections'),
       backLink: false,
       locals: { showSaveAndExit: true },
@@ -542,11 +543,11 @@ module.exports = {
       next: '/harm-claim'
     },
     '/harm-claim': {
-      behaviours: [SaveFormSession],
+      behaviours: [ResetHarmClaimSummary, SaveFormSession],
       fields: ['is-serious-and-irreversible'],
       forks: [
         {
-          target: '/harm-claim-countries',
+          target: '/harm-claim-summary',
           condition: {
             field: 'is-serious-and-irreversible',
             value: 'yes'
@@ -558,21 +559,29 @@ module.exports = {
             field: 'is-serious-and-irreversible',
             value: 'no'
           }
+        },
+        {
+          target: '/harm-claim-countries',
+          condition: req => {
+            if (req.form.values['is-serious-and-irreversible'] === 'yes' && req.sessionModel.get('sih-countries') && req.sessionModel.get('sih-countries').aggregatedValues.length === 0) {
+              return true;
+            }
+            return false;
+          }
         }
       ],
       locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/harm-claim-countries'
+      continueOnEdit: true
     },
     '/harm-claim-countries': {
-      behaviours: [SaveFormSession],
+      behaviours: [LimitHarmClaims, SaveFormSession],
       fields: ['country-1', 'countryAddNumber'],
       continueOnEdit: true,
       locals: { showSaveAndExit: true },
       next: '/risk-of-harm'
     },
     '/risk-of-harm': {
-      behaviours: [SaveFormSession],
+      behaviours: [LimitHarmClaims, SaveFormSession],
       fields: ['is-risk-in-country'],
       forks: [
         {
@@ -595,7 +604,7 @@ module.exports = {
       next: '/harm-claim-details'
     },
     '/harm-claim-details': {
-      behaviours: [SaveFormSession],
+      behaviours: [LimitHarmClaims, SaveFormSession],
       fields: ['reason-in-sih', 'why-not-get-protection'],
       next: '/harm-claim-summary',
       continueOnEdit: true,

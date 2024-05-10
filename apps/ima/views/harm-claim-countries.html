@@ -2,7 +2,11 @@
 {{$encoding}}enctype="multipart/form-data"{{/encoding}}
   {{$page-content}}
 
-    <p>{{#t}}pages.harm-claim-countries.paragraph1{{/t}}</p>
+  {{#noMoreHarmClaims}}
+    <p class="govuk-body"><strong>You will not be able to add another country as 5 have already been added. To add another, please go to the summary and delete one first.</strong></p>
+  {{/noMoreHarmClaims}}
+
+  <p>{{#t}}pages.harm-claim-countries.paragraph1{{/t}}</p>
   <br>
   
   <div id="harm-claim-country-repeater" class="repeater">

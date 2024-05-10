@@ -1,4 +1,3 @@
-
 module.exports = superclass => class extends superclass {
   constructor(options) {
     if (!options.aggregateTo) {
@@ -50,10 +49,18 @@ module.exports = superclass => class extends superclass {
 
     let itemTitle = '';
 
+    let undefinedValueExists = false;
+
     req.form.options.aggregateFrom.forEach(aggregateFromElement => {
       const aggregateFromField = aggregateFromElement.field || aggregateFromElement;
       const isTitleField = req.form.options.titleField === aggregateFromField;
       const value = req.sessionModel.get(aggregateFromField);
+
+      // Check for an undefined title caused by pressing the browser back button after a deletion
+      if (isTitleField && value === undefined) {
+        undefinedValueExists = true;
+      }
+
       let isRefNumber = false;
 
       if (isTitleField) {
@@ -78,6 +85,22 @@ module.exports = superclass => class extends superclass {
       this.setAggregateArray(req, items);
       req.sessionModel.unset(aggregateFromField);
     });
+
+    const secondLastStep = req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1];
+
+    // Bypass the adding of the SIH country if the name is undefined
+    if (undefinedValueExists && (secondLastStep.includes('/harm-claim-details') ||
+    secondLastStep.includes('/risk-of-harm') || secondLastStep === '/harm-claim-countries') &&
+    req.sessionModel.get('sih-countries')) {
+      res.redirect(`${req.baseUrl}/harm-claim-summary`);
+    }
+
+    // Bypass the adding of the SIH country if number of countries is 5 to overcome browser back button issue
+    if ((secondLastStep.includes('/harm-claim-details') || secondLastStep.includes('/risk-of-harm') ||
+    secondLastStep === '/harm-claim-countries') && req.sessionModel.get('sih-countries') &&
+    req.sessionModel.get('sih-countries').aggregatedValues.length >= 5) {
+      res.redirect(`${req.baseUrl}/harm-claim-summary`);
+    }
 
     const newItem = { itemTitle, fields };
 

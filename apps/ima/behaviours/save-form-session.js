@@ -75,14 +75,51 @@ module.exports = superclass => class extends superclass {
 
         const isContinueOnEdit = req.form.options.continueOnEdit &&
           _.get(req.form.options.forks, '[0].continueOnEdit');
-        // Redirect to final-summary if on the edit flow of the harm-claim page
-        if((req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/harm-claim-summary'
-        || req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/harm-claim' ||
-        req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/harm-claim-countries' ||
-        req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1].includes('/risk-of-harm') ||
-        req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1].includes('/harm-claim-details')) &&
-        (req.form.options.continueOnEdit === false || req.sessionModel.get('is-serious-and-irreversible') === 'no') &&
-        req.sessionModel.get('steps').includes('/human-rights-claim')) {
+
+        const sessionSteps = req.sessionModel.get('steps');
+        const formSteps = Object.keys(req.form.options.steps);
+        const orderedSessionSteps = formSteps.filter(step => sessionSteps.includes(step));
+        const latestStepInJourney = orderedSessionSteps[orderedSessionSteps.length - 1];
+
+        // logic to override the routing of the SIH section
+        if(req.form.options.route === '/harm-claim' &&
+        req.sessionModel.get('is-serious-and-irreversible') === 'yes' &&
+        req.sessionModel.get('sih-countries') !== undefined) {
+          if(req.sessionModel.get('sih-countries').aggregatedValues.length === 5) {
+            return res.redirect('/ima/harm-claim-summary');
+          }
+          return res.redirect('/ima/harm-claim-countries');
+        } else if(req.form.options.route === '/harm-claim-countries' ||
+        req.form.options.route.includes('/risk-of-harm') ||
+        req.form.options.route.includes('/harm-claim-details')) {
+          return next();
+        } else if(req.form.options.route.includes('/harm-claim-summary')) {
+          if(req.sessionModel.get('steps').includes('/evidence-upload')) {
+            return res.redirect('/ima/final-summary');
+          } else if(!req.sessionModel.get('steps').includes('/human-rights-claim')) {
+            return res.redirect('/ima/human-rights-claim');
+          }
+          return res.redirect('/ima/' + latestStepInJourney);
+        } else if (req.form.options.route === '/harm-claim' &&
+        req.sessionModel.get('is-serious-and-irreversible') === 'no') {
+          if(req.sessionModel.get('steps').includes('/evidence-upload')) {
+            return res.redirect('/ima/final-summary');
+          }
+          return next();
+        }
+
+        // logic to override the routing of the human rights section
+        if(req.form.options.route === '/human-rights-claim' &&
+        req.sessionModel.get('human-rights-claim') === 'no') {
+          if(req.sessionModel.get('steps').includes('/other-human-rights-claims')) {
+            return res.redirect('/ima/other-human-rights-claims');
+          } return next();
+        } else if(req.form.options.route === '/human-rights-family') {
+          return next();
+        } else if(req.form.options.route === '/human-rights-family-summary') {
+          return res.redirect('/ima/other-human-rights-claims');
+        } else if(req.form.options.route === '/other-human-rights-claims' &&
+        req.sessionModel.get('steps').includes('/exceptional-circumstances-claim')) {
           return res.redirect('/ima/final-summary');
         }
 
