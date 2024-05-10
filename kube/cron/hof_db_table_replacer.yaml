@@ -46,8 +46,8 @@ spec:
               - name: FILE_VAULT_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
                 value: fv-ima.sas.homeoffice.gov.uk/file
-#              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-#                value: fv-ima.stg.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                value: fv-ima.stg.sas.homeoffice.gov.uk/file
               {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
                 value: fv-ima.uat.sas-notprod.homeoffice.gov.uk/file
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -77,37 +77,37 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     key: endpoint
-                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
                     name: ima-notprod-rds
                     {{ else }}
-                    name: ima-prod
+                    name: ima-rds-prod
                     {{ end }}
               - name: DB_NAME
                 valueFrom:
                   secretKeyRef:
                     key: db_name
-                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
                     name: ima-notprod-rds
                     {{ else }}
-                    name: ima-prod
+                    name: ima-rds-prod
                     {{ end }}
               - name: DB_USER
                 valueFrom:
                   secretKeyRef:
                     key: username
-                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
                     name: ima-notprod-rds
                     {{ else }}
-                    name: ima-prod
+                    name: ima-rds-prod
                     {{ end }}
               - name: DB_PASS
                 valueFrom:
                   secretKeyRef:
                     key: password
-                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
                     name: ima-notprod-rds
                     {{ else }}
-                    name: ima-prod
+                    name: ima-rds-prod
                     {{ end }}
               - name: DB_PORT
                 value: "5432"

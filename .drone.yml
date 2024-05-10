@@ -9,7 +9,7 @@ environment:
   STG_ENV: sas-ima-stg
   UAT_ENV: sas-ima-uat
   BRANCH_ENV: sas-ima-branch
-  # PRODUCTION_URL: TO BE UPDATED ONCE URL IS PROVIDED
+  PRODUCTION_URL: www.illegal-migration-act.homeoffice.gov.uk 
   IMAGE_URL: quay.io/ukhomeofficedigital
   IMAGE_REPO: ima
   GIT_REPO: UKHomeOffice/ima
