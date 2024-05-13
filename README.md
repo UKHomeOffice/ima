@@ -25,28 +25,6 @@ Illegal Migration Act Removal Notice Claim Form
 
 You'll need to have the relevant gov notify API key to run the app. Notify is crucial to user flow functionality throughout the app. Save this value as `NOTIFY_KEY` in your `.env` file. 
 
-## Updating UAN sheets
-To upload a new UAN sheet into our S3 buckets, you will need to do the following for our notprod and prod buckets:
-
-1. Setup your local environment to have the relevant access key id, secret access key, kms key id, bucket name and aws region to be able to upload a new object to S3. Please get the assistance of a senior dev/devops who has access to the notprod and prod kube namespaces, if relevant secrets are needed to access the relevant buckets.
-
-2. Place the relevant Excel sheet into the `data` folder and name with the following name convention:
-```
-uans-<Year>-<Month>-<Day>
-```
-e.g. uans-data-2023-03-12
-
-3. Go to the bin folder and run the following bash script with the sheet name as the first argument:
-```
-cd bin
-./upload_cases_sheet.sh uans-data-<Year>-<Month>-<Day>
-```
-
-4. Update in `config.js` the `casesIds.S3Id` property with the filename, e.g. uans-data-2023-03-12
-
-5. .gitignore file checks entire repo for any .xlsx files to ensure they are not accidentally commited. However, any .xlsx files in the test folder are left alone for unit testing. Please ensure when you are finished you *REMOVE* the relevant sheet as a precaution when you are finished with it. It may be a more automated approach in future where stakeholders upload the sheet to S3 and then the service references it without the above approach needed by the team.
-
-
 ### Database setup and integration
 
 If this is a first-time install get postgres running on the default port and setup a new, empty local database called `ima`.  
@@ -123,6 +101,38 @@ If you want to run locally make sure you have different ports for Html-pdf-conve
     - `KEYCLOAK_CLIENT_ID`
     - `KEYCLOAK_USERNAME`
     - `KEYCLOAK_PASSWORD`
+
+## User verification
+
+User verification on IMA comes in two parts; checking CEPR number and DOB against a list of valid users, and tokenised email.
+
+### CEPR and DOB check
+
+A list of valid users is held in the RDS (`cepr_lookup` table). The behaviour when a user enters their CEPR number and DOB on the start page is to make an Axios request to that table with the CEPR returning any records where that CEPR was found (there should only be one as CEPR is unique and a primary key in the `cepr_lookup` table). The found record is then comapred against the DOB entered in the form as an additional check. A user who has entered a CEPR and DOb that matches a row in `cepr_lookup` can continue with the form.
+
+The `cepr_lookup` table can be updated by caseworkers on the `/cepr` route of the form (requires Keycloak login). The upload process here accepts a CSV file with certain formattig rules. This will upload the CSV to the IMS S3 bucket for later processing into the DB table by a [scheduled job](/kube/cron/hof_db_table_replacer.yaml). See [hof-db-table-replacer](https://github.com/UKHomeOffice/hof-db-table-replacer) for more information.
+
+For local development once the current DB migrations have run you should have an empty `cepr_lookup` table configured correctly. You can either upload appropriate CSV files to a test S3 bucket via `localhost:8080/cepr/upload` and use a local version of hof-db-table-replacer to import the CSV to your local database, or otherwise manually insert correctly formatted rows to your local `cepr_lookup` table.
+
+The correct format in CSV would be:
+
+```csv
+CEPR for banned under the IMA2023,DOB,Duty to remove alert
+1000234061,21/12/1996,Yes
+1000957326,20/11/1928,No
+```
+
+Note current rules for content are CEPR: 6-10 digits, DOB: dd/mm/yyyy, DTR: Yes/No (1st letter in caps)
+
+For a [PostgreSQL database you can use the following to copy above CSV directly to your IMA DB via psql](https://www.postgresql.org/docs/current/sql-copy.html):
+
+```sql
+\copy cepr_lookup(cepr, dob, dtr) FROM ‘/path/to/file.csv’ DELIMITER ',' CSV HEADER;`
+```
+
+### Tokenised email
+
+Once a user is deemed valid they can enter their email to receive a tokenised URL that will allow them to progress with the form. For IMA if an application for a CEPR is already in the `saved_applications` table (e.g. in the case of save and return) then it has already been associated with that email address. **The same email must be used to continue any application with an email address associated** otherwise it will throw an error. If the application has not yet been associated with an email address then continuing the form with the tokenised URL will add the email to the session, and after the first save the application/CEPR will be associated with that email.
 
 ## Testing
 

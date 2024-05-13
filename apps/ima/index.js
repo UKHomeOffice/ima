@@ -179,7 +179,7 @@ module.exports = {
         {
           target: '/temporary-permission',
           condition: req => {
-            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'no') {
+            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert').toLowerCase() === 'no') {
               return true;
             }
             return false;
@@ -188,7 +188,7 @@ module.exports = {
         {
           target: '/exception',
           condition: req => {
-            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert') === 'yes') {
+            if (req.sessionModel.get('has-address') === 'no' && req.sessionModel.get('duty-to-remove-alert').toLowerCase() === 'yes') {
               return true;
             }
             return false;
@@ -213,7 +213,7 @@ module.exports = {
         {
           target: '/temporary-permission',
           condition: req => {
-            if (req.sessionModel.get('duty-to-remove-alert') === 'no') {
+            if (req.sessionModel.get('duty-to-remove-alert').toLowerCase() === 'no') {
               return true;
             }
             return false;
@@ -222,7 +222,7 @@ module.exports = {
         {
           target: '/exception',
           condition: req => {
-            if (req.sessionModel.get('duty-to-remove-alert') === 'yes') {
+            if (req.sessionModel.get('duty-to-remove-alert').toLowerCase() === 'yes') {
               return true;
             }
             return false;
