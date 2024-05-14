@@ -144,6 +144,51 @@ module.exports = {
       }
     ]
   },
+  'exception-duty-to-remove': {
+    steps: [
+      {
+        step: '/exception',
+        field: 'does-exception-apply',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exception')) {
+            return null;
+          }
+          return req.sessionModel.get('does-exception-apply') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      }
+    ]
+  },
+  'removal-condition': {
+    steps: [
+      {
+        step: '/removal-condition',
+        field: 'how-removal-condition-1-applies',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/removal-condition')) {
+            return null;
+          }
+          return req.sessionModel.get('how-removal-condition-1-applies') !== '' ?
+            'Selected' + '\nDetails added' : 'Not selected';
+        }
+      }
+    ]
+  },
+  'harm-claim': {
+    steps: [
+      {
+        step: '/harm-claim',
+        field: 'is-serious-and-irreversible',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/harm-claim')) {
+            return null;
+          }
+          return req.sessionModel.get('is-serious-and-irreversible') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      }
+    ]
+  },
   'human-rights': {
     steps: [
       {
@@ -179,30 +224,8 @@ module.exports = {
       }
     ]
   },
-  'claim-details': {
+  'exceptional-circumstances': {
     steps: [
-      {
-        step: '/exception',
-        field: 'does-exception-apply',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/exception')) {
-            return null;
-          }
-          return req.sessionModel.get('does-exception-apply') === 'yes' ?
-            'Yes' + '\nDetails added' : 'No';
-        }
-      },
-      {
-        step: '/removal-condition',
-        field: 'how-removal-condition-1-applies',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/removal-condition')) {
-            return null;
-          }
-          return req.sessionModel.get('how-removal-condition-1-applies') !== '' ?
-            'Selected' + '\nDetails added' : 'Not selected';
-        }
-      },
       {
         step: '/exceptional-circumstances-claim',
         field: 'exceptional-circumstances',
@@ -211,9 +234,13 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('exceptional-circumstances') === 'yes' ?
-            'Yes' + '\nDetails added' : 'No';
+            'Yes' : 'No';
         }
-      },
+      }
+    ]
+  },
+  'temporary-permission-to-stay': {
+    steps: [
       {
         step: '/temporary-permission-to-stay',
         field: 'temporary-permission',
