@@ -648,8 +648,8 @@ module.exports = {
         'ho-number-detail',
         'human-rights-claim-details'],
       locals: { showSaveAndExit: true },
-      continueOnEdit: true,
-      next: '/human-rights-family-summary'
+      next: '/human-rights-family-summary',
+      continueOnEdit: true
     },
     '/human-rights-family-summary': {
       behaviours: [AggregateSaveUpdate, FamilyMembersLocals, SaveFormSession],
