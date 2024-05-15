@@ -7,7 +7,7 @@ metadata:
   {{ else }}
   name: data-service
   {{ end }}
-{{ file .DATA_SERVICE_INTERNAL_ANNOTATIONS | indent 2 }}
+{{ file .DATA_SERVICE_EXTERNAL_ANNOTATIONS | indent 2 }}
 spec:
   ingressClassName: nginx-internal
   tls:
