@@ -7,13 +7,13 @@ metadata:
   {{ else }}
   name: data-service
   {{ end }}
-{{ file .DATA_SERVICE_EXTERNAL_ANNOTATIONS | indent 2 }}
+{{ file .DATA_SERVICE_INTERNAL_ANNOTATIONS | indent 2 }}
 spec:
-  ingressClassName: nginx-external
+  ingressClassName: nginx-internal
   tls:
     - hosts:
       {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-        - data-service.illegal-migration-act.homeoffice.gov.uk
+        - ima-data-service.sas.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
         - ima-data-service.stg.sas.homeoffice.gov.uk
       {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
@@ -23,13 +23,13 @@ spec:
         - data-service-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
       {{ end }}
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-      secretName: branch-tls-external
+      secretName: branch-tls-internal
       {{ else }}
       secretName: data-service-cert-cmio
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-    - data-service.illegal-migration-act.homeoffice.gov.uk
+    - host: ima-data-service.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
     - host: ima-data-service.stg.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
