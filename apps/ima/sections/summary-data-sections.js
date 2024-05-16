@@ -184,7 +184,18 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('is-serious-and-irreversible') === 'yes' ?
-            'Yes' + '\nDetails added' : 'No';
+            'Yes' : 'No';
+        }
+      },
+      {
+        step: '/harm-claim-summary',
+        field: 'sih-countries',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/harm-claim-summary')) {
+            return null;
+          }
+          return req.sessionModel.get('is-serious-and-irreversible') === 'yes' ?
+            'Details added' : null;
         }
       }
     ]

@@ -614,7 +614,7 @@ module.exports = {
       addStep: 'harm-claim-countries',
       addAnotherLinkText: 'country',
       locals: { showSaveAndExit: true },
-      continueOnEdit: true,
+      continueOnEdit: false,
       template: 'harm-claim-summary',
       next: '/human-rights-claim',
       backLink: 'harm-claim'

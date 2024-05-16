@@ -75,6 +75,16 @@ module.exports = superclass => class extends superclass {
 
         const isContinueOnEdit = req.form.options.continueOnEdit &&
           _.get(req.form.options.forks, '[0].continueOnEdit');
+        // Redirect to final-summary if on the edit flow of the harm-claim page
+        if((req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/harm-claim-summary'
+        || req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/harm-claim' ||
+        req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/harm-claim-countries' ||
+        req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1].includes('/risk-of-harm') ||
+        req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1].includes('/harm-claim-details')) &&
+        (req.form.options.continueOnEdit === false || req.sessionModel.get('is-serious-and-irreversible') === 'no') &&
+        req.sessionModel.get('steps').includes('/human-rights-claim')) {
+          return res.redirect('/ima/final-summary');
+        }
 
         const loopedForkCondition = _.get(req.form.options.forks, '[0].condition.value');
         const loopedForkField = _.get(req.form.options.forks, '[0].condition.field');

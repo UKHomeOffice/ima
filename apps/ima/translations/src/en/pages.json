@@ -222,6 +222,9 @@
       "address-details": {
         "label": "Address"
       },
+      "sih-countries": {
+        "label": "Your serious and irreversible harm claims"
+      },
       "has-permission-access": {
         "label": "Access to medical records"
       },
