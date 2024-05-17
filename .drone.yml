@@ -300,7 +300,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   # Deploy to Master UAT environment.
   - name: deploy_to_uat
