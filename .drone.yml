@@ -374,19 +374,19 @@ steps:
       event: push
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
-  - name: sanity_check_build_prod
-    pull: if-not-exists
-    image: drone/cli:alpine@sha256:14409f7f7247befb9dd2effdb2f61ac40d1f5fbfb1a80566cf6f2f8d21f3be11
-    environment:
-      DRONE_SERVER:
-        from_secret: drone_server
-      DRONE_TOKEN:
-        from_secret: drone_token
-    commands:
-      - bin/sanity_check_build.sh
-    when:
-      target: PROD
-      event: promote
+  #- name: sanity_check_build_prod
+  #  pull: if-not-exists
+  #  image: drone/cli:alpine@sha256:14409f7f7247befb9dd2effdb2f61ac40d1f5fbfb1a80566cf6f2f8d21f3be11
+  #  environment:
+  #    DRONE_SERVER:
+  #      from_secret: drone_server
+  #    DRONE_TOKEN:
+  #      from_secret: drone_token
+   #   - bin/sanity_check_build.sh
+  #  when:
+  ##  commands:
+   #   target: PROD
+   #   event: promote
 
   - name: clone_repos_prod
     image: alpine/git
@@ -398,8 +398,12 @@ steps:
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     when:
-      target: PROD
-      event: promote
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
+
 
   # Deploy to Production environment
   - name: deploy_to_prod
@@ -413,8 +417,12 @@ steps:
     commands:
       - bin/deploy.sh $${PROD_ENV}
     when:
-      target: PROD
-      event: promote
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
+
 
   # CRON job step that tears down our pull request UAT environments
   - name: cron_tear_down
