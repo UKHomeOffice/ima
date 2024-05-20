@@ -19,6 +19,16 @@ module.exports = superclass => class extends superclass {
             });
             return row;
           }
+          if (row.section === 'Serious and irreversible harm') {
+            _.forEach(fields, sectionFields => {
+              _.forEach(sectionFields, field => {
+                if (field.field === 'sih-countries') {
+                  field.changeLink = '/ima/harm-claim-summary';
+                }
+              });
+            });
+            return row;
+          }
           return row;
         });
       });
