@@ -29,13 +29,13 @@ spec:
       {{ end }}
   rules:
     {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-    - host: ima-data-service.sas.homeoffice.gov.uk
+    - host: ima-data-service.internal.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-    - host: ima-data-service.stg.sas.homeoffice.gov.uk
+    - host: ima-data-service.stg.internal.sas.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-    - host: ima-data-service.uat.sas-notprod.homeoffice.gov.uk
+    - host: ima-data-service.uat.internal.sas-notprod.homeoffice.gov.uk
     {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-    - host: data-service-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
+    - host: data-service-{{ .DRONE_SOURCE_BRANCH }}.branch.internal.sas-notprod.homeoffice.gov.uk
     {{ end }}
       http:
         paths:
