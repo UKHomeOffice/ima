@@ -77,5 +77,13 @@ ignore:
        reason: no direct upgrade or patch available
        expires: 2024-07-24T00:00:00.000Z
        created: 2024-04-24T11:31:47.350Z
+<<<<<<< IMB-111
   
+=======
+  SNYK-JS-BRACES-6838727:
+    - '*':
+       reason: no direct upgrade or patch available
+       expires: 2024-08-17T00:00:00.000Z
+       created: 2024-05-17T19:05:47.350Z
+>>>>>>> master
 patch: {}

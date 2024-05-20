@@ -614,7 +614,7 @@ module.exports = {
       addStep: 'harm-claim-countries',
       addAnotherLinkText: 'country',
       locals: { showSaveAndExit: true },
-      continueOnEdit: true,
+      continueOnEdit: false,
       template: 'harm-claim-summary',
       next: '/human-rights-claim',
       backLink: 'harm-claim'
@@ -805,7 +805,7 @@ module.exports = {
       ]
     },
     '/declaration': {
-      behaviours: [Summary, Submit],
+      behaviours: [SaveFormSession, Summary, Submit],
       sections: require('./sections/summary-data-sections'),
       fields: [
         'person-declaration'
@@ -814,7 +814,7 @@ module.exports = {
       next: '/form-submitted'
     },
     '/immigration-adviser-declaration': {
-      behaviours: [Summary, Submit],
+      behaviours: [SaveFormSession, Summary, Submit],
       sections: require('./sections/summary-data-sections'),
       fields: ['use-interpreter',
         'immigration-adviser-declaration', 'language-used'
@@ -823,7 +823,7 @@ module.exports = {
       next: '/form-submitted'
     },
     '/helper-declaration': {
-      behaviours: [Summary, Submit],
+      behaviours: [SaveFormSession, Summary, Submit],
       sections: require('./sections/summary-data-sections'),
       fields: ['use-interpreter',
         'helper-declaration', 'language-used'
