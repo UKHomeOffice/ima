@@ -313,7 +313,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
   #
   # - name: acceptance_tests_uat
   #   <<: *acceptance_tests
