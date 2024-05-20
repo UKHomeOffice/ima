@@ -12,6 +12,11 @@ ignore:
         reason: HOF framework needs updating to remove request.js of which this is a dependency
         expires: 2024-07-24T00:00:00.000Z
         created: 2024-04-24T12:12:47.350Z
+  SNYK-JS-BRACES-6838727:
+    - '*':
+        reason: No upgrade or patch available
+        expires: 2024-08-17T00:00:00.000Z
+        created: 2024-05-17T12:12:47.350Z
   SNYK-JS-XML2JS-5414874:
     - '*':
         reason: No direct upgrade or patch available
@@ -72,4 +77,5 @@ ignore:
        reason: no direct upgrade or patch available
        expires: 2024-07-24T00:00:00.000Z
        created: 2024-04-24T11:31:47.350Z
+  
 patch: {}
