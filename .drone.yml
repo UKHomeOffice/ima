@@ -309,8 +309,11 @@ steps:
     commands:
       - bin/deploy.sh $${UAT_ENV}
     when:
-      branch: master
-      event: push
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
   #
   # - name: acceptance_tests_uat
   #   <<: *acceptance_tests
@@ -337,8 +340,11 @@ steps:
     commands:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o " '.*' " | tr -d "[ ']" | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
-      branch: master
-      event: push
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # Tear down pull request UAT environment
   - name: tear_down_branch
@@ -355,8 +361,11 @@ steps:
     commands:
       - bin/deploy.sh tear_down
     when:
-      branch: master
-      event: push
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # Deploy to Staging environment
   - name: deploy_to_stg
@@ -370,8 +379,11 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      branch: master
-      event: push
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
@@ -413,8 +425,11 @@ steps:
     commands:
       - bin/deploy.sh $${PROD_ENV}
     when:
-      target: PROD
-      event: promote
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # CRON job step that tears down our pull request UAT environments
   - name: cron_tear_down
