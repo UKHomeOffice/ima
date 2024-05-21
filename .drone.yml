@@ -98,7 +98,8 @@ steps:
       branch:
         include:
           - master
-      event: push
+          - feature/*
+      event: pull_request
 
   - name: linting_deploy
     <<: *linting
@@ -106,7 +107,8 @@ steps:
       branch:
         include:
           - master
-      event: push
+          - feature/*
+      event: pull_request
 
   - name: unit_tests_deploy
     <<: *unit_tests
@@ -114,7 +116,8 @@ steps:
       branch:
         include:
           - master
-      event: push
+          - feature/*
+      event: pull_request
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
@@ -122,7 +125,8 @@ steps:
       branch:
         include:
           - master
-      event: push
+          - feature/*
+      event: pull_request
   #
   # - name: ui_integration_tests_deploy
   #   <<: *ui_integration_tests
@@ -413,8 +417,11 @@ steps:
     commands:
       - bin/deploy.sh $${PROD_ENV}
     when:
-      target: PROD
-      event: promote
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # CRON job step that tears down our pull request UAT environments
   - name: cron_tear_down
