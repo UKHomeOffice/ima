@@ -208,7 +208,7 @@ steps:
         include:
           - master
           - feature/*
-      event: pull_request
+      event: push
 
   - name: setup_branch
     pull: if-not-exists
@@ -370,8 +370,11 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      branch: master
-      event: push
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
@@ -413,8 +416,11 @@ steps:
     commands:
       - bin/deploy.sh $${PROD_ENV}
     when:
-      target: PROD
-      event: promote
+      branch:
+        include:
+          - master
+          - feature/*
+      event: pull_request
 
   # CRON job step that tears down our pull request UAT environments
   - name: cron_tear_down
