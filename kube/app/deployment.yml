@@ -124,7 +124,7 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
                   name: ima-s3-bucket-secret
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: ima-stg-s3
