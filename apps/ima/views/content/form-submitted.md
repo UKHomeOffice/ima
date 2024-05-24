@@ -3,14 +3,14 @@
   <li>{{#t}}pages.form-submitted.list2{{/t}}</li>
 </ul>
 
-If your address changes, email your new address to IMAqueries@homeoffice.gov.uk
+If your address changes, email your new address to {{queriesEmail}}
 
 ### If you need to send more evidence
 <div class="evidence-list">
 If you have been given a claim period and need to send evidence after the end of the period, you need to:
 
 1. apply for an extension before the end end of your claim period
-2. send your evidence to IMAqueries@homeoffice.gov.uk as soon as possible
+2. send your evidence to {{queriesEmail}} as soon as possible
 </div>
 <br>
 Do not wait for confirmation that you have been granted an extension to send your evidence.

@@ -32,6 +32,7 @@ describe('Server.js app file', () => {
     appsCeprStub = sinon.stub();
     appsImaStub = sinon.stub();
     behavioursClearSessionStub = sinon.stub();
+    behavioursSetStaticEmailsStub = sinon.stub();
     req.get.withArgs('host').returns('localhost');
 
     useStub.onCall(0).yields(req, res, next);
@@ -44,6 +45,7 @@ describe('Server.js app file', () => {
       './apps/cepr': appsCeprStub,
       './apps/verify': appsVerifyStub,
       'hof/components/clear-session': behavioursClearSessionStub,
+      './apps/ima/behaviours/set-static-emails': behavioursSetStaticEmailsStub,
       './config': { env: 'test' }
     });
   });
@@ -54,7 +56,8 @@ describe('Server.js app file', () => {
         appName: 'Illegal Migration Act',
         theme: 'govUK',
         behaviours: [
-          behavioursClearSessionStub
+          behavioursClearSessionStub,
+          behavioursSetStaticEmailsStub
         ],
         build: {
           watch: {
