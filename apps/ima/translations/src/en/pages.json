@@ -163,8 +163,17 @@
       "immigration-detention": {
         "header": "Immigration detention"
       },
-      "claim-details": {
-        "header": "Claim details"
+      "exception-to-duty-to-remove": {
+        "header": "Exception to duty to remove"
+      },
+      "removal-conditions": {
+        "header": "Removal conditions"
+      },
+      "exceptional-circumstances": {
+        "header": "Exceptional circumstances"
+      },
+      "temporary-permission": {
+        "header": "Temporary permission to stay"
       },
       "evidence-documents": {
         "header": "Evidence"
@@ -232,13 +241,43 @@
         "label": "Exception applies"
       },
       "how-removal-condition-1-applies": {
-        "label": "Select what removal conditions apply"
+        "label": "Reasons for removal condition 1"
+      },
+      "entered-without-permission": {
+        "label": "No permission to enter UK"
+      },
+      "entered-by-deception": {
+        "label": "Entered by deception"
+      },
+      "deportation-order-applied": {
+        "label": "A deportation order applies"
+      },
+      "entered-with-travel-ban": {
+        "label": "A travel ban applies"
+      },
+      "arrived-without-clearance": {
+        "label": "Arrived without a valid entry clearance (visa)"
+      },
+      "without-eta": {
+        "label": "Arrived without a valid electronic travel authorisation (ETA)"
+      },
+      "arrival-after-date": {
+        "label": "Arrived in the UK on or after 20 July 2023"
+      },
+      "is-life-threatened": {
+        "label": "Came from a country where your life and liberty was threatened"
+      },
+      "permission-to-enter-or-stay": {
+        "label": "Permission to enter or stay in the UK"
       },
       "exceptional-circumstances": {
         "label": "Cannot be removed from the UK or to your home country"
       },
+      "exceptional-circumstances-details": {
+        "label": "Your exceptional circumstances"
+      },
       "temporary-permission": {
-        "label": "Request temporary permission to stay"
+        "label": "Request for temporary permission to stay"
       },
       "temporary-permission-details-ban-only": {
         "label": "Request for temporary permission to stay"

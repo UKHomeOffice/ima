@@ -130,17 +130,154 @@ module.exports = {
         step: '/immigration-detention',
         field: 'has-address',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/immigration-detention') || req.sessionModel.get('has-address') === 'no') {
+          if (!req.sessionModel.get('steps').includes('/immigration-detention')) {
             return null;
           }
-          return 'Yes';
-        },
-        dependsOn: 'has-address'
+          return list;
+        }
       },
       {
         step: '/medical-records',
         field: 'has-permission-access',
-        dependsOn: 'has-permission-access'
+        parse: (list, req) => {
+          if (req.sessionModel.get('has-address') === 'no') {
+            return null;
+          }
+          return list;
+        },
+        dependsOn: 'has-address'
+      }
+    ]
+  },
+  'exception-to-duty-to-remove': {
+    steps: [
+      {
+        step: '/exception',
+        field: 'does-exception-apply',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exception')) {
+            return null;
+          }
+          return req.sessionModel.get('does-exception-apply') === 'yes' ?
+            'Yes' + '\nDetails added' : 'No';
+        }
+      }
+    ]
+  },
+  'removal-conditions': {
+    steps: [
+      {
+        step: '/removal-condition',
+        field: 'how-removal-condition-1-applies',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/removal-condition')) {
+            return null;
+          } else if (req.sessionModel.get('how-removal-condition-1-applies') !== '') {
+            const removalConditionsArray = req.sessionModel.get('how-removal-condition-1-applies').toString().split(',');
+            return removalConditionsArray.length > 1 ?
+              removalConditionsArray.length + ' reasons selected' : '1 reason selected';
+          }
+          return 'Not selected';
+        }
+      },
+      {
+        step: '/without-permission',
+        field: 'entered-without-permission',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/without-permission')) {
+            return null;
+          }
+          return req.sessionModel.get('entered-without-permission') === 'no' ?
+            list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/deception',
+        field: 'entered-by-deception',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/deception')) {
+            return null;
+          }
+          return req.sessionModel.get('entered-by-deception') === 'no' ?
+            list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/deportation-order',
+        field: 'deportation-order-applied',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/deportation-order')) {
+            return null;
+          }
+          return req.sessionModel.get('deportation-order-applied') === 'no' ?
+            list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/travel-ban',
+        field: 'entered-with-travel-ban',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/travel-ban')) {
+            return null;
+          }
+          return req.sessionModel.get('entered-with-travel-ban') === 'no' ?
+            list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/entry-clearance',
+        field: 'arrived-without-clearance',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/entry-clearance')) {
+            return null;
+          }
+          return req.sessionModel.get('arrived-without-clearance') === 'no' ?
+            list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/electronic-travel-authorisation',
+        field: 'without-eta',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/electronic-travel-authorisation')) {
+            return null;
+          }
+          return req.sessionModel.get('without-eta') === 'no' ?
+            list + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/arrival-date',
+        field: 'arrival-after-date',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/arrival-date')) {
+            return null;
+          }
+          return req.sessionModel.get('arrival-after-date') === 'no' ?
+            list + '\n' + req.sessionModel.get('arrived-date') + '\nDetails added' : list;
+        }
+      },
+      {
+        step: '/threatened-life-or-liberty',
+        field: 'is-life-threatened',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/threatened-life-or-liberty')) {
+            return null;
+          }
+          return req.sessionModel.get('is-life-threatened') === 'yes' ?
+            list + '\n' + 'Details added' : list;
+        }
+      },
+      {
+        step: '/permission',
+        field: 'permission-to-enter-or-stay',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/permission')) {
+            return null;
+          }
+          return req.sessionModel.get('permission-to-enter-or-stay') === 'yes' ?
+            list + '\n' + 'Details added' : list;
+        }
       }
     ]
   },
@@ -230,7 +367,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('other-human-rights-claim') === 'yes' ?
-            list + '\nDetails added' : list;
+            'Details added' : list;
         }
       }
     ]
@@ -247,6 +384,31 @@ module.exports = {
           return req.sessionModel.get('exceptional-circumstances') === 'yes' ?
             'Yes' : 'No';
         }
+      },
+      {
+        step: '/exceptional-circumstances-details',
+        field: 'exceptional-circumstances-details',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/exceptional-circumstances-details')) {
+            return null;
+          }
+          return 'Details added';
+        }
+      }
+    ]
+  },
+  'temporary-permission': {
+    steps: [
+      {
+        step: '/temporary-permission',
+        field: 'temporary-permission-details-ban-only',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/temporary-permission')) {
+            return null;
+          }
+          return (typeof req.sessionModel.get('temporary-permission-details-ban-only') !== 'undefined') ?
+            'Details added' : list;
+        }
       }
     ]
   },
@@ -260,18 +422,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('temporary-permission') === 'yes' ?
-            list + '\nDetails added' : list;
-        }
-      },
-      {
-        step: '/temporary-permission',
-        field: 'temporary-permission-details-ban-only',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/temporary-permission')) {
-            return null;
-          }
-          return (typeof req.sessionModel.get('temporary-permission-details-ban-only') !== 'undefined') ?
-            'Details added' : list;
+            'Yes' + '\nDetails added' : 'No';
         }
       }
     ]

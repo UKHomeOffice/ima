@@ -86,6 +86,14 @@ module.exports = superclass => class extends superclass {
           return res.redirect('/ima/final-summary');
         }
 
+        // Redirect to final-summary if on the edit flow of the other-human-rights-claims page
+        if((req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/human-rights-family-summary'
+        || req.sessionModel.get('steps')[req.sessionModel.get('steps').length - 1] === '/human-rights-claim' ) &&
+        req.form.options.continueOnEdit === false &&
+        req.sessionModel.get('steps').includes('/exceptional-circumstances-claim')) {
+          return res.redirect('/ima/final-summary');
+        }
+
         const loopedForkCondition = _.get(req.form.options.forks, '[0].condition.value');
         const loopedForkField = _.get(req.form.options.forks, '[0].condition.field');
         const loopedFieldMatchesForkCondition = loopedForkField &&
