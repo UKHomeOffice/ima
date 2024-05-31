@@ -328,7 +328,7 @@ module.exports = {
         step: '/harm-claim-summary',
         field: 'sih-countries',
         parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/harm-claim-summary')) {
+          if (req.sessionModel.get('sih-countries') === undefined || req.sessionModel.get('sih-countries').length < 1) {
             return null;
           }
           return req.sessionModel.get('is-serious-and-irreversible') === 'yes' ?

@@ -1,6 +1,9 @@
 {{<partials-page}}
   {{$page-content}}
  
+  {{#noMoreHarmClaims}}
+    <p class="govuk-body"><strong>You will not be able to add another country as 5 have already been added. To add another, please go to the summary and delete one first.</strong></p>
+  {{/noMoreHarmClaims}}
   {{#markdown}}harm-claim-details{{/markdown}}
     <br>
     {{#renderField}}reason-in-sih{{/renderField}}

@@ -6,7 +6,7 @@ module.exports = superclass => class extends superclass {
   locals(req, res) {
     const locals = super.locals(req, res);
     // set change link for for family-members field
-    if (locals.route === 'final-summary') {
+    if (locals.route === 'final-summary' || locals.route === 'summary') {
       _.forEach(locals.rows, fields => {
         locals.rows = locals.rows.map(row => {
           if (row.section === 'Human rights') {

@@ -15,9 +15,9 @@ module.exports = superclass => class extends superclass {
       const countryName = req.sessionModel.get('sih-countries').aggregatedValues;
       _.forEach(i.fields, field => {
         if (field.field === 'is-risk-in-country') {
-          if (field.value.includes('yes')) {
+          if (field.value !== undefined && field.value.includes('yes')) {
             field.parsed = 'Yes';
-          } else if (field.value.includes('no')) {
+          } else if (field.value !== undefined && field.value.includes('no')) {
             field.parsed = 'No';
           }
         }
