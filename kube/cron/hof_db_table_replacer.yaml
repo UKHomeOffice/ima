@@ -1,0 +1,141 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: hof-db-table-replacer-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: hof-db-table-replacer
+  {{ end }}
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 10
+      template:
+        metadata:
+          labels:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            name: hof-db-table-replacer-{{ .DRONE_SOURCE_BRANCH }}
+            {{ else }}
+            name: hof-db-table-replacer
+            {{ end }}
+        spec:
+          containers:
+          - name: hof-db-table-replacer
+            image: quay.io/ukhomeofficedigital/hof-db-table-replacer:e0d59bb9dd3212434b16ebeb18661bd3e6c2d744
+            imagePullPolicy: Always
+            securityContext:
+              runAsNonRoot: true
+            envFrom:
+              - configMapRef:
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                  name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                  {{ else }}
+                  name: configmap
+                  {{ end }}
+            env:
+              - name: TZ
+                value: Europe/London
+              - name: NODE_TLS_REJECT_UNAUTHORIZED
+                value: "0"
+              - name: NOTIFY_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: notify-key
+                    key: notify-key
+              - name: FILE_VAULT_URL
+              {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+                value: fv-ima.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                value: fv-ima.stg.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+                value: fv-ima.uat.sas-notprod.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
+              {{ end }}
+              - name: KEYCLOAK_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-client
+                    key: secret
+              - name: KEYCLOAK_CLIENT_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-client
+                    key: id
+              - name: KEYCLOAK_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-user
+                    key: username
+              - name: KEYCLOAK_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-user
+                    key: password
+              - name: DB_HOST
+                valueFrom:
+                  secretKeyRef:
+                    key: endpoint
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
+                    name: ima-notprod-rds
+                    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                    name: ima-stg-rds
+                    {{ else }}
+                    name: ima-rds-prod
+                    {{ end }}
+              - name: DB_NAME
+                valueFrom:
+                  secretKeyRef:
+                    key: db_name
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
+                    name: ima-notprod-rds
+                    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                    name: ima-stg-rds
+                    {{ else }}
+                    name: ima-rds-prod
+                    {{ end }}
+              - name: DB_USER
+                valueFrom:
+                  secretKeyRef:
+                    key: username
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
+                    name: ima-notprod-rds
+                    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                    name: ima-stg-rds
+                    {{ else }}
+                    name: ima-rds-prod
+                    {{ end }}
+              - name: DB_PASS
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
+                    name: ima-notprod-rds
+                    {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                    name: ima-stg-rds
+                    {{ else }}
+                    name: ima-rds-prod
+                    {{ end }}
+              - name: DB_PORT
+                value: "5432"
+              - name: DB_INSERT_BATCH_SIZE
+                value: "2000"
+              - name: DB_CLIENT
+                value: knex
+              - name: DB_MODEL
+                value: knex-postgres-model
+              - name: SERVICE_NAME
+                value: ima
+              - name: NOTIFICATIONS_CLIENT
+                value: govuk-notify
+              - name: NOTIFICATIONS_MODEL
+                value: govuk-notify-model
+            resources:
+              requests:
+                memory: 4Gi
+                cpu: 200m
+              limits:
+                memory: 8Gi
+                cpu: 400m
+          restartPolicy: OnFailure

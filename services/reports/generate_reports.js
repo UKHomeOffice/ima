@@ -14,7 +14,6 @@ const generateReports = async () => {
 
   try {
     await ReportsFactory.createReport('24-hour-report', logger);
-    await ReportsFactory.createReport('unsubmitted-reports', logger);
   } catch(e) {
     logger.info('error', e);
   }

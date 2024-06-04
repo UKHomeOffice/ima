@@ -32,7 +32,6 @@ spec:
     spec:
       containers:
         - name: data-service
-          # release v2.0.1
           image: quay.io/ukhomeofficedigital/hof-rds-api:f72489e134c4e80740cb919602409b61f82ae598
           imagePullPolicy: Always
           envFrom:
@@ -46,7 +45,7 @@ spec:
             - name: SERVICE_NAME
               value: "ima"
             - name: LATEST_MIGRATION
-              # value: TO BE UPDATED WITH LATEST MIGRATION
+              value: "20240418094037_create_cepr_lookup"
             - name: MAX_PAYLOAD_SIZE
               value: "30mb"
             - name: REQUEST_TIMEOUT
@@ -57,37 +56,45 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
                   name: ima-notprod-rds
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: ima-stg-rds
                   {{ else }}
-                  name: ima-prod
+                  name: ima-rds-prod
                   {{ end }}
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: db_name
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
                   name: ima-notprod-rds
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: ima-stg-rds
                   {{ else }}
-                  name: ima-prod
+                  name: ima-rds-prod
                   {{ end }}
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   key: username
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
                   name: ima-notprod-rds
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: ima-stg-rds
                   {{ else }}
-                  name: ima-prod
+                  name: ima-rds-prod
                   {{ end }}
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   key: password
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV)}}
                   name: ima-notprod-rds
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: ima-stg-rds
                   {{ else }}
-                  name: ima-prod
+                  name: ima-rds-prod
                   {{ end }}
           resources:
             requests:

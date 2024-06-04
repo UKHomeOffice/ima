@@ -1,0 +1,47 @@
+{{<partials-page}}
+  {{$encoding}}enctype="multipart/form-data"{{/encoding}}
+  {{$page-content}}
+    <p>{{#t}}pages.upload.paragraph1{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>{{#t}}pages.upload.list1{{/t}}</li>
+      <li>{{#t}}pages.upload.list2{{/t}}</li>
+      <li>{{#t}}pages.upload.list3{{/t}}</li>
+      <li>{{#t}}pages.upload.list4{{/t}}</li>
+    </ul>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          {{#t}}pages.upload.detail-summary{{/t}}
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">{{#t}}pages.upload.detail-text1{{/t}}</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>{{#t}}pages.upload.detail-list1{{/t}}</li>
+          <li>{{#t}}pages.upload.detail-list2{{/t}}</li>
+          <li>{{#t}}pages.upload.detail-list3{{/t}}</li>
+          <li>{{#t}}pages.upload.detail-list4{{/t}}</li>
+        </ul>
+        <div class="image-wrapper">
+          <img src="/public/images/csv_example.png" width="100%" alt="" />
+        </div>
+      </div>
+    </details>
+
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        {{#t}}pages.upload.warning{{/t}}
+      </strong>
+    </div>
+
+    <div id="loader-container" class=""></div>
+    <div id="onboard-cases">{{#input-submit}}begin-import{{/input-submit}}</div>
+  {{/page-content}}
+{{/partials-page}}

@@ -98,7 +98,7 @@ describe('apps/verify/behaviours/send-verification-email', () => {
 
     it('sends an email for an application', done => {
       req.get.withArgs('host').returns('localhost');
-      req.sessionModel.get.withArgs('uan').returns('1876-1234-1234-5678');
+      req.sessionModel.get.withArgs('cepr').returns('1876-1234-1234-5678');
       const data = [];
       axiosGetStub.resolves({ data: data });
       req.form.values['user-email'] = 'buzz@lightyear.co.uk';
@@ -117,7 +117,7 @@ describe('apps/verify/behaviours/send-verification-email', () => {
           id: 12,
           created_at: '2023-10-09T17:51:38.339Z',
           updated_at: '2023-10-09T21:59:32.903Z',
-          uan: '9876-1234-1234-5678',
+          cepr: '9876-1234-1234-5678',
           email: 'marvel@test.com',
           date_of_birth: '2000/01/01',
           session: '{}',

@@ -1,0 +1,8 @@
+{
+  "bulk-upload-cepr": {
+    "label": "Upload CSV File"
+  },
+  "confirm-data-checked": {
+    "label": "I confirm that this file contains complete and correct records."
+  }
+}

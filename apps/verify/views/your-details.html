@@ -1,11 +1,11 @@
 {{<partials-page}} 
 {{$page-content}} 
-  <div class="govuk-form-group {{#errors.uan}}govuk-form-group--error{{/errors.uan}}">
-    <label class="govuk-label" for="uan">
-      <strong>{{#t}}fields.uan.label{{/t}}</strong>
+  <div class="govuk-form-group {{#errors.cepr}}govuk-form-group--error{{/errors.cepr}}">
+    <label class="govuk-label" for="cepr">
+      <strong>{{#t}}fields.cepr.label{{/t}}</strong>
     </label>
-    <p class="details-uan-dob">Find this on the duty to remove letter given to you by the Home Office.</p>
-    {{#input-text}}uan{{/input-text}}
+    <p class="details-uan-dob">Find this on the Illegal Migration Act notice given to you by the Home Office.</p>
+    {{#input-text}}cepr{{/input-text}}
   </div>
 
   <div
@@ -13,7 +13,7 @@
     <fieldset>
       <legend class="govuk-fieldset__legend">
         <strong>{{#t}}fields.date-of-birth.legend{{/t}}</strong>
-        <p class="details-uan-dob">Find this on the duty to remove letter given to you by the Home Office.</p>
+        <p class="details-uan-dob">Find this on the Illegal Migration Act notice given to you by the Home Office.</p>
         <span id="date-of-birth-hint" class="govuk-hint">
           {{#t}}fields.date-of-birth.hint{{/t}}
         </span>

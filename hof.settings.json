@@ -14,6 +14,7 @@
   "translations": "./apps/ima/translations",
   "routes": [
     "./apps/ima",
+    "./apps/cepr",
     "./apps/verify"
   ],
   "session": {

@@ -8,37 +8,304 @@
     "paragraph": "There are no cases associated with this email. Please check you used the correct email, and access this service again via the <a href='/start'>IMA start page</a>."
   },
   "save-and-exit": {
-    "header": "You have left the form",
-    "paragraph1": "Your progress has been saved."
+    "header": "Your information has been saved",
+    "paragraph1": "To continue your form, use the link we have emailed to:"
   },
-  "current-progress": {
+  "helper-details": {
+    "header": "Helper details",
+    "paragraph": "Answer all the following questions as if you are the person on the Illegal Migration Act notice."
+  },
+  "full-name": {
+    "header": "What is your full name?"
+  },
+  "your-email": {
+    "header": "Is this your email address?",
+    "hint": "{{values.user-email}}"
+  },
+  "summary": {
     "header": "Information you have given us"
   },
   "cannot-use-form": {
-    "header": "You cannot use this form",
-    "paragraph-1": "You can only continue your claim if you are in the UK."
+    "header": "You cannot use this form"
   },
   "token-invalid": {
     "header": "This link has expired"
   },
+  "immigration-adviser-details": {
+    "header": "Immigration adviser details",
+    "paragraph": "We will use these detail if we need to contact you.",
+    "address": "Postal address"
+  },
+  "is-legal-representative-email": {
+    "header": "Is {{values.user-email}} your email address?"
+  },
+  "medical-records": {
+    "header": "Your medical records",
+    "response-label1": "You can change your mind at any time by emailing [EMAIL ADDRESS] to tell the Home Office they no longer have permission to access your medical records."
+  },
+  "exception": {
+    "header": "Does an exception to the duty to remove apply to you?"
+  },
+  "removal-condition": {
+    "header": "Why does your Illegal Migration Act notice say removal condition 1 applies to you?",
+    "hint": "Select all that apply"
+  },
+  "without-permission": {
+    "header": "Did you need permission to enter the UK but entered without it?"
+  },
+  "travel-ban": {
+    "header": "Did you arrive in or enter the UK, when a travel ban applied to you?",
+    "hint": "This includes a travel ban imposed by the United Nations Security Council, or UK under the sanctions and Anti-Money Laundering Act 2018."
+  },
+  "deception": {
+    "header": "Did you enter the UK with permission you got by deception?",
+    "hint": "For example, if you or someone else lied on your application."
+  },
+  "entry-clearance": {
+    "header": "Did you need a valid entry clearance (visa) but arrived without one?"
+  },
+  "deportation-order": {
+    "header": "Did you enter the UK when a deportation order applied to you?"
+  },
+  "electronic-travel-authorisation": {
+    "header": "Did you need a valid electronic travel authorisation (ETA) but arrived without one?"
+  },
+  "deportation-order-applied": {
+    "header": "Did you enter the UK when a deportation order applied to you?"
+  },
+  "arrival-date": {
+    "header": "Did you arrive in the UK on or after 20 July 2023?"
+  },
+  "threatened-life-or-liberty": {
+    "header": "Did you come directly to the UK from a country where your life or liberty was threatened?"
+  },
+  "risk-of-harm": {
+    "header":"Would you be at risk of serious and irreversible harm in {{values.country-1}}?"
+  },
+  "harm-claim-countries": {
+    "header":"Which country can you make a serious and irreversible harm claim against?",
+    "paragraph1":"Check your Illegal Migration Act notice for the countries this applies to. You cannot make a claim against your country of nationality.",
+    "paragraph2":"You can add another country later"
+  },
+  "harm-claim-details": {
+    "header":"Serious and irreversible harm in {{values.country-1}}"
+  },
+  "harm-claim-summary": {
+    "header":"Summary of your serious and irreversible harm claims"
+  },
+  "human-rights-claim": {
+    "header": "Are you making a human rights claim because you have family in the UK?"
+  },
+  "human-rights-family": {
+    "header": "Tell us about a family member in the UK"
+  },
+  "human-rights-family-summary": {
+    "header": "Your family in the UK"
+  },
+  "other-human-rights-claims": {
+    "header": "Do you want to make any other human rights claims?"
+  },
+  "exceptional-circumstances-claim": {
+    "header": "Are there any exceptional circumstances which mean you cannot currently be removed from the UK or to your home country?"
+  },
+  "exceptional-circumstances-details": {
+    "header": "What are the exceptional circumstances which mean you cannot currently be removed from the UK or to your home country?"
+  },
+  "temporary-permission": {
+  "header": "Why should you be granted temporary permission to stay in the UK?"
+  },
+  "temporary-permission-to-stay": {
+    "header": "Are there any other reasons you should be granted temporary permission to stay in the UK?"
+  },
+  "evidence-upload": {
+    "header": "Upload evidence"
+  },
+  "submitting-late": {
+    "header": "Are you submitting this form late?"
+  },
+  "submitting-late-details": {
+    "header": "Why are you submitting this form late?"
+  },
   "confirm": {
-    "header": "Check your answers",
+    "header": "Information you have given us",
     "submit-warning": "You will not be able to change your answers after you submit.",
     "sections": {
       "case-details": {
         "header": "Case details"
+      },
+      "immigration-adviser-details": {
+        "header": "Immigration adviser details"
+      },
+      "personal-details": {
+        "header": "Claimant details"
+      },
+      "exception-duty-to-remove": {
+        "header": "Exception to duty to remove"
+      },
+      "removal-condition": {
+        "header": "Removal conditions"
+      },
+      "harm-claim": {
+        "header": "Serious and irreversible harm"
+      },
+      "human-rights": {
+        "header": "Human rights"
+      },
+      "temporary-permission-to-stay": {
+        "header": "Temporary permission to stay"
+      },
+      "exceptional-circumstances": {
+        "header": "Exceptional circumstances"
+      },
+      "is-serious-and-irreversible":{
+        "label": "Making claim"
+      },
+      "immigration-detention": {
+        "header": "Immigration detention"
+      },
+      "exception-to-duty-to-remove": {
+        "header": "Exception to duty to remove"
+      },
+      "removal-conditions": {
+        "header": "Removal conditions"
+      },
+      "exceptional-circumstances": {
+        "header": "Exceptional circumstances"
+      },
+      "temporary-permission": {
+        "header": "Temporary permission to stay"
+      },
+      "evidence-documents": {
+        "header": "Evidence"
       }
     },
     "fields": {
-      "uan": {
-        "label": "Unique Application Number (UAN)"
+      "cepr": {
+        "label": "CEPR"
       },
       "name": {
         "label": "Full name"
       },
+      "email-address": {
+        "label": "Email"
+      },
       "date-of-birth": {
         "label": "Date of birth"
+      },
+      "is-serious-and-irreversible": {
+        "label": "Making a serious irreversible harm claim"
+      },
+      "human-rights-claim": {
+        "label": "Making a human rights claim because of family in the UK"
+      },
+      "other-human-rights-claim": {
+        "label": "Other human rights claims"
+      },
+      "family-members": {
+        "label": "Your family in the UK"
+      },
+      "who-are-you": {
+        "label": "Form completed by"
+      },
+      "legal-representative-fullname": {
+        "label": "Full name"
+      },
+      "legal-representative-email": {
+        "label": "Email"
+      },
+      "legal-representative-phone-number": {
+        "label": "Phone number"
+      },
+      "legal-representative-address": {
+        "label": "Address"
+      },
+      "current-email": {
+        "label": "Email"
+      },
+      "phone-number": {
+        "label": "Phone number"
+      },
+      "has-address": {
+        "label": "Immigration detention"
+      },
+      "address-details": {
+        "label": "Address"
+      },
+      "sih-countries": {
+        "label": "Your serious and irreversible harm claims"
+      },
+      "has-permission-access": {
+        "label": "Access to medical records"
+      },
+      "does-exception-apply": {
+        "label": "Exception applies"
+      },
+      "how-removal-condition-1-applies": {
+        "label": "Reasons for removal condition 1"
+      },
+      "entered-without-permission": {
+        "label": "No permission to enter UK"
+      },
+      "entered-by-deception": {
+        "label": "Entered by deception"
+      },
+      "deportation-order-applied": {
+        "label": "A deportation order applies"
+      },
+      "entered-with-travel-ban": {
+        "label": "A travel ban applies"
+      },
+      "arrived-without-clearance": {
+        "label": "Arrived without a valid entry clearance (visa)"
+      },
+      "without-eta": {
+        "label": "Arrived without a valid electronic travel authorisation (ETA)"
+      },
+      "arrival-after-date": {
+        "label": "Arrived in the UK on or after 20 July 2023"
+      },
+      "is-life-threatened": {
+        "label": "Came from a country where your life and liberty was threatened"
+      },
+      "permission-to-enter-or-stay": {
+        "label": "Permission to enter or stay in the UK"
+      },
+      "exceptional-circumstances": {
+        "label": "Cannot be removed from the UK or to your home country"
+      },
+      "exceptional-circumstances-details": {
+        "label": "Your exceptional circumstances"
+      },
+      "temporary-permission": {
+        "label": "Request for temporary permission to stay"
+      },
+      "temporary-permission-details-ban-only": {
+        "label": "Request for temporary permission to stay"
+      },
+      "images": {
+        "label": "Files uploaded"
       }
     }
+  },
+  "declaration": {
+    "header": "Declaration"
+  },
+  "immigration-adviser-declaration": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to {{values.name}}?",
+    "paragraph2": "Include any dialects"
+  },
+  "helper-declaration": {
+    "header": "Declaration",
+    "paragraph1": "What language was used to read the completed form to {{values.name}}?",
+    "paragraph2": "Include any dialects"
+  },
+  "form-submitted": {
+    "confirmed": "Form Submitted",
+    "paragraph1": "We have sent a copy of your completed form to:",
+    "header2": "What happens next",
+    "paragraph2": "We will email our decision on your claim to your immigration adviser. If you do not have one, we will send our decision directly to you by:",
+    "list1": "email",
+    "list2": "post, if you do not have email"
   }
 }

@@ -1,0 +1,19 @@
+{{<partials-page}}
+{{$encoding}}enctype="multipart/form-data"{{/encoding}}
+  {{$page-content}}
+
+  {{#noMoreHarmClaims}}
+    <p class="govuk-body"><strong>You will not be able to add another country as 5 have already been added. To add another, please go to the summary and delete one first.</strong></p>
+  {{/noMoreHarmClaims}}
+
+  <p>{{#t}}pages.harm-claim-countries.paragraph1{{/t}}</p>
+  <br>
+  
+  <div id="harm-claim-country-repeater" class="repeater">
+    {{#select}}country-1{{/select}}
+  </div>
+  <p>{{#t}}pages.harm-claim-countries.paragraph2{{/t}}</p>
+  <br>
+  {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
