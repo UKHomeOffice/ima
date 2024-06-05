@@ -2,7 +2,8 @@
   "appName": "Illegal Migration Act",
   "theme": "govUK",
   "behaviours": [
-    "hof/components/clear-session"
+    "hof/components/clear-session",
+    "./apps/ima/behaviours/set-static-emails"
   ],
   "build": {
     "watch": {

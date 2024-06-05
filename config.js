@@ -7,6 +7,7 @@ module.exports = {
   PRETTY_DATE_FORMAT: 'Do MMMM YYYY',
   dateTimeFormat: 'D MMM YYYY HH:mm:ss',
   env: env,
+  queriesEmail: process.env.QUERIES_EMAIL,
   dataDirectory: './data',
   aws: {
     bucket: process.env.AWS_BUCKET,
