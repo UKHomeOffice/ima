@@ -159,7 +159,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('does-exception-apply') === 'yes' ?
-            'Yes' + '\nDetails added' : 'No';
+            'Yes' + '\n' + req.sessionModel.get('does-exception-apply-detail') : 'No';
         }
       }
     ]
@@ -188,7 +188,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('entered-without-permission') === 'no' ?
-            list + '\nDetails added' : list;
+            'No' : list;
         }
       },
       {
@@ -199,7 +199,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('entered-by-deception') === 'no' ?
-            list + '\nDetails added' : list;
+            list + '\n' + req.sessionModel.get('entered-by-deception-detail') : list;
         }
       },
       {
@@ -210,7 +210,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('deportation-order-applied') === 'no' ?
-            list + '\nDetails added' : list;
+            list + '\n' +  req.sessionModel.get('deportation-order-applied-detail') : list;
         }
       },
       {
@@ -221,7 +221,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('entered-with-travel-ban') === 'no' ?
-            list + '\nDetails added' : list;
+            list + '\n' + req.sessionModel.get('entered-with-travel-ban-detail') : list;
         }
       },
       {
@@ -232,7 +232,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('arrived-without-clearance') === 'no' ?
-            list + '\nDetails added' : list;
+            list + '\n"' + req.sessionModel.get('arrived-without-clearance-detail') : list;
         }
       },
       {
@@ -243,7 +243,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('without-eta') === 'no' ?
-            list + '\nDetails added' : list;
+            list + '\n' + req.sessionModel.get('without-eta-detail') : list;
         }
       },
       {
@@ -254,7 +254,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('arrival-after-date') === 'no' ?
-            list + '\n' + req.sessionModel.get('arrived-date') + '\nDetails added' : list;
+            list + '\n' + req.sessionModel.get('arrived-date') + '\n' + req.sessionModel.get('arrival-details') : list;
         }
       },
       {
@@ -265,7 +265,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('is-life-threatened') === 'yes' ?
-            list + '\n' + 'Details added' : list;
+            list + '\n' + req.sessionModel.get('life-threatened-detail') : list;
         }
       },
       {
@@ -276,37 +276,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('permission-to-enter-or-stay') === 'yes' ?
-            list + '\n' + 'Details added' : list;
-        }
-      }
-    ]
-  },
-  'exception-duty-to-remove': {
-    steps: [
-      {
-        step: '/exception',
-        field: 'does-exception-apply',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/exception')) {
-            return null;
-          }
-          return req.sessionModel.get('does-exception-apply') === 'yes' ?
-            'Yes' + '\nDetails added' : 'No';
-        }
-      }
-    ]
-  },
-  'removal-condition': {
-    steps: [
-      {
-        step: '/removal-condition',
-        field: 'how-removal-condition-1-applies',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/removal-condition')) {
-            return null;
-          }
-          return req.sessionModel.get('how-removal-condition-1-applies') !== '' ?
-            'Selected' + '\nDetails added' : 'Not selected';
+            list + '\n' + req.sessionModel.get('permission-to-enter-or-stay-detail') : list;
         }
       }
     ]
@@ -327,12 +297,20 @@ module.exports = {
       {
         step: '/harm-claim-summary',
         field: 'sih-countries',
-        parse: (list, req) => {
-          if (req.sessionModel.get('sih-countries') === undefined || req.sessionModel.get('sih-countries').length < 1) {
-            return null;
+        addElementSeparators: true,
+        dependsOn: 'is-serious-and-irreversible',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          for (const item of obj.aggregatedValues) {
+            item.fields.map(field => {
+              if (field.field === 'country-1') {
+                field.isAggregatorTitle = true;
+              }
+              field.omitChangeLink = true;
+              return field;
+            });
           }
-          return req.sessionModel.get('is-serious-and-irreversible') === 'yes' ?
-            'Details added' : null;
+          return obj;
         }
       }
     ]
@@ -352,11 +330,20 @@ module.exports = {
       {
         step: '/human-rights-family-summary',
         field: 'family-members',
-        parse: (list, req) => {
-          if (!req.sessionModel.get('steps').includes('/human-rights-family-summary') || req.sessionModel.get('human-rights-claim') === 'no') {
-            return null;
+        addElementSeparators: true,
+        dependsOn: 'human-rights-claim',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          for (const item of obj.aggregatedValues) {
+            item.fields.map(field => {
+              if (field.field === 'family-member-full-name') {
+                field.isAggregatorTitle = true;
+              }
+              field.omitChangeLink = true;
+              return field;
+            });
           }
-          return 'Details added';
+          return obj;
         }
       },
       {
@@ -367,7 +354,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('other-human-rights-claim') === 'yes' ?
-            'Details added' : list;
+            req.sessionModel.get('other-human-rights-claim-details') : list;
         }
       }
     ]
@@ -392,7 +379,7 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/exceptional-circumstances-details')) {
             return null;
           }
-          return 'Details added';
+          return req.sessionModel.get('exceptional-circumstances-details');
         }
       }
     ]
@@ -407,7 +394,18 @@ module.exports = {
             return null;
           }
           return (typeof req.sessionModel.get('temporary-permission-details-ban-only') !== 'undefined') ?
-            'Details added' : list;
+            req.sessionModel.get('temporary-permission-reasons') : list;
+        }
+      },
+      {
+        step: '/temporary-permission',
+        field: 'temporary-permission-details',
+        parse: (list, req) => {
+          if (!req.sessionModel.get('steps').includes('/temporary-permission')) {
+            return null;
+          }
+          return (typeof req.sessionModel.get('temporary-permission-details') !== 'undefined') ?
+            req.sessionModel.get('temporary-permission-details') : list;
         }
       }
     ]
@@ -421,8 +419,9 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/temporary-permission-to-stay')) {
             return null;
           }
+          console.log('list = ' + list);
           return req.sessionModel.get('temporary-permission') === 'yes' ?
-            'Yes' + '\nDetails added' : 'No';
+            'Yes' + '\n' +  req.sessionModel.get('temporary-permission-reasons').join('\n') + '\n' + '\n' + req.sessionModel.get('temporary-permission-details') : 'No';
         }
       }
     ]

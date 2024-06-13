@@ -4,6 +4,17 @@
 <dl>
   {{#fields}}
   {{^omitFromSummary}}
+  {{#isAggregatorTitle}}
+  <div class="table-options">
+   <h2 class="govuk-table__caption--M">{{value}}</h2>
+    {{#changeLink}}
+      <dd><span><a class="govuk-link" href="{{changeLink}}" id="{{field}}-change-{{index}}">{{#t}}buttons.change{{/t}} <span class="visuallyhidden">{{changeLinkDescription}} from {{value}}</span></a></span></dd>
+    {{/changeLink}}
+    {{^changeLink}}
+      <dd><span><a class="govuk-link" href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">{{#t}}buttons.change{{/t}} <span class="visuallyhidden">{{changeLinkDescription}} from {{value}}</span></a></span></dd>
+    {{/changeLink}}
+  </div>
+  {{/isAggregatorTitle}}
     <div class="confirm-row">
       {{#isSeparator}}
       {{/isSeparator}}

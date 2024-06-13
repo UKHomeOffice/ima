@@ -338,3 +338,10 @@ div > .section-header[data-content="Case details"]{
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.table-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}

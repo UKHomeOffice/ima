@@ -231,6 +231,15 @@
       "address-details": {
         "label": "Address"
       },
+      "temporary-permission-details": {
+        "label": "Temporary permission details"
+      },
+      "why-not-get-protection": {
+        "label": "Why would you not be able to get protection from this harm"
+      },
+      "country-1": {
+       "label": "Country name"
+      },
       "sih-countries": {
         "label": "Your serious and irreversible harm claims"
       },
