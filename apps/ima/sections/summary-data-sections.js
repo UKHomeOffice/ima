@@ -188,7 +188,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('entered-without-permission') === 'no' ?
-            'No' : list;
+            'No \n' + req.sessionModel.get('entered-without-permission-detail') : list;
         }
       },
       {
@@ -338,6 +338,9 @@ module.exports = {
             item.fields.map(field => {
               if (field.field === 'family-member-full-name') {
                 field.isAggregatorTitle = true;
+              }
+              if (field.field !== 'family-member-full-name') {
+                field.isAggregatorTitle = false;
               }
               field.omitChangeLink = true;
               return field;
