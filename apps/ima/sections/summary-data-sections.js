@@ -421,10 +421,12 @@ module.exports = {
         parse: (list, req) => {
           if (!req.sessionModel.get('steps').includes('/temporary-permission-to-stay')) {
             return null;
+          } else if(req.sessionModel.get('temporary-permission') === 'yes' && typeof(req.sessionModel.get('temporary-permission-reasons')) === 'object') {
+            return 'Yes' + '\n' + req.sessionModel.get('temporary-permission-reasons').join('\n') + '\n' + '\n' + req.sessionModel.get('temporary-permission-details');
+          } else if(req.sessionModel.get('temporary-permission') === 'yes' && typeof(req.sessionModel.get('temporary-permission-reasons')) === 'string') {
+            return 'Yes' + '\n' + req.sessionModel.get('temporary-permission-reasons') + '\n' + '\n' + req.sessionModel.get('temporary-permission-details');
           }
-          console.log('list = ' + list);
-          return req.sessionModel.get('temporary-permission') === 'yes' ?
-            'Yes' + '\n' +  req.sessionModel.get('temporary-permission-reasons').join('\n') + '\n' + '\n' + req.sessionModel.get('temporary-permission-details') : 'No';
+          return 'No';
         }
       }
     ]
