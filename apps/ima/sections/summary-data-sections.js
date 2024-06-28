@@ -339,8 +339,16 @@ module.exports = {
               if (field.field === 'family-member-full-name') {
                 field.isAggregatorTitle = true;
               }
-              if (field.field !== 'family-member-full-name') {
-                field.isAggregatorTitle = false;
+              if (field.field === 'reference-number-option') {
+                if(field.value.includes('unique-application-number') && (field.value.includes('home-office-reference-number'))) {
+                  field.parsed = 'Unique Application Number and Home Office Reference Number';
+                } else if(field.value === 'unique-application-number') {
+                  field.parsed = 'Unique Application Number';
+                } else if(field.value === 'home-office-reference-number') {
+                  field.parsed = 'Home Office Reference Number';
+                } else {
+                  field.parsed = 'Do not know';
+                }
               }
               field.omitChangeLink = true;
               return field;
