@@ -16,7 +16,8 @@
   "routes": [
     "./apps/ima",
     "./apps/cepr",
-    "./apps/verify"
+    "./apps/verify",
+    "./apps/common"
   ],
   "session": {
     "name": "ima.hof.sid"
