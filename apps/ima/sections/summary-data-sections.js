@@ -232,7 +232,7 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('arrived-without-clearance') === 'no' ?
-            list + '\n"' + req.sessionModel.get('arrived-without-clearance-detail') : list;
+            list + '\n' + req.sessionModel.get('arrived-without-clearance-detail') : list;
         }
       },
       {
