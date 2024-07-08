@@ -10,6 +10,7 @@ This website is run by the Home Office. We want as many people as possible to be
 - navigate most of the website using speech recognition software
 - listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)
 
+\
 We have also made the website text as simple as possible to understand. [AbilityNet](https://mcmw.abilitynet.org.uk/) has advice on making your device easier to use if you have a disability.
 
 ## Reporting accessibility problems with this website
@@ -21,9 +22,9 @@ We are always looking to improve the accessibility of this website. If you find 
 
 
 ## Enforcement procedure  
-The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, [contact the Equality Advisory and Support Service (EASS).](https://www.equalityadvisoryservice.com/) 
- 
-If you are in Northern Ireland and are not happy with how we respond to your complaint you can contact the Equalities Commission for Northern Ireland who are responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’) in Northern Ireland. 
+The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, [contact the Equality Advisory and Support Service (EASS).](https://www.equalityadvisoryservice.com/)
+
+<p>If you are in Northern Ireland and are not happy with how we respond to your complaint you can contact the Equalities Commission for Northern Ireland who are responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’) in Northern Ireland.</p>
 
 ## Technical information about this website’s accessibility 
  
@@ -38,11 +39,13 @@ This website is partially compliant with the [Web Content Accessibility Guidelin
 The content listed below is non-accessible for the following reasons.
 
 ### Non-compliance with the accessibility regulations
+<br>
+On several form elements, a legend is not present which is necessary for screen readers to understand what type of form control is present. This does not meet the following WCAG standards and guidelines:
 
-On several form elements, a legend is not present which is necessary for screen readers to understand what type of form control is present. This does not meet the following WCAG standards and guidelines: 
-1.1.1 Non-text content (Level A) 
-1.3.1 Info and relationships (Level A) 
-2.4.6 Headings and labels (Level AA) 
+\
+1.1.1 Non-text content (Level A)<br>
+1.3.1 Info and relationships (Level A)<br>
+2.4.6 Headings and labels (Level AA)<br>
 3.3.2 Labels or instructions (Level A) 
 
 On several form elements, an aria attribute has been allowed where it should not be allowed. This could mean hidden reveals within form elements are missed by screen readers.  This does not meet the following WCAG standards and guidelines: 
@@ -51,19 +54,19 @@ On several form elements, an aria attribute has been allowed where it should not
 
 On some form controls, there is a missing label or more than one label associated with it. This could make it harder for screen readers to identify the form control correctly. This does not meet the following WCAG standards and guidelines: 
 
-1.1.1 Non-text content (Level A) 
-1.3.1 Info and relationships (Level A) 
-2.4.6 Headings and labels (Level AA) 
+1.1.1 Non-text content (Level A)<br>
+1.3.1 Info and relationships (Level A)<br>
+2.4.6 Headings and labels (Level AA)<br> 
 3.3.2 Labels or instructions (Level A) 
 
 On some form elements, an aria-labelledby or aria-describedby reference exists but the target for the reference does not exist. Screen readers will not pick up on the relationship between the words and the input and so may progress without completing the action. This does not meet the following WCAG standards and guidelines: 
 
-1.3.1 Info and relationships (Level A) 
-4.1.2 Name, role, value (Level A) 
+1.3.1 Info and relationships (Level A)<br>
+4.1.2 Name, role, value (Level A)
 
 On several pages, data tables are used to create columns, insert spacing or align content neatly instead of lists in the HTML. This may introduce reading and navigation issues for screen readers. This does not meet the following WCAG standards and guidelines: 
 
-1.3.1 Info and relationships (Level A) 
+1.3.1 Info and relationships (Level A)<br> 
 1.3.2 Meaningful sequence (Level A) 
 
 The session timeout of 30 minutes cannot be changed and the user is not alerted when time running out. This is for each individual page of the form, not the form overall. This does not meet the following WCAG standards and guidelines: 
