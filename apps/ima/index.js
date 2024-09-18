@@ -3,6 +3,7 @@
 
 const hof = require('hof');
 const Summary = hof.components.summary;
+const PostcodeLookup = hof.components.postcodeLookup;
 const ContinueReport = require('./behaviours/continue-report');
 const CheckEmailToken = require('./behaviours/check-email-token');
 const ResumeSession = require('./behaviours/resume-form-session');
@@ -61,7 +62,8 @@ module.exports = {
           }
         },
         {
-          target: '/helper-details',
+          // target: '/helper-details',
+          target: '/postcode',
           condition: {
             field: 'who-are-you',
             value: 'helper'
@@ -91,17 +93,26 @@ module.exports = {
       locals: { showSaveAndExit: true },
       next: '/your-location'
     },
-    '/helper-details': {
-      behaviours: SaveFormSession,
-      fields: [
-        'helper-fullname',
-        'helper-relationship',
-        'helper-organisation'
-      ],
-      continueOnEdit: true,
-      locals: { showSaveAndExit: true },
+    '/postcode': {
+      behaviours: [PostcodeLookup({
+        addressFieldNamePrefix: 'address-one',
+        apiURL: process.env.POSTCODE_API_URL,
+        apiKey: process.env.POSTCODE_API_KEY,
+        required: true
+      }), SaveFormSession],
       next: '/your-location'
     },
+    // '/helper-details': {
+    //   behaviours: SaveFormSession,
+    //   fields: [
+    //     'helper-fullname',
+    //     'helper-relationship',
+    //     'helper-organisation'
+    //   ],
+    //   continueOnEdit: true,
+    //   locals: { showSaveAndExit: true },
+    //   next: '/your-location'
+    // },
     '/your-location': {
       behaviours: SaveFormSession,
       forks: [
@@ -168,7 +179,10 @@ module.exports = {
       next: '/immigration-detention'
     },
     '/immigration-detention': {
-      behaviours: SaveFormSession,
+      behaviours: [PostcodeLookup({
+        postcode: 'SE1 9SG',
+        required: true  
+      }),SaveFormSession],
       forks: [
         {
           target: '/medical-records',
