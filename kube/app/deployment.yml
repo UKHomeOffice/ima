@@ -113,7 +113,15 @@ spec:
             - name: ALLOW_SKIP
               value: "true"
             - name: SKIP_EMAIL
-              value: "sas-hof-test@digital.homeoffice.gov.uk"
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
+            - name: SAS_HOF_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
             {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
