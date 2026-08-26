@@ -117,11 +117,6 @@ spec:
                 secretKeyRef:
                   name: sas-hof-email
                   key: sas-hof-email
-            - name: SAS_HOF_EMAIL
-              valueFrom:
-                secretKeyRef:
-                  name: sas-hof-email
-                  key: sas-hof-email
             {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
