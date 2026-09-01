@@ -5,6 +5,22 @@
   "in-the-uk": {
     "required": "You must select an option"
   },
+  "address-one-postcode": {
+    "required": "You must enter a postcode",
+    "postcodeValidation": "Enter a full, valid UK postcode"
+  },
+  "address-select": {
+    "required": "You must select an option"
+  },
+  "address": {
+    "required": "You must enter the address"
+  },
+  "town-or-city": {
+    "required": "You must enter the town or city"
+  },
+  "postcode-manual": {
+    "required": "You must enter the postcode"
+  },
   "full-name": {
     "required": "Enter your full name",
     "notUrl": "Please do not enter a link/url into your answers"
