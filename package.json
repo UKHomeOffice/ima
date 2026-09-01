@@ -30,7 +30,7 @@
   "homepage": "https://github.com/UKHomeOffice/ima#readme",
   "dependencies": {
     "accessible-autocomplete": "^2.0.4",
-    "axios": "^1.6.0",
+    "axios": "^1.7.8",
     "bl": "^6.0.1",
     "bottleneck": "^2.19.5",
     "busboy": "^1.6.0",
